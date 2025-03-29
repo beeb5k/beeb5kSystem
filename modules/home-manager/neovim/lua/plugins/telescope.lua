@@ -1,4 +1,4 @@
-return {
+return {{
     'telescope.nvim',
     cmd = 'Telescope',
     keys = '<leader>ff',
@@ -7,5 +7,5 @@ return {
         vim.keymap.set('n', '<leader>ff', ':Telescope fd<CR>', {
             desc = 'Find Files'
         })
-    end,
-}
+    end
+}}

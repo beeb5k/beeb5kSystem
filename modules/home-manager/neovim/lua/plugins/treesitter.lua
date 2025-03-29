@@ -1,4 +1,4 @@
-return {
+return {{
     'nvim-treesitter',
     event = "DeferredUIEnter",
     after = function()
@@ -11,4 +11,4 @@ return {
             }
         }
     end
-}
+}}
