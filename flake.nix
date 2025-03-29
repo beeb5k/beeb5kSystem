@@ -6,7 +6,10 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix/release-24.11";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    lzextras.url = "github:BirdeeHub/lzextras";
+    plugins-lzextras.url = "github:BirdeeHub/lzextras";
+    plugins-lzextras.flake = false;
+    plugins-lze.url = "github:BirdeeHub/lze";
+    plugins-lze.flake = false;
 
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-24.11";
@@ -15,6 +18,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
@@ -43,5 +47,8 @@
 
       extraSpecialArgs = {inherit inputs unstable;};
     };
+    packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system: {
+      default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim.overrideNixCats { inherit system; };
+    });
   };
 }

@@ -9,8 +9,6 @@ vim.g.maplocalleader = '.'
 vim.loader.enable()
 vim.g.loaded_netrwPlugin = 1
 
-require("plugins")
-
 local stylixPalette = nixCats.extra("base16colors")
 require('mini.base16').setup({
     palette = (function()

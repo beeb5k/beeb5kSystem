@@ -53,8 +53,8 @@ in {
         };
         startupPlugins = {
           general = with pkgs.vimPlugins; [
-            lze
-            inputs.lzextras.packages.${pkgs.system}.default
+            pkgs.neovimPlugins.lze
+            pkgs.neovimPlugins.lzextras
             mini-base16
             fzf-lua
             lualine-nvim
