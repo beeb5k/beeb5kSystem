@@ -47,6 +47,8 @@
 
       extraSpecialArgs = {inherit inputs unstable;};
     };
-    packages.${system}.default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim;
+    packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system: {
+      default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim.overrideNixCats { inherit system; };
+    });
   };
 }
