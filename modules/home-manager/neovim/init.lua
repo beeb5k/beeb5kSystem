@@ -8,6 +8,7 @@ vim.g.mapleader = "."
 vim.g.maplocalleader = "."
 vim.loader.enable()
 vim.g.loaded_netrwPlugin = 1
+vim.opt.mouse = ""
 
 local stylixPalette = nixCats.extra("base16colors")
 require("mini.base16").setup({
@@ -30,4 +31,4 @@ vim.api.nvim_set_hl(0, "LineNr", {
 })
 
 require("lze").register_handlers(require("lzextras").lsp)
-require("lze").load({ import = "plugins" }, { import = "LSPs" })
+require("lze").load({{ import = "plugins" }, { import = "LSPs" }})
