@@ -2,16 +2,22 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [vulkan-loader vulkan-validation-layers libva-utils vulkan-tools];
+    extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-validation-layers
+      libva-utils
+      vulkan-tools
+    ];
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.

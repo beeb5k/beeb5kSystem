@@ -1,7 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ../modules/system/default.nix
@@ -39,7 +40,7 @@
     LC_TIME = "en_IN";
   };
 
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   xdg.portal.enable = true;
 
   # Enable the gnome-keyring secrets vault.
@@ -47,19 +48,21 @@
   services.gnome.gnome-keyring.enable = true;
 
   hardware.enableRedistributableFirmware = true;
-  boot.initrd.kernelModules = ["mt7921e"];
+  boot.initrd.kernelModules = [ "mt7921e" ];
 
-  services.greetd = let
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  in {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd 'uwsm start hyprland-uwsm.desktop' --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
-        user = "greeter";
+  services.greetd =
+    let
+      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    in
+    {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd 'uwsm start hyprland-uwsm.desktop' --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
+          user = "greeter";
+        };
       };
     };
-  };
 
   services.dbus.enable = true;
   services.blueman.enable = true;
@@ -110,7 +113,10 @@
     description = "Vivek Tiwari";
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # zsh
@@ -131,8 +137,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [];
-  networking.firewall.allowedUDPPorts = [];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 

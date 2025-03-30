@@ -17,38 +17,50 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    stylix,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {allowUnfree = true;};
-    };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      stylix,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
 
-    unstable = import nixpkgs-unstable {
-      inherit system;
-      config = {allowUnfree = true;};
-    };
-  in {
-    nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs;};
-      modules = [./nixos/configuration.nix];
-    };
-    homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [stylix.homeManagerModules.stylix ./home/home.nix];
+      unstable = import nixpkgs-unstable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+    in
+    {
+      nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [ ./nixos/configuration.nix ];
+      };
+      homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          stylix.homeManagerModules.stylix
+          ./home/home.nix
+        ];
 
-      extraSpecialArgs = {inherit inputs unstable;};
+        extraSpecialArgs = { inherit inputs unstable; };
+      };
+      packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system: {
+        default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim.overrideNixCats {
+          inherit system;
+        };
+      });
     };
-    packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system: {
-      default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim.overrideNixCats { inherit system; };
-    });
-  };
 }

@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   myCss = builtins.readFile ./style.css;
 
   workspaces = {
@@ -29,7 +30,11 @@
     spacing = 6;
     # fixed-center = true; # idk what this does
 
-    modules-left = ["custom/logo" "hyprland/workspaces" "mpris"];
+    modules-left = [
+      "custom/logo"
+      "hyprland/workspaces"
+      "mpris"
+    ];
     modules-right = [
       "power-profiles-daemon"
       "network"
@@ -105,14 +110,22 @@
       };
       format = "󰥔 {:%I:%M %p}";
       format-alt = "󰥔 {:%A, %B %d, %Y (%R)} ";
-      tooltip-format = ''
-        <span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>'';
+      tooltip-format = ''<span size='9pt' font='WenQuanYi Zen Hei Mono'>{calendar}</span>'';
     };
 
     cpu = {
       format = "󰍛 {usage}%";
       format-alt = "{icon0}{icon1}{icon2}{icon3}";
-      format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+      format-icons = [
+        "▁"
+        "▂"
+        "▃"
+        "▄"
+        "▅"
+        "▆"
+        "▇"
+        "█"
+      ];
       interval = 10;
     };
 
@@ -124,7 +137,13 @@
         critical = 15;
       };
       format = "{icon} {capacity}%";
-      format-icons = ["" "" "" "" ""];
+      format-icons = [
+        ""
+        ""
+        ""
+        ""
+        ""
+      ];
     };
 
     "custom/gpu-usage" = {
@@ -179,7 +198,11 @@
       format = "{icon}  {volume}%";
       format-icons = {
         car = " ";
-        default = ["" "" ""];
+        default = [
+          ""
+          ""
+          ""
+        ];
         hands-free = "";
         headphone = "";
         headset = "";
@@ -211,14 +234,17 @@
       spacing = 5;
     };
   };
-in {
+in
+{
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     });
     style = myCss;
-    settings = {mainBar = mainWaybarConfig;};
+    settings = {
+      mainBar = mainWaybarConfig;
+    };
     systemd.enable = true; # Enable systemd service
     systemd.target = "hyprland-session.target"; # Start with Hyprland
   };

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   xdg.dataFile."applications/foot-server.desktop".text = ''
     [Desktop Entry]
     Name=Foot Server

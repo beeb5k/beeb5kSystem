@@ -1,4 +1,5 @@
-{unstable, ...}: {
+{ unstable, ... }:
+{
   home.packages = with unstable; [
     vscode-fhs
     go

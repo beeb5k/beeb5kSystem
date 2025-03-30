@@ -1,11 +1,13 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   cascadeTheme = pkgs.fetchFromGitHub {
     owner = "cascadefox";
     repo = "cascade";
     rev = "main";
     sha256 = "sha256-gyq5WHheiUNkyfxLVkHu8BzTRLzxniH6gQmgrPTv9e4=";
   };
-in {
+in
+{
   programs.firefox = {
     enable = true;
     profiles.default = {
@@ -85,16 +87,16 @@ in {
         default = "DuckDuckGo";
         engines = {
           "DuckDuckGo" = {
-            urls = [{template = "https://duckduckgo.com/?q={searchTerms}";}];
+            urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
             iconUpdateUrl = "https://duckduckgo.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
-            definedAliases = ["ddg"];
+            definedAliases = [ "ddg" ];
           };
           "NixOS Packages" = {
-            urls = [{template = "https://search.nixos.org/packages?query={searchTerms}";}];
+            urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
             iconUpdateUrl = "https://nixos.org/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
-            definedAliases = [":n"];
+            definedAliases = [ ":n" ];
           };
           "Bing".metaData.hidden = true;
           "Amazon".metaData.hidden = true;

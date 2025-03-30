@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     (pkgs.discord.override {
       withVencord = true;
@@ -11,5 +12,7 @@
     mpv
     imv
     fastfetch
+    stylua
+    nixfmt-rfc-style
   ];
 }
