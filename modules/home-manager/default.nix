@@ -1,6 +1,6 @@
 {
   imports = [
-    ./hyperland/default.nix
+    # ./hyperland/default.nix
     ./scripts/screenshot.nix
     ./waybar/waybar.nix
     ./neovim/default.nix
@@ -19,5 +19,6 @@
     ./satty.nix
     ./stylix.nix
     ./zsh.nix
+    ./river.nix
   ];
 }

@@ -12,6 +12,7 @@
   home.stateVersion = "24.11";
 
   home.sessionVariables = {
+    XCURSOR_SIZE = "16";
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERMINAL = "foot";

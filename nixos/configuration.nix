@@ -1,25 +1,19 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/system/default.nix
     ./packages.nix
   ];
 
-  networking.hostName = "dixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.hostName = "dixos";
 
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-
+  
   systemd.services."NetworkManager-wait-online".enable = false;
 
   # Set your time zone.
@@ -40,7 +34,7 @@
     LC_TIME = "en_IN";
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   xdg.portal.enable = true;
 
   # Enable the gnome-keyring secrets vault.
@@ -48,21 +42,19 @@
   services.gnome.gnome-keyring.enable = true;
 
   hardware.enableRedistributableFirmware = true;
-  boot.initrd.kernelModules = [ "mt7921e" ];
+  boot.initrd.kernelModules = ["mt7921e"];
 
-  services.greetd =
-    let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    in
-    {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd 'uwsm start hyprland-uwsm.desktop' --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
-          user = "greeter";
-        };
+  services.greetd = let
+    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  in {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd river --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
+        user = "greeter";
       };
     };
+  };
 
   services.dbus.enable = true;
   services.blueman.enable = true;
@@ -70,11 +62,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
+  programs.river.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -137,8 +125,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.allowedTCPPorts = [];
+  networking.firewall.allowedUDPPorts = [];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
