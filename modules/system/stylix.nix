@@ -11,9 +11,9 @@
   stylix = {
     enable = true;
     targets.grub.enable = false;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     polarity = "dark";
-    image = ../../wallpapers/wallpaper.png;
+    image = ../../wallpapers/wallpaper.jpg;
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -24,7 +24,7 @@
     fonts = {
       sizes = {
         applications = 12;
-        terminal = 12;
+        terminal = 11;
         desktop = 12;
       };
     };

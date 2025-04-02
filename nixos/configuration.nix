@@ -42,7 +42,6 @@
   services.gnome.gnome-keyring.enable = true;
 
   hardware.enableRedistributableFirmware = true;
-  boot.initrd.kernelModules = ["mt7921e"];
 
   services.greetd = let
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
@@ -92,6 +91,8 @@
     wireplumber.enable = true;
     jack.enable = true;
   };
+
+  security.pam.services.swaylock = {};
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

@@ -51,6 +51,7 @@ in
             general = with pkgs.vimPlugins; [
               pkgs.neovimPlugins.lze
               pkgs.neovimPlugins.lzextras
+              kanagawa-nvim
               mini-base16
               fzf-lua
               lualine-nvim
@@ -129,10 +130,7 @@ in
             settings = {
               wrapRc = true;
               aliases = [
-                "vim"
                 "nvim"
-                "vi"
-                "v"
                 "nv"
               ];
               # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;

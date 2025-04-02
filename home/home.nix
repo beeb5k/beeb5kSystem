@@ -16,7 +16,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERMINAL = "foot";
-    TERMINAL_EMULATOR = "foot";
+    TerminalEmulator = "foot";
     TERM = "foot";
     BROWSER = "firefox";
   };

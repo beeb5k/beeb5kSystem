@@ -23,6 +23,10 @@
         git clone https://github.com/zdharma-continuum/zinit.git $HOME/.zinit/bin
       fi
 
+      batman() {
+        man "$1" | bat --paging=always --language=man
+      }
+
       # ---- Source Zinit ----
       source $HOME/.zinit/bin/zinit.zsh
 

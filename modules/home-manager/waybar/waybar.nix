@@ -53,30 +53,30 @@ let
     "wlr/workspaces" = workspaces;
     "hyprland/workspaces" = workspaces;
 
-    "river/tags"= {
-    # "num-tags"= 5;
-    "set-tags"= [
-      2147483649
-      2147483650
-      2147483652
-      2147483656
-      2147483664
-    ];
-};
+    "river/tags" = {
+      # "num-tags"= 5;
+      "set-tags" = [
+        2147483649
+        2147483650
+        2147483652
+        2147483656
+        2147483664
+      ];
+    };
 
-"river/mode"= {
-    "format"=  "mode: {}";
-};
+    "river/mode" = {
+      "format" = "mode: {}";
+    };
 
-"river/window"= {
-    "format"= "{}";
-};
+    "river/window" = {
+      "format" = "{}";
+    };
 
-"river/layout"= {
-    "format"= "{}";
-    "min-length"= 4;
-    "align"= "right";
-};
+    "river/layout" = {
+      "format" = "{}";
+      "min-length" = 4;
+      "align" = "right";
+    };
 
     bluetooth = {
       format = "";
