@@ -101,6 +101,7 @@ in
                 nvim-notify
                 nvim-web-devicons
                 conform-nvim
+                indent-blankline-nvim
               ];
             };
           };

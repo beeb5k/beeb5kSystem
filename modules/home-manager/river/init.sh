@@ -1,3 +1,4 @@
+swaybg -i $HOME/os-config/wallpapers/wallpaper.jpg -m fill &
 # --- Default apps --- #
 riverctl map normal Super+Shift Return spawn foot
 riverctl map normal Super B spawn firefox
@@ -29,6 +30,9 @@ riverctl map normal Super+Shift Comma send-to-output previous
 
 # Super+Return to bump the focused view to the top of the layout stack
 riverctl map normal Super Return zoom
+
+# lock screen
+riverctl map normal Super+Shift M spawn swaylock
 
 # Super+H and Super+L to decrease/increase the main ratio of rivercarro(1)
 riverctl map normal Super H send-layout-cmd rivercarro "main-ratio -0.05"
@@ -112,7 +116,8 @@ riverctl declare-mode passthrough
 # toggle passthrough mode
 riverctl map normal Super F11 enter-mode passthrough
 riverctl map passthrough Super F11 enter-mode normal
-riverctl focus-follows-cursor always 
+riverctl focus-follows-cursor normal 
+riverctl border-width 1
 
 # --- Function keys --- #
 for mode in normal locked; do
@@ -139,10 +144,10 @@ riverctl set-repeat 50 300
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 # riverctl rule-add -app-id 'float*' -title 'foo' float
-riverctl rule-add -app-id 'htop' float
+# riverctl rule-add -app-id 'htop' float
 
 # Make all views with app-id "bar" and any title use client-side decorations
-riverctl rule-add -app-id "bar" csd
+# riverctl rule-add -app-id "bar" csd
 
 # set wallpaper
 
@@ -150,5 +155,7 @@ riverctl rule-add -app-id "bar" csd
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivercarro
 rivercarro -outer-gaps 6 -per-tag &
-swaybg -i $HOME/os-config/wallpapers/wallpaper.jpg -m fill &
-waybar &
+
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+systemctl --user restart xdg-desktop-portal

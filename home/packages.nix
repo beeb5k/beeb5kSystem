@@ -14,5 +14,6 @@
     fastfetch
     stylua
     nixfmt-rfc-style
+    cmatrix
   ];
 }

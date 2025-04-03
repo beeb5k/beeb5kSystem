@@ -17,7 +17,5 @@
     pamixer
     greetd.tuigreet
     brightnessctl
-    mtpfs
-    libmtp
   ];
 }

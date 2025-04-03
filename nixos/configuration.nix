@@ -16,6 +16,9 @@
   
   systemd.services."NetworkManager-wait-online".enable = false;
 
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -34,9 +37,6 @@
     LC_TIME = "en_IN";
   };
 
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  xdg.portal.enable = true;
-
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
@@ -54,7 +54,7 @@
       };
     };
   };
-
+  
   services.dbus.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
@@ -80,9 +80,8 @@
   services.printing.enable = false;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  # security.polkit.enable = true;
+  security.polkit.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

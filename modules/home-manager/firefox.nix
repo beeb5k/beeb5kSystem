@@ -20,9 +20,6 @@ in
         # Session management: Always start fresh, no tab restore
         "browser.sessionstore.resume_from_crash" = false;
         "browser.startup.page" = 0;
-        "browser.startup.homepage" = "about:blank";
-        "browser.newtabpage.enabled" = false;
-        "browser.newtab.url" = "about:blank";
 
         # Privacy: Strict settings, no data collection
         "browser.contentblocking.category" = "strict";

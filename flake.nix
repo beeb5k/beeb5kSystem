@@ -54,13 +54,7 @@
           stylix.homeManagerModules.stylix
           ./home/home.nix
         ];
-
         extraSpecialArgs = { inherit inputs unstable; };
       };
-      packages = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all (system: {
-        default = self.homeConfigurations."beeb5k".config.nixCats.out.packages.Neovim.overrideNixCats {
-          inherit system;
-        };
-      });
     };
 }

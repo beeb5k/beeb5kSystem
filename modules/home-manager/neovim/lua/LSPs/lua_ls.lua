@@ -4,6 +4,9 @@ return {
 		filetypes = { "lua" },
 		settings = {
 			Lua = {
+				hint = {
+					enabled = true,
+				},
 				runtime = {
 					version = "LuaJIT",
 				},

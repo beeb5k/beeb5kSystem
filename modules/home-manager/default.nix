@@ -4,6 +4,7 @@
     ./waybar/waybar.nix
     ./neovim/default.nix
     ./river/default.nix
+    # ./eww/default.nix
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix

@@ -21,7 +21,7 @@ tooltip {
     box-shadow: none;
     text-shadow: none;
     padding: 0px;
-    margin: 0px 2px;
+    margin: 0px;
     border-radius: 7px;
     color: @theme_text_color;
     animation: gradient_f 2s ease-in infinite;
@@ -44,6 +44,24 @@ tooltip {
     color: @red_1;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#tags button {
+  margin : 0px;
+  padding : 0px 2px;
+  border-radius : 7px;
+}
+
+#tags button.occupied {
+  color : @accent_color;
+}
+
+#tags button.focused {
+  color : @green_1;
+}
+
+#tags button.urgent {
+  color : @red_1;
 }
 
 #power-profiles-daemon,
@@ -92,8 +110,8 @@ tooltip {
 /* workspace window block */
 #workspaces {
     border-radius: 10px;
-    padding: 0px 6px;
-    margin: 6px;
+    padding: 0px 0px;
+    margin: 0px;
     background: mix(@theme_unfocused_base_color, white, 0.1);
 }
 

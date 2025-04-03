@@ -2,11 +2,11 @@
 {
   services.swayidle = {
     enable = true;
-    systemdTarget = "graphical-session.target";
+    systemdTarget = "river-session.target";
     timeouts = [
       {
         timeout = 300;
-        command = "flock /tmp/swaylock.lock ${pkgs.swaylock-effects}/bin/swaylock -fF";
+        command = "pgrep swaylock || ${pkgs.swaylock-effects}/bin/swaylock -fF";
       }
       {
         timeout = 600;
@@ -17,7 +17,7 @@
     events = [
       {
         event = "before-sleep";
-        command = "flock /tmp/swaylock.lock ${pkgs.swaylock-effects}/bin/swaylock -fF";
+        command = "pgrep swaylock || ${pkgs.swaylock-effects}/bin/swaylock -fF";
       }
       {
         event = "lock";

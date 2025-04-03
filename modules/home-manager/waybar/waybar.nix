@@ -272,6 +272,6 @@ in
       mainBar = mainWaybarConfig;
     };
     systemd.enable = true; # Enable systemd service
-    systemd.target = "hyprland-session.target"; # Start with Hyprland
+    systemd.target = "river-session.target"; # Start with Hyprland
   };
 }

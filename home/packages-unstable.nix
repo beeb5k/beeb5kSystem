@@ -4,8 +4,11 @@
     vscode-fhs
     go
     zig
-    rustup
     bun
     lua
+    rustc
+    rustfmt
+    clippy
+    cargo
   ];
 }
