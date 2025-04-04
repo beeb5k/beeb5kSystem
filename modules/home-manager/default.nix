@@ -4,14 +4,13 @@
     ./waybar/waybar.nix
     ./neovim/default.nix
     ./river/default.nix
-    # ./eww/default.nix
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix
     ./firefox.nix
     ./fonts.nix
     ./foot.nix
-    ./fuzzel.nix
+    ./wofi.nix
     ./git.nix
     ./htop.nix
     ./mako.nix
