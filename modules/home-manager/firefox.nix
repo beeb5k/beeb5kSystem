@@ -14,12 +14,10 @@ in
       settings = {
         # Cascade theme support
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "browser.compactmode.show" = true;
         "browser.uidensity" = 1;
 
         # Session management: Always start fresh, no tab restore
         "browser.sessionstore.resume_from_crash" = false;
-        "browser.startup.page" = 0;
 
         # Privacy: Strict settings, no data collection
         "browser.contentblocking.category" = "strict";
@@ -46,8 +44,6 @@ in
         # Remove bloat
         "identity.fxaccounts.enabled" = false; # No Firefox Account
         "extensions.pocket.enabled" = false; # No Pocket
-        "browser.safebrowsing.phishing.enabled" = false; # No Safe Browsing
-        "browser.safebrowsing.malware.enabled" = false;
 
         # Performance: Speed and low memory usage
         "gfx.webrender.all" = true; # WebRender for speed
