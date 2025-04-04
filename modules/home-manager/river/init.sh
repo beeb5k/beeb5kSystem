@@ -30,7 +30,7 @@ systemctl --user restart xdg-desktop-portal
 # Default applications
 riverctl map normal Super+Shift Return spawn foot          # Terminal
 riverctl map normal Super B           spawn firefox        # Browser
-riverctl map normal Super E           spawn thunar         # File manager
+riverctl map normal Super E           spawn pcmanfm         # File manager
 riverctl map normal Super D           spawn "wofi --show drun --prompt ''"  # App launcher
 
 # ============================================================================

@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     trash-cli
-    xfce.thunar
+    pcmanfm
   ];
 
   programs.lf.enable = true;
