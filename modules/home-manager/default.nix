@@ -1,7 +1,6 @@
 {
   imports = [
-    ./scripts/screenshot.nix
-    ./waybar/waybar.nix
+    ./eww
     ./neovim/default.nix
     ./river/default.nix
     ./btop.nix

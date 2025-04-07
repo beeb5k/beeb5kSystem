@@ -15,5 +15,11 @@
     stylua
     nixfmt-rfc-style
     cmatrix
+    pulseaudio
+    ristate
+    pkg-config
+    wayland-scanner
+    jq
+    python314
   ];
 }

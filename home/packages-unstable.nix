@@ -10,5 +10,6 @@
     rustfmt
     clippy
     cargo
+    vesktop
   ];
 }
