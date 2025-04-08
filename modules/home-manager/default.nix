@@ -17,5 +17,6 @@
     ./satty.nix
     ./stylix.nix
     ./zsh.nix
+    ./tmux.nix
   ];
 }

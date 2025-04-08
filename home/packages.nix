@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    (pkgs.discord.override {
-      withVencord = true;
-    })
     grim
     nitch
     swaybg
