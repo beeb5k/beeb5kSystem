@@ -54,6 +54,30 @@
       };
     };
   };
+
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = ["*"];
+      settings = {
+        main = {
+          capslock = "overload(sym, esc)";
+          rightalt = "overload(control, backspace)";
+        };
+        sym = {
+          u = "("; 
+          i = ")";
+          j = "[";
+          k = "]";
+          m = "{";
+         "." = "}";
+          o = "=";
+          p = "+";
+          l = "-";
+        };
+      };
+    };
+  };
   
   services.dbus.enable = true;
   services.blueman.enable = true;
@@ -81,7 +105,7 @@
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
-  security.polkit.enable = false;
+  # security.polkit.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
