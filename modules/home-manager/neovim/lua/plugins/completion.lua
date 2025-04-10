@@ -50,6 +50,15 @@ return {
 		dep_of = { "nvim-cmp" },
 		load = load_w_after,
 	},
+	-- {
+	-- 	"copilot-cmp",
+	-- 	-- -- dep_of = {"nvim-cmp", "copilot.lua"},
+	-- 	-- on_require = { "copilot-cmp" },
+	-- 	-- load = load_w_after,
+	-- 	after = function()
+	-- 	 require("copilot_cmp").setup()
+	-- 	end
+	-- },
 	{
 		"luasnip",
 		dep_of = { "nvim-cmp" },
@@ -80,7 +89,7 @@ return {
 	{
 		"nvim-cmp",
 		event = "InsertEnter",
-
+		-- dep_of = { "copliot.lua" },
 		on_require = "cmp",
 		after = function(plugin)
 			local cmp = require("cmp")
@@ -96,6 +105,7 @@ return {
 						ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
 						menu = {
+							copilot = "[COPILOT]",
 							buffer = "[BUF]",
 							nvim_lsp = "[LSP]",
 							nvim_lsp_signature_help = "[LSP]",
@@ -155,6 +165,9 @@ return {
 					{
 						name = "buffer",
 					},
+					-- {
+					-- 	name = "copilot",
+					-- },
 				}),
 				enabled = function()
 					return vim.bo[0].buftype ~= "prompt"

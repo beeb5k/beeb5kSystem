@@ -9,6 +9,7 @@ vim.g.maplocalleader = "."
 vim.loader.enable()
 vim.g.loaded_netrwPlugin = 1
 vim.opt.mouse = ""
+vim.o.scrolloff = 10
 
 vim.lsp.inlay_hint.enable(true)
 

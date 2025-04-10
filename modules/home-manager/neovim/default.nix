@@ -45,6 +45,7 @@ in
               nil
               stylua
               nixfmt-rfc-style
+              nodejs_23
             ];
           };
           startupPlugins = {
@@ -72,6 +73,7 @@ in
                 cmp-cmdline
                 cmp-nvim-lsp-signature-help
                 cmp-cmdline-history
+                copilot-cmp
               ];
 
               treesitter = with pkgs.vimPlugins; [
@@ -102,6 +104,8 @@ in
                 nvim-web-devicons
                 conform-nvim
                 indent-blankline-nvim
+                bufferline-nvim
+                copilot-lua
               ];
             };
           };

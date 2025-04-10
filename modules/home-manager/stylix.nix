@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 {
   stylix = {
     enable = true;
@@ -22,11 +22,17 @@
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
         name = "JetBrainsMono Nerd Font Mono";
       };
+
+      sansSerif = {
+        package = unstable.adwaita-fonts;
+        name = "Adwaita Sans";
+      };
+
       sizes = {
         applications = 12;
         desktop = 10;
         popups = 12;
-        terminal = 11;
+        terminal = 12;
       };
     };
 

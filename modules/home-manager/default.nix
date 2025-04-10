@@ -8,7 +8,6 @@
     ./file-manager.nix
     ./firefox.nix
     ./fonts.nix
-    ./foot.nix
     ./wofi.nix
     ./git.nix
     ./htop.nix
@@ -18,5 +17,6 @@
     ./stylix.nix
     ./zsh.nix
     ./tmux.nix
+    ./alacritty.nix
   ];
 }
