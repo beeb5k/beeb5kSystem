@@ -69,7 +69,7 @@ return {
 	},
 	{
 		"copilot.lua",
-		event = { "BufReadPost" },
+		event = { "InsertEnter" },
 		after = function()
 			require("copilot").setup({
 				suggestion = {

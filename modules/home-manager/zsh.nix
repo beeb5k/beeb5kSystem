@@ -71,8 +71,6 @@
     '';
 
     shellAliases = {
-      sv = "sudo nvim";
-      v = "nvim";
       c = "clear";
       cat = "bat";
       man = "batman";

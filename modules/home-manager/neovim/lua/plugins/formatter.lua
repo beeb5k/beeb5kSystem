@@ -11,10 +11,12 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua" },
 				nix = { "nixfmt" },
+				c = { "clang_format" },
+      			cpp = { "clang_format" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform will run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				-- You can customize some of the format options for the filetype (:help conform.format)
-				-- rust = { "rustfmt", lsp_format = "fallback" },
 				-- Conform will run the first available formatter
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
@@ -26,7 +28,7 @@ return {
 				timeout_ms = 1000,
 			})
 		end, {
-			desc = "[F]ormat [F]ile",
+			desc = "[F]or[M]at",
 		})
 	end,
 }

@@ -1,7 +1,7 @@
 return {
     "zls",
     lsp = {
-        filetypes = { "zig", "zir" },
+        filetypes = { "zig" },
         settings = {
             zls = {
                 enable_inlay_hints = true,  -- ZLS supports inlay hints

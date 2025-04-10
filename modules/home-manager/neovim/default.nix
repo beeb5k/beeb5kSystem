@@ -47,9 +47,9 @@ in
               stylua
               nixfmt-rfc-style
               nodejs_23
-              rust-analyzer
               clang-tools
               unstable.zls
+              unstable.rust-analyzer
             ];
           };
           startupPlugins = {
@@ -141,6 +141,9 @@ in
               aliases = [
                 "nvim"
                 "nv"
+                "v"
+                "vi"
+                "vim"
               ];
               # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };

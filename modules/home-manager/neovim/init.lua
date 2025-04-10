@@ -11,7 +11,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.mouse = ""
 vim.o.scrolloff = 10
 
-vim.lsp.inlay_hint.enable(true)
+-- vim.lsp.inlay_hint.enable(true)
 
 local stylixPalette = nixCats.extra("base16colors")
 require("mini.base16").setup({

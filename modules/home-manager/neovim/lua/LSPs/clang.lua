@@ -1,7 +1,7 @@
 return {
     "clangd",
     lsp = {
-        filetypes = { "c", "cpp", "objc", "objcpp" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         settings = {
             clangd = {
                 InlayHints = {

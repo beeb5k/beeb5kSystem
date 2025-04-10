@@ -1,6 +1,6 @@
 return {
 	"nvim-lspconfig",
-	event = "DeferredUIEnter",
+	event = { "BufReadPre", "BufNewFile" },
 	for_cat = "general.lsp",
 	on_require = { "lspconfig" },
 	lsp = function(plugin)

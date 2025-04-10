@@ -15,9 +15,9 @@
     XCURSOR_SIZE = "16";
     EDITOR = "nvim";
     VISUAL = "nvim";
-    TERMINAL = "alacritty";
-    TerminalEmulator = "alacritty";
-    TERM = "alacritty";
+    TERMINAL = "foot";
+    TerminalEmulator = "foot";
+    TERM = "foot";
     BROWSER = "firefox";
   };
 

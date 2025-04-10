@@ -17,6 +17,6 @@
     ./stylix.nix
     ./zsh.nix
     ./tmux.nix
-    ./alacritty.nix
+    ./foot.nix
   ];
 }
