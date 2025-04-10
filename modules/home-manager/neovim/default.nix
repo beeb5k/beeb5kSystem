@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  unstable,
   ...
 }:
 let
@@ -46,6 +47,9 @@ in
               stylua
               nixfmt-rfc-style
               nodejs_23
+              rust-analyzer
+              clang-tools
+              unstable.zls
             ];
           };
           startupPlugins = {

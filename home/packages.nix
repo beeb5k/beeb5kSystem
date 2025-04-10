@@ -18,5 +18,6 @@
     wayland-scanner
     jq
     python314
+    llvmPackages_19.libcxxClang
   ];
 }
