@@ -78,6 +78,7 @@ in
                 cmp-nvim-lsp-signature-help
                 cmp-cmdline-history
                 copilot-cmp
+                unstable.vimPlugins.cord-nvim
               ];
 
               treesitter = with pkgs.vimPlugins; [
