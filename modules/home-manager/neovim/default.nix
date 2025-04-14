@@ -124,7 +124,7 @@ in
           extraWrapperArgs = {
           };
 
-          extraPython3Packages = {
+          python3.libraries = {
             test = _: [ ];
           };
           extraLuaPackages = {

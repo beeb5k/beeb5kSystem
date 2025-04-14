@@ -2,7 +2,7 @@
 {
   services.swayidle = {
     enable = true;
-    systemdTarget = "river-session.target";
+    systemdTarget = "sway-session.target";
     timeouts = [
       {
         timeout = 300;

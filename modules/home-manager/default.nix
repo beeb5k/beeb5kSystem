@@ -1,12 +1,12 @@
 {
   imports = [
     ./eww
+    ./sway
     ./neovim/default.nix
-    ./river/default.nix
+    # ./river/default.nix
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix
-    ./firefox.nix
     ./fonts.nix
     ./wofi.nix
     ./git.nix

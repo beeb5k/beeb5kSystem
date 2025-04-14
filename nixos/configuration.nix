@@ -1,7 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ./hardware-configuration.nix
     ../modules/system/default.nix
@@ -13,10 +14,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-  
+
   systemd.services."NetworkManager-wait-online".enable = false;
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-wlr ];
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-wlr
+  ];
   xdg.portal.enable = true;
 
   # Set your time zone.
@@ -43,34 +47,36 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  services.greetd = let
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  in {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd river --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
-        user = "greeter";
+  services.greetd =
+    let
+      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    in
+    {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd river --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
+          user = "greeter";
+        };
       };
     };
-  };
 
   services.keyd = {
     enable = true;
     keyboards.default = {
-      ids = ["*"];
+      ids = [ "*" ];
       settings = {
         main = {
           capslock = "overload(sym, esc)";
           rightalt = "overload(control, backspace)";
         };
         sym = {
-          u = "("; 
+          u = "(";
           i = ")";
           j = "[";
           k = "]";
           m = "{";
-         "." = "}";
+          "." = "}";
           o = "=";
           p = "+";
           l = "-";
@@ -78,7 +84,7 @@
       };
     };
   };
-  
+
   services.dbus.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
@@ -86,6 +92,7 @@
   hardware.bluetooth.powerOnBoot = false;
 
   programs.river.enable = true;
+  programs.sway.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -115,7 +122,7 @@
     jack.enable = true;
   };
 
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -149,8 +156,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [];
-  networking.firewall.allowedUDPPorts = [];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
