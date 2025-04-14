@@ -2,8 +2,7 @@
   imports = [
     ./eww
     ./sway
-    ./neovim/default.nix
-    # ./river/default.nix
+    ./neovim
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix
@@ -18,5 +17,6 @@
     ./zsh.nix
     ./tmux.nix
     ./foot.nix
+    ./scripts
   ];
 }

@@ -25,7 +25,7 @@
       terminal = "footclient";
       menu = "wofi --show drun --prompt ''";
 
-      startup = [ {command = "foot --server";} ];
+      startup = [ { command = "foot --server"; } ];
 
       gaps = {
         smartGaps = true;
@@ -148,7 +148,7 @@
           "${mod}+r" = "mode resize";
 
           # Screenshot
-          "Print" = "exec grim";
+          "Print" = "exec screenshot";
 
           # Volume controls
           "XF86AudioMute" = "exec pamixer --toggle-mute";

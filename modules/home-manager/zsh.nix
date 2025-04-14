@@ -23,10 +23,6 @@
         git clone https://github.com/zdharma-continuum/zinit.git $HOME/.zinit/bin
       fi
 
-      batman() {
-        man "$1" | bat --paging=always --language=man
-      }
-
       # ---- Source Zinit ----
       source $HOME/.zinit/bin/zinit.zsh
 
@@ -73,7 +69,6 @@
     shellAliases = {
       c = "clear";
       cat = "bat";
-      man = "batman";
       ls = "eza --icons --group-directories-first -1";
       ll = "eza --icons -lh --group-directories-first -1 --no-user --long";
       la = "eza --icons -lah --group-directories-first -1";
