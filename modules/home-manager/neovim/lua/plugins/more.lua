@@ -31,18 +31,6 @@ return {
     end,
   },
   {
-    "nvim-notify",
-    event = "DeferredUIEnter",
-    after = function()
-      require("notify").setup({
-        timeout = 3000,
-        stages = "fade_in_slide_out",
-        render = "simple",
-      })
-      vim.notify = require("notify")
-    end,
-  },
-  {
     "which-key.nvim",
     event = "DeferredUIEnter",
     after = function()

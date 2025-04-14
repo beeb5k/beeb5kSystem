@@ -103,9 +103,6 @@ in
                 nvim-autopairs
                 eyeliner-nvim
                 oil-nvim
-                nvim-lspconfig
-                noice-nvim
-                nvim-notify
                 nvim-web-devicons
                 conform-nvim
                 indent-blankline-nvim
