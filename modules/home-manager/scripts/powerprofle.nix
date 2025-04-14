@@ -1,6 +1,6 @@
-#!/bin/bash
+{ pkgs }:
 
-# Check if powerprofilesctl is available
+pkgs.writeShellScriptBin "ppeww" ''
 if ! command -v powerprofilesctl &>/dev/null; then
     echo "Error: powerprofilesctl command not found"
     exit 1
@@ -29,3 +29,4 @@ case "$1" in
         exit 1
         ;;
 esac
+''

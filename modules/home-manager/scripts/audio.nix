@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+{ pkgs }:
+
+pkgs.writeShellScriptBin "getaudio" ''
 
 case "$1" in
   "symbol")
@@ -33,3 +35,4 @@ case "$1" in
     esac
     ;;
 esac
+''

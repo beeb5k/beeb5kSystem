@@ -1,4 +1,4 @@
-(deflisten volume :initial "0" "./audio.sh volume")
+(deflisten volume :initial "0" "getaudio volume")
 (deflisten workspaces :initial '[]' "python ./hello.py")
 
 (defwidget bar-box []
@@ -53,11 +53,11 @@
       ;         :font-size 0.8
       ;   "${round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}%")
     ; (metric :icon "" "${round(EWW_RAM.used_mem_perc, 0)}%")
-    (button :onclick "./powerprofle.sh toggle" (metric :icon {profile == "performance" ? "" : profile == "balanced" ? "" : profile == "power-saver" ? "" : ""} "${round(EWW_CPU.avg, 0)}%"))
+    (button :onclick "ppeww toggle" (metric :icon {profile == "performance" ? "" : profile == "balanced" ? "" : profile == "power-saver" ? "" : ""} "${round(EWW_CPU.avg, 0)}%"))
     (box :class "metric" (date))))
 
 
-(defpoll profile :interval "1s" "powerprofilesctl get")
+(defpoll profile :interval "1s" "ppeww get")
 (defpoll battery :interval "10s" "echo $(cat /sys/class/power_supply/BAT1/capacity)")
 (defpoll battery-status :interval "10s" "echo $(cat /sys/class/power_supply/BAT1/status)")
 (defwidget network []
