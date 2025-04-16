@@ -1,10 +1,7 @@
 return {
-  { import = "plugins.telescope" },
-  { import = "plugins.treesitter" },
+  { import = "plugins.ui" },
   { import = "plugins.completion" },
-  { import = "plugins.lualine" },
-  { import = "plugins.formatter" },
-  { import = "plugins.icons" },
-  { import = "plugins.oil" },
-  { import = "plugins.more" },
+  { import = "plugins.telescope" },
+  { import = "plugins.tsitter" },
+  { import = "plugins.extras" },
 }

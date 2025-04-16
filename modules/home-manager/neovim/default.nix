@@ -14,7 +14,7 @@ in
   config = {
     nixCats = {
       enable = true;
-      nixpkgs_version = inputs.nixpkgs;
+      nixpkgs_version = inputs.nixpkgs-unstable;
       addOverlays =
         # (import ./overlays inputs) ++
         [
@@ -35,84 +35,116 @@ in
           ...
         }@packageDef:
         {
-          lspsAndRuntimeDeps = {
-            general = with pkgs; [
+          lspsAndRuntimeDeps = with pkgs; {
+            general = [
               ripgrep
               fd
               bat
               fzf
-              lua-language-server
+              nodejs_23 # copilot's bloated ass want this.
+            ];
+
+            web = with unstable; {
+              # cool thing but i dont want it for now.
+              /*
+                templ = with inputs; [
+                  templ.packages.${system}.templ
+                ];
+              */
+              tailwindcss = [
+                tailwindcss-language-server
+              ];
+              HTMX = [
+                htmx-lsp
+              ];
+              HTML = [
+                vscode-langservers-extracted
+              ];
+              JS = [
+                typescript-language-server
+                biome
+              ];
+            };
+
+            zig = with unstable; [
+              zls
+            ];
+
+            rust = with unstable; [
+              rust-analyzer
+            ];
+
+            python = [
               pyright
-              nil
+            ];
+
+            lua = [
+              lua-language-server
               stylua
+            ];
+
+            nix = [
               nixfmt-rfc-style
-              nodejs_23
+              nil
+              nixd
+            ];
+
+            C = [
               clang-tools
-              unstable.zls
-              unstable.rust-analyzer
+              cmake-language-server
+              cmake
+              cmake-format
             ];
           };
           startupPlugins = {
-            general = with pkgs.vimPlugins; [
+            general = with unstable.vimPlugins; [
               pkgs.neovimPlugins.lze
               pkgs.neovimPlugins.lzextras
-              kanagawa-nvim
               mini-base16
-              fzf-lua
-              lualine-nvim
-              which-key-nvim
+              kanagawa-nvim
             ];
           };
           optionalPlugins = {
-            general = {
-              cmp = with pkgs.vimPlugins; [
-                nvim-cmp
-                luasnip
-                friendly-snippets
-                cmp_luasnip
-                cmp-buffer
-                cmp-path
-                cmp-nvim-lua
-                cmp-nvim-lsp
-                cmp-cmdline
-                cmp-nvim-lsp-signature-help
-                cmp-cmdline-history
-                copilot-cmp
-                unstable.vimPlugins.cord-nvim
-              ];
+            editor = with unstable.vimPlugins; [
+              oil-nvim
+              nvim-autopairs # this tryes to do lots of magic which causes some problem. TODO : replace it with mini or blik pairs.
+              comment-nvim
+              eyeliner-nvim
+              conform-nvim
+              indent-blankline-nvim
+            ];
 
-              treesitter = with pkgs.vimPlugins; [
-                nvim-treesitter.withAllGrammars
-                nvim-treesitter-textobjects
-              ];
-              telescope = with pkgs.vimPlugins; [
-                telescope-nvim
-              ];
+            ui = with unstable.vimPlugins; [
+              bufferline-nvim
+              lualine-nvim
+            ];
 
-              git = with pkgs.vimPlugins; [
-                gitsigns-nvim
-              ];
+            tsitter = with unstable.vimPlugins; [
+              nvim-treesitter.withAllGrammars
+              nvim-treesitter-textobjects
+            ];
 
-              lsp = with pkgs.vimPlugins; [
-                nvim-lspconfig
-                lspkind-nvim
-              ];
+            telescope = with unstable.vimPlugins; [
+              telescope-nvim
+              fzf-lua # TODO: keeping this for now use this instead of telescope. (diabled for now)
+            ];
 
-              others = with pkgs.vimPlugins; [
-                comment-nvim
-                nvim-autopairs
-                eyeliner-nvim
-                oil-nvim
-                nvim-web-devicons
-                conform-nvim
-                indent-blankline-nvim
-                bufferline-nvim
-                copilot-lua
-              ];
-            };
+            ai = with unstable.vimPlugins; [
+              copilot-lua
+            ];
+
+            completion = with unstable.vimPlugins; [
+              blink-cmp
+            ];
+
+            extras = with unstable.vimPlugins; [
+              cord-nvim
+              which-key-nvim
+              nvim-web-devicons
+            ];
           };
           sharedLibraries = {
-            general = with pkgs; [
+            general = with unstable; [
               # libgit2
             ];
           };
@@ -153,6 +185,20 @@ in
 
             categories = {
               general = true;
+              editor = true;
+              ui = true;
+              tsitter = true;
+              telescope = true;
+              ai = true;
+              completion = true;
+              extras = true;
+              C = true;
+              python = true;
+              lua = true;
+              nix = true;
+              rust = true;
+              zig = true;
+              web = true;
             };
           };
       };

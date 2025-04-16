@@ -10,6 +10,7 @@
     plugins-lzextras.flake = false;
     plugins-lze.url = "github:BirdeeHub/lze";
     plugins-lze.flake = false;
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-24.11";

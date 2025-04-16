@@ -1,21 +1,21 @@
 return {
   {
     "nvim-autopairs",
-    event = "InsertEnter",
+    event = { "InsertEnter" },
     after = function()
       require("nvim-autopairs").setup({})
     end,
   },
   {
     "comment.nvim",
-    event = "BufReadPost",
+    event = { "BufReadPost" },
     after = function()
       require("Comment").setup({})
     end,
   },
   {
     "eyeliner.nvim",
-    event = "DeferredUIEnter",
+    event = { "DeferredUIEnter" },
     after = function()
       require("eyeliner").setup({
         highlight_on_key = true,
@@ -24,15 +24,8 @@ return {
     end,
   },
   {
-    "gitsigns.nvim",
-    event = "DeferredUIEnter",
-    after = function()
-      require("gitsigns").setup({})
-    end,
-  },
-  {
     "which-key.nvim",
-    event = "DeferredUIEnter",
+    event = { "DeferredUIEnter" },
     after = function()
       require("which-key").setup({})
     end,
@@ -49,30 +42,18 @@ return {
   },
   {
     "bufferline.nvim",
-    event = "BufReadPost",
+    event = { "BufReadPost" },
     after = function()
       vim.opt.termguicolors = true
       require("bufferline").setup({})
     end,
   },
   {
-    "copilot.lua",
-    event = { "InsertEnter" },
+    "nvim-web-devicons",
+    event = { "DeferredUIEnter" },
     after = function()
-      require("copilot").setup({
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          keymap = {
-            accept = "<M-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-        panel = { enabled = false }, -- Disable the cmp-like panel
+      require("nvim-web-devicons").setup({
+        default = true,
       })
     end,
   },

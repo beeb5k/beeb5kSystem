@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter",
-  event = "DeferredUIEnter",
+  event = { "DeferredUIEnter" },
   load = function(name)
     require("lzextras").loaders.multi({ name, "nvim-treesitter-textobjects" })
   end,

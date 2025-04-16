@@ -1,32 +1,32 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "ppeww" ''
-if ! command -v powerprofilesctl &>/dev/null; then
-    echo "Error: powerprofilesctl command not found"
-    exit 1
-fi
+  if ! command -v powerprofilesctl &>/dev/null; then
+      echo "Error: powerprofilesctl command not found"
+      exit 1
+  fi
 
-case "$1" in 
-    get)
-        powerprofilesctl get
-        ;;
-    toggle)
-        current=$(powerprofilesctl get)
-        case "$current" in
-            performance)
-                powerprofilesctl set balanced
-                ;;
-            balanced)
-                powerprofilesctl set power-saver
-                ;;
-            *)
-                powerprofilesctl set performance
-                ;;
-        esac
-        ;;
-    *)
-        echo "Usage: $0 [get|toggle]"
-        exit 1
-        ;;
-esac
+  case "$1" in 
+      get)
+          powerprofilesctl get
+          ;;
+      toggle)
+          current=$(powerprofilesctl get)
+          case "$current" in
+              performance)
+                  powerprofilesctl set balanced
+                  ;;
+              balanced)
+                  powerprofilesctl set power-saver
+                  ;;
+              *)
+                  powerprofilesctl set performance
+                  ;;
+          esac
+          ;;
+      *)
+          echo "Usage: $0 [get|toggle]"
+          exit 1
+          ;;
+  esac
 ''

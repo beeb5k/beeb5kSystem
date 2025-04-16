@@ -41,7 +41,7 @@
 
       floating = {
         titlebar = false;
-        border = 2;
+        border = 0;
       };
 
       input = {

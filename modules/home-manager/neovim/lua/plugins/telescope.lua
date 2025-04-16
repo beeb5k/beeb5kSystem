@@ -1,12 +1,11 @@
 return {
   {
     "telescope.nvim",
-    cmd = "Telescope",
-    keys = "<leader>ff",
+    event = { "DeferredUIEnter" },
     after = function()
       require("telescope").setup({})
       vim.keymap.set("n", "<leader>ff", ":Telescope fd<CR>", {
-        desc = "Find Files",
+        desc = "[F]ind [F]iles",
       })
     end,
   },
