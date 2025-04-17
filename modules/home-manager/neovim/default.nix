@@ -125,8 +125,7 @@ in
             ];
 
             telescope = with unstable.vimPlugins; [
-              telescope-nvim
-              fzf-lua # TODO: keeping this for now use this instead of telescope. (diabled for now)
+              fzf-lua
             ];
 
             ai = with unstable.vimPlugins; [
