@@ -1,4 +1,12 @@
-vim.lsp.enable({ "clangd", "pyright", "zls", "nil_ls", "lua_ls", "rust_analyzer", "tsserver" })
+vim.lsp.enable({ "clangd", "pyright", "zls", "nil_ls", "lua_ls", "rust_analyzer", "tsserver", "gopls" })
+
+vim.lsp.inlay_hint.enable(true)
+
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true,
+  },
+})
 
 vim.lsp.config("*", {
   capabilities = {
@@ -64,11 +72,11 @@ vim.lsp.config("zls", {
 vim.lsp.config("nil_ls", {
   cmd = { "nil" },
   filetypes = { "nix" },
-  ["nil"] = {
-    formatting = {
-      command = { "nixfmt-unstable" },
-    },
-  },
+  -- ["nil"] = {
+  --   formatting = {
+  --     command = { "nixfmt-unstable" },
+  --   },
+  -- },
 })
 
 vim.lsp.config("tsserver", {
@@ -162,6 +170,27 @@ vim.lsp.config("lua_ls", {
       },
       telemetry = {
         enabled = false,
+      },
+    },
+  },
+})
+
+vim.lsp.config("gopls", {
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "templ" },
+  root_markers = { "go.mod" },
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        useany = true,
+        nilness = true,
+      },
+      staticcheck = true,
+      codelenses = {
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
       },
     },
   },

@@ -27,10 +27,10 @@
       source $HOME/.zinit/bin/zinit.zsh
 
       # ---- load p10k theme ----
-      [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
       # ---- Plugins ----
-      zinit ice depth=1; zinit light romkatv/powerlevel10k
+      # zinit ice depth=1; zinit light romkatv/powerlevel10k
 
       zinit light zsh-users/zsh-autosuggestions
 

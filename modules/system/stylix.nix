@@ -30,7 +30,7 @@
       base0E = "a292a3";
       base0F = "7aa89f";
     };
-    
+
     polarity = "dark";
     image = ../../wallpapers/wallpaper.jpg;
 

@@ -4,7 +4,6 @@
     grim
     nitch
     swaybg
-    base16-schemes
     ffmpeg-full
     mpv
     imv

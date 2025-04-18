@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.custom()
   require("kanagawa").setup({
     compile = true, -- enable compiling the colorscheme
     undercurl = true, -- enable undercurls
@@ -30,28 +30,29 @@ function M.setup()
 
   -- setup must be called before loading
   vim.cmd("colorscheme kanagawa")
+end
 
-  -- stylix palette
-
-  --[[ local stylixPalette = nixCats.extra("base16colors")
-    require("mini.base16").setup({
-      palette = (function()
-        local palette = {}
-        for i = 0, 15 do
-          local key = string.format("base%02X", i)
-          if key == "base00" or key == "base01" then
-            palette[key] = stylixPalette.base00
-          else
-            palette[key] = stylixPalette[key]
-          end
+-- This function sets the stylix colorscheme for Neovim
+function M.stylix()
+  local stylixPalette = nixCats.extra("base16colors")
+  require("mini.base16").setup({
+    palette = (function()
+      local palette = {}
+      for i = 0, 15 do
+        local key = string.format("base%02X", i)
+        if key == "base00" or key == "base01" then
+          palette[key] = stylixPalette.base00
+        else
+          palette[key] = stylixPalette[key]
         end
-        return palette
-      end)(),
-    })
-    
-    vim.api.nvim_set_hl(0, "LineNr", {
-      fg = stylixPalette.base0F,
-    }) ]]
+      end
+      return palette
+    end)(),
+  })
+
+  vim.api.nvim_set_hl(0, "LineNr", {
+    fg = stylixPalette.base0F,
+  })
 end
 
 return M

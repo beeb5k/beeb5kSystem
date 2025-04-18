@@ -1,9 +1,9 @@
 return {
   {
-    "nvim-autopairs",
+    "ultimate-autopair.nvim",
     event = { "InsertEnter" },
     after = function()
-      require("nvim-autopairs").setup({})
+      require("ultimate-autopair").setup({})
     end,
   },
   {

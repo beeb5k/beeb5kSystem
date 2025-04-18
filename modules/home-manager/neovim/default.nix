@@ -51,17 +51,9 @@ in
                   templ.packages.${system}.templ
                 ];
               */
-              tailwindcss = [
-                tailwindcss-language-server
-              ];
-              HTMX = [
-                htmx-lsp
-              ];
-              HTML = [
-                vscode-langservers-extracted
-              ];
               JS = [
                 typescript-language-server
+                eslint
                 biome
               ];
             };
@@ -74,8 +66,19 @@ in
               rust-analyzer
             ];
 
-            python = [
+            go = with unstable; [
+              gopls
+              delve
+              golint
+              gotools
+              go-tools
+              go
+            ];
+
+            python = with unstable; [
               pyright
+              isort
+              black
             ];
 
             lua = [
@@ -107,16 +110,18 @@ in
           optionalPlugins = {
             editor = with unstable.vimPlugins; [
               oil-nvim
-              nvim-autopairs # this tryes to do lots of magic which causes some problem. TODO : replace it with mini or blik pairs.
+              ultimate-autopair-nvim
               comment-nvim
               eyeliner-nvim
               conform-nvim
+              nvim-lint
               indent-blankline-nvim
             ];
 
             ui = with unstable.vimPlugins; [
               bufferline-nvim
               lualine-nvim
+              mini-starter
             ];
 
             tsitter = with unstable.vimPlugins; [
@@ -198,6 +203,7 @@ in
               rust = true;
               zig = true;
               web = true;
+              go = true;
             };
           };
       };
