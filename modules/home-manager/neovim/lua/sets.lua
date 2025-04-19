@@ -22,7 +22,7 @@ vim.o.scrolloff = 10
 vim.g.mapleader = " "
 
 -- File Explorer
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwPlugin = 1
 vim.opt.isfname:append("@-@")
 
 -- Indentation and Tabs
