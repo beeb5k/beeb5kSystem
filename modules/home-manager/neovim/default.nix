@@ -69,10 +69,10 @@ in
             go = with unstable; [
               gopls
               delve
-              golint
               gotools
               go-tools
               go
+              golangci-lint
             ];
 
             python = with unstable; [

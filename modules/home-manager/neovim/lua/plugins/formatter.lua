@@ -16,7 +16,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         nix = { "nixfmt" },
-        go = { "gofmt", "golint" },
+        go = { "gofmt" },
         rust = { "rustfmt", lsp_format = "fallback" },
         python = { "isort", "black" },
         c = { "clang_format" },
