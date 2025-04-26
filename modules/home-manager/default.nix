@@ -10,7 +10,7 @@
     ./wofi.nix
     ./git.nix
     ./htop.nix
-    ./mako.nix
+    ./swaync.nix
     ./obs.nix
     ./satty.nix
     ./stylix.nix

@@ -21,10 +21,10 @@
 
 (defwidget workspaces []
   (box :orientation "v" :class "workspaces"
-    (for workspace in workspaces
-      (button :class "${workspace.focused ? "active" : "inactive"}"
-        :onclick "riverctl set-focused-tags ${workspace.tag}"
-      "${workspace.focused ? "◆" : "◇"}"))))
+    (for wsp in workspaces
+      (button :class "${wsp.focused ? "active" : "inactive"}"
+              :onclick "swaymsg workspace ${wsp.name}"
+        "${wsp.focused ? "◆" : "◇"}"))))
 
 
 (defwidget middle [] (time))
@@ -54,7 +54,7 @@
       ;   "${round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}%")
     ; (metric :icon "" "${round(EWW_RAM.used_mem_perc, 0)}%")
     (button :onclick "ppeww toggle" (metric :icon {profile == "performance" ? "" : profile == "balanced" ? "" : profile == "power-saver" ? "" : ""} "${round(EWW_CPU.avg, 0)}%"))
-    (box :class "metric" (date))))
+    (button :class "metric" :onclick "swaync-client -t" (date))))
 
 
 (defpoll profile :interval "1s" "ppeww get")
@@ -99,7 +99,8 @@
 
 
 (defwidget date []
-  (box :orientation "v"
+  (box
+    :orientation "v"
     :halign "center"
   day_word day month year))
 

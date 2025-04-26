@@ -1,49 +1,38 @@
 import subprocess
 import json
-import os
 
-RIVER_BEDLOAD_PATH = os.path.expanduser("~/.local/bin/river-bedload")
-SCRATHPAD_ID = 1 << 20
 
 def get_workspaces():
-    output = subprocess.check_output([RIVER_BEDLOAD_PATH, "-print", "active", "-minified"])
+    output = subprocess.check_output(["swaymsg", "-t", "get_workspaces"])
     return json.loads(output.decode("utf-8"))
 
+
 def generate_workspace_data():
-    workspaces = get_workspaces()
-    workspace_data = []
-    for workspace in workspaces:
-        if 1 << (workspace["id"] - 1) == SCRATHPAD_ID:
-            continue
-        
-        workspace_info = {
-            "output": workspace["output"],
-            "id": workspace["id"],
-            "tag": 1 << (workspace["id"] - 1),
-            "active": workspace["active"],
-            "focused": workspace["focused"],
-            "occupied": workspace["occupied"],
-            "urgent": workspace["urgent"],
-        }
-        workspace_data.append(workspace_info)
-    return workspace_data
+    # Return a flat array of workspaces instead of a nested dictionary
+    workspaces = []
+    for wsp in get_workspaces():
+        workspaces.append({
+            "name": wsp["name"],
+            "monitor": wsp["output"],
+            "focused": wsp["focused"],
+            "visible": wsp["visible"],
+        })
+    return workspaces
+
 
 if __name__ == "__main__":
     # Send initial data immediately
     print(json.dumps(generate_workspace_data()), flush=True)
-   
+    
     process = subprocess.Popen(
-        [RIVER_BEDLOAD_PATH, "-watch", "active", "-minified"],
+        ["swaymsg", "-t", "subscribe", "-m", '["workspace"]', "--raw"],
         stdout=subprocess.PIPE,
     )
     if process.stdout is None:
-        print("Error: could not subscribe to river events", flush=True)
+        print("Error: could not subscribe to sway events")
         exit(1)
     while True:
         line = process.stdout.readline().decode("utf-8")
         if line == "":
             break
         print(json.dumps(generate_workspace_data()), flush=True)
-
-
-# https://google.com
