@@ -56,7 +56,7 @@
     };
 
     opacity = {
-      terminal = 0.95;
+      terminal = 1.0;
     };
   };
 }

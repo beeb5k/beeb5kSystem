@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, unstable, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    package = unstable.sway;
     wrapperFeatures.gtk = true;
     systemd = {
       xdgAutostart = false;
@@ -25,7 +26,10 @@
       terminal = "footclient";
       menu = "wofi --show drun --prompt ''";
 
-      startup = [ { command = "foot --server"; } { command = "eww open bar"; } ];
+      startup = [
+        { command = "foot --server"; }
+        { command = "eww open bar"; }
+      ];
 
       gaps = {
         smartGaps = true;
@@ -176,23 +180,7 @@
         };
       };
 
-      bars = [];
-
-      # bars = [
-      #   {
-      #     position = "bottom";
-      #     statusCommand = "while date +'%Y-%m-%d %X'; do sleep 1; done";
-      #     colors = {
-      #       statusline = "#ffffff";
-      #       background = "#323232";
-      #       inactiveWorkspace = {
-      #         border = "#32323200";
-      #         background = "#32323200";
-      #         text = "#5c5c5c";
-      #       };
-      #     };
-      #   }
-      # ];
+      bars = [ ];
     };
   };
 }

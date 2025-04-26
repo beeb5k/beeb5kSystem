@@ -46,7 +46,7 @@
     {
       nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs unstable; };
         modules = [ ./nixos/configuration.nix ];
       };
       homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
