@@ -1,7 +1,8 @@
 {
   imports = [
-    ./eww
+    # ./eww
     ./sway
+    ./hyprland
     ./neovim
     ./btop.nix
     ./desktop-entries.nix
