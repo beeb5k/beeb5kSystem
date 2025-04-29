@@ -91,8 +91,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    # package = unstable.hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
   programs.sway.enable = true;
-  programs.sway.package = unstable.sway;
 
   # Configure keymap in X11
   services.xserver.xkb = {
