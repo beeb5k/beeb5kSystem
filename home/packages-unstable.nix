@@ -11,5 +11,6 @@
     clippy
     cargo
     vesktop
+    obsidian
   ];
 }

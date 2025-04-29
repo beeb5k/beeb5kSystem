@@ -7,7 +7,6 @@
     ffmpeg-full
     mpv
     imv
-    fastfetch
     stylua
     nixfmt-rfc-style
     cmatrix
@@ -19,5 +18,6 @@
     python314
     llvmPackages_19.libcxxClang
     firefox
+    pokeget-rs
   ];
 }
