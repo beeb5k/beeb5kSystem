@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -14,7 +14,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-
   systemd.services."NetworkManager-wait-online".enable = false;
 
   xdg.portal.extraPortals = [
@@ -84,8 +83,6 @@
     enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
-
-  programs.sway.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

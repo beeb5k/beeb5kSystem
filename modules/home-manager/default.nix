@@ -1,7 +1,6 @@
 {
   imports = [
     # ./eww
-    ./sway
     ./hyprland
     ./waybar
     ./neovim
