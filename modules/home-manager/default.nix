@@ -3,6 +3,7 @@
     # ./eww
     ./sway
     ./hyprland
+    ./waybar
     ./neovim
     ./btop.nix
     ./desktop-entries.nix
