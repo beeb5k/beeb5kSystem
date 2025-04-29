@@ -104,7 +104,7 @@ in
               pkgs.neovimPlugins.lze
               pkgs.neovimPlugins.lzextras
               mini-base16
-              kanagawa-nvim
+              catppuccin-nvim
             ];
           };
           optionalPlugins = {
