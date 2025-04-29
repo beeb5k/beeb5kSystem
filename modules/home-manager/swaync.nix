@@ -2,8 +2,8 @@
   services.swaync = {
     enable = true;
     settings = {
-      positionX = "left";
-      positionY = "bottom";
+      positionX = "right";
+      positionY = "top";
       control-center-margin-top = 15;
       control-center-margin-bottom = 15;
       control-center-margin-right = 15;

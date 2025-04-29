@@ -8,6 +8,7 @@
       "$mainMod,SPACE,togglefloating,"
       "$mainMod,D,exec,$menu"
       "$mainMod,P,pseudo,"
+      "$mainMod, F ,fullscreen"
       "$mainMod SHIFT,E,togglesplit,"
       "$mainMod,h,movefocus,l"
       "$mainMod,l,movefocus,r"
@@ -37,6 +38,7 @@
       "$mainMod SHIFT,S,movetoworkspace,special:magic"
       "$mainMod,mouse_down,workspace,e+1"
       "$mainMod,mouse_up,workspace,e-1"
+      ",Print, exec, screenshot"
     ];
 
     bindm = [

@@ -19,5 +19,7 @@
     ./tmux.nix
     ./foot.nix
     ./scripts
+    ./fastfetch.nix
+    ./cliphist.nix
   ];
 }
