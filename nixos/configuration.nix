@@ -47,19 +47,9 @@
 
   hardware.enableRedistributableFirmware = true;
 
-  services.greetd =
-    let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    in
-    {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${tuigreet} --time --time-format '%a, %d %b %Y • %T' --greeting  '[Become Visible]' --asterisks --remember --cmd sway --theme 'border=lightred;title=gray;greet=gray;text=gray;prompt=lightred;time=gray;action=gray;button=gray;container=black;input=gray'";
-          user = "greeter";
-        };
-      };
-    };
+  programs.regreet = {
+    enable = true;
+  };
 
   services.keyd = {
     enable = true;
@@ -93,10 +83,9 @@
 
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
-    # package = unstable.hyprland;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+
   programs.sway.enable = true;
 
   # Configure keymap in X11
