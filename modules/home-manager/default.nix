@@ -1,6 +1,7 @@
 {
   imports = [
     # ./eww
+    ./firefox.nix
     ./hyprland
     ./waybar
     ./neovim
