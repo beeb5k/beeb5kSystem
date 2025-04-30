@@ -2,7 +2,6 @@
 {
   imports = [
     ../modules/home-manager/default.nix
-    ./packages-unstable.nix
     ./packages.nix
   ];
 

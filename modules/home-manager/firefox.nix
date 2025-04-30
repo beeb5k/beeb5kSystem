@@ -1,8 +1,7 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   programs.firefox = {
     enable = true;
-    package = unstable.firefox;
 
     policies = {
       DisableTelemetry = true;
@@ -100,9 +99,9 @@
       # Search engine: DuckDuckGo only
       search = {
         force = true;
-        default = "DuckDuckGo";
+        default = "ddg";
         engines = {
-          "DuckDuckGo" = {
+          "ddg" = {
             urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
             iconUpdateUrl = "https://duckduckgo.com/favicon.ico";
             updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
@@ -121,7 +120,7 @@
             definedAliases = [ ":n" ];
           };
           "Amazon".metaData.hidden = true;
-          "eBay".metaData.hidden = true;
+          "ebay".metaData.hidden = true;
         };
       };
     };

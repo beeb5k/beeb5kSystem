@@ -52,32 +52,32 @@
         volume = {
           label = " 󰕾 ";
         };
-      #   buttons-grid = {
-      #     actions = [
-      #       {
-      #         label = "";
-      #         command = "code /home/gixo/.config/";
-      #       }
-      #       {
-      #         label = "";
-      #         command = "firefox https://chat.openai.com/";
-      #       }
-      #       {
-      #         label = "";
-      #         command = "firefox https://calendar.notion.so/";
-      #       }
-      #       {
-      #         label = "";
-      #         command = "firefox https://notion.so/";
-      #       }
-      #       {
-      #         label = "";
-      #         command = "pcmanfm";
-      #       }
-      #     ];
-      #   };
+        #   buttons-grid = {
+        #     actions = [
+        #       {
+        #         label = "";
+        #         command = "code /home/gixo/.config/";
+        #       }
+        #       {
+        #         label = "";
+        #         command = "firefox https://chat.openai.com/";
+        #       }
+        #       {
+        #         label = "";
+        #         command = "firefox https://calendar.notion.so/";
+        #       }
+        #       {
+        #         label = "";
+        #         command = "firefox https://notion.so/";
+        #       }
+        #       {
+        #         label = "";
+        #         command = "pcmanfm";
+        #       }
+        #     ];
+        #   };
       };
     };
-  
+
   };
 }

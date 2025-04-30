@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  unstable,
   ...
 }:
 let
@@ -14,7 +13,7 @@ in
   config = {
     nixCats = {
       enable = true;
-      nixpkgs_version = inputs.nixpkgs-unstable;
+      nixpkgs_version = inputs.nixpkgs;
       addOverlays =
         # (import ./overlays inputs) ++
         [
@@ -44,7 +43,7 @@ in
               nodejs_23 # copilot's bloated ass want this.
             ];
 
-            web = with unstable; {
+            web = with pkgs; {
               # cool thing but i dont want it for now.
               /*
                 templ = with inputs; [
@@ -58,15 +57,15 @@ in
               ];
             };
 
-            zig = with unstable; [
+            zig = with pkgs; [
               zls
             ];
 
-            rust = with unstable; [
+            rust = with pkgs; [
               rust-analyzer
             ];
 
-            go = with unstable; [
+            go = with pkgs; [
               gopls
               delve
               gotools
@@ -75,7 +74,7 @@ in
               golangci-lint
             ];
 
-            python = with unstable; [
+            python = with pkgs; [
               pyright
               isort
               black
@@ -100,15 +99,15 @@ in
             ];
           };
           startupPlugins = {
-            general = with unstable.vimPlugins; [
+            general = with pkgs.vimPlugins; [
               pkgs.neovimPlugins.lze
               pkgs.neovimPlugins.lzextras
               mini-base16
               catppuccin-nvim
             ];
           };
-          optionalPlugins = {
-            editor = with unstable.vimPlugins; [
+          optionalPlugins = with pkgs.vimPlugins; {
+            editor = [
               oil-nvim
               ultimate-autopair-nvim
               comment-nvim
@@ -118,37 +117,37 @@ in
               indent-blankline-nvim
             ];
 
-            ui = with unstable.vimPlugins; [
+            ui = [
               bufferline-nvim
               lualine-nvim
               mini-starter
             ];
 
-            tsitter = with unstable.vimPlugins; [
+            tsitter = [
               nvim-treesitter.withAllGrammars
               nvim-treesitter-textobjects
             ];
 
-            telescope = with unstable.vimPlugins; [
+            telescope = [
               fzf-lua
             ];
 
-            ai = with unstable.vimPlugins; [
+            ai = [
               copilot-lua
             ];
 
-            completion = with unstable.vimPlugins; [
+            completion = [
               blink-cmp
             ];
 
-            extras = with unstable.vimPlugins; [
+            extras = [
               cord-nvim
               which-key-nvim
               nvim-web-devicons
             ];
           };
           sharedLibraries = {
-            general = with unstable; [
+            general = with pkgs; [
               # libgit2
             ];
           };

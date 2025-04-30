@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 {
   stylix = {
     enable = true;
@@ -19,12 +19,12 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
 
       sansSerif = {
-        package = unstable.adwaita-fonts;
+        package = pkgs.adwaita-fonts;
         name = "Adwaita Sans";
       };
 

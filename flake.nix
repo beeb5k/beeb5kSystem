@@ -2,18 +2,17 @@
   description = "Main flake";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    stylix.url = "github:danth/stylix/release-24.11";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    stylix.url = "github:danth/stylix";
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     plugins-lzextras.url = "github:BirdeeHub/lzextras";
     plugins-lzextras.flake = false;
     plugins-lze.url = "github:BirdeeHub/lze";
     plugins-lze.flake = false;
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -22,7 +21,6 @@
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
       home-manager,
       stylix,
       ...
@@ -35,18 +33,11 @@
           allowUnfree = true;
         };
       };
-
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
     in
     {
       nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs unstable; };
+        specialArgs = { inherit inputs; };
         modules = [ ./nixos/configuration.nix ];
       };
       homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
@@ -55,7 +46,7 @@
           stylix.homeManagerModules.stylix
           ./home/home.nix
         ];
-        extraSpecialArgs = { inherit inputs unstable; };
+        extraSpecialArgs = { inherit inputs; };
       };
     };
 }

@@ -18,5 +18,17 @@
     python314
     llvmPackages_19.libcxxClang
     pokeget-rs
+    vscode-fhs
+    go
+    zig
+    bun
+    lua
+    rustc
+    rustfmt
+    clippy
+    cargo
+    vesktop
+    obsidian
+    vlc
   ];
 }

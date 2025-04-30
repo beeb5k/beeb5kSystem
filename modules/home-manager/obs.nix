@@ -6,7 +6,7 @@
       wlrobs
       obs-vaapi
       obs-vkcapture
-      obs-nvfbc
+      # obs-nvfbc # diabling this because it is marked as broken and wont let me rebuild
       obs-move-transition
       obs-pipewire-audio-capture
     ];
