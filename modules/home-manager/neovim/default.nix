@@ -110,6 +110,7 @@ in
               pkgs.neovimPlugins.lzextras
               mini-base16
               catppuccin-nvim
+              diffview-nvim
             ];
           };
           optionalPlugins = with pkgs.vimPlugins; {
@@ -136,6 +137,11 @@ in
 
             telescope = [
               fzf-lua
+            ];
+
+            git = [
+              neogit
+              gitsigns-nvim
             ];
 
             ai = [
@@ -198,6 +204,7 @@ in
 
             categories = {
               general = true;
+              git = true;
               editor = true;
               ui = true;
               tsitter = true;

@@ -115,4 +115,18 @@ return {
       })
     end,
   },
+  {
+    "neogit",
+    event = { "DeferredUIEnter" },
+    after = function ()
+      require("neogit").setup({})
+    end
+  }, 
+  {
+    "gitsigns.nvim",
+    event = { "BufReadPost" },
+    after = function ()
+      require("gitsigns").setup({})
+    end
+  }
 }
