@@ -30,5 +30,6 @@
     vesktop
     obsidian
     vlc
+    hyprshot
   ];
 }
