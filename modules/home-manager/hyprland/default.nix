@@ -15,7 +15,7 @@
 
       # My Programs
       "$mainMod" = "SUPER";
-      "$terminal" = "footclient";
+      "$terminal" = "alacritty";
       "$fileManager" = "pcmanfm";
       "$menu" = "wofi --show drun";
 
@@ -99,10 +99,6 @@
           name = "epic-mouse-v1";
           sensitivity = -0.5;
         }
-      ];
-
-      exec-once = [
-        "foot --server"
       ];
 
       # Window and workspace rules

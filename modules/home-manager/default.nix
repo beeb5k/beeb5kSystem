@@ -18,7 +18,7 @@
     ./stylix.nix
     ./zsh.nix
     ./tmux.nix
-    ./foot.nix
+    ./alacritty.nix
     ./scripts
     ./fastfetch.nix
     ./cliphist.nix
