@@ -1,4 +1,17 @@
-vim.lsp.enable({ "clangd", "pyright", "zls", "nil_ls", "lua_ls", "rust_analyzer", "tsserver", "gopls" })
+vim.lsp.enable({
+  "clangd",
+  "pyright",
+  "zls",
+  "nil_ls",
+  "lua_ls",
+  "rust_analyzer",
+  "tsserver",
+  "gopls",
+  "emmet_ls",
+  "html",
+  "jsonls",
+  "cssls",
+})
 
 vim.lsp.inlay_hint.enable(true)
 
@@ -195,3 +208,93 @@ vim.lsp.config("gopls", {
     },
   },
 })
+
+vim.lsp.config("emmet_ls", {
+  cmd = { "emmet-ls", "--stdio" },
+    filetypes = {
+      "css",
+      "eruby",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "less",
+      "sass",
+      "scss",
+      "svelte",
+      "pug",
+      "typescriptreact",
+      "vue",
+    },
+  init_options = {
+    -- filetypes = {
+    --   "css",
+    --   "eruby",
+    --   "html",
+    --   "javascript",
+    --   "javascriptreact",
+    --   "less",
+    --   "sass",
+    --   "scss",
+    --   "svelte",
+    --   "pug",
+    --   "typescriptreact",
+    --   "vue",
+    -- },
+    html = {
+      options = {
+        ["bem.enabled"] = true,
+        ["jsx.enabled"] = true,
+        ["jsx.selfClosingStyle"] = "html",
+      },
+    },
+  },
+})
+
+vim.lsp.config("html", {
+  cmd = { "vscode-html-language-server", "--stdio"},
+  filetypes = { "html" },
+  settings = {
+    html = {
+      format = {
+        wrapAttributes = "auto",
+        wrapAttributesIndentSize = 2,
+        wrapLineLength = 80,
+      },
+    },
+  },
+})
+
+
+vim.lsp.config("jsonls", {
+  cmd = { "vscode-json-languageserver", "--stdio" },
+  filetypes = { "json", "jsonc" },
+  settings = {
+    json = {
+      format = {
+        enable = true,
+        options = {
+          tabSize = 2,
+          insertSpaces = true,
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.config("cssls", {
+  cmd = { "vscode-css-language-server", "--stdio" },
+  filetypes = { "css", "scss", "less" },
+  settings = {
+    css = {
+      validate = true,
+      format = {
+        enable = true,
+        options = {
+          tabSize = 2,
+          insertSpaces = true,
+        },
+      },
+    },
+  },
+})
+

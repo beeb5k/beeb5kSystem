@@ -16,7 +16,7 @@ vim.opt.cursorline = true
 
 -- Mouse and Cursor
 vim.opt.mouse = ""
-vim.o.scrolloff = 10
+vim.o.scrolloff = 20
 
 -- Leader Key
 vim.g.mapleader = " "

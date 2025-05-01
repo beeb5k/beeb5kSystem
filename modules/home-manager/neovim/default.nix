@@ -50,6 +50,12 @@ in
                   templ.packages.${system}.templ
                 ];
               */
+
+              html = [
+                emmet-ls
+                vscode-langservers-extracted
+              ];
+
               JS = [
                 typescript-language-server
                 eslint
@@ -138,6 +144,10 @@ in
 
             completion = [
               blink-cmp
+            ];
+
+            web = [
+              nvim-ts-autotag
             ];
 
             extras = [
