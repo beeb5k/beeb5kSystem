@@ -22,12 +22,12 @@ return {
         c = { "clang_format" },
         cpp = { "clang_format" },
         cmake = { "cmake_format" },
-        javascript = { "biome" },
-        javascriptreact = { "biome" },
-        typescript = { "biome" },
-        typescriptreact = { "biome" },
-        json = { "biome" },
-        jsonc = { "biome" },
+        javascript = { "biome --indent-style=space" },
+        javascriptreact = { "biome --indent-style=space" },
+        typescript = { "biome --indent-style=space" },
+        typescriptreact = { "biome --indent-style=space" },
+        json = { "biome --indent-style=space" },
+        jsonc = { "biome --indent-style=space" },
       },
     })
     vim.keymap.set({ "n", "v" }, "<leader>fm", function()
