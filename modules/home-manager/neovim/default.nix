@@ -44,12 +44,17 @@ in
             ];
 
             web = with pkgs; {
-              # cool thing but i dont want it for now.
-              /*
-                templ = with inputs; [
-                  templ.packages.${system}.templ
-                ];
-              */
+              templ = [
+                templ 
+              ];
+
+              tailwindcss = [
+                tailwindcss-language-server
+              ];
+
+              HTMX = [
+                htmx-lsp
+              ];
 
               html = [
                 emmet-ls

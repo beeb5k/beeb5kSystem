@@ -7,10 +7,13 @@ vim.lsp.enable({
   "rust_analyzer",
   "tsserver",
   "gopls",
-  "emmet_ls",
+  -- "emmet_ls",
   "html",
   "jsonls",
   "cssls",
+  "tailwindcss",
+  -- "htmx",
+  "templ",
 })
 
 vim.lsp.inlay_hint.enable(true)
@@ -211,20 +214,20 @@ vim.lsp.config("gopls", {
 
 vim.lsp.config("emmet_ls", {
   cmd = { "emmet-ls", "--stdio" },
-    filetypes = {
-      "css",
-      "eruby",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "less",
-      "sass",
-      "scss",
-      "svelte",
-      "pug",
-      "typescriptreact",
-      "vue",
-    },
+  filetypes = {
+    "css",
+    "eruby",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "less",
+    "sass",
+    "scss",
+    "svelte",
+    "pug",
+    "typescriptreact",
+    "vue",
+  },
   init_options = {
     -- filetypes = {
     --   "css",
@@ -251,7 +254,7 @@ vim.lsp.config("emmet_ls", {
 })
 
 vim.lsp.config("html", {
-  cmd = { "vscode-html-language-server", "--stdio"},
+  cmd = { "vscode-html-language-server", "--stdio" },
   filetypes = { "html" },
   settings = {
     html = {
@@ -263,7 +266,6 @@ vim.lsp.config("html", {
     },
   },
 })
-
 
 vim.lsp.config("jsonls", {
   cmd = { "vscode-json-languageserver", "--stdio" },
@@ -298,3 +300,137 @@ vim.lsp.config("cssls", {
   },
 })
 
+vim.lsp.config("tailwindcss", {
+  cmd = { "tailwindcss-language-server", "--stdio" },
+  filetypes = {
+    "aspnetcorerazor",
+    "astro",
+    "astro-markdown",
+    "blade",
+    "clojure",
+    "django-html",
+    "htmldjango",
+    "edge",
+    "eelixir",
+    "elixir",
+    "ejs",
+    "erb",
+    "eruby",
+    "gohtml",
+    "gohtmltmpl",
+    "haml",
+    "handlebars",
+    "hbs",
+    "html",
+    "htmlangular",
+    "html-eex",
+    "heex",
+    "jade",
+    "leaf",
+    "liquid",
+    "markdown",
+    "mdx",
+    "mustache",
+    "njk",
+    "nunjucks",
+    "php",
+    "razor",
+    "slim",
+    "twig",
+    "css",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "stylus",
+    "sugarss",
+    "javascript",
+    "javascriptreact",
+    "reason",
+    "rescript",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "svelte",
+    "templ",
+  },
+  -- settings = {
+  --   tailwindCSS = {
+  --     validate = true,
+  --     lint = {
+  --       cssConflict = "warning",
+  --       invalidApply = "error",
+  --       invalidScreen = "error",
+  --       invalidVariant = "error",
+  --     },
+  --   },
+  -- },
+})
+
+-- htx lsp is just not working so iam just disabling it for now.
+
+-- vim.lsp.config("htmx", {
+--   cmd = { "htmx-lsp" },
+--   filetypes = {
+--     "aspnetcorerazor",
+--     "astro",
+--     "astro-markdown",
+--     "blade",
+--     "clojure",
+--     "django-html",
+--     "htmldjango",
+--     "edge",
+--     "eelixir",
+--     "elixir",
+--     "ejs",
+--     "erb",
+--     "eruby",
+--     "gohtml",
+--     "gohtmltmpl",
+--     "haml",
+--     "handlebars",
+--     "hbs",
+--     "html",
+--     "htmlangular",
+--     "html-eex",
+--     "heex",
+--     "jade",
+--     "leaf",
+--     "liquid",
+--     "markdown",
+--     "mdx",
+--     "mustache",
+--     "njk",
+--     "nunjucks",
+--     "php",
+--     "razor",
+--     "slim",
+--     "twig",
+--     "javascript",
+--     "javascriptreact",
+--     "reason",
+--     "rescript",
+--     "typescript",
+--     "typescriptreact",
+--     "vue",
+--     "svelte",
+--     "templ",
+--   },
+--   settings = {
+--     htmx = {
+--       validate = true,
+--       format = {
+--         enable = true,
+--         options = {
+--           tabSize = 2,
+--           insertSpaces = true,
+--         },
+--       },
+--     },
+--   },
+-- })
+
+vim.lsp.config("templ", {
+  cmd = { "templ", "lsp" },
+  filetypes = { "templ" },
+})
