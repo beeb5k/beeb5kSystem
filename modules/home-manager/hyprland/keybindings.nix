@@ -38,7 +38,7 @@
       "$mainMod SHIFT,S,movetoworkspace,special:magic"
       "$mainMod,mouse_down,workspace,e+1"
       "$mainMod,mouse_up,workspace,e-1"
-      ",Print, exec, hyprshot"
+      ",Print, exec, hyprshot -m active -m output -o ~/Pictures/Screenshots"
       "$mainMod,Print, exec, hyprshot -m window --clipboard-only"
       "$mainMod SHIFT,Print, exec, hyprshot -m region  --clipboard-only"
     ];

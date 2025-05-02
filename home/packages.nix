@@ -31,5 +31,6 @@
     obsidian
     vlc
     hyprshot
+    spotify
   ];
 }
