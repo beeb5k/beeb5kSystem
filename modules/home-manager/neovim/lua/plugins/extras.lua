@@ -1,9 +1,44 @@
 return {
   {
-    "ultimate-autopair.nvim",
+    "nvim-autopairs",
     event = { "InsertEnter" },
     after = function()
-      require("ultimate-autopair").setup({})
+      require("nvim-autopairs").setup({
+        check_ts = true,
+      })
+    end,
+  },
+  {
+    "nvim-surround",
+    event = { "DeferredUIEnter" },
+    after = function()
+      require("nvim-surround").setup({})
+    end,
+  },
+  {
+    "tabout.nvim",
+    event = { "InsertEnter" },
+    after = function()
+      require("tabout").setup({
+        tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+        backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
+        act_as_tab = true, -- shift content if tab out is not possible
+        act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+        default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = "<C-d>", -- reverse shift default action,
+        enable_backwards = true, -- well ...
+        completion = true, -- if the tabkey is used in a completion pum
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
+        },
+        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+        exclude = {}, -- tabout will ignore these filetypes
+      })
     end,
   },
   {
@@ -82,7 +117,7 @@ return {
   },
   {
     "oil.nvim",
-    event = "CmdlineEnter",
+    event = "DeferredUIEnter",
     after = function()
       require("oil").setup({
         default_file_explorer = true,
@@ -118,15 +153,15 @@ return {
   {
     "neogit",
     event = { "DeferredUIEnter" },
-    after = function ()
+    after = function()
       require("neogit").setup({})
-    end
-  }, 
+    end,
+  },
   {
     "gitsigns.nvim",
     event = { "BufReadPost" },
-    after = function ()
+    after = function()
       require("gitsigns").setup({})
-    end
-  }
+    end,
+  },
 }

@@ -32,5 +32,6 @@
     vlc
     hyprshot
     spotify
+    evince
   ];
 }

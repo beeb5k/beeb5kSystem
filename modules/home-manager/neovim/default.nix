@@ -121,7 +121,9 @@ in
           optionalPlugins = with pkgs.vimPlugins; {
             editor = [
               oil-nvim
-              ultimate-autopair-nvim
+              nvim-autopairs
+              nvim-surround
+              tabout-nvim
               comment-nvim
               eyeliner-nvim
               conform-nvim
