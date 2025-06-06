@@ -2,7 +2,6 @@
   imports = [
     ./firefox.nix
     ./hypr
-    ./waybar
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix
