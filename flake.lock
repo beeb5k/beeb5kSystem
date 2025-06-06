@@ -1,5 +1,24 @@
 {
   "nodes": {
+    "beeb5kvim": {
+      "inputs": {
+        "nixCats": "nixCats",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1749215827,
+        "narHash": "sha256-//45SY/EZwMyr1mZVkG7VLI75KywFmdZ1DbGM/Q7T6c=",
+        "ref": "refs/heads/main",
+        "rev": "a1a2c735d83549ba447d4c0ed38dbc614d47878b",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://codeberg.org/beeb5k/beeb5kVim.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/beeb5k/beeb5kVim.git"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -35,7 +54,38 @@
         "type": "github"
       }
     },
+    "nixCats_2": {
+      "locked": {
+        "lastModified": 1748760778,
+        "narHash": "sha256-i0xBOGCDtrJ29sIelwbSATUJK4AP6McPMxBA0dthK0o=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "88cde33af841e2aa1ea0c83c4d9dcfefdde54fb3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1749111037,
+        "narHash": "sha256-V5fbB7XUPz8qtuJntul/7PABtP35tlmcYpriRvJ3EBw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "ec62ae342c340d24289735e31eb9155261cd5fe7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1748929857,
         "narHash": "sha256-lcZQ8RhsmhsK8u7LIFsJhsLh/pzR9yZ8yqpTzyGdj+Q=",
@@ -85,9 +135,10 @@
     },
     "root": {
       "inputs": {
+        "beeb5kvim": "beeb5kvim",
         "home-manager": "home-manager",
-        "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs",
+        "nixCats": "nixCats_2",
+        "nixpkgs": "nixpkgs_2",
         "plugins-lze": "plugins-lze",
         "plugins-lzextras": "plugins-lzextras"
       }

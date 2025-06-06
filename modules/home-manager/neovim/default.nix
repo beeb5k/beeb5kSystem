@@ -45,7 +45,7 @@ in
 
             web = with pkgs; {
               templ = [
-                templ 
+                templ
               ];
 
               tailwindcss = [

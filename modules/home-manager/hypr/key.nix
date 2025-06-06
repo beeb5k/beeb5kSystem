@@ -2,14 +2,15 @@
   wayland.windowManager.hyprland.settings = {
     bind = [
       "$mainMod,RETURN,exec,$terminal"
-      "$mainMod,Q,killactive,"
-      "$mainMod,M,exit,"
+      "$mainMod,Q,killactive"
+      "$mainMod,M,exit"
       "$mainMod,E,exec,$fileManager"
-      "$mainMod,SPACE,togglefloating,"
+      "$mainMod,SPACE,togglefloating"
       "$mainMod,D,exec,$menu"
-      "$mainMod,P,pseudo,"
-      "$mainMod, F ,fullscreen"
-      "$mainMod SHIFT,E,togglesplit,"
+      "$mainMod,P,pseudo"
+      "$mainMod,L,exec,hyprlock"
+      "$mainMod,F,fullscreen"
+      "$mainMod SHIFT,E,togglesplit"
       "$mainMod,h,movefocus,l"
       "$mainMod,l,movefocus,r"
       "$mainMod,k,movefocus,u"
@@ -38,14 +39,9 @@
       "$mainMod SHIFT,S,movetoworkspace,special:magic"
       "$mainMod,mouse_down,workspace,e+1"
       "$mainMod,mouse_up,workspace,e-1"
-      ",Print, exec, hyprshot -m active -m output -o ~/Pictures/Screenshots"
-      "$mainMod,Print, exec, hyprshot -m window --clipboard-only"
-      "$mainMod SHIFT,Print, exec, hyprshot -m region  --clipboard-only"
-    ];
-
-    bindm = [
-      "$mainMod,mouse:272,movewindow"
-      "$mainMod,mouse:273,resizewindow"
+      ",Print,exec,hyprshot -m active -m output -o ~/Pictures/Screenshots"
+      "$mainMod,Print,exec,hyprshot -m window --clipboard-only"
+      "$mainMod SHIFT,Print,exec,hyprshot -m region --clipboard-only"
     ];
 
     bindel = [
@@ -62,6 +58,11 @@
       ",XF86AudioPause,exec,playerctl play-pause"
       ",XF86AudioPlay,exec,playerctl play-pause"
       ",XF86AudioPrev,exec,playerctl previous"
+    ];
+
+    bindm = [
+      "$mainMod,mouse:272,movewindow"
+      "$mainMod,mouse:273,resizewindow"
     ];
   };
 }

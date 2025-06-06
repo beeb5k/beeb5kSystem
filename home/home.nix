@@ -7,6 +7,7 @@
 
   home.username = "beeb5k";
   home.homeDirectory = "/home/beeb5k";
+  services.swww.enable = true;
 
   home.stateVersion = "25.05";
 

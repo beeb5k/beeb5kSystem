@@ -18,7 +18,6 @@
     ./tmux.nix
     ./alacritty.nix
     ./scripts
-    ./fastfetch.nix
     ./cliphist.nix
   ];
 }

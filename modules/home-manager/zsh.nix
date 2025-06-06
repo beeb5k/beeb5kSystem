@@ -16,7 +16,7 @@
     };
 
     # Initialize Zinit and add it to ZSH
-   initContent = ''
+    initContent = ''
       pokeget random --hide-name
       # Install Zinit if not already installed
       if [[ ! -d $HOME/.zinit/bin ]]; then
