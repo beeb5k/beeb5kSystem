@@ -1,23 +1,16 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    grim
     nitch
     swaybg
-    ffmpeg-full
     mpv
     imv
     stylua
     nixfmt-rfc-style
-    cmatrix
-    ristate
-    pkg-config
-    wayland-scanner
     llvmPackages_19.libcxxClang
     pokeget-rs
     vscode-fhs
     go
-    zig
     lua
     rustc
     rustfmt

@@ -13,7 +13,6 @@
     satty
     wl-clipboard
     pavucontrol
-    pamixer
     brightnessctl
   ];
 }
