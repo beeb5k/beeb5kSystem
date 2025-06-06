@@ -4,14 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
-    beeb5kvim.flake = true;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    plugins-lzextras.url = "github:BirdeeHub/lzextras";
-    plugins-lzextras.flake = false;
-    plugins-lze.url = "github:BirdeeHub/lze";
-    plugins-lze.flake = false;
+    beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
   };
 
   outputs =

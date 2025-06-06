@@ -3,7 +3,6 @@
     ./firefox.nix
     ./hypr
     ./waybar
-    ./neovim
     ./btop.nix
     ./desktop-entries.nix
     ./file-manager.nix
@@ -13,11 +12,7 @@
     ./htop.nix
     ./swaync.nix
     ./obs.nix
-    ./satty.nix
     ./zsh.nix
-    ./tmux.nix
     ./alacritty.nix
-    ./scripts
-    ./cliphist.nix
   ];
 }

@@ -5,5 +5,5 @@
     pcmanfm
   ];
 
-  programs.lf.enable = true;
+  programs.yazi.enable = true;
 }
