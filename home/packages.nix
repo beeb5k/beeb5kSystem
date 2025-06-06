@@ -10,28 +10,21 @@
     stylua
     nixfmt-rfc-style
     cmatrix
-    pulseaudio
     ristate
     pkg-config
     wayland-scanner
-    jq
-    python314
     llvmPackages_19.libcxxClang
     pokeget-rs
     vscode-fhs
     go
     zig
-    bun
     lua
     rustc
     rustfmt
     clippy
     cargo
     vesktop
-    obsidian
-    vlc
     hyprshot
-    spotify
-    evince
+    fastfetchMinimal
   ];
 }

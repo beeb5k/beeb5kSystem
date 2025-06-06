@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./eww
     ./firefox.nix
     ./hyprland
     ./waybar
@@ -15,7 +14,6 @@
     ./swaync.nix
     ./obs.nix
     ./satty.nix
-    ./stylix.nix
     ./zsh.nix
     ./tmux.nix
     ./alacritty.nix

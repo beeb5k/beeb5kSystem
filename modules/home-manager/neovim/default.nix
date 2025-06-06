@@ -40,7 +40,7 @@ in
               fd
               bat
               fzf
-              nodejs_23 # copilot's bloated ass want this.
+              nodejs_24 # copilot's bloated ass want this.
             ];
 
             web = with pkgs; {
@@ -204,9 +204,9 @@ in
               # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
             };
             extra = {
-              base16colors = pkgs.lib.filterAttrs (
-                k: v: builtins.match "base0[0-9A-F]" k != null
-              ) config.lib.stylix.colors.withHashtag;
+              # base16colors = pkgs.lib.filterAttrs (
+              #   k: v: builtins.match "base0[0-9A-F]" k != null
+              # ) config.lib.stylix.colors.withHashtag;
             };
 
             categories = {

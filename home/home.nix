@@ -8,7 +8,7 @@
   home.username = "beeb5k";
   home.homeDirectory = "/home/beeb5k";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   home.sessionVariables = {
     XCURSOR_SIZE = "16";

@@ -6,7 +6,6 @@
     file
     binutils
     eza
-    xclip
     bat
     ripgrep
     fzf
@@ -15,7 +14,6 @@
     wl-clipboard
     pavucontrol
     pamixer
-    greetd.tuigreet
     brightnessctl
   ];
 }
