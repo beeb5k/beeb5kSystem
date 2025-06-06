@@ -1,7 +1,7 @@
 {
   imports = [
     ./firefox.nix
-    ./hyprland
+    ./hypr
     ./waybar
     ./neovim
     ./btop.nix
