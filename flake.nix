@@ -5,7 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    # beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    beeb5kvim.url = "git+file:/home/beeb5k/beeb5kVim";
   };
 
   outputs =
@@ -18,22 +19,27 @@
     }@inputs:
     let
       system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
     in
     {
       nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
+        modules = [ ./nixos/configuration.nix ];
+      };
+
+      homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
         modules = [
-          ./nixos/configuration.nix
-          beeb5kvim.nixosModules.default
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.beeb5k = ./home/home.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
+          ./home/home.nix
+          beeb5kvim.homeModules.default
         ];
+        extraSpecialArgs = { inherit inputs; };
       };
     };
 }

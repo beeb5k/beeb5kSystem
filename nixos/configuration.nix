@@ -11,10 +11,6 @@
 
   networking.hostName = "dixos";
 
-  beeb5kvim = {
-    enable = true;
-  };
-
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
@@ -131,6 +127,10 @@
       "wheel"
     ];
   };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   # zsh
   programs.zsh.enable = true;

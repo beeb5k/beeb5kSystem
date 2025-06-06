@@ -10,13 +10,13 @@
     };
 
     # Pin nixpkgs for older Nix tools
-    nixPath = [ "nixpkgs=${pkgs.path}" ];
+    # nixPath = [ "nixpkgs=${pkgs.path}" ];
   };
 
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 2";
-    flake = "/home/beeb5k/beeb5kSystem";
+    flake = "/home/beeb5k/beeb5kSystem/";
   };
 }

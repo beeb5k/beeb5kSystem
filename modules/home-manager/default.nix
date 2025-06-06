@@ -10,6 +10,6 @@
     ./git.nix
     ./obs.nix
     ./zsh.nix
-    ./alacritty.nix
+    ./foot.nix
   ];
 }

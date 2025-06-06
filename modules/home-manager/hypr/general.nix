@@ -8,7 +8,7 @@
 
     settings = {
       "$mainMod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "foot";
       "$fileManager" = "pcmanfm";
       "$menu" = "wofi --show drun";
 

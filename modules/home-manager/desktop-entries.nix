@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  /*
-
   xdg.dataFile."applications/foot-server.desktop".text = ''
     [Desktop Entry]
     Name=Foot Server
@@ -17,8 +15,6 @@
     Type=Application
     NoDisplay=true
   '';
-
-  */
 
   # vs code
   xdg.dataFile."applications/code.desktop".text = ''
