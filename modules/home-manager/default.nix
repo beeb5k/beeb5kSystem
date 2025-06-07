@@ -11,5 +11,6 @@
     ./obs.nix
     ./zsh.nix
     ./foot.nix
+    ./starship.nix
   ];
 }

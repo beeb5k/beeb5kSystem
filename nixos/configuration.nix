@@ -9,9 +9,8 @@
   systemd.services."NetworkManager-wait-online".enable = false;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   xdg.portal.config.common.default = [ "hyprland;gtk" ];
-
 
   time.timeZone = "Asia/Kolkata";
 
@@ -55,14 +54,14 @@
   };
 
   services.greetd = {
-       enable = true;
-       settings = {
-         default_session = {
-           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time --cmd Hyprland";
-           user = "greeter";
-         };
-       };
-     };
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
 
   services.gnome.gnome-keyring.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -90,7 +89,7 @@
   };
 
   security.rtkit.enable = true;
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
 
   # services.xserver.libinput.enable = true;
   users.users.beeb5k = {

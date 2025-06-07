@@ -64,7 +64,7 @@
           special = false;
           new_optimizations = true;
           size = 14;
-          passes = 4;
+          passes = 5;
           brightness = 1;
           noise = 0.01;
           contrast = 1;
@@ -72,7 +72,7 @@
           popups_ignorealpha = 0.6;
         };
         shadow = {
-          enabled = false;
+          enabled = true;
           ignore_window = true;
           range = 20;
           offset = "0 2";

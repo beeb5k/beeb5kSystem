@@ -25,46 +25,49 @@
       fi
 
       # ---- Source Zinit ----
-      source $HOME/.zinit/bin/zinit.zsh
+      source "$HOME/.zinit/bin/zinit.zsh"
 
-      # ---- load p10k theme ----
-      # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+      # ---- Load plugins ----
 
-      # ---- Plugins ----
-      # zinit ice depth=1; zinit light romkatv/powerlevel10k
-
+      zinit ice wait"1" lucid
       zinit light zsh-users/zsh-autosuggestions
 
       zinit ice wait"1" lucid
       zinit light zsh-users/zsh-syntax-highlighting
 
-      zinit ice wait"1" lucid
+      zinit ice depth=1
+      zinit ice wait"2" lucid
+      zinit light jeffreytse/zsh-vi-mode
+
+      zinit ice wait"2" lucid
       zinit light Aloxaf/fzf-tab
-      zinit ice wait"1" lucid
+
+      zinit ice wait"2" lucid
       zinit light joshskidmore/zsh-fzf-history-search
-      zinit ice wait"1" lucid
+
+      zinit ice wait"2" lucid
       zinit light mrjohannchang/zsh-interactive-cd
 
       zinit ice wait"2" lucid
-      zinit ice depth=1; zinit light zsh-users/zsh-completions
+      zinit ice depth=1
+      zinit light zsh-users/zsh-completions
 
       # ---- Keybindings ----
-      bindkey '^[[1;5D' backward-word  # Ctrl + Left Arrow → Move one word left
-      bindkey '^[[1;5C' forward-word   # Ctrl + Right Arrow → Move one word right
-
-      bindkey '^H' backward-kill-word  # Ctrl + Backspace → Delete whole word left
-      bindkey '^[[3;5~' kill-word      # Ctrl + Delete → Delete whole word right
-
-      bindkey '^[[C' forward-char     # Right Arrow → Move right normally
-      bindkey '^E' end-of-line        # Ctrl + E → Accept auto-suggestion
+      bindkey '^[[1;5D' backward-word      # Ctrl + Left
+      bindkey '^[[1;5C' forward-word       # Ctrl + Right
+      bindkey '^H' backward-kill-word      # Ctrl + Backspace
+      bindkey '^[[3;5~' kill-word          # Ctrl + Delete
+      bindkey '^[[C' forward-char          # Right Arrow
+      bindkey '^E' end-of-line             # Ctrl + E
 
       # ---- Completion settings ----
       zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
       zstyle ':completion:*' rehash true
       zstyle ':completion:*' menu select
 
-      setopt nocaseglob    # Case insensitive globbing
-      setopt correct       # Auto correct mistakes
+      # ---- Set options ----
+      setopt nocaseglob       # Case insensitive globbing
+      setopt correct          # Auto correct mistakes
     '';
 
     shellAliases = {
