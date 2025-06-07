@@ -11,7 +11,7 @@
 
   home.stateVersion = "25.05";
 
-  beeb5kvim = {
+  Neovim = {
     enable = true;
   };
 

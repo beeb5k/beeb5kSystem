@@ -57,7 +57,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time";
         user = "greeter";
       };
     };
@@ -114,6 +114,8 @@
   };
   programs.hyprland = {
     enable = true;
+    xwayland.enable = false;
+    withUWSM = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
