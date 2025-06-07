@@ -11,8 +11,21 @@
 
   home.stateVersion = "25.05";
 
+  beeb5kvim = {
+    enable = true;
+  };
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 16;
+    enable = true;
+    x11.enable = true;
+    gtk.enable = true;
+    hyprcursor.enable = true;
+  };
+
   home.sessionVariables = {
-    XCURSOR_SIZE = "16";
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERMINAL = "foot";

@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 { pkgs, ... }:
 {
   imports = [
@@ -9,24 +6,16 @@
     ./packages.nix
   ];
 
-  networking.hostName = "dixos";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
   systemd.services."NetworkManager-wait-online".enable = false;
 
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-gtk
-  ];
   xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+  xdg.portal.config.common.default = [ "hyprland;gtk" ];
 
-  # Set your time zone.
+
   time.timeZone = "Asia/Kolkata";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -39,70 +28,53 @@
     LC_TIME = "en_IN";
   };
 
-  # Enable the gnome-keyring secrets vault.
-  # Will be exposed through DBus to programs willing to store secrets.
-  services.gnome.gnome-keyring.enable = true;
-
   hardware.enableRedistributableFirmware = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
 
-  programs.regreet = {
-    enable = true;
-  };
-
-  services.keyd = {
-    enable = true;
-    keyboards.default = {
-      ids = [ "*" ];
-      settings = {
-        main = {
-          capslock = "overload(sym, esc)";
-          rightalt = "overload(control, backspace)";
-        };
-        sym = {
-          u = "(";
-          i = ")";
-          j = "[";
-          k = "]";
-          m = "{";
-          "." = "}";
-          o = "=";
-          p = "+";
-          l = "-";
-        };
+  services.keyd.enable = true;
+  services.keyd.keyboards.default = {
+    ids = [ "*" ];
+    settings = {
+      main = {
+        capslock = "overload(sym, esc)";
+        rightalt = "overload(control, backspace)";
+      };
+      sym = {
+        u = "(";
+        i = ")";
+        j = "[";
+        k = "]";
+        m = "{";
+        "." = "}";
+        o = "=";
+        p = "+";
+        l = "-";
       };
     };
   };
 
-  services.dbus.enable = true;
+  services.greetd = {
+       enable = true;
+       settings = {
+         default_session = {
+           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time --cmd Hyprland";
+           user = "greeter";
+         };
+       };
+     };
+
+  services.gnome.gnome-keyring.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.printing.enable = false;
+  services.openssh.enable = false;
   services.blueman.enable = true;
+  services.dbus.enable = true;
   services.gvfs.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = false;
-
-  programs.hyprland = {
-    enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
-
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
-
-  # This is shit but saves power aggressively
-  powerManagement = {
-    enable = false;
-    powertop.enable = false;
-  };
-  services.power-profiles-daemon.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = false;
-
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  # security.polkit.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -112,12 +84,15 @@
     jack.enable = true;
   };
 
-  security.pam.services.swaylock = { };
+  powerManagement = {
+    enable = false;
+    powertop.enable = false;
+  };
 
-  # Enable touchpad support (enabled default in most desktopManager).
+  security.rtkit.enable = true;
+  security.pam.services.hyprlock = {};
+
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.beeb5k = {
     description = "Vivek Tiwari";
     isNormalUser = true;
@@ -132,34 +107,24 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # zsh
-  programs.zsh.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
   # programs.mtr.enable = true;
+  programs.zsh.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+  programs.hyprland = {
+    enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = false;
-
-  # Open ports in the firewall.
+  networking.hostName = "dixos";
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "25.05"; # never chnage this.
 }

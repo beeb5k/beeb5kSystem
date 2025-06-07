@@ -9,8 +9,6 @@
     bat
     ripgrep
     fzf
-    libnotify
-    satty
     wl-clipboard
     pavucontrol
     brightnessctl

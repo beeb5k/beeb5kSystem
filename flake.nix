@@ -5,8 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
-    beeb5kvim.url = "git+file:/home/beeb5k/beeb5kVim";
+    beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    # beeb5kvim.url = "git+file:/home/beeb5k/beeb5kVim";
   };
 
   outputs =
