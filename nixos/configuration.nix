@@ -90,7 +90,8 @@
 
   security.rtkit.enable = true;
   security.pam.services.hyprlock = { };
-
+  security.pam.services.swaylock = { };
+  security.pam.services.hyprland.enableGnomeKeyring = true;
   # services.xserver.libinput.enable = true;
   users.users.beeb5k = {
     description = "Vivek Tiwari";
