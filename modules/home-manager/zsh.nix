@@ -28,29 +28,23 @@
       source "$HOME/.zinit/bin/zinit.zsh"
 
       # ---- Load plugins ----
-
-      zinit ice wait"1" lucid
       zinit light zsh-users/zsh-autosuggestions
 
       zinit ice wait"1" lucid
       zinit light zsh-users/zsh-syntax-highlighting
 
       zinit ice depth=1
-      zinit ice wait"2" lucid
+      zinit ice wait"1" lucid
       zinit light jeffreytse/zsh-vi-mode
 
-      zinit ice wait"2" lucid
+      zinit ice wait"1" lucid
       zinit light Aloxaf/fzf-tab
 
-      zinit ice wait"2" lucid
+      zinit ice wait"1" lucid
       zinit light joshskidmore/zsh-fzf-history-search
 
-      zinit ice wait"2" lucid
+      zinit ice wait"1" lucid
       zinit light mrjohannchang/zsh-interactive-cd
-
-      zinit ice wait"2" lucid
-      zinit ice depth=1
-      zinit light zsh-users/zsh-completions
 
       # ---- Keybindings ----
       bindkey '^[[1;5D' backward-word      # Ctrl + Left

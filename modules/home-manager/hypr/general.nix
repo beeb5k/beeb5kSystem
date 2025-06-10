@@ -57,7 +57,7 @@
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 15;
         blur = {
           enabled = true;
           xray = true;

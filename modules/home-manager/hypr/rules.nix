@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland.settings.general = {
     windowrulev2 = [
-      "workspace 2,class:^(brave-browser)$"
+      "workspace 2,class:^(brave-browser|firefox)$"
       "workspace 3,class:^(vesktop)$"
       "workspace 4,class:^(Spotify)$"
       "float,class:^(org.pulseaudio.pavucontrol)$"
