@@ -71,8 +71,6 @@
     '';
 
     shellAliases = {
-      c = "clear";
-      cat = "bat";
       ls = "eza --icons --group-directories-first -1";
       ll = "eza --icons -lh --group-directories-first -1 --no-user --long";
       la = "eza --icons -lah --group-directories-first -1";

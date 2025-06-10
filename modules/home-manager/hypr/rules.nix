@@ -7,7 +7,7 @@
       "float,class:^(org.pulseaudio.pavucontrol)$"
       "suppressevent maximize,class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "opacity 0.89 override 0.89 override, class:.*"
+      "opacity 0.85 override 0.85 override, class:.*"
       "noblur, xwayland:1"
       # Picture-in-Picture
       "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
@@ -32,6 +32,9 @@
       "float, title:^(Save As)(.*)$"
       "float, title:^(Library)(.*)$"
       "float, title:^(File Upload)(.*)$"
+
+      "center, class:^(imv)$"
+      "float, class:^(imv)$"
 
       "noshadow, floating:0"
     ];

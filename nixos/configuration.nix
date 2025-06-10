@@ -67,7 +67,7 @@
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
   services.openssh.enable = false;
-  services.blueman.enable = true;
+  services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.xserver.xkb = {
@@ -90,8 +90,9 @@
 
   security.rtkit.enable = true;
   security.pam.services.hyprlock = { };
-  security.pam.services.swaylock = { };
-  security.pam.services.hyprland.enableGnomeKeyring = true;
+  security.pam.services.swaylock = { }; # idk if needed but i'll just keep tis
+  security.pam.services.hyprland.enableGnomeKeyring = true; # same
+  security.pam.services.greetd.enableGnomeKeyring = true;
   # services.xserver.libinput.enable = true;
   users.users.beeb5k = {
     description = "Vivek Tiwari";

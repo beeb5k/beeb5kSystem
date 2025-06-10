@@ -1,12 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}:
-let
-  system = config.system.platform;
-in
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     mpv
@@ -22,13 +14,6 @@ in
     vesktop
     nil
     nixd
-    # (vesktop.overrideAttrs (old: {
-    #   postInstall =
-    #     (old.postInstall or "")
-    #     + ''
-    #       substituteInPlace $out/share/applications/vesktop.desktop \
-    #         --replace 'Exec=vesktop %U' 'Exec=vesktop --ozone-platform=wayland %U'
-    #     '';
-    # }))
+    matugen
   ];
 }
