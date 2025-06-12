@@ -1,0 +1,27 @@
+[config]
+version_check = true
+
+[templates.foot]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-foot.ini'
+output_path = '~/.config/foot/foot-colors.ini'
+
+[templates.gtk3]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+
+[templates.gtk4]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+
+[templates.discord]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-discord.css'
+output_path = '~/.config/vesktop/themes/midnight-dis.css'
+
+[templates.pywalfox]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-pywalfox.json'
+output_path = '~/.cache/wal/colors.json'
+# post_hook = 'pywalfox update'
+
+[templates.yazi]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-yazi.css'
+output_path = '~/.config/yazi/theme.toml'

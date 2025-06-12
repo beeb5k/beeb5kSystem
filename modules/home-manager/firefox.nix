@@ -10,10 +10,10 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         };
-        "addon@darkreader.org" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-        };
+        # "addon@darkreader.org" = {
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+        # };
       };
     };
 

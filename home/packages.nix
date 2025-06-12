@@ -5,7 +5,7 @@
     imv
     stylua
     nixfmt-rfc-style
-    # llvmPackages_19.libcxxClang
+    llvmPackages_19.libcxxClang
     pokeget-rs
     zed-editor-fhs
     lua
@@ -15,5 +15,10 @@
     nil
     nixd
     matugen
+    rustc
+    rustfmt
+    clippy
+    cargo
+    pywalfox-native
   ];
 }
