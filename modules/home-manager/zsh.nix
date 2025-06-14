@@ -62,6 +62,16 @@
       # ---- Set options ----
       setopt nocaseglob       # Case insensitive globbing
       setopt correct          # Auto correct mistakes
+
+      clear_and_pokeget ()
+      {
+        print -Pn "\e[H\e[2J"
+        pokeget random --hide-name
+        zle reset-prompt
+      }
+
+      zle -N clear_and_pokeget
+      bindkey "^L" clear_and_pokeget
     '';
 
     shellAliases = {
