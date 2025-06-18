@@ -11,6 +11,8 @@
     ./obs.nix
     ./zsh.nix
     ./foot.nix
+    ./tmux.nix
     ./starship.nix
+    # ./zen-browser.nix # zen github repo is not public rn so it wont build
   ];
 }

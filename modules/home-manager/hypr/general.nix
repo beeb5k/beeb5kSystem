@@ -1,30 +1,27 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    sourceFirst = true;
     xwayland.enable = false;
 
     # systemd.enableXdgAutostart = true;
     # systemd.enable = true;
 
+    extraConfig = ''
+      general {
+        col.active_border = $primary
+        col.inactive_border = $outline
+      }
+    '';
+
     settings = {
+      monitor = [ ",1920x1080@120,auto,1.0" ];
+      source = [ "colors.conf" ];
+
       "$mainMod" = "SUPER";
       "$terminal" = "foot";
       "$fileManager" = "pcmanfm";
       "$menu" = "anyrun";
-
-      # exec-once = [
-      #   "ashell"
-      #   "walker --gapplication-service"
-      # ];
-
-      # env = [
-      #   "TERMINAL,foot"
-      #   "EDITOR,nvim"
-      #   "LIBVA_DRIVER_NAME,nvidia"
-      #   "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-      # ];
-
-      monitor = [ ",1920x1080@120,auto,1.0" ];
 
       input = {
         follow_mouse = 1;
@@ -47,6 +44,8 @@
 
         #focus_to_other_workspaces = true # ahhhh i still haven't properly implemented this
         allow_tearing = true; # This just allows the `immediate` window rule to work
+        # col.active_border = "$outline";
+        # col.inactive_border = "$outline";
       };
 
       dwindle = {
@@ -77,7 +76,7 @@
           range = 20;
           offset = "0 2";
           render_power = 4;
-          color = "rgba(0000002A)";
+          color = "$shadow";
         };
 
         # Window Opacities
@@ -98,11 +97,6 @@
       gestures.workspace_swipe = false;
 
       misc = {
-        # vfr = 1;
-        #  vrr = 1;
-        #  disable_hyprland_logo = true;
-        #  disable_splash_rendering = true;
-        #  force_default_wallpaper = -1;
         vfr = 1;
         vrr = 1;
         animate_manual_resizes = false;
@@ -127,6 +121,5 @@
 
       master.new_status = "master";
     };
-    extraConfig = '''';
   };
 }

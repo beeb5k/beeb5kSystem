@@ -4,12 +4,12 @@
     keyboards = {
       default = {
         config = ''
-            (defsrc
+          (defsrc
             caps
           )
 
           (defalias
-            escctrl (tap-hold 200 200 esc lctl)
+            escctrl (tap-hold 150 200 esc lctl)
           )
 
           (deflayer base

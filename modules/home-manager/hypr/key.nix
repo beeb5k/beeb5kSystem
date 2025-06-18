@@ -40,9 +40,8 @@
       "$mainMod SHIFT,S,movetoworkspace,special"
       "$mainMod,mouse_down,workspace,e+1"
       "$mainMod,mouse_up,workspace,e-1"
-      ",Print,exec,hyprshot -m active -m output -o ~/Pictures/Screenshots"
-      "$mainMod,Print,exec,hyprshot -m window --clipboard-only"
-      "$mainMod SHIFT,Print,exec,hyprshot -m region --clipboard-only"
+      ",Print,exec,grimblast save output Pictures/Screenshots/shot_$(date +%s).png"
+      "$mainMod,Print,exec,grimblast copy area"
     ];
 
     bindel = [

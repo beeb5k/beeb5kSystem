@@ -14,17 +14,14 @@
     pokeget-rs
     zed-editor-fhs
     lua
-    hyprshot
+    grimblast
     fastfetchMinimal
     vesktop
-    nil
-    nixd
     matugen
     rustc
     rustfmt
     clippy
     cargo
-    pywalfox-native
     fd
     onefetch
     obsidian

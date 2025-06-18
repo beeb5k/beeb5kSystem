@@ -6,6 +6,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";

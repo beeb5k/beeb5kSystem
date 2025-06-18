@@ -25,3 +25,12 @@ output_path = '~/.cache/wal/colors.json'
 [templates.yazi]
 input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-yazi.css'
 output_path = '~/.config/yazi/theme.toml'
+
+[templates.hyprland]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.starship]
+input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-starship.toml'
+output_path = '~/.config/starship.toml'
