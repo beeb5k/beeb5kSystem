@@ -4,18 +4,16 @@
     settings = {
       background = {
         monitor = "";
-        path = "~/beeb5kSystem/wallpapers/wallpaper.jpg";
-        blur_passes = 2;
-        contrast = 1;
-        brightness = 0.5;
-        vibrancy = 0.2;
-        vibrancy_darkness = 0.2;
+        color = "rgba(181818FF)";
+        # blur_passes = 2;
+        # contrast = 1;
+        # brightness = 0.5;
+        # vibrancy = 0.2;
+        # vibrancy_darkness = 0.2;
       };
 
       general = {
         immediate_render = true;
-        no_fade_in = true;
-        disable_loading_bar = true;
         hide_cursor = true;
         grace = 5;
       };
