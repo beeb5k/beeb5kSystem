@@ -6,7 +6,7 @@
     ./desktop-entries.nix
     ./file-manager.nix
     ./fonts.nix
-    ./wofi.nix
+    ./anyrun.nix
     ./git.nix
     ./obs.nix
     ./zsh.nix

@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  quickshell,
+  config,
+  ...
+}:
 {
   home.packages = with pkgs; [
     mpv
@@ -20,5 +25,10 @@
     clippy
     cargo
     pywalfox-native
+    fd
+    onefetch
+    obsidian
+    anyrun
+    quickshell.packages.${pkgs.system}.default
   ];
 }

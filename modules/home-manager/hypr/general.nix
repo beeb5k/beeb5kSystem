@@ -10,7 +10,7 @@
       "$mainMod" = "SUPER";
       "$terminal" = "foot";
       "$fileManager" = "pcmanfm";
-      "$menu" = "wofi --show drun";
+      "$menu" = "anyrun";
 
       # exec-once = [
       #   "ashell"
@@ -30,7 +30,7 @@
         follow_mouse = 1;
         kb_layout = "us";
         repeat_delay = 300;
-        repeat_rate = 70;
+        repeat_rate = 50;
         sensitivity = 0;
         touchpad.natural_scroll = true;
       };

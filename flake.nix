@@ -6,6 +6,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
   };
 
@@ -15,6 +19,7 @@
       nixpkgs,
       home-manager,
       beeb5kvim,
+      quickshell,
       ...
     }@inputs:
     let
@@ -39,7 +44,7 @@
           ./home/home.nix
           beeb5kvim.homeModules.default
         ];
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs quickshell; };
       };
     };
 }
