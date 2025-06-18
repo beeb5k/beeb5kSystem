@@ -31,28 +31,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
-  services.keyd.enable = true;
-  services.keyd.keyboards.default = {
-    ids = [ "*" ];
-    settings = {
-      main = {
-        capslock = "overload(sym, esc)";
-        rightalt = "overload(control, backspace)";
-      };
-      sym = {
-        u = "(";
-        i = ")";
-        j = "[";
-        k = "]";
-        m = "{";
-        "." = "}";
-        o = "=";
-        p = "+";
-        l = "-";
-      };
-    };
-  };
-
   services.greetd = {
     enable = true;
     settings = {
