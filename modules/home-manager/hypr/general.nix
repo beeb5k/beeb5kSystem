@@ -23,6 +23,13 @@
       "$fileManager" = "pcmanfm";
       "$menu" = "anyrun";
 
+      env = [
+        "HYPRCURSOR_THEME,Bibata-Modern-Classic"
+        "HYPRCURSOR_SIZE,16"
+        "XCURSOR_THEME,Bibata-Modern-Classic"
+        "XCURSOR_SIZE,16"
+      ];
+
       input = {
         follow_mouse = 1;
         kb_layout = "us";

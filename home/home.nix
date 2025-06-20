@@ -22,6 +22,8 @@
     enable = true;
     x11.enable = true;
     gtk.enable = true;
+    hyprcursor.size = 16;
+    dotIcons.enable = true;
     hyprcursor.enable = true;
   };
 

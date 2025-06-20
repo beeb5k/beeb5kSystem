@@ -26,6 +26,8 @@
     onefetch
     obsidian
     anyrun
+    jdk
+    skim
     quickshell.packages.${pkgs.system}.default
   ];
 }
