@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1750438428,
-        "narHash": "sha256-hUulEoL2sg89x8dwQgzdGepL3e39ymrSf0sONUT8n3c=",
+        "lastModified": 1750447117,
+        "narHash": "sha256-APQnQC6bOEwS2ik4T01C+GwYNswsUcDpi2ZD3Zvq39o=",
         "ref": "refs/heads/main",
-        "rev": "c65e779bf3858b7cccb0cb607b4722ea9f373c9c",
-        "revCount": 36,
+        "rev": "9a78ebab5c5ce2d2859d66fbcc3df92ce1098505",
+        "revCount": 38,
         "type": "git",
         "url": "https://codeberg.org/beeb5k/beeb5kVim.git"
       },

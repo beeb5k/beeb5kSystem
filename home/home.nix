@@ -38,7 +38,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "foot";
-    BROWSER = "firefox";
+    BROWSER = "zen";
   };
 
   home.activation.appendGtkImport = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
