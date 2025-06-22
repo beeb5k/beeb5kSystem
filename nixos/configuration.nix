@@ -92,7 +92,7 @@
   networking.hostName = "dixos";
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 

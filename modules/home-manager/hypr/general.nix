@@ -76,6 +76,8 @@
           contrast = 1;
           popups = true;
           popups_ignorealpha = 0.6;
+          input_methods = true;
+          input_methods_ignorealpha = 0.8;
         };
         shadow = {
           enabled = true;
@@ -96,9 +98,9 @@
         # screen_shader = ~/.config/hypr/shaders/vibrance.frag
 
         # Dim
-        dim_inactive = false;
+        dim_inactive = true;
         dim_strength = 0.1;
-        dim_special = 0;
+        dim_special = 0.4;
       };
 
       gestures.workspace_swipe = false;
@@ -106,6 +108,8 @@
       misc = {
         vfr = 1;
         vrr = 1;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
         enable_swallow = false;
@@ -115,8 +119,18 @@
         force_default_wallpaper = 0;
         new_window_takes_over_fullscreen = 2;
         allow_session_lock_restore = true;
-
         initial_workspace_tracking = false;
+        focus_on_activate = true;
+      };
+
+      binds = {
+        scroll_event_delay = 0;
+        hide_special_on_workspace_change = true;
+      };
+
+      cursor = {
+        zoom_factor = 1;
+        zoom_rigid = false;
       };
 
       device = [
