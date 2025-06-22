@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
 
     # systemd.enableXdgAutostart = true;
     # systemd.enable = true;

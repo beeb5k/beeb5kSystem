@@ -24,7 +24,15 @@
     cargo
     fd
     onefetch
-    obsidian
+    gimp
+    (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
+      desktopItem = oldAttrs.desktopItem.override {
+        exec = "obsidian --ozone-platform=wayland %u";
+      };
+      installPhase =
+        builtins.replaceStrings [ "${oldAttrs.desktopItem}" ] [ "${desktopItem}" ]
+          oldAttrs.installPhase;
+    }))
     anyrun
     jdk
     skim

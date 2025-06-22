@@ -6,6 +6,7 @@
     ./packages.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   systemd.services."NetworkManager-wait-online".enable = false;
 
   xdg.portal.enable = true;
@@ -31,20 +32,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --time";
-        user = "greeter";
-      };
-    };
-  };
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
-  services.openssh.enable = false;
+  services.openssh.enable = true;
   services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
@@ -67,11 +61,7 @@
   };
 
   security.rtkit.enable = true;
-  security.pam.services.hyprlock = { };
-  security.pam.services.swaylock = { }; # idk if needed but i'll just keep tis
-  security.pam.services.hyprland.enableGnomeKeyring = true; # same
-  security.pam.services.greetd.enableGnomeKeyring = true;
-  # services.xserver.libinput.enable = true;
+  # services.libinput.enable = true;
   users.users.beeb5k = {
     description = "Vivek Tiwari";
     isNormalUser = true;
@@ -94,7 +84,7 @@
   };
   programs.hyprland = {
     enable = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
     withUWSM = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
