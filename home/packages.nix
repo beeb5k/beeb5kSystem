@@ -25,7 +25,6 @@
     onefetch
     gimp
     jdk
-    jetbrains.idea-ultimate
     sqlite
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
