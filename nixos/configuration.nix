@@ -28,9 +28,9 @@
     LC_TIME = "en_IN";
   };
 
-  hardware.enableRedistributableFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
+  hardware.enableRedistributableFirmware = true;
 
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
@@ -39,7 +39,7 @@
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
   services.openssh.enable = true;
-  services.blueman.enable = false;
+  services.blueman.enable = true;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.xserver.xkb = {
@@ -61,6 +61,7 @@
   };
 
   security.rtkit.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
   # services.libinput.enable = true;
   users.users.beeb5k = {
     description = "Vivek Tiwari";
@@ -85,7 +86,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    withUWSM = true;
+    # withUWSM = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 

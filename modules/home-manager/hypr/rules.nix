@@ -1,12 +1,14 @@
 {
   wayland.windowManager.hyprland.settings.general = {
     windowrulev2 = [
-      "workspace 2,class:^(brave-browser|firefox|zen-beta)$"
+      "workspace 1,class:^(brave-browser|firefox|zen-beta)$"
+      "workspace 2,class:^(foot)$"
       "workspace 3,class:^(vesktop)$"
       "workspace 4,class:^(Spotify)$"
+
       "suppressevent maximize,class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "opacity 0.85 override 0.85 override, class:.*"
+      "opacity 0.85 override 0.85 override, class:.*,xwayland:0"
       "noblur, xwayland:1"
 
       # Picture-in-Picture

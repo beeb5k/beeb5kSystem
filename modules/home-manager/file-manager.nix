@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     trash-cli
-    pcmanfm
+    nautilus
   ];
 
   programs.yazi.enable = true;

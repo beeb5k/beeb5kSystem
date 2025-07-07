@@ -12,7 +12,6 @@
     nixfmt-rfc-style
     llvmPackages_19.libcxxClang
     pokeget-rs
-    zed-editor-fhs
     lua
     grimblast
     fastfetchMinimal
@@ -25,6 +24,9 @@
     fd
     onefetch
     gimp
+    jdk
+    jetbrains.idea-ultimate
+    sqlite
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "obsidian --ozone-platform=wayland %u";
@@ -34,8 +36,7 @@
           oldAttrs.installPhase;
     }))
     anyrun
-    jdk
     skim
-    quickshell.packages.${pkgs.system}.default
+    # quickshell.packages.${pkgs.system}.default
   ];
 }

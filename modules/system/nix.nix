@@ -1,16 +1,11 @@
 { pkgs, ... }:
 {
-  nix = {
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
-    };
-
-    # Pin nixpkgs for older Nix tools
-    # nixPath = [ "nixpkgs=${pkgs.path}" ];
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
   };
 
   programs.nh = {

@@ -33,31 +33,33 @@
       package = pkgs.adw-gtk3;
       name = "adw-gtk3";
     };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+
+    gtk3.extraCss = ''
+      @import "colors.css";
+    '';
+
+    gtk4.extraCss = ''
+      @import "colors.css";
+    '';
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "foot";
     BROWSER = "zen";
+    JDTLS_WORKSPACE = "$HOME/.local/share/jdtls/workspace";
+    JDTLS_CACHE = "$HOME/.cache/jdtls";
   };
 
-  home.activation.appendGtkImport = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    for version in 3.0; do
-      dir="$HOME/.config/gtk-$version"
-      gtk_config="$dir/gtk.css"
-      colors_css="$dir/colors.css"
-      import_line='@import "colors.css";'
-
-      if [ -f "$colors_css" ]; then
-        mkdir -p "$dir"
-        [ -f "$gtk_config" ] || touch "$gtk_config"
-
-        if ! grep -Fxq "$import_line" "$gtk_config"; then
-          echo "$import_line" >> "$gtk_config"
-        fi
-      fi
-    done
-  '';
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 
   programs.home-manager.enable = true;
 }
