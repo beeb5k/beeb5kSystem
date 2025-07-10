@@ -5,13 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    # quickshell = {
-    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
     beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
+    # beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
   };
 
   outputs =
@@ -20,7 +18,6 @@
       nixpkgs,
       home-manager,
       beeb5kvim,
-      # quickshell,
       ...
     }@inputs:
     let
@@ -33,7 +30,7 @@
       };
     in
     {
-      nixosConfigurations.dixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [ ./nixos/configuration.nix ];

@@ -7,11 +7,7 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  systemd.services."NetworkManager-wait-online".enable = false;
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.default = [ "hyprland;gtk" ];
+  # systemd.services."NetworkManager-wait-online".enable = false;
 
   time.timeZone = "Asia/Kolkata";
 
@@ -61,8 +57,9 @@
   };
 
   security.rtkit.enable = true;
+  security.polkit.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
   users.users.beeb5k = {
     description = "Vivek Tiwari";
     isNormalUser = true;
@@ -77,26 +74,27 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # programs.mtr.enable = true;
+  programs.mtr.enable = true;
   programs.zsh.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # withUWSM = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
+    withUWSM = true;
+    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 
-  networking.hostName = "dixos";
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowedUDPPorts = [ ];
-  networking.firewall.enable = true;
+  networking.hostName = "nixos";
+  # networking.firewall.allowedTCPPorts = [ ];
+  # networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.enable = false;
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
+  # networking.networkmanager.wifi.powersave = false;
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.05"; # never chnage this.
+  system.stateVersion = "25.11"; # never chnage this.
 }

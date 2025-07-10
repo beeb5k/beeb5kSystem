@@ -8,11 +8,31 @@
   home.username = "beeb5k";
   home.homeDirectory = "/home/beeb5k";
   services.swww.enable = true;
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   # beeb5kvim
   Neovim = {
     enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals =
+      with pkgs;
+      lib.mkForce [
+        kdePackages.xdg-desktop-portal-kde
+        # xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ];
+
+    config = {
+      common = {
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+      };
+      Hyprland = {
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+      };
+    };
   };
 
   home.pointerCursor = {
@@ -46,6 +66,9 @@
       @import "colors.css";
     '';
   };
+
+  qt.enable = true;
+  qt.platformTheme.name = "qtct";
 
   home.sessionVariables = {
     EDITOR = "nvim";

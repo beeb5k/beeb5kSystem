@@ -2,10 +2,13 @@
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;
+    systemd.enable = true;
     xwayland.enable = true;
+    systemd.enableXdgAutostart = true;
 
-    # systemd.enableXdgAutostart = true;
-    # systemd.enable = true;
+    systemd.variables = [
+      "-all"
+    ];
 
     extraConfig = ''
       general {
@@ -22,6 +25,12 @@
       "$terminal" = "foot";
       "$fileManager" = "nautilus";
       "$menu" = "anyrun";
+
+      # exec-once = [
+      #   "dbus-update-activation-environment --systemd --all"
+      #   "systemctl --user import-environment XDG_CURRENT_DESKTOP"
+      #   "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=Hyprland"
+      # ];
 
       env = [
         "HYPRCURSOR_THEME,Bibata-Modern-Classic"

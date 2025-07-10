@@ -8,7 +8,7 @@
 
       "suppressevent maximize,class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "opacity 0.85 override 0.85 override, class:.*,xwayland:0"
+      "opacity 0.80 override 0.80 override, class:.*,xwayland:0"
       "noblur, xwayland:1"
 
       # Picture-in-Picture

@@ -1,6 +1,6 @@
 {
   pkgs,
-  quickshell,
+  inputs,
   config,
   ...
 }:
@@ -26,6 +26,7 @@
     gimp
     jdk
     sqlite
+    vscode
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "obsidian --ozone-platform=wayland %u";
@@ -35,7 +36,6 @@
           oldAttrs.installPhase;
     }))
     anyrun
-    skim
-    # quickshell.packages.${pkgs.system}.default
+    inputs.quickshell.packages.${pkgs.system}.default
   ];
 }
