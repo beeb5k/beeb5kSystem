@@ -26,11 +26,9 @@
       "$fileManager" = "nautilus";
       "$menu" = "anyrun";
 
-      # exec-once = [
-      #   "dbus-update-activation-environment --systemd --all"
-      #   "systemctl --user import-environment XDG_CURRENT_DESKTOP"
-      #   "dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=Hyprland"
-      # ];
+      exec-once = [
+        "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
+      ];
 
       env = [
         "HYPRCURSOR_THEME,Bibata-Modern-Classic"
