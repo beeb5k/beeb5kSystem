@@ -54,7 +54,7 @@ output_path = '~/.config/Kvantum/matugen/matugen.svg'
 [templates.sequences]
 input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/sequences.sh'
 output_path = '~/.config/sequences.sh'
-post_hook = "~/ok.sh"
+post_hook = "terminal-change-color"
 
 [templates.quickshell]
 input_path = "~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-quickshell.qml"

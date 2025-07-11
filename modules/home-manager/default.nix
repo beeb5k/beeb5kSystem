@@ -13,5 +13,6 @@
     ./tmux.nix
     ./starship.nix
     ./zen-browser.nix
+    ./scripts
   ];
 }

@@ -47,10 +47,10 @@
 
   gtk = {
     enable = true;
-    # theme = {
-    #   package = pkgs.tokyonight-gtk-theme;
-    #   name = "Tokyonight-Dark";
-    # };
+    theme = {
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3-dark";
+    };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
