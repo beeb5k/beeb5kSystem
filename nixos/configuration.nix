@@ -1,4 +1,9 @@
 { pkgs, ... }:
+let
+  nvidia_icd = "${pkgs.vulkan-loader}/share/vulkan/icd.d/nvidia_icd.json";
+  nvidia_layers = "${pkgs.vulkan-loader}/share/vulkan/explicit_layer.d";
+in
+
 {
   imports = [
     ./hardware-configuration.nix
@@ -87,6 +92,18 @@
     xwayland.enable = true;
     withUWSM = true;
     # portalPackage = pkgs.xdg-desktop-portal-hyprland;
+  };
+
+  environment.sessionVariables = {
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    VK_ICD_FILENAMES = nvidia_icd;
+    VK_LAYER_PATH = nvidia_layers;
+    NIXOS_OZONE_WL = 1;
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    NVD_BACKEND = "direct";
   };
 
   networking.hostName = "nixos";

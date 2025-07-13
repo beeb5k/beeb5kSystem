@@ -20,6 +20,7 @@
       "pin, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$K"
 
       # Dialog windows – float+center these windows.
+      "center, class:^(imv)$"
       "center, title:^(Open File)(.*)$"
       "center, title:^(Select a File)(.*)$"
       "center, title:^(Choose wallpaper)(.*)$"
@@ -34,6 +35,7 @@
       "float, title:^(Save As)(.*)$"
       "float, title:^(Library)(.*)$"
       "float, title:^(File Upload)(.*)$"
+      "float, class:^(imv)$"
 
       # No shadow for tiled windows
       "noshadow, floating:0"
@@ -51,19 +53,14 @@
       "float, class:^(nm-connection-editor)$"
       "size 45%, class:^(nm-connection-editor)$"
       "center, class:^(nm-connection-editor)$"
-
-      # Misc
-      "center, class:^(imv)$"
-      "float, class:^(imv)$"
     ];
 
     workspace = [
-      "special:special, gapsout:30"
+      "special:special, gapsout:25"
     ];
 
     layerrule = [
       "xray 1, .*"
-      # "noanim, .*"
       "noanim, walker"
       "noanim, selection"
       "noanim, overview"
@@ -78,7 +75,23 @@
       "ignorealpha 0.5, launcher"
       "blur, notifications"
       "ignorealpha 0.69, notifications"
-      "blur, logout_dialog # wlogout"
+      # "blurpopups, quickshell:.*"
+      # "blur, quickshell:.*"
+      # "ignorealpha 0.79, quickshell:.*"
+      # "animation slide, quickshell:bar"
+      # "animation fade, quickshell:screenCorners"
+      # "animation slide right, quickshell:sidebarRight"
+      # "animation slide left, quickshell:sidebarLeft"
+      # "animation slide bottom, quickshell:osk"
+      # "animation slide bottom, quickshell:dock"
+      # "blur, quickshell:session"
+      # "noanim, quickshell:session"
+      # "ignorealpha 0, quickshell:session"
+      # "animation fade, quickshell:notificationPopup"
+      # "blur, quickshell:backgroundWidgets"
+      # "ignorealpha 0.05, quickshell:backgroundWidgets"
+      # "noanim, quickshell:screenshot"
+      # "animation popin 120%, quickshell:screenCorners"
     ];
   };
 }

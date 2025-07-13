@@ -12,5 +12,8 @@
     wl-clipboard
     pavucontrol
     brightnessctl
+    nvidia-vaapi-driver
+    libva-utils
+    vulkan-tools
   ];
 }

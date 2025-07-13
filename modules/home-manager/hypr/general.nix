@@ -12,7 +12,7 @@
 
     extraConfig = ''
       general {
-        col.active_border = $primary
+        col.active_border = $tertiary_fixed_dim
         col.inactive_border = $outline
       }
     '';
@@ -74,17 +74,17 @@
       };
 
       decoration = {
-        rounding = 15;
+        rounding = 20;
         blur = {
           enabled = true;
           xray = true;
-          special = false;
+          special = false; # omg this guy stinks.
           new_optimizations = true;
-          size = 14;
-          passes = 5;
+          size = 10;
+          passes = 4;
           brightness = 1;
-          noise = 0.01;
-          contrast = 1;
+          noise = 0.05;
+          contrast = 1.2;
           popups = true;
           popups_ignorealpha = 0.6;
           input_methods = true;
@@ -124,7 +124,7 @@
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
         enable_swallow = false;
-        swallow_regex = "(foot|kitty|allacritty|Alacritty)";
+        swallow_regex = "(foot|kitty|allacritty|Alacritty|com.mitchellh.ghostty|)";
 
         disable_hyprland_logo = true;
         force_default_wallpaper = 0;

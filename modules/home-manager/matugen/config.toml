@@ -1,9 +1,9 @@
 [config]
 version_check = true
 
-[templates.foot]
-input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-foot.ini'
-output_path = '~/.config/foot/foot-colors.ini'
+# [templates.foot]
+# input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-foot.ini'
+# output_path = '~/.config/foot/foot-colors.ini'
 
 [templates.gtk3]
 input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-gtk-colors.css'
