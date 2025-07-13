@@ -8,25 +8,18 @@
   home.packages = with pkgs; [
     mpv
     imv
-    stylua
-    nixfmt-rfc-style
     llvmPackages_19.libcxxClang
     pokeget-rs
-    lua
     grimblast
     fastfetchMinimal
     vesktop
     matugen
-    rustc
-    rustfmt
-    clippy
-    cargo
     fd
     onefetch
     gimp
     jdk
-    sqlite
     vscode
+    rustup
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "obsidian --ozone-platform=wayland %u";

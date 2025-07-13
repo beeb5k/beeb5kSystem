@@ -22,12 +22,13 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "foot";
+      "$terminal" = "alacritty";
       "$fileManager" = "nautilus";
       "$menu" = "anyrun";
 
       exec-once = [
         "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
+        # "foot --srver"
       ];
 
       env = [
@@ -83,7 +84,7 @@
           size = 10;
           passes = 4;
           brightness = 1;
-          noise = 0.05;
+          noise = 0.02;
           contrast = 1.2;
           popups = true;
           popups_ignorealpha = 0.6;
@@ -95,7 +96,7 @@
           ignore_window = true;
           range = 20;
           offset = "0 2";
-          render_power = 4;
+          render_power = 3;
           color = "$shadow";
         };
 
@@ -124,7 +125,7 @@
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
         enable_swallow = false;
-        swallow_regex = "(foot|kitty|allacritty|Alacritty|com.mitchellh.ghostty|)";
+        swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
 
         disable_hyprland_logo = true;
         force_default_wallpaper = 0;

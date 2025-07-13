@@ -9,7 +9,7 @@
     ./git.nix
     ./obs.nix
     ./zsh.nix
-    ./foot.nix
+    ./terminal.nix
     ./tmux.nix
     ./starship.nix
     ./zen-browser.nix
