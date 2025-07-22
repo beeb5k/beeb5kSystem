@@ -26,6 +26,7 @@
       "center, title:^(Choose wallpaper)(.*)$"
       "center, title:^(Open Folder)(.*)$"
       "center, title:^(Save As)(.*)$"
+      "center, title:^(Save Image)(.*)$"
       "center, title:^(Library)(.*)$"
       "center, title:^(File Upload)(.*)$"
       "float, title:^(Open File)(.*)$"
@@ -35,6 +36,7 @@
       "float, title:^(Save As)(.*)$"
       "float, title:^(Library)(.*)$"
       "float, title:^(File Upload)(.*)$"
+      "float, class:^(xdg-desktop-portal-gtk)$"
       "float, class:^(imv)$"
 
       # No shadow for tiled windows

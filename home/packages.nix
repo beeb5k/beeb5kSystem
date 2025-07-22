@@ -16,10 +16,11 @@
     matugen
     fd
     onefetch
-    gimp
+    gimp3-with-plugins
     jdk
     vscode
     rustup
+    skim
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "obsidian --ozone-platform=wayland %u";

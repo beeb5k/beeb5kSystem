@@ -3,7 +3,6 @@ let
   nvidia_icd = "${pkgs.vulkan-loader}/share/vulkan/icd.d/nvidia_icd.json";
   nvidia_layers = "${pkgs.vulkan-loader}/share/vulkan/explicit_layer.d";
 in
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -107,11 +106,11 @@ in
   };
 
   networking.hostName = "nixos";
-  # networking.firewall.allowedTCPPorts = [ ];
-  # networking.firewall.allowedUDPPorts = [ ];
-  networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.enable = true;
   networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.powersave = false;
+  networking.networkmanager.wifi.powersave = false;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.11"; # never chnage this.

@@ -21,12 +21,13 @@
         ~/.config/sequences.sh
         pokeget random --hide-name
 
-        if [[ ! -d "$HOME/.zinit/bin" ]]; then
-          mkdir -p "$HOME/.zinit"
-          git clone https://github.com/zdharma-continuum/zinit.git "$HOME/.zinit/bin"
+        ZINIT_HOME="$HOME/.local/share/zinit/bin"
+        if [[ ! -d $ZINIT_HOME ]]; then
+          mkdir -p "$(dirname $ZINIT_HOME)"
+          git clone --single-branch --depth 1 --branch=main https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
         fi
 
-        source "$HOME/.zinit/bin/zinit.zsh"
+        source "$ZINIT_HOME/zinit.zsh"
 
         autoload -Uz compinit
         compinit -C    # -C = use cache
@@ -34,15 +35,16 @@
         eval "$(starship init zsh)"
 
         zinit wait lucid light-mode depth=1 for \
-        zsh-users/zsh-autosuggestions \
         Aloxaf/fzf-tab \
-        joshskidmore/zsh-fzf-history-search \
+        jeffreytse/zsh-vi-mode \
         mrjohannchang/zsh-interactive-cd \
         zsh-users/zsh-syntax-highlighting \
-        jeffreytse/zsh-vi-mode
+        zsh-users/zsh-autosuggestions \
+        joshskidmore/zsh-fzf-history-search
 
         zinit ice wait lucid light-mode depth=1 atload"_zsh_autosuggest_start"
         zinit light zsh-users/zsh-autosuggestions
+        zinit light joshskidmore/zsh-fzf-history-search
 
         bindkey '^[[1;5D' backward-word      # Ctrl + Left
         bindkey '^[[1;5C' forward-word       # Ctrl + Right
@@ -65,7 +67,7 @@
         }
 
         zle -N clear_and_pokeget
-          bindkey "^L" clear_and_pokeget
+        bindkey "^L" clear_and_pokeget
       '';
 
     shellAliases = {

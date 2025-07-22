@@ -17,7 +17,6 @@
       self,
       nixpkgs,
       home-manager,
-      beeb5kvim,
       ...
     }@inputs:
     let
@@ -40,7 +39,7 @@
         inherit pkgs;
         modules = [
           ./home/home.nix
-          beeb5kvim.homeModules.default
+          inputs.beeb5kvim.homeModules.default
         ];
         extraSpecialArgs = { inherit inputs; };
       };

@@ -14,6 +14,13 @@
     enable = true;
   };
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 2";
+    flake = "/home/beeb5k/beeb5kSystem/";
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals =
