@@ -5,7 +5,7 @@
   #     main = {
   #       pad = "10x10";
   #       bold-text-in-bright = "no";
-  #       font = "JetBrainsMono Nerd Font:size=12";
+  #       font = "JetBrainsMono Nerd Font:size=13";
   #     };
   #
   #     cursor = {
@@ -15,7 +15,7 @@
   #     };
   #   };
   # };
-
+  #
   # programs.ghostty = {
   #   enable = true;
   #   settings = {
@@ -25,7 +25,7 @@
   #       "liga"
   #       "dlig"
   #     ];
-  #     font-size = 12;
+  #     font-size = 13;
   #     window-padding-x = 10;
   #     window-padding-y = 10;
   #     bold-is-bright = false;
@@ -39,7 +39,7 @@
   #     mouse-hide-while-typing = true;
   #   };
   # };
-
+  #
   programs.alacritty = {
     enable = true;
     settings = {
@@ -63,7 +63,7 @@
 
       font = {
         normal.family = "JetbrainsMono Nerd Font";
-        size = 12;
+        size = 13;
       };
     };
   };

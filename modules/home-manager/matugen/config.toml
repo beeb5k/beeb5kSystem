@@ -1,6 +1,10 @@
 [config]
 version_check = true
 
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-step", "100", "--transition-fps", "120", "--transition-type", "grow",  "--transition-angle", "30" ,"--transition-duration", "1"]
+
 # [templates.foot]
 # input_path = '~/beeb5kSystem/modules/home-manager/matugen/templates/matugen-foot.ini'
 # output_path = '~/.config/foot/foot-colors.ini'
