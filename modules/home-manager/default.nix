@@ -14,5 +14,6 @@
     ./starship.nix
     ./zen-browser.nix
     ./scripts
+    ./matugen
   ];
 }

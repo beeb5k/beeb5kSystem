@@ -21,6 +21,7 @@
     rustup
     skim
     vscode-fhs
+    zathura
     (pkgs.obsidian.overrideAttrs (oldAttrs: rec {
       desktopItem = oldAttrs.desktopItem.override {
         exec = "obsidian --ozone-platform=wayland %u";

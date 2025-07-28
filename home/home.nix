@@ -165,6 +165,17 @@
         force_raster_widgets=1
         ignored_applications=@Invalid
       '';
+
+    };
+    "zathura/zathurarc" = {
+      enable = true;
+      text = ''
+        include matugen
+
+        set selection-clipboard clipboard
+        set incremental-search true
+        set font "JetBrainsMono Nerd font 12"
+      '';
     };
     "Kvantum/kvantum.kvconfig" = {
       enable = true;
