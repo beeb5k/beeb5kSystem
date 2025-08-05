@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.pointerCursor = {
     size = 16;
     enable = true;
@@ -11,7 +12,7 @@
     package = pkgs.bibata-cursors;
   };
 
-  home.sessionVariables = {};
+  home.sessionVariables = { };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

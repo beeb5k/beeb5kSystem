@@ -3,7 +3,7 @@
     enable = true;
     sourceFirst = true;
     settings = {
-      source = ["colors.conf"];
+      source = [ "colors.conf" ];
       background = {
         monitor = "";
         # path = "$image";

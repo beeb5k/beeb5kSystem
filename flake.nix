@@ -12,33 +12,36 @@
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+    in
+    {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
+        modules = [ ./nixos/configuration.nix ];
+      };
+
+      homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./home/home.nix
+          inputs.beeb5kvim.homeModules.default
+        ];
+        extraSpecialArgs = { inherit inputs; };
       };
     };
-  in {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs;};
-      modules = [./nixos/configuration.nix];
-    };
-
-    homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./home/home.nix
-        inputs.beeb5kvim.homeModules.default
-      ];
-      extraSpecialArgs = {inherit inputs;};
-    };
-  };
 }

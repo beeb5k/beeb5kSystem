@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   home.username = "beeb5k";
   home.homeDirectory = "/home/beeb5k";
   services.swww.enable = true;
@@ -13,7 +14,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs;
+    extraPortals =
+      with pkgs;
       lib.mkForce [
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland

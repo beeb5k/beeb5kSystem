@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   nvidia_icd = "${pkgs.vulkan-loader}/share/vulkan/icd.d/nvidia_icd.json";
   nvidia_layers = "${pkgs.vulkan-loader}/share/vulkan/explicit_layer.d";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
@@ -103,8 +105,8 @@ in {
   };
 
   networking.hostName = "nixos";
-  networking.firewall.allowedTCPPorts = [];
-  networking.firewall.allowedUDPPorts = [];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   networking.firewall.enable = true;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;

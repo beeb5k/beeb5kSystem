@@ -18,8 +18,8 @@
     '';
 
     settings = {
-      monitor = [",1920x1080@120,auto,1.0"];
-      source = ["colors.conf"];
+      monitor = [ ",1920x1080@120,auto,1.0" ];
+      source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
