@@ -105,6 +105,14 @@ in
     NIXOS_OZONE_WL = 1;
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     NVD_BACKEND = "direct";
+    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+    QT_QPA_PLATFORM = "wayland;xcb";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    GDK_BACKEND = "wayland,x11";
+    GDK_SCALE = 1;
   };
 
   networking.hostName = hostname;

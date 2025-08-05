@@ -22,23 +22,24 @@
     extraPortals =
       with pkgs;
       lib.mkForce [
-        xdg-desktop-portal-gtk
+        kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-hyprland
       ];
 
-    # config = {
-    #   common = {
-    #     "org.freedesktop.impl.portal.FileChooser" = "kde";
-    #   };
-    #   Hyprland = {
-    #     "org.freedesktop.impl.portal.FileChooser" = "kde";
-    #   };
-    # };
+    config = {
+      common = {
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+      };
+      Hyprland = {
+        "org.freedesktop.impl.portal.FileChooser" = "kde";
+      };
+    };
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "foot";
+    XDG_MENU_PREFIX = "plasma-";
   };
 
   home.packages = with pkgs; [
@@ -47,6 +48,10 @@
     matugen
     firefox
     fzf
+    vesktop
+    kdePackages.plasma-workspace
+    kdePackages.gwenview
+    papirus-icon-theme
   ];
 
   programs.home-manager.enable = true;

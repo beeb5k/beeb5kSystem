@@ -2,7 +2,7 @@
 {
   home.packages = with pkgs; [
     trash-cli
-    nautilus
+    kdePackages.dolphin
   ];
 
   programs.yazi.enable = true;

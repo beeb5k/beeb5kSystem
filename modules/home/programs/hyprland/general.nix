@@ -23,11 +23,12 @@
 
       "$mainMod" = "SUPER";
       "$terminal" = "foot";
-      "$fileManager" = "nautilus";
+      "$fileManager" = "dolphin";
       "$menu" = "anyrun";
 
       exec-once = [
         "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
+        "swww-daemon"
         # "foot --srver"
       ];
 

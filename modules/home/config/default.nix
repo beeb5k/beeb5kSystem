@@ -1,1 +1,6 @@
-{ imports = [ ./zathura.nix ]; }
+{
+  imports = [
+    ./zathura.nix
+    ./user-dirs.nix
+  ];
+}
