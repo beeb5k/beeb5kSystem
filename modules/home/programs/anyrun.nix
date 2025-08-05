@@ -12,6 +12,6 @@
       close_on_click: true,
       show_results_immediately: false,
       max_entries: None,
-    )  
+    )
   '';
 }

@@ -16,7 +16,8 @@
     };
 
     # Initialize Zinit and add it to ZSH
-    initContent = # bash
+    initContent =
+      # bash
       ''
         ~/.config/sequences.sh
         pokeget random --hide-name

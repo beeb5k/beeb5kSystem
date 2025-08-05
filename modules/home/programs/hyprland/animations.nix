@@ -20,7 +20,6 @@
       ];
 
       animation = [
-
         "windows, 1, 3, md3_decel, popin 60%"
         "windowsIn, 1, 3, md3_decel, popin 60%"
         "windowsOut, 1, 3, md3_accel, popin 60%"

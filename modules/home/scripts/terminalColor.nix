@@ -1,5 +1,4 @@
 { pkgs }:
-
 pkgs.writeShellApplication {
   name = "terminal-change-color";
 

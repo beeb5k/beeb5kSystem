@@ -1,15 +1,12 @@
 {
-  description = "Main flake";
+  description = "Flake for nix config.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    beeb5kvim.url = "github:beeb5k/beeb5kvim";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    quickshell.inputs.nixpkgs.follows = "nixpkgs";
-    beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
-    # beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kVim.git";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
+    home-manager.url = "github:nix-community/home-manager";
   };
 
   outputs =
@@ -20,28 +17,26 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
+      systemState = "25.05";
+      mkSystem = import ./lib/mkSystem.nix {
+        inherit nixpkgs inputs;
+      };
+      mkHome = import ./lib/mkHome.nix {
+        inherit home-manager nixpkgs inputs;
       };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [ ./nixos/configuration.nix ];
+      nixosConfigurations.bixos = mkSystem {
+        inherit systemState;
+        system = "x86_64-linux";
+        hostname = "bixos";
+        user = "beeb5k";
       };
 
-      homeConfigurations."beeb5k" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home/home.nix
-          inputs.beeb5kvim.homeModules.default
-        ];
-        extraSpecialArgs = { inherit inputs; };
+      homeConfigurations."beeb5k" = mkHome {
+        inherit systemState;
+        system = "x86_64-linux";
+        username = "beeb5k";
       };
     };
 }
