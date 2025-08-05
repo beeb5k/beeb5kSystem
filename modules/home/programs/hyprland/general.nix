@@ -22,7 +22,7 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "foot";
       "$fileManager" = "nautilus";
       "$menu" = "anyrun";
 

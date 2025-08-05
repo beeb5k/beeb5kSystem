@@ -1,11 +1,16 @@
+{ systemState, username }:
 {
   pkgs,
   lib,
   ...
 }:
 {
-  home.username = "beeb5k";
-  home.homeDirectory = "/home/beeb5k";
+  imports = [
+    ../../modules/home
+  ];
+
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
   services.swww.enable = true;
 
   Neovim = {
@@ -34,11 +39,16 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "foot";
-    BROWSER = "zen";
-    JDTLS_WORKSPACE = "$HOME/.local/share/jdtls/workspace";
-    JDTLS_CACHE = "$HOME/.cache/jdtls";
   };
 
+  home.packages = with pkgs; [
+    pokeget-rs
+    anyrun
+    matugen
+    firefox
+    fzf
+  ];
+
   programs.home-manager.enable = true;
-  home.stateVersion = "25.11";
+  home.stateVersion = systemState; # check flake.nix
 }

@@ -1,3 +1,8 @@
+{
+  systemState,
+  user,
+  hostname,
+}:
 { pkgs, ... }:
 let
   nvidia_icd = "${pkgs.vulkan-loader}/share/vulkan/icd.d/nvidia_icd.json";
@@ -6,7 +11,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ./packages.nix
+    ../../modules/system
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -64,8 +69,7 @@ in
   security.polkit.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
   services.libinput.enable = true;
-  users.users.beeb5k = {
-    description = "Vivek Tiwari";
+  users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [
@@ -76,7 +80,6 @@ in
 
   fonts.packages = with pkgs; [
     nerd-fonts.hack
-    nerd-fonts.jetbrains-mono
   ];
 
   programs.mtr.enable = true;
@@ -104,13 +107,13 @@ in
     NVD_BACKEND = "direct";
   };
 
-  networking.hostName = "nixos";
+  networking.hostName = hostname;
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
   networking.firewall.enable = true;
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
+  networking.networkmanager.wifi.powersave = true;
 
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.11"; # never chnage this.
+  system.stateVersion = systemState; # check flake.nix
 }

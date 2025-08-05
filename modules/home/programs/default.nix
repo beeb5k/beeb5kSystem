@@ -12,7 +12,6 @@
     ./anyrun.nix
     ./terminal.nix
     ./starship.nix
-    # ./zen-browser.nix
     ./file-manager.nix
     ./desktop-entries.nix
   ];

@@ -1,18 +1,20 @@
 {
-  pkgs,
-  lib,
+  nixpkgs,
+  inputs,
   ...
 }:
 {
   system,
   hostname,
   user,
+  systemState,
 }:
 let
-  hostConfig = import ../hosts/${hostname} { inherit user; };
+  hostConfig = import ../hosts/${hostname} { inherit user systemState hostname; };
 in
-lib.nixosSystem rec {
+nixpkgs.lib.nixosSystem {
   inherit system;
+  specialArgs = { inherit inputs; };
 
   modules = [
     hostConfig
