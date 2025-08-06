@@ -51,7 +51,9 @@
     vesktop
     kdePackages.plasma-workspace
     kdePackages.gwenview
+    kdePackages.okular
     papirus-icon-theme
+    grimblast
   ];
 
   programs.home-manager.enable = true;
