@@ -2,9 +2,9 @@
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;
-    systemd.enable = true;
+    systemd.enable = false;
     xwayland.enable = true;
-    systemd.enableXdgAutostart = true;
+    systemd.enableXdgAutostart = false;
 
     systemd.variables = [
       "-all"
@@ -24,11 +24,10 @@
       "$mainMod" = "SUPER";
       "$terminal" = "foot";
       "$fileManager" = "dolphin";
-      "$menu" = "anyrun";
+      "$menu" = "fuzzel";
 
       exec-once = [
         "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
-        "swww-daemon"
         # "foot --srver"
       ];
 
@@ -37,6 +36,7 @@
         "HYPRCURSOR_SIZE,16"
         "XCURSOR_THEME,Bibata-Modern-Classic"
         "XCURSOR_SIZE,16"
+        "XDG_MENU_PREFIX, plasma-"
       ];
 
       xwayland = {
@@ -82,16 +82,17 @@
           xray = true;
           special = false; # omg this guy stinks.
           new_optimizations = true;
-          size = 10;
-          passes = 4;
+          size = 14;
+          passes = 3;
           brightness = 1;
-          noise = 0.02;
-          contrast = 1.2;
+          noise = 0.01;
+          contrast = 1;
           popups = true;
           popups_ignorealpha = 0.6;
-          input_methods = true;
+          input_methods = false;
           input_methods_ignorealpha = 0.8;
         };
+
         shadow = {
           enabled = true;
           ignore_window = true;
@@ -102,18 +103,14 @@
         };
 
         # Window Opacities
-        # active_opacity = 1;
-        # inactive_opacity = 1;
-        # fullscreen_opacity = 1;
-
-        # Shader
-        # screen_shader = ~/.config/hypr/shaders/nothing.frag
-        # screen_shader = ~/.config/hypr/shaders/vibrance.frag
+        active_opacity = 0.87;
+        inactive_opacity = 0.87;
+        fullscreen_opacity = 1;
 
         # Dim
         dim_inactive = true;
-        dim_strength = 0.1;
-        dim_special = 0.4;
+        dim_strength = 0.05;
+        dim_special = 0.3;
       };
 
       gestures.workspace_swipe = false;
@@ -126,7 +123,7 @@
         disable_splash_rendering = true;
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
-        enable_swallow = false;
+        enable_swallow = true;
         swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
 
         disable_hyprland_logo = true;
@@ -140,6 +137,10 @@
       binds = {
         scroll_event_delay = 0;
         hide_special_on_workspace_change = true;
+      };
+
+      render = {
+        new_render_scheduling = true;
       };
 
       cursor = {

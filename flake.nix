@@ -7,6 +7,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
     home-manager.url = "github:nix-community/home-manager";
+    quickshell.inputs.nixpkgs.follows = "nixpkgs";
+    quickshell.url = "github:quickshell-mirror/quickshell";
   };
 
   outputs =

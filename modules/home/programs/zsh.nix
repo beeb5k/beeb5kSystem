@@ -73,10 +73,10 @@
 
     shellAliases = {
       clear = "clear && pokeget random --hide-name";
-      ls = "eza --icons --group-directories-first -1";
-      ll = "eza --icons -lh --group-directories-first -1 --no-user --long";
-      la = "eza --icons -lah --group-directories-first -1";
-      tree = "eza --icons --tree --group-directories-first";
+      # ls = "eza --icons --group-directories-first -1";
+      # ll = "eza --icons -lh --group-directories-first -1 --no-user --long";
+      # la = "eza --icons -lah --group-directories-first -1";
+      # tree = "eza --icons --tree --group-directories-first";
     };
   };
 }

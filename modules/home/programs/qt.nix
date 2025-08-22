@@ -1,7 +1,7 @@
 {
   qt = {
     enable = true;
-    platformTheme.name = "kde6";
+    platformTheme.name = "qtct";
     style.name = "kvantum";
   };
 }

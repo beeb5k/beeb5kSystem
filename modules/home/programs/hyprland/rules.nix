@@ -8,7 +8,6 @@
 
       "suppressevent maximize,class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "opacity 0.89 override 0.89 override, class:.*,xwayland:0"
       "noblur, xwayland:1"
 
       # Picture-in-Picture
@@ -36,7 +35,7 @@
       "float, title:^(Save As)(.*)$"
       "float, title:^(Library)(.*)$"
       "float, title:^(File Upload)(.*)$"
-      "float, class:^(xdg-desktop-portal-gtk)$"
+      "float, class:^(org.freedesktop.impl.portal.desktop.kde)$"
       "float, class:^(imv)$"
 
       # No shadow for tiled windows

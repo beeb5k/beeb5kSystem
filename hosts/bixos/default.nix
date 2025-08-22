@@ -32,6 +32,13 @@ in
     LC_TIME = "en_IN";
   };
 
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 2";
+    flake = "/home/beeb5k/beeb5kSystem/";
+  };
+
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
@@ -44,7 +51,7 @@ in
   services.printing.enable = false;
   services.openssh.enable = true;
   services.upower.enable = true;
-  services.blueman.enable = true;
+  services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.xserver.xkb = {
@@ -80,6 +87,7 @@ in
 
   fonts.packages = with pkgs; [
     nerd-fonts.hack
+    maple-mono.NF
   ];
 
   programs.mtr.enable = true;
@@ -91,20 +99,20 @@ in
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = false;
-    withUWSM = false;
+    withUWSM = true;
+    xwayland.enable = true;
   };
 
   environment.sessionVariables = {
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    __NV_PRIME_RENDER_OFFLOAD = "1";
-    GBM_BACKEND = "nvidia-drm";
-    LIBVA_DRIVER_NAME = "nvidia";
-    VK_ICD_FILENAMES = nvidia_icd;
-    VK_LAYER_PATH = nvidia_layers;
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # __NV_PRIME_RENDER_OFFLOAD = "1";
+    # GBM_BACKEND = "nvidia-drm";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # VK_ICD_FILENAMES = nvidia_icd;
+    # VK_LAYER_PATH = nvidia_layers;
     NIXOS_OZONE_WL = 1;
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    NVD_BACKEND = "direct";
+    # NVD_BACKEND = "direct";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     SDL_VIDEODRIVER = "wayland";

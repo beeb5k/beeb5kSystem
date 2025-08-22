@@ -2,6 +2,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -15,6 +16,16 @@
 
   Neovim = {
     enable = true;
+  };
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 16;
+    enable = true;
+    x11.enable = true;
+    gtk.enable = true;
+    hyprcursor.enable = true;
   };
 
   xdg.portal = {
@@ -44,16 +55,26 @@
 
   home.packages = with pkgs; [
     pokeget-rs
-    anyrun
+    fuzzel
     matugen
     firefox
     fzf
     vesktop
+    discord-ptb
+    vscode-fhs
+    imv
+    mako
+    llvmPackages.libcxxClang
     kdePackages.plasma-workspace
-    kdePackages.gwenview
     kdePackages.okular
     papirus-icon-theme
     grimblast
+    brightnessctl
+    mpv
+    cargo
+    rustc
+    pkgs.qt6.qtdeclarative
+    inputs.quickshell.packages.${pkgs.system}.default
   ];
 
   programs.home-manager.enable = true;
