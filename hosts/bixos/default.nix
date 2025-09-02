@@ -78,7 +78,7 @@ in
   services.libinput.enable = true;
   users.users.${user} = {
     isNormalUser = true;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -91,7 +91,7 @@ in
   ];
 
   programs.mtr.enable = true;
-  programs.zsh.enable = true;
+  programs.fish.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

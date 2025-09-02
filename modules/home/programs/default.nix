@@ -5,8 +5,9 @@
     ./matugen
     ./git.nix
     ./obs.nix
-    ./zsh.nix
+    # ./zsh.nix
     ./hyprland
+    ./fish.nix
     ./tmux.nix
     ./btop.nix
     ./anyrun.nix

@@ -24,10 +24,11 @@
       "$mainMod" = "SUPER";
       "$terminal" = "foot";
       "$fileManager" = "dolphin";
-      "$menu" = "fuzzel";
+      "$menu" = "walker";
 
       exec-once = [
         "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
+        "walker --gapplication-service"
         # "foot --srver"
       ];
 

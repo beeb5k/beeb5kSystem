@@ -72,7 +72,12 @@
     brightnessctl
     mpv
     cargo
+    bun
+    android-tools
+    wl-clipboard-rs
     rustc
+    walker
+    onefetch
     pkgs.qt6.qtdeclarative
     inputs.quickshell.packages.${pkgs.system}.default
   ];

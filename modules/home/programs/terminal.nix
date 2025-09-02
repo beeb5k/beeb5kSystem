@@ -6,7 +6,8 @@
         pad = "10x10";
         dpi-aware = "no";
         bold-text-in-bright = "no";
-        font = "Maple Mono NF:size=13";
+        # font = "Maple Mono NF:size=13";
+        font = "Hack Nerd Font:size=13";
       };
 
       # cursor = {

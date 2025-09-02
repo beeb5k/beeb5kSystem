@@ -35,17 +35,17 @@
 
         eval "$(starship init zsh)"
 
-        zinit wait lucid light-mode depth=1 for \
-        Aloxaf/fzf-tab \
-        jeffreytse/zsh-vi-mode \
-        mrjohannchang/zsh-interactive-cd \
-        zsh-users/zsh-syntax-highlighting \
-        zsh-users/zsh-autosuggestions \
-        joshskidmore/zsh-fzf-history-search
-
-        zinit ice wait lucid light-mode depth=1 atload"_zsh_autosuggest_start"
+        # zinit wait lucid light-mode depth=1 for \
+        zinit light Aloxaf/fzf-tab 
+        zinit light jeffreytse/zsh-vi-mode 
+        zinit light mrjohannchang/zsh-interactive-cd 
+        zinit light zsh-users/zsh-syntax-highlighting 
+        zinit light zsh-users/zsh-autosuggestions 
+        zinit light joshskidmore/zsh-fzf-history-search
         zinit light zsh-users/zsh-autosuggestions
         zinit light joshskidmore/zsh-fzf-history-search
+
+        zinit ice wait lucid light-mode depth=1 atload"_zsh_autosuggest_start"
 
         bindkey '^[[1;5D' backward-word      # Ctrl + Left
         bindkey '^[[1;5C' forward-word       # Ctrl + Right
