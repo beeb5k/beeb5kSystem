@@ -14,23 +14,27 @@
     nix-search-cli
   ];
 
-  # Fish configuration ------------------------------------------------------------------------- {{{
-  # Configuration that should be above `loginShellInit` and `interactiveShellInit`.
-  programs.fish.shellInit = ''
-    set -U fish_term24bit 1
-  '';
+  programs.fish = {
+    shellInit = ''
+      set -U fish_term24bit 1
+    '';
 
-  programs.fish.interactiveShellInit = ''
-    set -g fish_greeting ""
+    interactiveShellInit = ''
+      set -g fish_greeting ""
 
-    fish_vi_key_bindings
-    terminal-change-color
-    pokeget random --hide-name
+      fish_vi_key_bindings
+      set fish_cursor_default block
+      set fish_cursor_insert block
+      set fish_cursor_visual block
+      set fish_cursor_replace_one block
+      set fish_cursor_external block
+      set fish_vi_force_cursor 1
+      terminal-change-color
+      pokeget random --hide-name
 
-    pay-respects fish | source
+      pay-respects fish | source
 
-    alias fuck='f'
-  '';
-  # }}}
+      alias fuck='f'
+    '';
+  };
 }
-# vim: foldmethod=marker

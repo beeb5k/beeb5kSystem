@@ -22,14 +22,12 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "foot";
+      "$terminal" = "footclient";
       "$fileManager" = "dolphin";
-      "$menu" = "walker";
+      "$menu" = "fuzzel";
 
       exec-once = [
-        "qs -p ~/Downloads/hyprcrow-main/.config/quickshell/shell.qml"
-        "walker --gapplication-service"
-        # "foot --srver"
+        "foot --server"
       ];
 
       env = [
@@ -114,17 +112,15 @@
         dim_special = 0.3;
       };
 
-      gestures.workspace_swipe = false;
-
       misc = {
-        vfr = 1;
-        vrr = 1;
+        vfr = true;
+        vrr = 0;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
         disable_splash_rendering = true;
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
-        enable_swallow = true;
+        enable_swallow = false;
         swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
 
         disable_hyprland_logo = true;
@@ -141,6 +137,7 @@
       };
 
       render = {
+        direct_scanout = 1;
         new_render_scheduling = true;
       };
 

@@ -4,5 +4,6 @@
     ./nix.nix
     ./nvidia.nix
     ./keyboard.nix
+    ./specialisation.nix
   ];
 }

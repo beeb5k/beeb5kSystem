@@ -2,13 +2,15 @@
   wayland.windowManager.hyprland.settings = {
     bind = [
       "$mainMod,RETURN,exec,$terminal"
+      "$mainMod,T,exec,$terminal"
       "$mainMod,Q,killactive"
       "$mainMod,M,exit"
       "$mainMod,E,exec,$fileManager"
       "$mainMod,SPACE,togglefloating"
       "$mainMod,A,exec,$menu"
       "$mainMod,P,pseudo"
-      "$mainMod,L,exec,hyprlock"
+      "$mainMod SHIFT,L,exec,hyprlock"
+      # "$mainMod,L,exec,hyprlock"
       "$mainMod,F,fullscreen,0"
       "$mainMod,D,fullscreen,1"
       "$mainMod SHIFT,E,togglesplit"

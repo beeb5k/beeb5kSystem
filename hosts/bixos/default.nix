@@ -3,10 +3,10 @@
   user,
   hostname,
 }:
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
-  nvidia_icd = "${pkgs.vulkan-loader}/share/vulkan/icd.d/nvidia_icd.json";
-  nvidia_layers = "${pkgs.vulkan-loader}/share/vulkan/explicit_layer.d";
+  nvidia_icd = "${config.hardware.nvidia.package}/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+  nvidia_layers = "${config.hardware.nvidia.package}/share/vulkan/implicit_layer.d";
 in
 {
   imports = [
@@ -104,15 +104,18 @@ in
   };
 
   environment.sessionVariables = {
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    VK_ICD_FILENAMES = nvidia_icd;
+    VK_LAYER_PATH = nvidia_layers;
+    # MESA_DEVICE_SELECTION = "NVIDIA";
     # __NV_PRIME_RENDER_OFFLOAD = "1";
-    # GBM_BACKEND = "nvidia-drm";
-    # LIBVA_DRIVER_NAME = "nvidia";
-    # VK_ICD_FILENAMES = nvidia_icd;
-    # VK_LAYER_PATH = nvidia_layers;
+    # WLR_NO_HARDWARE_CURSORS = "1";
+
     NIXOS_OZONE_WL = 1;
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    # NVD_BACKEND = "direct";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     SDL_VIDEODRIVER = "wayland";

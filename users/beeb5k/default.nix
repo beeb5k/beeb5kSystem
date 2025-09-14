@@ -49,21 +49,19 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "foot";
     XDG_MENU_PREFIX = "plasma-";
   };
 
   home.packages = with pkgs; [
     pokeget-rs
-    fuzzel
     matugen
     firefox
     fzf
     vesktop
-    discord-ptb
-    vscode-fhs
+    zed-editor-fhs
     imv
     mako
+    zig
     llvmPackages.libcxxClang
     kdePackages.plasma-workspace
     kdePackages.okular
@@ -72,12 +70,13 @@
     brightnessctl
     mpv
     cargo
-    bun
     android-tools
-    wl-clipboard-rs
+    wl-clipboard
     rustc
-    walker
+    fuzzel
     onefetch
+    rustlings
+    rust-analyzer
     pkgs.qt6.qtdeclarative
     inputs.quickshell.packages.${pkgs.system}.default
   ];
