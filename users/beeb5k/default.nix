@@ -58,7 +58,6 @@
     firefox
     fzf
     vesktop
-    zed-editor-fhs
     imv
     mako
     zig
