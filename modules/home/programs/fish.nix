@@ -9,6 +9,7 @@
 
   # Add Fish plugins
   home.packages = with pkgs; [
+    fzf
     pay-respects
     nix-index
     nix-search-cli

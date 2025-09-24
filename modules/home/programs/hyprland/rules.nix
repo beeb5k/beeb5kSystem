@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland.settings.general = {
     windowrulev2 = [
-      "workspace 1,class:^(brave-browser|firefox|zen-beta)$"
+      "workspace 1,class:^(brave-browser|firefox|zen-beta|zen-twilight)$"
       "workspace 2,class:^(foot|footclient|alacritty|Alacritty|com.mitchellh.ghostty|)$"
       "workspace 3,class:^(vesktop)$"
       "workspace 4,class:^(Spotify)$"
@@ -76,9 +76,9 @@
       "ignorealpha 0.5, launcher"
       "blur, notifications"
       "ignorealpha 0.69, notifications"
-      # "blurpopups, quickshell:.*"
-      # "blur, quickshell:.*"
-      # "ignorealpha 0.79, quickshell:.*"
+      "blurpopups, quickshell"
+      "blur, quickshell"
+      "ignorealpha 0.79, quickshell"
       # "animation slide, quickshell:bar"
       # "animation fade, quickshell:screenCorners"
       # "animation slide right, quickshell:sidebarRight"

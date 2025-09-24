@@ -54,6 +54,7 @@ in
   services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
+  services.udisks2.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -131,7 +132,7 @@ in
   networking.firewall.allowedUDPPorts = [ ];
   networking.firewall.enable = true;
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = true;
+  networking.networkmanager.wifi.powersave = false;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = systemState; # check flake.nix

@@ -23,7 +23,7 @@
 
       "$mainMod" = "SUPER";
       "$terminal" = "footclient";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "thunar";
       "$menu" = "fuzzel";
 
       exec-once = [
@@ -75,15 +75,15 @@
       };
 
       decoration = {
-        rounding = 20;
+        rounding = 5;
         blur = {
           enabled = true;
           xray = true;
           special = false; # omg this guy stinks.
           new_optimizations = true;
           size = 14;
-          passes = 3;
-          brightness = 1;
+          passes = 4;
+          brightness = 0.9;
           noise = 0.01;
           contrast = 1;
           popups = true;
@@ -102,8 +102,8 @@
         };
 
         # Window Opacities
-        active_opacity = 0.87;
-        inactive_opacity = 0.87;
+        active_opacity = 0.80;
+        inactive_opacity = 0.80;
         fullscreen_opacity = 1;
 
         # Dim

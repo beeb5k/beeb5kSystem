@@ -34,38 +34,26 @@
     extraPortals =
       with pkgs;
       lib.mkForce [
-        kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
       ];
-
-    config = {
-      common = {
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
-      };
-      Hyprland = {
-        "org.freedesktop.impl.portal.FileChooser" = "kde";
-      };
-    };
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    XDG_MENU_PREFIX = "plasma-";
   };
 
   home.packages = with pkgs; [
     pokeget-rs
     matugen
-    firefox
-    fzf
     vesktop
+    pavucontrol
+    discord-ptb
     imv
     mako
-    zig
     llvmPackages.libcxxClang
-    kdePackages.plasma-workspace
-    kdePackages.okular
     papirus-icon-theme
+    imagemagick
     grimblast
     brightnessctl
     mpv
@@ -77,7 +65,6 @@
     onefetch
     rustlings
     rust-analyzer
-    pkgs.qt6.qtdeclarative
     inputs.quickshell.packages.${pkgs.system}.default
   ];
 
