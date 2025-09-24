@@ -13,6 +13,7 @@
   home.username = username;
   home.homeDirectory = "/home/${username}";
   services.swww.enable = true;
+  services.hyprpolkitagent.enable = true;
 
   Neovim = {
     enable = true;
