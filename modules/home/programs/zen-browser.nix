@@ -4,7 +4,7 @@
   ...
 }:
 {
-  imports = [ inputs.zen-browser.homeModules.beta ];
+  imports = [ inputs.zen-browser.homeModules.twilight ];
 
   programs.zen-browser = {
     enable = true;
@@ -15,11 +15,18 @@
       DisableAppUpdate = true;
       DisableFeedbackCommands = true;
       DisableFirefoxStudies = true;
-      DisablePocket = true; # save webs for later reading
+      DisablePocket = true;
       DisableTelemetry = true;
       DontCheckDefaultBrowser = true;
       NoDefaultBookmarks = true;
       OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      # DNSOverHTTPS = true;
       # find more options here: https://mozilla.github.io/policy-templates/
     };
   };

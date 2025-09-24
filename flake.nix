@@ -12,12 +12,15 @@
 
   inputs = {
     beeb5kvim.url = "github:beeb5k/beeb5kvim";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # beeb5kvim.url = "git+file:/home/beeb5k/beeb5kvim";
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     quickshell.inputs.nixpkgs.follows = "nixpkgs";
     quickshell.url = "github:quickshell-mirror/quickshell";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

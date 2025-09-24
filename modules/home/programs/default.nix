@@ -15,5 +15,7 @@
     ./starship.nix
     ./file-manager.nix
     ./desktop-entries.nix
+    ./zen-browser.nix
+    ./zathura.nix
   ];
 }
