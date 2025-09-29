@@ -35,7 +35,7 @@
         "HYPRCURSOR_SIZE,16"
         "XCURSOR_THEME,Bibata-Modern-Classic"
         "XCURSOR_SIZE,16"
-        "XDG_MENU_PREFIX, plasma-"
+        # "XDG_MENU_PREFIX, plasma-"
       ];
 
       xwayland = {
@@ -82,8 +82,8 @@
           special = false; # omg this guy stinks.
           new_optimizations = true;
           size = 14;
-          passes = 4;
-          brightness = 0.9;
+          passes = 3;
+          brightness = 1;
           noise = 0.01;
           contrast = 1;
           popups = true;
@@ -102,8 +102,8 @@
         };
 
         # Window Opacities
-        active_opacity = 0.80;
-        inactive_opacity = 0.80;
+        active_opacity = 0.85;
+        inactive_opacity = 0.85;
         fullscreen_opacity = 1;
 
         # Dim

@@ -1,12 +1,13 @@
 {
   imports = [
-    ./qt.nix
+    # ./qt.nix
     ./gtk.nix
     ./matugen
     ./git.nix
     ./obs.nix
     # ./zsh.nix
     ./hyprland
+    ./river
     ./fish.nix
     ./tmux.nix
     ./btop.nix

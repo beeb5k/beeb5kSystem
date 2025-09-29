@@ -52,20 +52,16 @@
     imv
     mako
     llvmPackages.libcxxClang
-    papirus-icon-theme
     imagemagick
     grimblast
     brightnessctl
     mpv
-    cargo
     android-tools
     wl-clipboard
-    rustc
     fuzzel
     onefetch
     rustlings
-    rust-analyzer
-    inputs.quickshell.packages.${pkgs.system}.default
+    rustup
   ];
 
   programs.home-manager.enable = true;
