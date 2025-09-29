@@ -7,7 +7,6 @@
     ./obs.nix
     # ./zsh.nix
     ./hyprland
-    ./river
     ./fish.nix
     ./tmux.nix
     ./btop.nix

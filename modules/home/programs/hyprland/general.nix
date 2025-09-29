@@ -131,6 +131,11 @@
         focus_on_activate = true;
       };
 
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
       binds = {
         scroll_event_delay = 0;
         hide_special_on_workspace_change = true;
