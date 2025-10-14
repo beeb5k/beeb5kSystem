@@ -65,7 +65,6 @@ in
     discord-ptb
     imv
     mako
-    llvmPackages.libcxxClang
     imagemagick
     grimblast
     brightnessctl
@@ -75,7 +74,17 @@ in
     fuzzel
     onefetch
     rustlings
-    rustup
+    gimp3-with-plugins
+    obsidian
+    spotify
+    direnv
+    rust-analyzer
+    rustc
+    cargo
+    clippy
+    rustfmt
+    clang
+    zed-editor-fhs
   ];
 
   programs.home-manager.enable = true;

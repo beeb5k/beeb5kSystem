@@ -42,16 +42,16 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
   services.openssh.enable = true;
   services.upower.enable = true;
-  services.blueman.enable = false;
+  services.blueman.enable = true;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -75,7 +75,7 @@ in
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
+  # security.pam.services.sddm.enableGnomeKeyring = true;
   services.libinput.enable = true;
   users.users.${user} = {
     isNormalUser = true;
@@ -87,8 +87,8 @@ in
   };
 
   fonts.packages = with pkgs; [
-    nerd-fonts.hack
-    maple-mono.NF
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
   ];
 
   programs.mtr.enable = true;
@@ -105,15 +105,15 @@ in
   };
 
   environment.sessionVariables = {
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-    VK_ICD_FILENAMES = nvidia_icd;
-    VK_LAYER_PATH = nvidia_layers;
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # GBM_BACKEND = "nvidia-drm";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # NVD_BACKEND = "direct";
+    # VK_ICD_FILENAMES = nvidia_icd;
+    # VK_LAYER_PATH = nvidia_layers;
     # MESA_DEVICE_SELECTION = "NVIDIA";
     # __NV_PRIME_RENDER_OFFLOAD = "1";
-    # WLR_NO_HARDWARE_CURSORS = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
 
     NIXOS_OZONE_WL = 1;
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
