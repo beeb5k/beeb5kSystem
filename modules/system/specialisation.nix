@@ -14,6 +14,13 @@
         };
       };
 
+      powerManagement = lib.mkForce {
+        enable = true;
+        powertop.enable = true;
+      };
+
+      networking.networkmanager.wifi.powersave = lib.mkForce true;
+
       environment.sessionVariables = lib.mkForce {
         NIXOS_OZONE_WL = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
