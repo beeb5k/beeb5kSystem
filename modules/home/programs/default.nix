@@ -4,7 +4,7 @@
     ./gtk.nix
     ./matugen
     ./git.nix
-    ./obs.nix
+    # ./obs.nix
     # ./zsh.nix
     ./hyprland
     ./fish.nix
@@ -15,7 +15,7 @@
     ./starship.nix
     ./file-manager.nix
     ./desktop-entries.nix
-    ./zen-browser.nix
     ./zathura.nix
+    ./firefox.nix
   ];
 }
