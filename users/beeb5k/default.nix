@@ -5,6 +5,20 @@
   inputs,
   ...
 }:
+let
+  mikuCursor = pkgs.stdenv.mkDerivation {
+    pname = "miku-cursor";
+    version = "1.0";
+    src = inputs.miku-cursor-src;
+    unpackPhase = "true";
+
+    installPhase = ''
+      mkdir -p $out/share/icons
+      cp -r $src/miku-cursor-linux $out/share/icons/miku-cursor
+    '';
+  };
+
+in
 {
   imports = [
     ../../modules/home
@@ -20,9 +34,9 @@
   };
 
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    size = 16;
+    name = "miku-cursor";
+    package = mikuCursor;
+    size = 24;
     enable = true;
     x11.enable = true;
     gtk.enable = true;

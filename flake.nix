@@ -15,6 +15,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    miku-cursor-src.url = "github:supermariofps/hatsune-miku-windows-linux-cursors";
+    miku-cursor-src.flake = false;
   };
 
   outputs =
