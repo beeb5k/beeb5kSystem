@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.settings.general = {
     windowrulev2 = [
       "workspace 1,class:^(brave-browser|firefox|zen-beta|zen-twilight)$"
-      "workspace 2,class:^(foot|footclient|alacritty|Alacritty|com.mitchellh.ghostty|)$"
+      # "workspace 2,class:^(foot|footclient|alacritty|Alacritty|com.mitchellh.ghostty|)$"
       "workspace 3,class:^(vesktop)$"
       "workspace 4,class:^(Spotify)$"
 

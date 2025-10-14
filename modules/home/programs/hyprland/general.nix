@@ -6,10 +6,6 @@
     xwayland.enable = true;
     systemd.enableXdgAutostart = false;
 
-    systemd.variables = [
-      "-all"
-    ];
-
     extraConfig = ''
       general {
         col.active_border = $tertiary_fixed_dim
@@ -22,12 +18,12 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "footclient";
+      "$terminal" = "alacritty";
       "$fileManager" = "thunar";
       "$menu" = "fuzzel";
 
       exec-once = [
-        "foot --server"
+        # "foot --server"
       ];
 
       env = [
@@ -75,9 +71,9 @@
       };
 
       decoration = {
-        rounding = 5;
+        rounding = 0;
         blur = {
-          enabled = true;
+          enabled = false;
           xray = true;
           special = false; # omg this guy stinks.
           new_optimizations = true;
@@ -102,13 +98,13 @@
         };
 
         # Window Opacities
-        active_opacity = 0.85;
-        inactive_opacity = 0.85;
+        # active_opacity = 0.87;
+        # inactive_opacity = 0.87;
         fullscreen_opacity = 1;
 
         # Dim
         dim_inactive = true;
-        dim_strength = 0.05;
+        dim_strength = 0.06;
         dim_special = 0.3;
       };
 
