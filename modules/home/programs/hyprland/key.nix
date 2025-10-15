@@ -8,6 +8,7 @@
       "$mainMod,E,exec,$fileManager"
       "$mainMod,SPACE,togglefloating"
       "$mainMod,A,exec,$menu"
+      "$mainMod,B,exec,$browser"
       "$mainMod,P,pseudo"
       "$mainMod SHIFT,L,exec,hyprlock"
       # "$mainMod,L,exec,hyprlock"

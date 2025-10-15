@@ -20,6 +20,7 @@
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "thunar";
+      "$browser" = "firefox";
       "$menu" = "fuzzel";
 
       exec-once = [
