@@ -57,6 +57,10 @@
           [templates.anyrun]
           input_path = "~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-anyrun.css"
           output_path = "~/.config/anyrun/style.css"
+
+          [templates.fuzzel]
+          input_path = "~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-fuzzel.ini"
+          output_path = '~/.config/fuzzel/fuzzel.ini'
         '';
     };
   };
