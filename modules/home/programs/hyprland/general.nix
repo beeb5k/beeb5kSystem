@@ -28,10 +28,10 @@
       ];
 
       env = [
-        "HYPRCURSOR_THEME,Bibata-Modern-Classic"
-        "HYPRCURSOR_SIZE,16"
-        "XCURSOR_THEME,Bibata-Modern-Classic"
-        "XCURSOR_SIZE,16"
+        # "HYPRCURSOR_THEME,Bibata-Modern-Classic"
+        # "HYPRCURSOR_SIZE,16"
+        # "XCURSOR_THEME,Bibata-Modern-Classic"
+        # "XCURSOR_SIZE,16"
         # "XDG_MENU_PREFIX, plasma-"
       ];
 
