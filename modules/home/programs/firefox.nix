@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+
+  home.packages = with pkgs; [
+    pywalfox-native
+  ];
+
   programs.firefox = {
     enable = true;
 
@@ -9,6 +14,10 @@
         "uBlock0@raymondhill.net" = {
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        };
+        "pywalfox@frewacom.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
         };
         # "addon@darkreader.org" = {
         #   installation_mode = "force_installed";
@@ -45,6 +54,7 @@
         "toolkit.telemetry.enabled" = false;
         "toolkit.telemetry.unified" = false;
         "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
         "beacon.enabled" = false;
