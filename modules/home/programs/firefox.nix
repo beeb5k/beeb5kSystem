@@ -105,6 +105,8 @@
         #Ui
         "browser.tabs.inTitlebar" = 0;
         "browser.toolbars.bookmarks.visibility" = "never";
+
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
 
       # Search engine: DuckDuckGo only

@@ -14,7 +14,6 @@
     ./terminal.nix
     ./starship.nix
     ./file-manager.nix
-    ./desktop-entries.nix
     ./zathura.nix
     ./firefox.nix
   ];

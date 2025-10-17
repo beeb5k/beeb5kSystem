@@ -58,11 +58,11 @@ in
   };
 
   home.packages = with pkgs; [
-    pokeget-rs
     matugen
-    vesktop
+    (discord.override {
+      withEquicord = true;
+    })
     pavucontrol
-    discord-ptb
     imv
     mako
     imagemagick
