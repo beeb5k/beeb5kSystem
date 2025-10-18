@@ -48,14 +48,14 @@ in
 
   services.fwupd.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
   services.printing.enable = false;
   services.openssh.enable = true;
-  services.upower.enable = true;
+  services.upower.enable = false;
   services.blueman.enable = true;
   services.dbus.enable = true;
   services.gvfs.enable = true;
-  services.udisks2.enable = true;
+  services.udisks2.enable = false;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -72,6 +72,25 @@ in
   powerManagement = {
     enable = false;
     powertop.enable = false;
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 20;
+
+      START_CHARGE_THRESH_BAT0 = 40;
+      STOP_CHARGE_THRESH_BAT0 = 1;
+    };
   };
 
   security.rtkit.enable = true;
