@@ -17,6 +17,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     miku-cursor-src.url = "github:supermariofps/hatsune-miku-windows-linux-cursors";
     miku-cursor-src.flake = false;
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -85,6 +85,7 @@ in
     rustfmt
     clang
     zed-editor-fhs
+    inputs.quickshell.packages.${pkgs.system}.default
   ];
 
   programs.home-manager.enable = true;
