@@ -531,12 +531,33 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1760315601,
+        "narHash": "sha256-cvguRikKX0yXZ7jaK4Gt3qB1I33T5TzYZQf0Ampx8ko=",
+        "owner": "quickshell-mirror",
+        "repo": "quickshell",
+        "rev": "00858812f25b748d08b075a0d284093685fa3ffd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quickshell-mirror",
+        "repo": "quickshell",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "beeb5kvim": "beeb5kvim",
         "home-manager": "home-manager",
         "miku-cursor-src": "miku-cursor-src",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_4",
+        "quickshell": "quickshell"
       }
     },
     "treefmt-nix": {

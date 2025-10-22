@@ -55,7 +55,7 @@ in
   services.blueman.enable = true;
   services.dbus.enable = true;
   services.gvfs.enable = true;
-  services.udisks2.enable = false;
+  services.udisks2.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
