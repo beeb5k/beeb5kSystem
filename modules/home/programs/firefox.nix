@@ -5,8 +5,77 @@
     pywalfox-native
   ];
 
-  programs.firefox = {
+  programs.librewolf = {
     enable = true;
+    policies = {
+      DisableTelemetry = true;
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          private_browsing = true;
+        };
+        "pywalfox@frewacom.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+          private_browsing = true;
+        };
+      };
+    };
+    profiles.default = {
+      settings = {
+        "browser.sessionstore.resume_from_crash" = false;
+        "browser.sessionstore.restore_on_demand" = false;
+        "browser.sessionstore.max_tabs_undo" = 0;
+
+        # "network.cookie.cookieBehavior" = 2; # Block all cookies
+        # "privacy.clearOnShutdown.cookies" = false;
+        # "privacy.clearOnShutdown.siteSettings" = false;
+
+        "privacy.clearOnShutdown_v2.browsingHistoryAndDownloads" = false;
+        "privacy.clearOnShutdown_v2.cache" = false;
+        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
+        "privacy.clearOnShutdown_v2.formdata" = true;
+        "privacy.clearOnShutdown_v2.historyFormDataAndDownloads" = false;
+        "privacy.clearOnShutdown_v2.siteSettings" = false;
+
+        "gfx.webrender.all" = true; # Enable WebRender
+        "layers.acceleration.enabled" = true;
+        "dom.ipc.processCount" = 8; # Adjust based on CPU cores
+        "browser.cache.disk.enable" = false; # Disable disk cache
+        "browser.cache.memory.enable" = true; # Use memory cache
+        "browser.cache.memory.capacity" = 1048576; # 1gb memory cache
+        "browser.preferences.defaultPerformanceSettings.enabled" = false;
+        "media.hardware-video-decoding.force-enabled" = true;
+        "media.hardware-video-decoding.enabled" = true;
+        "browser.tabs.unloadOnLowMemory" = true;
+        "browser.low_commit_space_threshold_percent" = 100;
+        "browser.tabs.min_inactive_duration_before_unload" = 3600000;
+
+        "beacon.enabled" = false;
+        "browser.tabs.inTitlebar" = 0;
+        "browser.toolbars.bookmarks.visibility" = "never";
+
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+      };
+      search = {
+        # force = true;
+        # default = "ddg";
+        engines = {
+          "NixOS Packages" = {
+            urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
+            iconUpdateUrl = "https://nixos.org/favicon.ico";
+            updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
+            definedAliases = [ ":n" ];
+          };
+        };
+      };
+    };
+  };
+
+  programs.firefox = {
+    enable = false;
 
     policies = {
       DisableTelemetry = true;
@@ -24,6 +93,7 @@
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
         # };
       };
+
     };
 
     profiles.default = {
