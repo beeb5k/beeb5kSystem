@@ -18,13 +18,13 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "alacritty";
+      "$terminal" = "footclient";
       "$fileManager" = "thunar";
       "$browser" = "librewolf";
       "$menu" = "fuzzel";
 
       exec-once = [
-        # "foot --server"
+        "foot --server"
       ];
 
       env = [

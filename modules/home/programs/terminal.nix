@@ -1,21 +1,13 @@
 {
   programs.foot = {
-    enable = false;
+    enable = true;
     settings = {
       main = {
         pad = "10x10";
-        dpi-aware = "no";
+        # dpi-aware = "no";
         bold-text-in-bright = "no";
-        # font = "Maple Mono NF:size=13";
-        # font = "Hack Nerd Font:size=13";
-        font = "Iosevka Term Nerd Font:size=12";
+        font = "Iosevka Term Nerd Font:size=12.5";
       };
-
-      # cursor = {
-      #   style = "beam";
-      #   blink = "no";
-      #   beam-thickness = 1;
-      # };
     };
   };
 
@@ -44,7 +36,7 @@
   };
 
   programs.alacritty = {
-    enable = true;
+    enable = false;
     settings = {
       window = {
         padding = {
