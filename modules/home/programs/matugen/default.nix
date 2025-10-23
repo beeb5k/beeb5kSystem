@@ -70,6 +70,10 @@
           [templates.btop]
           input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-btop.theme'
           output_path = '~/.config/btop/themes/matugen.theme'
+
+          [templates.btop]
+          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/neopywal.vim'
+          output_path = '~/.cache/wal/colors-wal.vim'
         '';
     };
   };

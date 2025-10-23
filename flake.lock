@@ -4,14 +4,15 @@
       "inputs": {
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
+        "plugins-neopywal": "plugins-neopywal",
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1760470546,
-        "narHash": "sha256-guEI8xlcaC/DylqRywr8aD8DbCHPdvTD4UaD7gj/vUg=",
+        "lastModified": 1761231869,
+        "narHash": "sha256-07RGQYGo8dYp/NmvMvYjS/OAWL7TeTxglL3sqMTRUbs=",
         "owner": "beeb5k",
         "repo": "beeb5kvim",
-        "rev": "e1bc9ad1fbd367672d358ad17867a3789f65b5a3",
+        "rev": "16d1040202471bd1b9cc6c0f7c8253333717e6a2",
         "type": "github"
       },
       "original": {
@@ -505,6 +506,22 @@
         "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "plugins-neopywal": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744501005,
+        "narHash": "sha256-RLwxyGRmU1B8r6xO1YObF8qlNEj7qitNUArUlw092V8=",
+        "owner": "RedsXDD",
+        "repo": "neopywal.nvim",
+        "rev": "09188d79b45694141ec779d05cbcc75f994639d1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RedsXDD",
+        "repo": "neopywal.nvim",
         "type": "github"
       }
     },
