@@ -16,11 +16,11 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           private_browsing = true;
         };
-        "pywalfox@frewacom.org" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-          private_browsing = true;
-        };
+        # "pywalfox@frewacom.org" = {
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+        #   private_browsing = true;
+        # };
       };
     };
     profiles.default = {
@@ -56,6 +56,8 @@
         "beacon.enabled" = false;
         "browser.tabs.inTitlebar" = 0;
         "browser.toolbars.bookmarks.visibility" = "never";
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "svg.context-properties.content.enabled" = true;
 
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
@@ -84,10 +86,10 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         };
-        "pywalfox@frewacom.org" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-        };
+        # "pywalfox@frewacom.org" = {
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+        # };
         # "addon@darkreader.org" = {
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
@@ -120,11 +122,13 @@
         "extensions.formautofill.addresses.enabled" = false;
         "extensions.formautofill.creditCards.enabled" = false;
 
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "svg.context-properties.content.enabled" = true;
+
         # Disable telemetry and data collection
         "toolkit.telemetry.enabled" = false;
         "toolkit.telemetry.unified" = false;
         "toolkit.telemetry.archive.enabled" = false;
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
         "beacon.enabled" = false;
