@@ -74,6 +74,10 @@
           [templates.neopywal]
           input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/neopywal.vim'
           output_path = '~/.cache/wal/colors-wal.vim'
+
+          [templates.firefox]
+          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/firefox.css'
+          output_path = '~/.mozilla/firefox/default/chrome/theme-material-blue.css'
         '';
     };
   };

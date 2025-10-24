@@ -2,89 +2,29 @@
 {
 
   home.packages = with pkgs; [
-    pywalfox-native
+    # pywalfox-native
   ];
 
-  programs.librewolf = {
+  programs.firefox = {
     enable = true;
+
     policies = {
       DisableTelemetry = true;
+      BlockAboutConfig = false;
+      DisableFirefoxAccounts = true;
+      DisablePocket = true;
+      DisableSetDesktopBackground = true;
+      DisableSystemAddonUpdate = true;
+      AutofillCreditCardEnabled = false;
+      AutofillAddressEnabled = false;
+      DisableFirefoxScreenshots = true;
+      DisableMasterPasswordCreation = true;
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           private_browsing = true;
-        };
-        # "pywalfox@frewacom.org" = {
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-        #   private_browsing = true;
-        # };
-      };
-    };
-    profiles.default = {
-      settings = {
-        "browser.sessionstore.resume_from_crash" = false;
-        "browser.sessionstore.restore_on_demand" = false;
-        "browser.sessionstore.max_tabs_undo" = 0;
-
-        # "network.cookie.cookieBehavior" = 2; # Block all cookies
-        # "privacy.clearOnShutdown.cookies" = false;
-        # "privacy.clearOnShutdown.siteSettings" = false;
-
-        "privacy.clearOnShutdown_v2.browsingHistoryAndDownloads" = false;
-        "privacy.clearOnShutdown_v2.cache" = false;
-        "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
-        "privacy.clearOnShutdown_v2.formdata" = true;
-        "privacy.clearOnShutdown_v2.historyFormDataAndDownloads" = false;
-        "privacy.clearOnShutdown_v2.siteSettings" = false;
-
-        "gfx.webrender.all" = true; # Enable WebRender
-        "layers.acceleration.enabled" = true;
-        "dom.ipc.processCount" = 8; # Adjust based on CPU cores
-        "browser.cache.disk.enable" = false; # Disable disk cache
-        "browser.cache.memory.enable" = true; # Use memory cache
-        "browser.cache.memory.capacity" = 1048576; # 1gb memory cache
-        "browser.preferences.defaultPerformanceSettings.enabled" = false;
-        "media.hardware-video-decoding.force-enabled" = true;
-        "media.hardware-video-decoding.enabled" = true;
-        "browser.tabs.unloadOnLowMemory" = true;
-        "browser.low_commit_space_threshold_percent" = 100;
-        "browser.tabs.min_inactive_duration_before_unload" = 3600000;
-
-        "beacon.enabled" = false;
-        "browser.tabs.inTitlebar" = 0;
-        "browser.toolbars.bookmarks.visibility" = "never";
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "svg.context-properties.content.enabled" = true;
-
-        "widget.use-xdg-desktop-portal.file-picker" = 1;
-      };
-      search = {
-        # force = true;
-        # default = "ddg";
-        engines = {
-          "NixOS Packages" = {
-            urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
-            iconUpdateUrl = "https://nixos.org/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
-            definedAliases = [ ":n" ];
-          };
-        };
-      };
-    };
-  };
-
-  programs.firefox = {
-    enable = false;
-
-    policies = {
-      DisableTelemetry = true;
-      ExtensionSettings = {
-        "uBlock0@raymondhill.net" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
         };
         # "pywalfox@frewacom.org" = {
         #   installation_mode = "force_installed";
@@ -103,48 +43,23 @@
         # Always start fresh, no tab restore
         "browser.sessionstore.resume_from_crash" = false;
         "browser.sessionstore.restore_on_demand" = false;
-        # "browser.sessionstore.max_tabs_undo" = 0;
+        "browser.sessionstore.max_tabs_undo" = 0;
+
+        "userChrome.theme-material" = true;
+
         # "browser.startup.page" = 1; # Blank page
         # "browser.newtabpage.enabled" = false;
 
-        # Privacy: Strict settings, no data collection
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
-        "privacy.donottrackheader.enabled" = true;
         "privacy.globalprivacycontrol.enabled" = true;
         "network.cookie.cookieBehavior" = 2; # Block all cookies
         "browser.contentblocking.category" = "strict";
 
-        # Disable autofill and save features
-        "browser.formfill.enable" = false;
-        "signon.rememberSignons" = false;
-        "signon.autofillForms" = false;
-        "extensions.formautofill.addresses.enabled" = false;
-        "extensions.formautofill.creditCards.enabled" = false;
-
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "svg.context-properties.content.enabled" = true;
 
-        # Disable telemetry and data collection
-        "toolkit.telemetry.enabled" = false;
-        "toolkit.telemetry.unified" = false;
-        "toolkit.telemetry.archive.enabled" = false;
-        "datareporting.healthreport.uploadEnabled" = false;
-        "datareporting.policy.dataSubmissionEnabled" = false;
-        "beacon.enabled" = false;
-        "browser.ping-centre.telemetry" = false;
-        "experiments.enabled" = false;
-        "experiments.supported" = false;
-
-        # Remove bloat: Pocket, Firefox Account, etc.
-        "extensions.pocket.enabled" = false;
-        "identity.fxaccounts.enabled" = false;
-        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-        "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.newtabpage.activity-stream.showSponsored" = false;
-        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-        "browser.messaging-system.whatsNewPanel.enabled" = false;
-        "browser.snippets.enabled" = false;
+        # "beacon.enabled" = false;
 
         # Performance
         "gfx.webrender.all" = true; # Enable WebRender
@@ -164,50 +79,48 @@
         "browser.aboutwelcome.enabled" = false;
         "browser.discovery.enabled" = false;
         "browser.onboarding.enabled" = false;
-        "browser.vpn_promo.enabled" = false;
-        "app.normandy.enabled" = false;
-        "app.shield.optoutstudies.enabled" = false;
-        "identity.fxaccounts.toolbar.defaultVisible" = false;
-        "identity.fxaccounts.toolbar.accessed" = false;
-        "identity.fxaccounts.toolbar.enabled" = false;
-        "identity.fxaccounts.toolbar.pxiToolbarEnabled" = false;
-        "identity.fxaccounts.toolbar.pxiToolbarEnabled.monitorEnabled" = false;
-        "identity.fxaccounts.toolbar.pxiToolbarEnabled.relayEnabled" = false;
-        "identity.fxaccounts.toolbar.pxiToolbarEnabled.vpnEnabled" = false;
-        "identity.fxaccounts.toolbar.syncSetup.enabled" = false;
-        "identity.fxaccounts.toolbar.syncSetup.panelAccessed" = false;
-        #Ui
+
         "browser.tabs.inTitlebar" = 0;
         "browser.toolbars.bookmarks.visibility" = "never";
-
         "widget.use-xdg-desktop-portal.file-picker" = 1;
+
+        "services.sync.prefs.sync.browser.newtabpage.activity-stream.feeds.section.topstories" = false;
       };
 
-      # Search engine: DuckDuckGo only
       search = {
         force = true;
         default = "ddg";
         engines = {
-          "ddg" = {
+          duck-duck-go = {
+            name = "DuckDuckGo";
             urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
-            iconUpdateUrl = "https://duckduckgo.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
+            iconMapObj."16" = "https://duckduckgo.com/favicon.ico";
             definedAliases = [ ":ddg" ];
           };
-          "Startpage" = {
+          startpage = {
+            name = "Startpage";
             urls = [ { template = "https://www.startpage.com/do/search?query={searchTerms}"; } ];
-            iconUpdateUrl = "https://www.startpage.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
+            iconMapObj."16" = "https://www.startpage.com/favicon.ico";
             definedAliases = [ ":sp" ];
           };
-          "NixOS Packages" = {
+          nixos-packages = {
+            name = "NixOS Packages";
             urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
-            iconUpdateUrl = "https://nixos.org/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000; # 24-hour updates
+            iconMapObj."16" = "https://nixos.org/favicon.ico";
             definedAliases = [ ":n" ];
           };
-          "Amazon".metaData.hidden = true;
-          "ebay".metaData.hidden = true;
+          nixos-wiki = {
+            name = "NixOS Wiki";
+            urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
+            iconMapObj."16" = "https://wiki.nixos.org/favicon.ico";
+            definedAliases = [ ":nw" ];
+          };
+          amazon.metaData.hidden = true;
+          ebay.metaData.hidden = true;
+          perplexity.metaData.hidden = true;
+
+          google.metaData.alias = ":g";
+          bing.metaData.alias = ":b";
         };
       };
     };
