@@ -46,6 +46,7 @@ in
   # services.displayManager.sddm.wayland.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
 
+  services.earlyoom.enable = true;
   services.fwupd.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.power-profiles-daemon.enable = false;
