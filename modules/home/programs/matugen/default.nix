@@ -62,10 +62,10 @@
           input_path = "~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-fuzzel.ini"
           output_path = '~/.config/fuzzel/fuzzel.ini'
 
-          [templates.pywalfox]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-pywalfox.json'
-          output_path = '~/.cache/wal/colors.json'
-          post_hook = "pywalfox update"
+          # [templates.pywalfox]
+          # input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-pywalfox.json'
+          # output_path = '~/.cache/wal/colors.json'
+          # post_hook = "pywalfox update"
 
           [templates.btop]
           input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-btop.theme'
