@@ -1,0 +1,24 @@
+{
+  xdg.configFile = {
+    "matugen/templates/fuzzel.ini" = {
+      enable = true;
+      text =
+        # ini
+        ''
+          [colors]
+          background={{colors.background.default.hex_stripped}}ff
+          text={{colors.on_surface.default.hex_stripped}}ff
+          prompt={{colors.secondary.default.hex_stripped}}ff
+          placeholder={{colors.tertiary.default.hex_stripped}}ff
+          input={{colors.primary.default.hex_stripped}}ff
+          match={{colors.tertiary.default.hex_stripped}}ff
+          selection={{colors.primary_container.default.hex_stripped}}ff
+          selection-text={{colors.background.default.hex_stripped}}ff
+          selection-match={{colors.on_primary_container.default.hex_stripped}}ff
+          counter={{colors.secondary.default.hex_stripped}}ff
+          border={{colors.primary.default.hex_stripped}}ff
+        '';
+    };
+  };
+
+}

@@ -8,8 +8,8 @@
 
     extraConfig = ''
       general {
-        col.active_border = $tertiary_fixed_dim
-        col.inactive_border = $outline
+        col.active_border = $_tertiary_fixed_dim
+        col.inactive_border = $_outline
       }
     '';
 
@@ -95,7 +95,7 @@
           range = 20;
           offset = "0 2";
           render_power = 3;
-          color = "$shadow";
+          color = "$_shadow";
         };
 
         # Window Opacities

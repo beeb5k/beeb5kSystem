@@ -1,4 +1,6 @@
 {
+  imports = [ ./templates ];
+
   xdg.configFile = {
     "matugen/config.toml" = {
       enable = true;
@@ -9,74 +11,62 @@
           version_check = true
 
           [config.wallpaper]
-          command = "swww"
-          arguments = ["img", "--transition-step", "100", "--transition-fps", "120", "--transition-type", "grow",  "--transition-angle", "30" ,"--transition-duration", "1"]
+          command = 'swww'
+          arguments = ['img', '--transition-step', '100', '--transition-fps', '120', '--transition-type', 'grow',  '--transition-angle', '30' ,'--transition-duration', '1']
 
           [templates.zathura]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-zathura.toml'
+          input_path = '~/.config/matugen/templates/zathura.toml'
           output_path = '~/.config/zathura/matugen'
 
           [templates.gtk3]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-gtk-colors.css'
+          input_path = '~/.config/matugen/templates/gtk.css'
           output_path = '~/.config/gtk-3.0/colors.css'
 
           [templates.gtk4]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-gtk-colors.css'
+          input_path = '~/.config/matugen/templates/gtk.css'
           output_path = '~/.config/gtk-4.0/colors.css'
 
           [templates.discord]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-discord.css'
-          output_path = '~/.config/Equicord/themes/midnight-dis.css'
+          input_path = '~/.config/matugen/templates/midnight-discord.css'
+          output_path = '~/.config/Equicord/themes/midnight.css'
 
           [templates.yazi]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-yazi.toml'
+          input_path = '~/.config/matugen/templates/yazi.toml'
           output_path = '~/.config/yazi/theme.toml'
 
           [templates.hyprland]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-colors.conf'
+          input_path = '~/.config/matugen/templates/hyprland.conf'
           output_path = '~/.config/hypr/colors.conf'
           post_hook = 'hyprctl reload'
 
           [templates.starship]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-starship.toml'
+          input_path = '~/.config/matugen/templates/starship.toml'
           output_path = '~/.config/starship.toml'
 
-          [templates.qt5ct]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-qtct.conf'
-          output_path = '~/.config/qt5ct/colors/matugen.conf'
-
-          [templates.qt6ct]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-qtct.conf'
-          output_path = '~/.config/qt6ct/colors/matugen.conf'
-
           [templates.sequences]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/sequences.sh'
+          input_path = '~/.config/matugen/templates/sequence.sh'
           output_path = '~/.config/sequences.sh'
-          post_hook = "terminal-change-color"
-
-          [templates.anyrun]
-          input_path = "~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-anyrun.css"
-          output_path = "~/.config/anyrun/style.css"
+          post_hook = 'terminal-change-color'
 
           [templates.fuzzel]
-          input_path = "~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-fuzzel.ini"
+          input_path = '~/.config/matugen/templates/fuzzel.ini'
           output_path = '~/.config/fuzzel/fuzzel.ini'
 
           # [templates.pywalfox]
-          # input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-pywalfox.json'
+          # input_path = '~/.config/matugen/templates/pywalfox.json'
           # output_path = '~/.cache/wal/colors.json'
-          # post_hook = "pywalfox update"
+          # post_hook = 'pywalfox update'
 
           [templates.btop]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/matugen-btop.theme'
+          input_path = '~/.config/matugen/templates/btop.theme'
           output_path = '~/.config/btop/themes/matugen.theme'
 
           [templates.neopywal]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/neopywal.vim'
+          input_path = '~/.config/matugen/templates/neopywal.vim'
           output_path = '~/.cache/wal/colors-wal.vim'
 
           [templates.firefox]
-          input_path = '~/beeb5kSystem/modules/home/programs/matugen/templates/firefox.css'
+          input_path = '~/.config/matugen/templates/firefox.css'
           output_path = '~/.mozilla/firefox/default/chrome/theme-material-blue.css'
         '';
     };

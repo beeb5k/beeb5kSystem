@@ -21,7 +21,7 @@
       set -U fish_term24bit 1
     '';
 
-    interactiveShellInit = ''
+    interactiveShellInit = /* fish */ ''
       set -g fish_greeting ""
 
       fish_vi_key_bindings
@@ -32,7 +32,7 @@
       set fish_cursor_external block
       set fish_vi_force_cursor 1
       terminal-change-color
-      pokeget random --hide-name
+      # pokeget random --hide-name
 
       pay-respects fish | source
 
