@@ -4,10 +4,6 @@
   hostname,
 }:
 { pkgs, config, ... }:
-let
-  nvidia_icd = "${config.hardware.nvidia.package}/share/vulkan/icd.d/nvidia_icd.x86_64.json";
-  nvidia_layers = "${config.hardware.nvidia.package}/share/vulkan/implicit_layer.d";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -42,13 +38,20 @@ in
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
-  # services.displayManager.sddm.enable = true;
-  # services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-user-session --asterisks --time --time-format '%I:%M %p | %a • %h | %F'";
+        user = "greeter";
+      };
+    };
+  };
 
   services.earlyoom.enable = true;
   services.fwupd.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
   services.power-profiles-daemon.enable = false;
   services.printing.enable = false;
   services.openssh.enable = true;
@@ -96,7 +99,8 @@ in
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
-  # security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+  # security.pam.services.login.enableGnomeKeyring = true;
   services.libinput.enable = true;
   users.users.${user} = {
     isNormalUser = true;

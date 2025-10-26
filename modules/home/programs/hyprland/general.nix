@@ -25,6 +25,7 @@
 
       exec-once = [
         "foot --server"
+        "gnome-keyring-daemon --start --components=secrets"
       ];
 
       env = [

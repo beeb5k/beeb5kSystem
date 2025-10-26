@@ -10,7 +10,7 @@
   # Add Fish plugins
   home.packages = with pkgs; [
     fzf
-    pokeget-rs
+    # pokeget-rs
     pay-respects
     nix-index
     nix-search-cli

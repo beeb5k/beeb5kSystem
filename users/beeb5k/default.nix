@@ -73,11 +73,9 @@ in
     android-tools
     wl-clipboard
     fuzzel
-    onefetch
     rustlings
     gimp3-with-plugins
     obsidian
-    spotify
     direnv
     rust-analyzer
     rustc
@@ -85,7 +83,6 @@ in
     clippy
     rustfmt
     clang
-    zed-editor-fhs
     inputs.quickshell.packages.${pkgs.system}.default
   ];
 
