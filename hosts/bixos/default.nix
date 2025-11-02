@@ -3,15 +3,20 @@
   user,
   hostname,
 }:
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
+    inputs.dankMaterialShell.nixosModules.greeter
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # systemd.services."NetworkManager-wait-online".enable = false;
 
   time.timeZone = "Asia/Kolkata";
 
@@ -38,25 +43,21 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
-  services.greetd = {
+  programs.dankMaterialShell.greeter = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-user-session --asterisks --time --time-format '%I:%M %p | %a • %h | %F'";
-        user = "greeter";
-      };
-    };
+    compositor.name = "hyprland";
+    configHome = "/home/${user}";
   };
 
   services.earlyoom.enable = true;
   services.fwupd.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
   services.openssh.enable = true;
-  services.upower.enable = false;
-  services.blueman.enable = true;
+  services.upower.enable = true;
+  services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -79,7 +80,7 @@
   };
 
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -100,7 +101,6 @@
   security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
-  # security.pam.services.login.enableGnomeKeyring = true;
   services.libinput.enable = true;
   users.users.${user} = {
     isNormalUser = true;
@@ -134,20 +134,16 @@
     # GBM_BACKEND = "nvidia-drm";
     # LIBVA_DRIVER_NAME = "nvidia";
     # NVD_BACKEND = "direct";
-    # VK_ICD_FILENAMES = nvidia_icd;
-    # VK_LAYER_PATH = nvidia_layers;
     # MESA_DEVICE_SELECTION = "NVIDIA";
     # __NV_PRIME_RENDER_OFFLOAD = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
 
     NIXOS_OZONE_WL = 1;
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
     SDL_VIDEODRIVER = "wayland";
-    XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
     GDK_BACKEND = "wayland,x11";
     GDK_SCALE = 1;
   };

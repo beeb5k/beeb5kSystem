@@ -23,12 +23,16 @@ in
 {
   imports = [
     ../../modules/home
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
-  services.swww.enable = true;
-  services.hyprpolkitagent.enable = true;
+
+  programs.dankMaterialShell = {
+    enable = true;
+    enableSystemd = true;
+  };
 
   Neovim = {
     enable = true;
@@ -59,31 +63,24 @@ in
   };
 
   home.packages = with pkgs; [
-    matugen
-    (discord.override {
-      withEquicord = true;
-    })
-    pavucontrol
     imv
-    mako
+    vesktop
     imagemagick
     grimblast
     brightnessctl
     mpv
     android-tools
     wl-clipboard
-    fuzzel
+    cliphist
     rustlings
     gimp3-with-plugins
     obsidian
-    direnv
     rust-analyzer
     rustc
     cargo
     clippy
     rustfmt
     clang
-    inputs.quickshell.packages.${pkgs.system}.default
   ];
 
   programs.home-manager.enable = true;

@@ -10,21 +10,9 @@
           [config]
           version_check = true
 
-          [config.wallpaper]
-          command = 'swww'
-          arguments = ['img', '--transition-step', '100', '--transition-fps', '120', '--transition-type', 'grow',  '--transition-angle', '30' ,'--transition-duration', '1']
-
           [templates.zathura]
           input_path = '~/.config/matugen/templates/zathura.toml'
           output_path = '~/.config/zathura/matugen'
-
-          [templates.gtk3]
-          input_path = '~/.config/matugen/templates/gtk.css'
-          output_path = '~/.config/gtk-3.0/colors.css'
-
-          [templates.gtk4]
-          input_path = '~/.config/matugen/templates/gtk.css'
-          output_path = '~/.config/gtk-4.0/colors.css'
 
           [templates.discord]
           input_path = '~/.config/matugen/templates/midnight-discord.css'
@@ -51,11 +39,6 @@
           [templates.fuzzel]
           input_path = '~/.config/matugen/templates/fuzzel.ini'
           output_path = '~/.config/fuzzel/fuzzel.ini'
-
-          # [templates.pywalfox]
-          # input_path = '~/.config/matugen/templates/pywalfox.json'
-          # output_path = '~/.cache/wal/colors.json'
-          # post_hook = 'pywalfox update'
 
           [templates.btop]
           input_path = '~/.config/matugen/templates/btop.theme'

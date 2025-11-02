@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -26,6 +27,8 @@
       exec-once = [
         "foot --server"
         "gnome-keyring-daemon --start --components=secrets"
+        "bash -c 'wl-paste --watch cliphist store &'"
+        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
       ];
 
       env = [
@@ -50,7 +53,8 @@
       };
 
       general = {
-        layout = "dwindle";
+        # layout = "dwindle";
+        layout = "master";
         gaps_in = 4;
         gaps_out = 5;
         gaps_workspaces = 50;
@@ -73,7 +77,7 @@
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 15;
         blur = {
           enabled = false;
           xray = true;

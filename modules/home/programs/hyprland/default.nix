@@ -4,7 +4,7 @@
     ./animations.nix
     ./rules.nix
     ./key.nix
-    ./hypridle.nix
-    ./hyprlock.nix
+    # ./hypridle.nix
+    # ./hyprlock.nix
   ];
 }

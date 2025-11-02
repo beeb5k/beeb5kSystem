@@ -4,13 +4,19 @@
       "$mainMod,RETURN,exec,$terminal"
       "$mainMod,T,exec,$terminal"
       "$mainMod,Q,killactive"
-      "$mainMod,M,exit"
+      "$mainMod ALT,M,exit"
       "$mainMod,E,exec,$fileManager"
       "$mainMod,SPACE,togglefloating"
-      "$mainMod,A,exec,$menu"
+      "$mainMod,A,exec, dms ipc call spotlight toggle"
+      "$mainMod,V,exec,dms ipc call clipboard toggle"
+      "$mainMod,comma, exec, dms ipc call settings toggle"
+      "$mainMod,N, exec, dms ipc call notifications toggle"
+      "$mainMod,TAB, exec, dms ipc call hypr toggleOverview"
+      "$mainMod,Y, exec, dms ipc call dankdash wallpaper"
+      "$mainMod,M, exec, dms ipc call processlist toggle"
       "$mainMod,B,exec,$browser"
       "$mainMod,P,pseudo"
-      "$mainMod SHIFT,L,exec,hyprlock"
+      "$mainMod ALT,L,exec, dms ipc call lock lock"
       # "$mainMod,L,exec,hyprlock"
       "$mainMod,F,fullscreen,0"
       "$mainMod,D,fullscreen,1"
@@ -48,12 +54,12 @@
     ];
 
     bindel = [
-      ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-      ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ",XF86AudioRaiseVolume,exec,exec, dms ipc call audio increment 3"
+      ",XF86AudioLowerVolume,exec,exec, dms ipc call audio decrement 3"
+      ",XF86AudioMute,exec,dms ipc call audio mute"
       ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp,exec,brightnessctl s 10%+"
-      ",XF86MonBrightnessDown,exec,brightnessctl s 10%-"
+      ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5"
+      ",XF86MonBrightnessDown,exec,dms ipc call brightness decrement 5"
     ];
 
     bindl = [

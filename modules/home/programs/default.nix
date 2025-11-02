@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./qt.nix
+    ./qt.nix
     ./gtk.nix
     ./matugen
     ./git.nix

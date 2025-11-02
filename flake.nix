@@ -17,9 +17,21 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     miku-cursor-src.url = "github:supermariofps/hatsune-miku-windows-linux-cursors";
     miku-cursor-src.flake = false;
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell";
+    dgop = {
+      url = "github:AvengeMedia/dgop";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms-cli = {
+      url = "github:AvengeMedia/danklinux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dankMaterialShell = {
+      url = "github:AvengeMedia/DankMaterialShell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dgop.follows = "dgop";
+      inputs.dms-cli.follows = "dms-cli";
     };
   };
 
