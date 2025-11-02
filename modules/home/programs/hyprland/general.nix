@@ -7,13 +7,6 @@
     xwayland.enable = true;
     systemd.enableXdgAutostart = false;
 
-    extraConfig = ''
-      general {
-        col.active_border = $_tertiary_fixed_dim
-        col.inactive_border = $_outline
-      }
-    '';
-
     settings = {
       monitor = [ ",1920x1080@120,auto,1.0" ];
       source = [ "colors.conf" ];
@@ -22,21 +15,12 @@
       "$terminal" = "footclient";
       "$fileManager" = "thunar";
       "$browser" = "firefox";
-      "$menu" = "fuzzel";
 
       exec-once = [
         "foot --server"
         "gnome-keyring-daemon --start --components=secrets"
         "bash -c 'wl-paste --watch cliphist store &'"
         "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
-      ];
-
-      env = [
-        # "HYPRCURSOR_THEME,Bibata-Modern-Classic"
-        # "HYPRCURSOR_SIZE,16"
-        # "XCURSOR_THEME,Bibata-Modern-Classic"
-        # "XCURSOR_SIZE,16"
-        # "XDG_MENU_PREFIX, plasma-"
       ];
 
       xwayland = {
@@ -65,8 +49,14 @@
 
         #focus_to_other_workspaces = true # ahhhh i still haven't properly implemented this
         allow_tearing = true; # This just allows the `immediate` window rule to work
-        # col.active_border = "$outline";
-        # col.inactive_border = "$outline";
+        "col.active_border" = "$_tertiary_fixed_dim";
+        "col.inactive_border" = "$_outline";
+      };
+
+      master = {
+        allow_small_split = true;
+        new_status = "master";
+        new_on_top = true;
       };
 
       dwindle = {
@@ -95,7 +85,7 @@
         };
 
         shadow = {
-          enabled = true;
+          enabled = false;
           ignore_window = true;
           range = 20;
           offset = "0 2";
@@ -104,8 +94,8 @@
         };
 
         # Window Opacities
-        # active_opacity = 0.87;
-        # inactive_opacity = 0.87;
+        # active_opacity = 0.95;
+        # inactive_opacity = 0.95;
         fullscreen_opacity = 1;
 
         # Dim
@@ -159,8 +149,6 @@
           sensitivity = -0.5;
         }
       ];
-
-      master.new_status = "master";
     };
   };
 }
