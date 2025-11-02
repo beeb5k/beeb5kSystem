@@ -14,6 +14,7 @@
       "$mainMod,TAB, exec, dms ipc call hypr toggleOverview"
       "$mainMod,Y, exec, dms ipc call dankdash wallpaper"
       "$mainMod,M, exec, dms ipc call processlist toggle"
+      "$mainMod,slash,exec,dms ipc call notepad open"
       "$mainMod,B,exec,$browser"
       "$mainMod,P,pseudo"
       "$mainMod ALT,L,exec, dms ipc call lock lock"
@@ -58,8 +59,8 @@
       ",XF86AudioLowerVolume,exec,exec, dms ipc call audio decrement 3"
       ",XF86AudioMute,exec,dms ipc call audio mute"
       ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5"
-      ",XF86MonBrightnessDown,exec,dms ipc call brightness decrement 5"
+      ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5 ''"
+      ",XF86MonBrightnessDown,exec,dms ipc call brightness decrement 5 ''"
     ];
 
     bindl = [
