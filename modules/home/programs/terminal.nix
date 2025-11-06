@@ -4,10 +4,29 @@
     settings = {
       main = {
         pad = "10x10";
-        # dpi-aware = "no";
+        dpi-aware = "no";
         bold-text-in-bright = "no";
-        font = "Iosevka Term Nerd Font:size=12.5";
+        font = "Iosevka Term Nerd Font:fontfeatures=cv10=7:fontfeatures=cv01=5:fontfeatures=cv07=2:size=13";
+        box-drawings-uses-font-glyphs = "yes";
+        horizontal-letter-offset = 1;
       };
+      cursor = {
+        beam-thickness = 1;
+      };
+      key-bindings = { };
+    };
+  };
+
+  programs.kitty = {
+    enable = false;
+    themeFile = "Catppuccin-Macchiato";
+    font = {
+      name = "Iosevka Term Nerd Font";
+      size = 13;
+    };
+
+    settings = {
+      enable_audio_bell = false;
     };
   };
 
@@ -20,7 +39,7 @@
         "liga"
         "dlig"
       ];
-      font-size = 12;
+      font-size = 12.5;
       window-padding-x = 10;
       window-padding-y = 10;
       bold-is-bright = false;
@@ -32,6 +51,11 @@
       copy-on-select = false;
       confirm-close-surface = false;
       mouse-hide-while-typing = true;
+      custom-shader-animation = "always";
+      custom-shader = [
+        "shaders/cursor_warp.glsl"
+        "shaders/sonic_boom.glsl"
+      ];
     };
   };
 
