@@ -37,6 +37,10 @@
       inputs.dgop.follows = "dgop";
       inputs.dms-cli.follows = "dms-cli";
     };
+    nix-yazi-plugins = {
+      url = "github:lordkekz/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
