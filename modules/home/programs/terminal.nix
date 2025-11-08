@@ -7,7 +7,6 @@
         dpi-aware = "no";
         bold-text-in-bright = "no";
         font = "Iosevka Term Nerd Font:fontfeatures=cv10=7:fontfeatures=cv01=5:fontfeatures=cv07=2:size=13";
-        box-drawings-uses-font-glyphs = "yes";
         horizontal-letter-offset = 1;
       };
       cursor = {
