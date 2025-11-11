@@ -67,7 +67,7 @@
       };
 
       decoration = {
-        rounding = 15;
+        rounding = 12;
         blur = {
           enabled = false;
           xray = true;
@@ -110,8 +110,8 @@
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
         disable_splash_rendering = true;
-        animate_manual_resizes = false;
-        animate_mouse_windowdragging = false;
+        animate_manual_resizes = true;
+        animate_mouse_windowdragging = true;
         enable_swallow = false;
         swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
 

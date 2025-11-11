@@ -12,6 +12,9 @@
       cursor = {
         beam-thickness = 1;
       };
+      mouse = {
+        hide-when-typing = "yes";
+      };
       key-bindings = { };
     };
   };
