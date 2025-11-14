@@ -13,7 +13,7 @@
 
     signing = {
       key = "1D8222FA8B7E93A6";
-      signByDefault = false;
+      signByDefault = true;
     };
   };
 
