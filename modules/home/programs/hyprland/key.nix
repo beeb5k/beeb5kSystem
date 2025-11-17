@@ -4,7 +4,7 @@
       "$mainMod,RETURN,exec,$terminal"
       "$mainMod,T,exec,$terminal"
       "$mainMod,Q,killactive"
-      "$mainMod ALT,M,exit"
+      "$mainMod ALT,M,exec,dms ipc call powermenu toggle"
       "$mainMod,E,exec,$fileManager"
       "$mainMod,SPACE,togglefloating"
       "$mainMod,A,exec, dms ipc call spotlight toggle"
@@ -58,7 +58,7 @@
       ",XF86AudioRaiseVolume,exec,exec, dms ipc call audio increment 3"
       ",XF86AudioLowerVolume,exec,exec, dms ipc call audio decrement 3"
       ",XF86AudioMute,exec,dms ipc call audio mute"
-      ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ",XF86AudioMicMute,exec,dms ipc call audio micmute"
       ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5 ''"
       ",XF86MonBrightnessDown,exec,dms ipc call brightness decrement 5 ''"
     ];

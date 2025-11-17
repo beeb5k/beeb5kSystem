@@ -26,6 +26,7 @@
     settings = {
       main = {
         capslock = "overload(control, esc)";
+        esc = "capslock";
       };
       # well i think i'll just use the defaults for now.
       # sym = {

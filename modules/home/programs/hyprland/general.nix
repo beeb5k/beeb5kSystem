@@ -94,8 +94,8 @@
         };
 
         # Window Opacities
-        # active_opacity = 0.95;
-        # inactive_opacity = 0.95;
+        # active_opacity = 0.87;
+        # inactive_opacity = 0.87;
         fullscreen_opacity = 1;
 
         # Dim
