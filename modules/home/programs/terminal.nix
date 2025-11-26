@@ -6,8 +6,7 @@
         pad = "10x10";
         dpi-aware = "no";
         bold-text-in-bright = "no";
-        font = "Iosevka Term Nerd Font:fontfeatures=cv10=7:fontfeatures=cv01=5:fontfeatures=cv07=2:size=13";
-        horizontal-letter-offset = 1;
+        font = "Lilex Nerd Font:size=12";
       };
       cursor = {
         beam-thickness = 1;
@@ -33,15 +32,17 @@
   };
 
   programs.ghostty = {
-    enable = false;
+    enable = true;
     settings = {
-      font-family = "Iosevka Term Nerd Font";
       font-feature = [
         "calt"
         "liga"
         "dlig"
+        "cv10"
       ];
-      font-size = 12.5;
+      font-family = "Lilex Nerd Font";
+
+      font-size = 12;
       window-padding-x = 10;
       window-padding-y = 10;
       bold-is-bright = false;
@@ -83,8 +84,8 @@
       # };
 
       font = {
-        normal.family = "Iosevka Term Nerd Font";
-        size = 12.5;
+        normal.family = "Lilex Nerd Fon";
+        size = 12;
       };
     };
   };
