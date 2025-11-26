@@ -6,7 +6,7 @@
       init.defaultBranch = "main";
       credential.helper = "store";
       user = {
-        email = "beeb5k6@gmail.com";
+        email = "112796674+beeb5k@users.noreply.github.com";
         name = "beeb5k";
       };
     };
