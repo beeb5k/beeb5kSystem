@@ -32,7 +32,12 @@ in
   programs.dankMaterialShell = {
     enable = true;
     quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
+    enableClipboard = true;
+    enableDynamicTheming = true;
   };
 
   Neovim = {
@@ -71,8 +76,6 @@ in
     brightnessctl
     mpv
     android-tools
-    wl-clipboard
-    cliphist
     rustlings
     gimp3-with-plugins
     obsidian

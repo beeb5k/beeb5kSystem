@@ -20,7 +20,7 @@
         # "foot --server"
         # "gnome-keyring-daemon --start --components=secrets"
         "bash -c 'wl-paste --watch cliphist store &'"
-        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
+        # "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
       ];
 
       xwayland = {
