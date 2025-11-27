@@ -8,11 +8,11 @@
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1764196140,
-        "narHash": "sha256-8dtH87w1FgXeL7LEMM5xc3ZjO0i21aU7FOm7reSica0=",
+        "lastModified": 1764198052,
+        "narHash": "sha256-GSsVOosgHnqlSqe0fM9loW4pCCajfUxfZsZy9ryWj18=",
         "owner": "beeb5k",
         "repo": "beeb5kvim",
-        "rev": "6f0b01f7fab6fb103497127386b1b02428f80927",
+        "rev": "76911ac1d73a56994b4cf7271c169ba910aa8446",
         "type": "github"
       },
       "original": {
@@ -31,11 +31,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764192893,
-        "narHash": "sha256-8c2pAo/3ByerbdyRn3TNGKOI6pbOQzJXiy+CC2ITAZI=",
+        "lastModified": 1764223295,
+        "narHash": "sha256-PnmYebWEl+9xABTZYiko2O4b9j9mQGz8689DHrV1hc8=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "de8f2e6a687795488cdfcf294b4576163cd8b92a",
+        "rev": "5b0c38b0ed014e47c3e6ba4be0891a9d421f9637",
         "type": "github"
       },
       "original": {
@@ -273,15 +273,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1764194569,
-        "narHash": "sha256-iUM9ktarEzThkayyZrzQ7oycPshAY2XRQqVKz0xX/L0=",
+        "lastModified": 1764177491,
+        "narHash": "sha256-dhX2abFWxeXab3Aad4Pg1xGtn9W84/qetNXfmYUwktw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9651819d75f6c7ffaf8a9227490ac704f29659f0",
+        "rev": "2217780c39169a9c77915200137550c2ef0fa974",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "release-25.11",
         "repo": "home-manager",
         "type": "github"
       }

@@ -55,6 +55,7 @@
       confirm-close-surface = false;
       mouse-hide-while-typing = true;
       custom-shader-animation = "always";
+      window-inherit-working-directory = false;
       custom-shader = [
         "shaders/cursor_warp.glsl"
         "shaders/sonic_boom.glsl"

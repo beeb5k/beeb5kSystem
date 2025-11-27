@@ -5,8 +5,7 @@
   ];
 
   home.packages = with pkgs; [
-    trash-cli
-    xfce.thunar
+    nautilus
   ];
 
   programs.yazi.enable = true;
