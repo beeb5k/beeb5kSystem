@@ -78,7 +78,6 @@ in
     android-tools
     rustlings
     gimp3-with-plugins
-    obsidian
     rust-analyzer
     rustc
     cargo

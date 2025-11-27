@@ -129,12 +129,12 @@
   };
 
   environment.sessionVariables = {
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # GBM_BACKEND = "nvidia-drm";
-    # LIBVA_DRIVER_NAME = "nvidia";
-    # NVD_BACKEND = "direct";
-    # MESA_DEVICE_SELECTION = "NVIDIA";
-    # __NV_PRIME_RENDER_OFFLOAD = "1";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    MESA_DEVICE_SELECTION = "NVIDIA";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
 
     NIXOS_OZONE_WL = 1;
