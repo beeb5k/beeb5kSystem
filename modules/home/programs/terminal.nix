@@ -1,12 +1,15 @@
 {
   programs.foot = {
-    enable = true;
+    enable = false;
     settings = {
       main = {
+        include = [
+          "/home/beeb5k/.config/foot/dank-colors.ini"
+        ];
         pad = "10x10";
         dpi-aware = "no";
         bold-text-in-bright = "no";
-        font = "Lilex Nerd Font:size=12";
+        font = "Lilex Nerd Font:size=12.5";
       };
       cursor = {
         beam-thickness = 1;
@@ -18,27 +21,21 @@
     };
   };
 
-  programs.kitty = {
-    enable = false;
-    themeFile = "Catppuccin-Macchiato";
-    font = {
-      name = "Iosevka Term Nerd Font";
-      size = 13;
-    };
-
-    settings = {
-      enable_audio_bell = false;
-    };
-  };
-
   programs.ghostty = {
     enable = true;
+    enableFishIntegration = true;
     settings = {
+      config-file = [
+        "~/.config/ghostty/config-dankcolors"
+      ];
       font-feature = [
         "calt"
         "liga"
         "dlig"
         "cv10"
+        "cv06"
+        "ss02"
+        "ss03"
       ];
       font-family = "Lilex Nerd Font";
 
@@ -66,6 +63,11 @@
   programs.alacritty = {
     enable = false;
     settings = {
+      general = {
+        import = [
+          "~/.config/alacritty/dank-theme.toml"
+        ];
+      };
       window = {
         padding = {
           y = 10;
@@ -77,15 +79,8 @@
         };
       };
 
-      # cursor = {
-      #   style = {
-      #     shape = "Beam";
-      #   };
-      #   thickness = 0.0;
-      # };
-
       font = {
-        normal.family = "Lilex Nerd Fon";
+        normal.family = "Lilex Nerd Font";
         size = 12;
       };
     };
