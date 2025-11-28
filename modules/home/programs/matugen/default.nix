@@ -51,6 +51,10 @@
           [templates.firefox]
           input_path = '~/.config/matugen/templates/firefox.css'
           output_path = '~/.mozilla/firefox/default/chrome/theme-material-blue.css'
+
+          [templates.zed]
+          input_path = '~/.config/matugen/templates/zed.json'
+          output_path = '~/.config/zed/themes/matugen.json'
         '';
     };
   };

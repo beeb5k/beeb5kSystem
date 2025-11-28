@@ -12,5 +12,6 @@
     ./matugen-starship.nix
     ./matugen-yazi.nix
     ./matugen-zathura.nix
+    ./matugen-zed.nix
   ];
 }
