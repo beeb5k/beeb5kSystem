@@ -23,7 +23,7 @@
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.kernelParams = [ "nvidia_drm.modeset=1" ];
+  boot.kernelParams = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
