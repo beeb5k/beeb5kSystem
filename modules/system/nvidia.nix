@@ -9,7 +9,6 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      vulkan-loader
       libva-vdpau-driver
       libvdpau-va-gl
       nvidia-vaapi-driver
@@ -23,20 +22,24 @@
   ];
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [
+    "amdgpu"
+    "nvidia"
+  ];
 
   hardware.nvidia = {
-    # Modesetting is required.
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false; # open source drivers
+    powerManagement.finegrained = true;
+    open = false;
     nvidiaSettings = false;
 
     prime = {
-      sync.enable = true; # NVIDIA drives display
-      amdgpuBusId = "PCI:5:0:0";
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+      offload.offloadCmdMainProgram = "prime-run";
       nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:5:0:0";
     };
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
