@@ -4,7 +4,7 @@
     enable = true;
     sourceFirst = true;
     systemd.enable = false;
-    xwayland.enable = true;
+    xwayland.enable = false;
     systemd.enableXdgAutostart = false;
 
     settings = {
@@ -35,12 +35,12 @@
       };
 
       general = {
-        # layout = "dwindle";
-        layout = "master";
+        layout = "dwindle";
+        # layout = "master";
         gaps_in = 4;
         gaps_out = 5;
         gaps_workspaces = 50;
-        border_size = 1;
+        border_size = 2;
 
         resize_on_border = true;
         no_focus_fallback = true;
@@ -59,13 +59,13 @@
 
       dwindle = {
         smart_split = false;
-        smart_resizing = false;
-        preserve_split = true;
+        smart_resizing = true;
+        preserve_split = false;
         pseudotile = true;
       };
 
       decoration = {
-        rounding = 12;
+        rounding = 2;
         blur = {
           enabled = false;
           xray = true;
@@ -98,7 +98,7 @@
 
         # Dim
         dim_inactive = true;
-        dim_strength = 0.06;
+        dim_strength = 0.15;
         dim_special = 0.3;
       };
 
@@ -109,7 +109,7 @@
         key_press_enables_dpms = true;
         disable_splash_rendering = true;
         animate_manual_resizes = true;
-        animate_mouse_windowdragging = true;
+        animate_mouse_windowdragging = false;
         enable_swallow = false;
         swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
 

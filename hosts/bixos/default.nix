@@ -113,6 +113,7 @@
 
   fonts.packages = with pkgs; [
     nerd-fonts.lilex
+    ibm-plex
   ];
 
   programs.mtr.enable = true;
@@ -125,25 +126,25 @@
   programs.hyprland = {
     enable = true;
     withUWSM = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
   };
 
   environment.sessionVariables = {
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-    MESA_DEVICE_SELECTION = "NVIDIA";
-    __NV_PRIME_RENDER_OFFLOAD = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # GBM_BACKEND = "nvidia-drm";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # NVD_BACKEND = "direct";
+    # MESA_DEVICE_SELECTION = "NVIDIA";
+    # __NV_PRIME_RENDER_OFFLOAD = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
 
     NIXOS_OZONE_WL = 1;
-    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
-    SDL_VIDEODRIVER = "wayland";
+    # SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
-    GDK_BACKEND = "wayland,x11";
+    # GDK_BACKEND = "wayland,x11";
     GDK_SCALE = 1;
   };
 
