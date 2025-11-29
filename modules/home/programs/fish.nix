@@ -31,7 +31,7 @@
       set fish_cursor_replace_one block
       set fish_cursor_external block
       set fish_vi_force_cursor 1
-      terminal-change-color
+      # terminal-change-color
       # pokeget random --hide-name
 
       pay-respects fish | source
