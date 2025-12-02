@@ -2,7 +2,7 @@
 {
 
   home.packages = with pkgs; [
-    # pywalfox-native
+    pywalfox-native
   ];
 
   programs.firefox = {
@@ -26,10 +26,10 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           private_browsing = true;
         };
-        # "pywalfox@frewacom.org" = {
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-        # };
+        "pywalfox@frewacom.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+        };
         # "addon@darkreader.org" = {
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
@@ -45,7 +45,7 @@
         "browser.sessionstore.restore_on_demand" = false;
         "browser.sessionstore.max_tabs_undo" = 0;
 
-        "userChrome.theme-material" = true;
+        # "userChrome.theme-material" = true;
 
         # "browser.startup.page" = 1; # Blank page
         # "browser.newtabpage.enabled" = false;

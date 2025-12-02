@@ -47,6 +47,7 @@
     enable = true;
     compositor.name = "hyprland";
     configHome = "/home/${user}";
+    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 
   services.earlyoom.enable = true;

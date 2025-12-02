@@ -12,7 +12,7 @@
       source = [ "colors.conf" ];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty";
+      "$terminal" = "ghostty +new-window";
       "$fileManager" = "nautilus";
       "$browser" = "firefox";
 
@@ -65,7 +65,7 @@
       };
 
       decoration = {
-        rounding = 2;
+        rounding = 0;
         blur = {
           enabled = false;
           xray = true;
