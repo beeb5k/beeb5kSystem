@@ -34,7 +34,7 @@
           [templates.sequences]
           input_path = '~/.config/matugen/templates/sequence.sh'
           output_path = '~/.config/sequences.sh'
-          post_hook = 'terminal-change-color'
+          # post_hook = 'terminal-change-color'
 
           [templates.fuzzel]
           input_path = '~/.config/matugen/templates/fuzzel.ini'

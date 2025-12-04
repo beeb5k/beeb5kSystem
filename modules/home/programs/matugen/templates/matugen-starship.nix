@@ -9,7 +9,7 @@ in
       text =
         # toml
         ''
-          add_newline = false
+          add_newline = true
 
           # A minimal left prompt
           format = """$python$directory$character"""
