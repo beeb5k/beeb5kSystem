@@ -19,6 +19,35 @@
       AutofillAddressEnabled = false;
       DisableFirefoxScreenshots = true;
       DisableMasterPasswordCreation = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      UserMessaging = {
+        WhatsNew = false;
+        ExtensionRecommendations = false;
+        FeatureRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = true;
+        MoreFromMozilla = false;
+        Locked = true;
+      };
+      FirefoxHome = {
+        Search = false;
+        TopSites = false;
+        SponsoredTopSites = false;
+        Highlights = false;
+        Pocket = false;
+        Stories = false;
+        SponsoredPocket = false;
+        SponsoredStories = false;
+        Snippets = false;
+        Locked = true;
+      };
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
+      };
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
           default_area = "menupanel";
@@ -41,9 +70,11 @@
     profiles.default = {
       settings = {
         # Always start fresh, no tab restore
+        "browser.aboutConfig.showWarning" = false;
         "browser.sessionstore.resume_from_crash" = false;
         "browser.sessionstore.restore_on_demand" = false;
         "browser.sessionstore.max_tabs_undo" = 0;
+        "browser.sessionstore.max_windows_undo" = 0;
 
         # "userChrome.theme-material" = true;
 
@@ -64,7 +95,7 @@
         # Performance
         "gfx.webrender.all" = true; # Enable WebRender
         "layers.acceleration.enabled" = true;
-        "dom.ipc.processCount" = 8; # Adjust based on CPU cores
+        # "dom.ipc.processCount" = 8; # Adjust based on CPU cores
         "browser.cache.disk.enable" = false; # Disable disk cache
         "browser.cache.memory.enable" = true; # Use memory cache
         "browser.cache.memory.capacity" = 1048576; # 1gb memory cache
@@ -83,8 +114,6 @@
         "browser.tabs.inTitlebar" = 0;
         "browser.toolbars.bookmarks.visibility" = "never";
         "widget.use-xdg-desktop-portal.file-picker" = 1;
-
-        "services.sync.prefs.sync.browser.newtabpage.activity-stream.feeds.section.topstories" = false;
       };
 
       search = {
