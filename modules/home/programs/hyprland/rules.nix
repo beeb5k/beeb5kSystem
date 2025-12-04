@@ -28,6 +28,7 @@
       "center, title:^(Save Image)(.*)$"
       "center, title:^(Library)(.*)$"
       "center, title:^(File Upload)(.*)$"
+      "center, class:^(xdg-desktop-portal-gtk)$"
       "float, title:^(Open File)(.*)$"
       "float, title:^(Select a File)(.*)$"
       "float, title:^(Choose wallpaper)(.*)$"
@@ -36,6 +37,7 @@
       "float, title:^(Library)(.*)$"
       "float, title:^(File Upload)(.*)$"
       "float, class:^(org.freedesktop.impl.portal.desktop.kde)$"
+      "float, class:^(xdg-desktop-portal-gtk)$"
       "float, class:^(imv)$"
 
       # No shadow for tiled windows
@@ -47,6 +49,7 @@
       "float, class:^(guifetch)$   # FlafyDev/guifetch"
       "float, class:^(pavucontrol)$"
       "size 45%, class:^(pavucontrol)$"
+      "size 60% 60%, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(pavucontrol)$"
       "float, class:^(org.pulseaudio.pavucontrol)$"
       "size 45%, class:^(org.pulseaudio.pavucontrol)$"

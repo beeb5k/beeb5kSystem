@@ -97,7 +97,7 @@
         fullscreen_opacity = 1;
 
         # Dim
-        dim_inactive = true;
+        dim_inactive = false;
         dim_strength = 0.15;
         dim_special = 0.3;
       };
