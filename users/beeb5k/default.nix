@@ -84,6 +84,8 @@ in
     clippy
     rustfmt
     clang
+    zed-editor-fhs
+    opencode
   ];
 
   programs.home-manager.enable = true;
