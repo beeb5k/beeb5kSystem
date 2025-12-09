@@ -17,12 +17,12 @@
       mouse = {
         hide-when-typing = "yes";
       };
-      key-bindings = { };
+      key-bindings = {};
     };
   };
 
   programs.ghostty = {
-    enable = true;
+    enable = false;
     enableFishIntegration = true;
     settings = {
       config-file = [
@@ -53,16 +53,19 @@
       mouse-hide-while-typing = true;
       custom-shader-animation = "always";
       window-inherit-working-directory = false;
-      custom-shader = [
-        "shaders/cursor_warp.glsl"
-        "shaders/sonic_boom.glsl"
-      ];
+      # custom-shader = [
+      #   "shaders/cursor_warp.glsl"
+      #   "shaders/sonic_boom.glsl"
+      # ];
     };
   };
 
   programs.alacritty = {
-    enable = false;
+    enable = true;
     settings = {
+      cursor = {
+        thickness = 0.0;
+      };
       general = {
         import = [
           "~/.config/alacritty/dank-theme.toml"

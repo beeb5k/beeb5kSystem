@@ -21,6 +21,7 @@
       DisableMasterPasswordCreation = true;
       DontCheckDefaultBrowser = true;
       NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
       UserMessaging = {
         WhatsNew = false;
         ExtensionRecommendations = false;

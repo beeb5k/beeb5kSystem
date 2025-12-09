@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
     sourceFirst = true;
@@ -8,11 +7,12 @@
     systemd.enableXdgAutostart = false;
 
     settings = {
-      monitor = [ ",1920x1080@120,auto,1.0" ];
-      source = [ "colors.conf" ];
+      monitor = [",1920x1080@120,auto,1.0"];
+      source = ["colors.conf"];
 
       "$mainMod" = "SUPER";
-      "$terminal" = "ghostty +new-window";
+      # "$terminal" = "ghostty +new-window";
+      "$terminal" = "alacritty";
       "$fileManager" = "nautilus";
       "$browser" = "firefox";
 
