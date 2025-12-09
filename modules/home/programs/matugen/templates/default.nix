@@ -1,6 +1,5 @@
 {
   imports = [
-    ./matuge-termSeq.nix
     ./matugen-btop.nix
     ./matugen-hyprland.nix
     ./matugen-discord.nix
@@ -9,7 +8,6 @@
     ./matugen-gtk.nix
     ./matugen-neopywal.nix
     ./matugen-pywalfox.nix
-    ./matugen-starship.nix
     ./matugen-yazi.nix
     ./matugen-zathura.nix
     ./matugen-zed.nix
