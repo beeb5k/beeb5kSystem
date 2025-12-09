@@ -2,14 +2,12 @@
   systemState,
   user,
   hostname,
-}:
-{
+}: {
   pkgs,
   config,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
@@ -150,8 +148,8 @@
   };
 
   networking.hostName = hostname;
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.allowedTCPPorts = [];
+  networking.firewall.allowedUDPPorts = [];
   networking.firewall.enable = true;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;

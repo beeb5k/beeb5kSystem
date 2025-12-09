@@ -37,34 +37,31 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      systemState = "25.05";
-      mkSystem = import ./lib/mkSystem.nix {
-        inherit nixpkgs inputs;
-      };
-      mkHome = import ./lib/mkHome.nix {
-        inherit home-manager nixpkgs inputs;
-      };
-    in
-    {
-      nixosConfigurations.bixos = mkSystem {
-        inherit systemState;
-        system = "x86_64-linux";
-        hostname = "bixos";
-        user = "beeb5k";
-      };
-
-      homeConfigurations."beeb5k" = mkHome {
-        inherit systemState;
-        system = "x86_64-linux";
-        username = "beeb5k";
-      };
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    systemState = "25.05";
+    mkSystem = import ./lib/mkSystem.nix {
+      inherit nixpkgs inputs;
     };
+    mkHome = import ./lib/mkHome.nix {
+      inherit home-manager nixpkgs inputs;
+    };
+  in {
+    nixosConfigurations.bixos = mkSystem {
+      inherit systemState;
+      system = "x86_64-linux";
+      hostname = "bixos";
+      user = "beeb5k";
+    };
+
+    homeConfigurations."beeb5k" = mkHome {
+      inherit systemState;
+      system = "x86_64-linux";
+      username = "beeb5k";
+    };
+  };
 }

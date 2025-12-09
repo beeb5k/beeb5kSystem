@@ -1,5 +1,8 @@
-{ pkgs, inputs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     (inputs.nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default)
   ];
@@ -17,7 +20,7 @@
       recycle-bin.enable = true;
       jump-to-char = {
         enable = true;
-        keys.toggle.on = [ "F" ];
+        keys.toggle.on = ["F"];
       };
     };
   };

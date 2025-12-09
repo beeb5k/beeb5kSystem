@@ -1,12 +1,13 @@
-{ systemState, username }:
 {
+  systemState,
+  username,
+}: {
   pkgs,
   lib,
   inputs,
   config,
   ...
-}:
-let
+}: let
   mikuCursor = pkgs.stdenv.mkDerivation {
     pname = "miku-cursor";
     version = "1.0";
@@ -18,9 +19,7 @@ let
       cp -r $src/miku-cursor-linux $out/share/icons/miku-cursor
     '';
   };
-
-in
-{
+in {
   imports = [
     ../../modules/home
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
@@ -56,8 +55,7 @@ in
 
   xdg.portal = {
     enable = true;
-    extraPortals =
-      with pkgs;
+    extraPortals = with pkgs;
       lib.mkForce [
         xdg-desktop-portal-gtk
         xdg-desktop-portal-hyprland
@@ -85,6 +83,7 @@ in
     rustfmt
     clang
     zed-editor-fhs
+    go
     opencode
   ];
 

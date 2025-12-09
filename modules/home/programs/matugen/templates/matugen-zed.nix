@@ -1,5 +1,4 @@
 {
-
   xdg.configFile = {
     "matugen/templates/zed.json" = {
       enable = true;

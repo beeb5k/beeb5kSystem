@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     sway-audio-idle-inhibit # Prevents the screen from turning off when audio is playing
   ];

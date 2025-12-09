@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   specialisation = {
     power_save.configuration = {
       powerManagement = lib.mkForce {
@@ -8,7 +7,7 @@
       };
       networking.networkmanager.wifi.powersave = lib.mkForce true;
 
-      services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+      services.xserver.videoDrivers = lib.mkForce ["amdgpu"];
 
       hardware.nvidia = lib.mkForce {
         modesetting.enable = false;

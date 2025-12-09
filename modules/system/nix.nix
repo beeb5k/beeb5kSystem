@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nix.settings = {
-    trusted-users = [ "@wheel" ];
+    trusted-users = ["@wheel"];
     extra-trusted-substituters = [
       "https://nix-community.cachix.org"
     ];

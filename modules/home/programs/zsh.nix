@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -36,11 +35,11 @@
         eval "$(starship init zsh)"
 
         # zinit wait lucid light-mode depth=1 for \
-        zinit light Aloxaf/fzf-tab 
-        zinit light jeffreytse/zsh-vi-mode 
-        zinit light mrjohannchang/zsh-interactive-cd 
-        zinit light zsh-users/zsh-syntax-highlighting 
-        zinit light zsh-users/zsh-autosuggestions 
+        zinit light Aloxaf/fzf-tab
+        zinit light jeffreytse/zsh-vi-mode
+        zinit light mrjohannchang/zsh-interactive-cd
+        zinit light zsh-users/zsh-syntax-highlighting
+        zinit light zsh-users/zsh-autosuggestions
         zinit light joshskidmore/zsh-fzf-history-search
         zinit light zsh-users/zsh-autosuggestions
         zinit light joshskidmore/zsh-fzf-history-search
