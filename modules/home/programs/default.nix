@@ -12,7 +12,6 @@
     ./btop.nix
     ./anyrun.nix
     ./terminal.nix
-    ./starship.nix
     ./file-manager.nix
     ./zathura.nix
     ./firefox.nix

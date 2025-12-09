@@ -1,5 +1,5 @@
 {
-  imports = [ ./templates ];
+  imports = [./templates];
 
   xdg.configFile = {
     "matugen/config.toml" = {
@@ -26,15 +26,6 @@
           input_path = '~/.config/matugen/templates/hyprland.conf'
           output_path = '~/.config/hypr/colors.conf'
           post_hook = 'hyprctl reload'
-
-          [templates.starship]
-          input_path = '~/.config/matugen/templates/starship.toml'
-          output_path = '~/.config/starship.toml'
-
-          [templates.sequences]
-          input_path = '~/.config/matugen/templates/sequence.sh'
-          output_path = '~/.config/sequences.sh'
-          # post_hook = 'terminal-change-color'
 
           [templates.fuzzel]
           input_path = '~/.config/matugen/templates/fuzzel.ini'
