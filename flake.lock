@@ -6,16 +6,17 @@
         "nixpkgs": "nixpkgs",
         "plugins-everforest-nvim": "plugins-everforest-nvim",
         "plugins-indentmini": "plugins-indentmini",
+        "plugins-neogit": "plugins-neogit",
         "plugins-neopywal": "plugins-neopywal",
         "plugins-opencode-nvim": "plugins-opencode-nvim",
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1765299406,
-        "narHash": "sha256-VRfM9MWidMKqtplEmY19RAbyaLPKF6U9TP4UnASWDX8=",
+        "lastModified": 1765436591,
+        "narHash": "sha256-/aMk0ainfUUqAIhcVEWPzqEkyLgopc2dAHmm9XhfbBs=",
         "owner": "beeb5k",
         "repo": "beeb5kvim",
-        "rev": "35c1cfdbcb420521d944c0d4c861f1c93a04fda4",
+        "rev": "1234a075ce7dda1436d46e10272ddcf2d0cd6323",
         "type": "github"
       },
       "original": {
@@ -35,11 +36,11 @@
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1765298810,
-        "narHash": "sha256-XjOswM31rfF1IcxGmW/mAH1gLuTivqUXRRp3S7h8K/w=",
+        "lastModified": 1765307873,
+        "narHash": "sha256-OLY/YXlU4EMAUxm/UJ3lXm2863xQN11TUBE7nGfP0IE=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "7aa5976e077da9f3d17fe3eeb5b3f328c6b6c4d2",
+        "rev": "e307de83e21bbf9fc3a92593dee502ab6ead9d9d",
         "type": "github"
       },
       "original": {
@@ -399,11 +400,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1764947035,
-        "narHash": "sha256-EYHSjVM4Ox4lvCXUMiKKs2vETUSL5mx+J2FfutM7T9w=",
+        "lastModified": 1765270179,
+        "narHash": "sha256-g2a4MhRKu4ymR4xwo+I+auTknXt/+j37Lnf0Mvfl1rE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a672be65651c80d3f592a89b3945466584a22069",
+        "rev": "677fbe97984e7af3175b6c121f3c39ee5c8d62c9",
         "type": "github"
       },
       "original": {
@@ -505,6 +506,22 @@
       "original": {
         "owner": "nvimdev",
         "repo": "indentmini.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1765264389,
+        "narHash": "sha256-cKxsVGs2GSd/bi9RHOHbRcQtbxAN2vC5JtLuEpWmBBc=",
+        "owner": "NeogitOrg",
+        "repo": "neogit",
+        "rev": "8c75d6d010a5b6d28bc50f2976fe9f341cf268bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NeogitOrg",
+        "repo": "neogit",
         "type": "github"
       }
     },
