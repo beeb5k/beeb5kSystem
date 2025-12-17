@@ -7,35 +7,22 @@
   inputs,
   config,
   ...
-}: let
-  mikuCursor = pkgs.stdenv.mkDerivation {
-    pname = "miku-cursor";
-    version = "1.0";
-    src = inputs.miku-cursor-src;
-    unpackPhase = "true";
-
-    installPhase = ''
-      mkdir -p $out/share/icons
-      cp -r $src/miku-cursor-linux $out/share/icons/miku-cursor
-    '';
-  };
-in {
+}: {
   imports = [
     ../../modules/home
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+    inputs.dankMaterialShell.homeModules.dank-material-shell
   ];
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
 
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
     quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
     systemd = {
       enable = true;
       restartIfChanged = true;
     };
-    enableClipboard = true;
     enableDynamicTheming = true;
   };
 
@@ -43,46 +30,47 @@ in {
     enable = true;
   };
 
-  home.pointerCursor = {
-    name = "miku-cursor";
-    package = mikuCursor;
-    size = 24;
-    enable = true;
-    x11.enable = true;
-    gtk.enable = true;
-    hyprcursor.enable = true;
+  terminal = {
+    emulator = "alacritty";
+    font = {
+      family = "Lilex Nerd Font";
+      size = 12.0;
+    };
+    window = {
+      padding-x = 10;
+      padding-y = 10;
+    };
   };
 
-  xdg.portal = {
+  hyprland = {
     enable = true;
-    extraPortals = with pkgs;
-      lib.mkForce [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
-      ];
+    xwayland = false;
+    decoration = {
+      shadows = false;
+      blur = {
+        enable = false;
+        passes = 3;
+        size = 5;
+        opacity = 0.90;
+      };
+      rounding = 0;
+    };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  rust.enable = false;
+
+  home.sessionVariables =
+    {
+    }
+    // lib.optionalAttrs config.Neovim.enable {
+      EDITOR = "nvim";
+    };
 
   home.packages = with pkgs; [
-    imv
     vesktop
-    imagemagick
-    grimblast
-    brightnessctl
-    mpv
     android-tools
-    rustlings
     gimp3-with-plugins
-    rust-analyzer
-    rustc
-    cargo
-    clippy
-    rustfmt
     clang
-    zed-editor-fhs
     go
     opencode
   ];

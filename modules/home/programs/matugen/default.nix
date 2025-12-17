@@ -1,9 +1,9 @@
-{
+{config, ...}: {
   imports = [./templates];
 
   xdg.configFile = {
     "matugen/config.toml" = {
-      enable = true;
+      enable = config.hyprland.enable;
       text =
         # toml
         ''

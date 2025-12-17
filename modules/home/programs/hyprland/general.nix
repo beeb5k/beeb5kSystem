@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  ...
+}: let
+  term = config.terminal;
+  hypr = config.hyprland;
+in {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = hypr.enable;
     sourceFirst = true;
     systemd.enable = false;
-    xwayland.enable = false;
+    xwayland.enable = hypr.xwayland;
     systemd.enableXdgAutostart = false;
 
     settings = {
@@ -11,15 +18,27 @@
       source = ["colors.conf"];
 
       "$mainMod" = "SUPER";
-      # "$terminal" = "ghostty +new-window";
-      "$terminal" = "alacritty";
+      "$terminal" =
+        {
+          ghostty = "ghostty";
+          foot = "foot";
+        }.${
+          term.emulator
+        } or term.emulator;
+      # "$terminal" =
+      #   if cfg.emulator == "ghostty"
+      #   then "ghostty +new-window"
+      #   else (toString terminalEmu);
+
       "$fileManager" = "nautilus";
       "$browser" = "firefox";
 
       exec-once = [
-        # "foot --server"
-        "bash -c 'wl-paste --watch cliphist store &'"
+        # "bash -c 'wl-paste --watch cliphist store &'"
       ];
+      # ++ (optionals (cfg.emulator == "foot") [
+      #   "foot --server"
+      # ]);
 
       xwayland = {
         force_zero_scaling = true;
@@ -64,43 +83,46 @@
         pseudotile = true;
       };
 
-      decoration = {
-        rounding = 0;
-        blur = {
-          enabled = false;
-          xray = true;
-          special = false; # omg this guy stinks.
-          new_optimizations = true;
-          size = 14;
-          passes = 3;
-          brightness = 1;
-          noise = 0.01;
-          contrast = 1;
-          popups = true;
-          popups_ignorealpha = 0.6;
-          input_methods = false;
-          input_methods_ignorealpha = 0.8;
+      decoration =
+        {
+          rounding = hypr.decoration.rounding;
+          blur = {
+            enabled = hypr.decoration.blur.enable;
+            xray = true;
+            special = false; # omg this guy stinks.
+            new_optimizations = true;
+            size = hypr.decoration.blur.size;
+            passes = hypr.decoration.blur.passes;
+            brightness = 1;
+            noise = 0.01;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
+            input_methods = false;
+            input_methods_ignorealpha = 0.8;
+          };
+
+          shadow = {
+            enabled = hypr.decoration.shadows;
+            ignore_window = true;
+            range = 20;
+            offset = "0 2";
+            render_power = 3;
+            color = "$_shadow";
+          };
+
+          # Window Opacities
+          fullscreen_opacity = 1;
+
+          # Dim
+          dim_inactive = false;
+          dim_strength = 0.15;
+          dim_special = 0.3;
+        }
+        // lib.optionalAttrs hypr.decoration.blur.enable {
+          active_opacity = hypr.decoration.blur.opacity;
+          inactive_opacity = hypr.decoration.blur.opacity;
         };
-
-        shadow = {
-          enabled = false;
-          ignore_window = true;
-          range = 20;
-          offset = "0 2";
-          render_power = 3;
-          color = "$_shadow";
-        };
-
-        # Window Opacities
-        # active_opacity = 0.87;
-        # inactive_opacity = 0.87;
-        fullscreen_opacity = 1;
-
-        # Dim
-        dim_inactive = false;
-        dim_strength = 0.15;
-        dim_special = 0.3;
-      };
 
       misc = {
         vfr = true;

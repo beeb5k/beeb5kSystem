@@ -1,7 +1,9 @@
-{
+{config, ...}: let
+  cfg = config.hyprland;
+in {
   wayland.windowManager.hyprland.settings = {
     animations = {
-      enabled = true;
+      enabled = cfg.animations;
       bezier = [
         # "expressiveFastSpatial, 0.42, 1.67, 0.21, 0.90"
         # "expressiveSlowSpatial, 0.39, 1.29, 0.35, 0.98"

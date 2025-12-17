@@ -15,5 +15,7 @@
     ./file-manager.nix
     ./zathura.nix
     ./firefox.nix
+    ./style.nix
+    ./rust.nix
   ];
 }
