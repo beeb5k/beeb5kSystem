@@ -1,7 +1,13 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    pywalfox-native
-  ];
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
+  home.packages = with pkgs;
+    lib.mkIf config.hyprland.enable [
+      pywalfox-native
+    ];
 
   programs.firefox = {
     enable = true;
@@ -47,22 +53,25 @@
         ImproveSuggest = false;
         Locked = true;
       };
-      ExtensionSettings = {
-        "uBlock0@raymondhill.net" = {
-          default_area = "menupanel";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          private_browsing = true;
+      ExtensionSettings =
+        {
+          "uBlock0@raymondhill.net" = {
+            default_area = "menupanel";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            private_browsing = true;
+          };
+          # "addon@darkreader.org" = {
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+          # };
+        }
+        // lib.optionalAttrs config.hyprland.enable {
+          "pywalfox@frewacom.org" = {
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+          };
         };
-        "pywalfox@frewacom.org" = {
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-        };
-        # "addon@darkreader.org" = {
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-        # };
-      };
     };
 
     profiles.default = {
