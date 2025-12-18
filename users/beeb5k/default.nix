@@ -28,13 +28,25 @@
 
   Neovim = {
     enable = true;
+    packageDefinitions.replace =
+      builtins.mapAttrs (n: _: {pkgs, ...}: {
+        categories = {
+          go = false;
+        };
+        extra = {
+          pluginChoice = "fast";
+        };
+      })
+      inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
   };
 
   terminal = {
-    emulator = "alacritty";
+    emulator = "alacritty"; # alacritty, foot, ghostty.
     font = {
       family = "Lilex Nerd Font";
       size = 12.0;
+      bright_color_is_bold = false;
+      ligatures = false; # only supported by ghostty
     };
     window = {
       padding-x = 10;
@@ -45,15 +57,17 @@
   hyprland = {
     enable = true;
     xwayland = false;
+    animations = true;
+    layout = "master"; # master or dwindle
     decoration = {
       shadows = false;
+      rounding = 0;
       blur = {
         enable = false;
         passes = 3;
         size = 5;
         opacity = 0.90;
       };
-      rounding = 0;
     };
   };
 

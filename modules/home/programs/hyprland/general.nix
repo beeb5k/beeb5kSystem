@@ -25,11 +25,6 @@ in {
         }.${
           term.emulator
         } or term.emulator;
-      # "$terminal" =
-      #   if cfg.emulator == "ghostty"
-      #   then "ghostty +new-window"
-      #   else (toString terminalEmu);
-
       "$fileManager" = "nautilus";
       "$browser" = "firefox";
 
@@ -54,7 +49,7 @@ in {
       };
 
       general = {
-        layout = "dwindle";
+        layout = hypr.layout;
         # layout = "master";
         gaps_in = 4;
         gaps_out = 5;

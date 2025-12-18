@@ -22,11 +22,13 @@ in {
         type = types.float;
       };
 
-      bold = mkOption {
+      bright_color_is_bold = mkOption {
         type = types.bool;
         default = false;
         description = "Force bold text";
       };
+
+      ligatures = mkEnableOption "Only supported by ghostty";
     };
 
     window = {
@@ -55,7 +57,7 @@ in {
 
             dpi-aware = "no";
             bold-text-in-bright =
-              if cfg.font.bold
+              if cfg.font.bright_color_is_bold
               then "yes"
               else "no";
           };
@@ -75,24 +77,32 @@ in {
         enable = true;
         enableFishIntegration = true;
         settings = {
-          config-file = ["~/.config/ghostty/config-dankcolors"];
+          config-file = ["~/.config/ghostty/themes/dankcolors"];
 
           font-family = cfg.font.family;
           font-size = cfg.font.size;
           window-padding-x = cfg.window.padding-x;
           window-padding-y = cfg.window.padding-y;
-
-          font-feature = ["calt" "liga" "dlig" "cv10" "cv06" "ss02" "ss03"];
-          bold-is-bright = cfg.font.bold;
+          font-feature =
+            ["cv10" "cv06" "ss02" "ss03"]
+            ++ (
+              if cfg.font.ligatures
+              then [
+                "calt"
+                "liga"
+                "dlig"
+              ]
+              else ["-calt" "-liga" "-dlig"]
+            );
+          bold-is-bright = cfg.font.bright_color_is_bold;
           gtk-titlebar = false;
-          gtk-single-instance = false;
+          gtk-single-instance = true;
           gtk-tabs-location = "bottom";
           gtk-wide-tabs = false;
           resize-overlay = "never";
           copy-on-select = false;
           confirm-close-surface = false;
           mouse-hide-while-typing = true;
-          custom-shader-animation = "always";
           window-inherit-working-directory = false;
         };
       };
@@ -104,6 +114,15 @@ in {
         settings = {
           cursor = {
             thickness = 0.0;
+          };
+          debug = {
+            prefer_egl = true;
+          };
+          colors = {
+            draw_bold_text_with_bright_colors = cfg.font.bright_color_is_bold;
+          };
+          mouse = {
+            hide_when_typing = true;
           };
           general = {
             import = ["~/.config/alacritty/dank-theme.toml"];
