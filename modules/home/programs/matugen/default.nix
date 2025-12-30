@@ -39,13 +39,13 @@
           input_path = '~/.config/matugen/templates/neopywal.vim'
           output_path = '~/.cache/wal/colors-wal.vim'
 
-          [templates.firefox]
-          input_path = '~/.config/matugen/templates/firefox.css'
-          output_path = '~/.mozilla/firefox/default/chrome/theme-material-blue.css'
-
           [templates.zed]
           input_path = '~/.config/matugen/templates/zed.json'
           output_path = '~/.config/zed/themes/matugen.json'
+
+          [templates.zen]
+          input_path = '~/.config/matugen/templates/zen.css'
+          output_path = '~/.zen/wiq3g19k.Default Profile/chrome/userChrome.css'
         '';
     };
   };

@@ -32,9 +32,11 @@
       builtins.mapAttrs (n: _: {pkgs, ...}: {
         categories = {
           go = false;
+          clang = true;
+          misc = true;
         };
         extra = {
-          pluginChoice = "fast";
+          pluginChoice = "fancy"; # fancy , fast , normal
         };
       })
       inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
@@ -57,16 +59,16 @@
   hyprland = {
     enable = true;
     xwayland = false;
-    animations = true;
+    animations = false;
     layout = "master"; # master or dwindle
     decoration = {
       shadows = false;
-      rounding = 0;
+      rounding = 15;
       blur = {
-        enable = false;
+        enable = true;
         passes = 3;
-        size = 5;
-        opacity = 0.90;
+        size = 11;
+        opacity = 0.94;
       };
     };
   };
@@ -87,6 +89,7 @@
     clang
     go
     opencode
+    obsidian
   ];
 
   programs.home-manager.enable = true;

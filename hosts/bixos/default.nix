@@ -41,7 +41,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
-  programs.dankMaterialShell.greeter = {
+  # programs.dank-material-shell.greeter = {
+  services.displayManager.dms-greeter = {
     enable = true;
     compositor.name = "hyprland";
     configHome = "/home/${user}";

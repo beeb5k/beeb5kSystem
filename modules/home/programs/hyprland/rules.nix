@@ -73,7 +73,7 @@
       # "animation slide left, quickshell:sidebarLeft"
       # "animation slide bottom, quickshell:osk"
       # "animation slide bottom, quickshell:dock"
-      # "blur, quickshell:session"
+      # "blur, dms:bar"
       # "noanim, quickshell:session"
       # "ignorealpha 0, quickshell:session"
       # "animation fade, quickshell:notificationPopup"

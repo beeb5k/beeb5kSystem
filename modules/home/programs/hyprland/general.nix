@@ -26,7 +26,7 @@ in {
           term.emulator
         } or term.emulator;
       "$fileManager" = "nautilus";
-      "$browser" = "firefox";
+      "$browser" = "zen";
 
       exec-once = [
         # "bash -c 'wl-paste --watch cliphist store &'"
