@@ -5,15 +5,17 @@
   #     default = {
   #       config = ''
   #         (defsrc
-  #           caps
+  #           esc  caps
   #         )
   #
   #         (defalias
-  #           escctrl (tap-hold 100 150 esc lctl)
+  #           ;; tap for esc, hold for left control
+  #           ;; 200 200 are the tap/hold timeout values in ms
+  #           cap (tap-hold 200 200 esc lctl)
   #         )
   #
   #         (deflayer base
-  #           @escctrl
+  #           caps @cap
   #         )
   #       '';
   #     };
@@ -28,18 +30,6 @@
         capslock = "overload(control, esc)";
         esc = "capslock";
       };
-      # well i think i'll just use the defaults for now.
-      # sym = {
-      #   u = ")";
-      #   i = "]";
-      #   j = "(";
-      #   k = "{";
-      #   l = "[";
-      #   o = "=";
-      #   p = "$";
-      #   ";" = "_";
-      #   "." = "}";
-      # };
     };
   };
 }
