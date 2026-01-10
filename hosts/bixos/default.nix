@@ -11,7 +11,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
-    inputs.dankMaterialShell.nixosModules.greeter
+    inputs.dms.nixosModules.greeter
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -41,12 +41,39 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
-  # programs.dank-material-shell.greeter = {
-  services.displayManager.dms-greeter = {
+  programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "hyprland";
     configHome = "/home/${user}";
     quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
+
+  boot = {
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+      themePackages = with pkgs; [
+        nixos-bgrt-plymouth
+      ];
+    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+  };
+
+  programs.gamescope.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   services.earlyoom.enable = true;
@@ -125,8 +152,8 @@
 
   programs.hyprland = {
     enable = true;
-    withUWSM = true;
-    xwayland.enable = false;
+    withUWSM = false;
+    xwayland.enable = true;
   };
 
   environment.sessionVariables = {
@@ -137,6 +164,7 @@
     # MESA_DEVICE_SELECTION = "NVIDIA";
     # __NV_PRIME_RENDER_OFFLOAD = "1";
     # WLR_NO_HARDWARE_CURSORS = "1";
+    # __VK_LAYER_NV_optimus = "prefer";
 
     NIXOS_OZONE_WL = 1;
     ELECTRON_OZONE_PLATFORM_HINT = "auto";

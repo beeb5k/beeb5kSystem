@@ -10,7 +10,7 @@
 }: {
   imports = [
     ../../modules/home
-    inputs.dankMaterialShell.homeModules.dank-material-shell
+    inputs.dms.homeModules.dank-material-shell
   ];
 
   home.username = username;
@@ -58,22 +58,38 @@
 
   hyprland = {
     enable = true;
-    xwayland = false;
+    xwayland = true;
     animations = false;
     layout = "master"; # master or dwindle
     decoration = {
       shadows = false;
       rounding = 15;
       blur = {
-        enable = true;
+        enable = false;
         passes = 3;
         size = 11;
-        opacity = 0.94;
+        # opacity = 0.94;
+        opacity = 1.0;
       };
     };
   };
 
   rust.enable = false;
+
+  programs.mangohud = {
+    enable = true;
+    settings = {
+      fps = true;
+      frametime = true;
+      device = true;
+      gpu_stats = true;
+      gpu_temp = true;
+      gpu_core_clock = true;
+      gpu_mem_clock = true;
+      vram = true;
+      cpu_stats = true;
+    };
+  };
 
   home.sessionVariables =
     {
@@ -83,7 +99,8 @@
     };
 
   home.packages = with pkgs; [
-    vesktop
+    # vesktop
+    discord
     android-tools
     gimp3-with-plugins
     clang
