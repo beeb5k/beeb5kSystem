@@ -55,8 +55,8 @@
     ];
 
     bindel = [
-      ",XF86AudioRaiseVolume,exec,exec, dms ipc call audio increment 3"
-      ",XF86AudioLowerVolume,exec,exec, dms ipc call audio decrement 3"
+      ",XF86AudioRaiseVolume,exec,dms ipc call audio increment 3"
+      ",XF86AudioLowerVolume,exec,dms ipc call audio decrement 3"
       ",XF86AudioMute,exec,dms ipc call audio mute"
       ",XF86AudioMicMute,exec,dms ipc call audio micmute"
       ",XF86MonBrightnessUp,exec,dms ipc call brightness increment 5 ''"

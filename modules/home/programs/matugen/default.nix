@@ -43,9 +43,9 @@
           input_path = '~/.config/matugen/templates/zed.json'
           output_path = '~/.config/zed/themes/matugen.json'
 
-          [templates.zen]
-          input_path = '~/.config/matugen/templates/zen.css'
-          output_path = '~/.zen/wiq3g19k.Default Profile/chrome/userChrome.css'
+          # [templates.zen]
+          # input_path = '~/.config/matugen/templates/zen.css'
+          # output_path = '~/.zen/wiq3g19k.Default Profile/chrome/userChrome.css'
         '';
     };
   };

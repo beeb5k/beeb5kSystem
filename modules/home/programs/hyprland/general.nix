@@ -9,7 +9,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = hypr.enable;
     sourceFirst = true;
-    systemd.enable = false;
+    systemd.enable = true;
     xwayland.enable = hypr.xwayland;
     systemd.enableXdgAutostart = false;
 
@@ -29,7 +29,10 @@ in {
       "$browser" = "zen";
 
       exec-once = [
-        # "bash -c 'wl-paste --watch cliphist store &'"
+        "bash -c 'wl-paste --watch cliphist store &'"
+        "gnome-keyring-daemon --start --components=secrets"
+        "dbus-update-activation-environment --all"
+        "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
       # ++ (optionals (cfg.emulator == "foot") [
       #   "foot --server"
@@ -132,7 +135,7 @@ in {
 
         disable_hyprland_logo = true;
         force_default_wallpaper = 0;
-        new_window_takes_over_fullscreen = 2;
+        on_focus_under_fullscreen = 2;
         allow_session_lock_restore = true;
         initial_workspace_tracking = false;
         focus_on_activate = true;

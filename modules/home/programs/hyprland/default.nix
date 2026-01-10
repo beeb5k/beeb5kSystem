@@ -62,6 +62,7 @@ in {
         home.packages = with pkgs; [
           imv
           wl-clipboard
+          cliphist
           imagemagick
           grimblast
           brightnessctl

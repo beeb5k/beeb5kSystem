@@ -1,62 +1,55 @@
 {
-  wayland.windowManager.hyprland.settings.general = {
-    windowrulev2 = [
-      "workspace 1,class:^(brave-browser|firefox|zen-beta|zen-twilight)$"
-      # "workspace 2,class:^(foot|footclient|alacritty|Alacritty|com.mitchellh.ghostty|)$"
-      "workspace 3,class:^(vesktop)$"
-      "workspace 4,class:^(Spotify)$"
+  wayland.windowManager.hyprland.settings = {
+    windowrule = [
+      "workspace 1, match:class ^(brave-browser|firefox|zen-beta|zen-twilight|zen)$"
+      # "workspace 2, match:class ^(foot|footclient|alacritty|Alacritty|com.mitchellh.ghostty|)$"
+      "workspace 3, match:class ^(vesktop|discord)$"
+      "workspace 4, match:class ^(Spotify|steam)$"
 
-      "suppressevent maximize,class:.*"
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      "noblur, xwayland:1"
+      "suppress_event maximize, match:class .*"
+      "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+      "no_blur on, match:xwayland 1"
 
       # Picture-in-Picture
-      "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-      "keepaspectratio, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-      "move 73% 72%, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$ "
-      "size 25%, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-      "float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
-      "pin, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$K"
+      "float on, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
+      "keep_aspect_ratio on, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
+      "move 73% 72%, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$ "
+      "size 25%, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
+      "pin on, match:title ^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$"
 
-      # Dialog windows – float+center these windows.
-      "center, class:^(imv)$"
-      "center, title:^(Open File)(.*)$"
-      "center, title:^(Select a File)(.*)$"
-      "center, title:^(Choose wallpaper)(.*)$"
-      "center, title:^(Open Folder)(.*)$"
-      "center, title:^(Save As)(.*)$"
-      "center, title:^(Save Image)(.*)$"
-      "center, title:^(Library)(.*)$"
-      "center, title:^(File Upload)(.*)$"
-      "center, class:^(xdg-desktop-portal-gtk)$"
-      "float, title:^(Open File)(.*)$"
-      "float, title:^(Select a File)(.*)$"
-      "float, title:^(Choose wallpaper)(.*)$"
-      "float, title:^(Open Folder)(.*)$"
-      "float, title:^(Save As)(.*)$"
-      "float, title:^(Library)(.*)$"
-      "float, title:^(File Upload)(.*)$"
-      "float, class:^(org.freedesktop.impl.portal.desktop.kde)$"
-      "float, class:^(xdg-desktop-portal-gtk)$"
-      "float, class:^(imv)$"
+      # Dialog windows – float+center
+      "float on, center on, match:class ^(imv)$"
+      "float on, center on, match:title ^(Open File)(.*)$"
+      "float on, center on, match:title ^(Select a File)(.*)$"
+      "float on, center on, match:title ^(Choose wallpaper)(.*)$"
+      "float on, center on, match:title ^(Open Folder)(.*)$"
+      "float on, center on, match:title ^(Save As)(.*)$"
+      "float on, center on, match:title ^(Save Image)(.*)$"
+      "float on, center on, match:title ^(Library)(.*)$"
+      "float on, center on, match:title ^(File Upload)(.*)$"
+      "float on, center on, match:class ^(xdg-desktop-portal-gtk)$"
+
+      "float on, match:class ^(org.freedesktop.impl.portal.desktop.kde)$"
 
       # No shadow for tiled windows
-      "noshadow, floating:0"
+      "no_shadow on, match:float 0"
 
-      # Floating
-      "float, class:^(blueberry\.py)$"
-      "float, class:^(steam)$"
-      "float, class:^(guifetch)$   # FlafyDev/guifetch"
-      "float, class:^(pavucontrol)$"
-      "size 45%, class:^(pavucontrol)$"
-      "size 60% 60%, class:^(xdg-desktop-portal-gtk)$"
-      "center, class:^(pavucontrol)$"
-      "float, class:^(org.pulseaudio.pavucontrol)$"
-      "size 45%, class:^(org.pulseaudio.pavucontrol)$"
-      "center, class:^(org.pulseaudio.pavucontrol)$"
-      "float, class:^(nm-connection-editor)$"
-      "size 45%, class:^(nm-connection-editor)$"
-      "center, class:^(nm-connection-editor)$"
+      # Floating specific apps
+      "float on, match:class ^(blueberry\.py)$"
+      "float on, match:class ^(steam)$"
+      "float on, match:class ^(guifetch)$"
+
+      # Pavucontrol (Float + Size + Center combined)
+      "float on, size 45%, center on, match:class ^(pavucontrol)$"
+      "float on, size 45%, center on, match:class ^(org.pulseaudio.pavucontrol)$"
+
+      # Network Manager
+      "float on, size 45%, center on, match:class ^(nm-connection-editor)$"
+
+      "size 60% 60%, match:class ^(xdg-desktop-portal-gtk)$"
+
+      # fix xwayland windows opening as float
+      "tile on, match:xwayland 1"
     ];
 
     workspace = [
@@ -64,23 +57,9 @@
     ];
 
     layerrule = [
-      "xray 1, .*"
-      "noanim, ^(quickshell)$"
-      "noanim, hyprpicker"
-      # "animation slide, quickshell:bar"
-      # "animation fade, quickshell:screenCorners"
-      # "animation slide right, quickshell:sidebarRight"
-      # "animation slide left, quickshell:sidebarLeft"
-      # "animation slide bottom, quickshell:osk"
-      # "animation slide bottom, quickshell:dock"
-      # "blur, dms:bar"
-      # "noanim, quickshell:session"
-      # "ignorealpha 0, quickshell:session"
-      # "animation fade, quickshell:notificationPopup"
-      # "blur, quickshell:backgroundWidgets"
-      # "ignorealpha 0.05, quickshell:backgroundWidgets"
-      # "noanim, quickshell:screenshot"
-      # "animation popin 120%, quickshell:screenCorners"
+      "xray 1, match:namespace .*"
+      "no_anim on, match:namespace ^(quickshell)$"
+      "no_anim on, match:namespace hyprpicker"
     ];
   };
 }
