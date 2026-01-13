@@ -170,7 +170,7 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_QPA_PLATFORM = "wayland;xcb";
-    # SDL_VIDEODRIVER = "wayland";
+    SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
     # GDK_BACKEND = "wayland,x11";
     GDK_SCALE = 1;
