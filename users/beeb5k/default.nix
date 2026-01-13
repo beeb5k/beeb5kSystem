@@ -99,8 +99,9 @@
     };
 
   home.packages = with pkgs; [
-    # vesktop
-    discord
+    (discord.override {
+      withEquicord = true;
+    })
     android-tools
     gimp3-with-plugins
     clang

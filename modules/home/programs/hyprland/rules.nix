@@ -36,7 +36,7 @@
 
       # Floating specific apps
       "float on, match:class ^(blueberry\.py)$"
-      "float on, match:class ^(steam)$"
+      # "float on, match:class ^(steam)$"
       "float on, match:class ^(guifetch)$"
 
       # Pavucontrol (Float + Size + Center combined)
@@ -49,7 +49,7 @@
       "size 60% 60%, match:class ^(xdg-desktop-portal-gtk)$"
 
       # fix xwayland windows opening as float
-      "tile on, match:xwayland 1"
+      # "tile on, match:xwayland 1"
     ];
 
     workspace = [
