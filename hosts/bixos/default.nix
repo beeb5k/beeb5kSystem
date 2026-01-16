@@ -18,6 +18,13 @@
 
   time.timeZone = "Asia/Kolkata";
 
+  services.logind.settings = {
+    Login = {
+      HandleLidSwitch = "suspend";
+      LidSwitchIgnoreInhibit = "no";
+    };
+  };
+
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
@@ -41,8 +48,9 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   hardware.enableRedistributableFirmware = true;
+  programs.dconf.enable = true;
   programs.dank-material-shell.greeter = {
-    enable = true;
+    enable = false;
     compositor.name = "hyprland";
     configHome = "/home/${user}";
     quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -76,22 +84,18 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  services.earlyoom.enable = true;
+  services.earlyoom.enable = false;
   services.fwupd.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
+  programs.seahorse.enable = false;
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
   services.openssh.enable = true;
-  services.upower.enable = true;
+  services.upower.enable = false;
   services.blueman.enable = false;
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -151,9 +155,26 @@
   };
 
   programs.hyprland = {
-    enable = true;
+    enable = false;
     withUWSM = false;
     xwayland.enable = true;
+  };
+
+  services.xserver = {
+    enable = true;
+    autoRepeatDelay = 300;
+    autoRepeatInterval = 20;
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+      # mouse.naturalScrolling = false; # Optional for mouse
+    };
+
+    windowManager.bspwm.enable = true;
   };
 
   environment.sessionVariables = {
@@ -166,14 +187,14 @@
     # WLR_NO_HARDWARE_CURSORS = "1";
     # __VK_LAYER_NV_optimus = "prefer";
 
-    NIXOS_OZONE_WL = 1;
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
-    QT_QPA_PLATFORM = "wayland;xcb";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
+    # NIXOS_OZONE_WL = 1;
+    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    # QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+    # QT_QPA_PLATFORM = "wayland;xcb";
+    # SDL_VIDEODRIVER = "wayland";
+    # XDG_SESSION_TYPE = "wayland";
     # GDK_BACKEND = "wayland,x11";
-    GDK_SCALE = 1;
+    # GDK_SCALE = 1;
   };
 
   networking.hostName = hostname;

@@ -12,5 +12,11 @@
     ./matugen-zathura.nix
     ./matugen-zed.nix
     ./matugen-zen.nix
+    ./matugen-bspwm.nix
+    ./matugen-polybar.nix
+    ./matugen-rofi.nix
+    ./matugen-dunst.nix
+    ./matugen-alacritty.nix
+    ./matugen-i3lockcolors.nix
   ];
 }

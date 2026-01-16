@@ -23,8 +23,10 @@ in {
     hyprcursor.size = 16;
     dotIcons.enable = true;
     hyprcursor.enable = true;
-    name = "miku-cursor";
-    package = mikuCursor;
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    # name = "miku-cursor";
+    # package = mikuCursor;
   };
 
   dconf.settings = {

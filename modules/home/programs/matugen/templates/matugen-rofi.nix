@@ -1,0 +1,19 @@
+{
+  xdg.configFile = {
+    "matugen/templates/rofi-colors.rasi" = {
+      enable = true;
+      text =
+        # rasi
+        ''
+              * {
+              background:     {{colors.surface.default.hex}};
+              background-alt: {{colors.surface_container.default.hex}};
+              foreground:     {{colors.on_surface.default.hex}};
+              selected:       {{colors.primary.default.hex}};
+              active:         {{colors.secondary.default.hex}};
+              urgent:         {{colors.error.default.hex}};
+          }
+        '';
+    };
+  };
+}

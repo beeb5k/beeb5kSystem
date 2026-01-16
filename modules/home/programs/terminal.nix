@@ -125,7 +125,7 @@ in {
             hide_when_typing = true;
           };
           general = {
-            import = ["~/.config/alacritty/dank-theme.toml"];
+            import = ["~/.cache/wal/alacritty-colors.toml"];
           };
           window = {
             padding = {

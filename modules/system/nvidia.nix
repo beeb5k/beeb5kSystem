@@ -20,11 +20,7 @@
     vulkan-tools
   ];
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "nvidia"
-  ];
+  services.xserver.videoDrivers = ["amdgpu" "nvidia"];
 
   hardware.nvidia = {
     modesetting.enable = true;

@@ -19,6 +19,11 @@
     "browser.sessionstore.restore_tabs_lazily" = false;
     "browser.sessionstore.restore_windows_to_virtual_desktop" = false;
     "browser.sessionstore.max_resumed_crashes" = 0;
+    "gfx.webrender.all" = true;
+    "gfx.webrender.compositor" = true;
+    "gfx.x11-egl.force-enabled" = true;
+    "layers.acceleration.force-enabled" = true;
+    "media.ffmpeg.vaapi.enabled" = true;
   };
 
   extensions = [

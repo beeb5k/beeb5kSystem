@@ -10,10 +10,10 @@
       package = pkgs.adwaita-icon-theme;
     };
     gtk3.extraCss = ''
-      @import url("dank-colors.css");
+      @import url("colors.css");
     '';
     gtk4.extraCss = ''
-      @import url("dank-colors.css");
+      @import url("colors.css");
     '';
   };
 }

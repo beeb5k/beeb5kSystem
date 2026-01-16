@@ -2,9 +2,10 @@
   imports = [
     ./qt.nix
     ./gtk.nix
+    ./bspwm
     ./matugen
     ./git.nix
-    # ./obs.nix
+    ./obs.nix
     # ./zsh.nix
     ./hyprland
     ./fish.nix
@@ -17,5 +18,7 @@
     ./style.nix
     ./rust.nix
     ./zen-browser.nix
+    ./rofi
+    ./dunst.nix
   ];
 }

@@ -28,6 +28,17 @@ in {
       "$fileManager" = "nautilus";
       "$browser" = "zen";
 
+      env = [
+        "NIXOS_OZONE_WL,1"
+        "kELECTRON_OZONE_PLATFORM_HINT,autok"
+        "kQT_AUTO_SCREEN_SCALE_FACTOR,1k"
+        "kQT_QPA_PLATFORM,wayland;xcbk"
+        "kSDL_VIDEODRIVER,waylandk"
+        "kXDG_SESSION_TYPE,waylandk"
+        "kGDK_BACKEND,wayland,x11k"
+        "kGDK_SCALE,1k"
+      ];
+
       exec-once = [
         "gnome-keyring-daemon --start --components=secrets"
         "dbus-update-activation-environment --all"

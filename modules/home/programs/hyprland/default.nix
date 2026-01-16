@@ -57,6 +57,7 @@ in {
             lib.mkForce [
               xdg-desktop-portal-gtk
               xdg-desktop-portal-hyprland
+              xdg-desktop-portal-xapp
             ];
         };
         home.packages = with pkgs; [
