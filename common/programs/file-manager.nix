@@ -11,9 +11,7 @@
     nautilus
   ];
 
-  programs.yazi.enable = true;
-
-  programs.yazi.yaziPlugins = {
+  programs.yazi = { enable = true; yaziPlugins = {
     enable = true;
     plugins = {
       full-border.enable = true;
@@ -23,5 +21,6 @@
         keys.toggle.on = ["F"];
       };
     };
+  };
   };
 }

@@ -1,6 +1,6 @@
 {
   systemState,
-  username,
+  user,
 }: {
   pkgs,
   lib,
@@ -9,21 +9,26 @@
   ...
 }: {
   imports = [
-    ../../modules/home
-    inputs.dms.homeModules.dank-material-shell
+    inputs.beeb5kvim.homeModules.default
+    inputs.self.homeModules.bspwm
+    inputs.self.homeModules.programs
   ];
 
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
 
-  programs.dank-material-shell = {
-    enable = config.hyprland.enable;
-    quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
+  terminal = {
+    emulator = "alacritty"; # alacritty, foot, ghostty.
+    font = {
+      family = "Lilex Nerd Font";
+      size = 12.0;
+      bright_color_is_bold = false;
+      ligatures = false; # only supported by ghostty
     };
-    enableDynamicTheming = true;
+    window = {
+      padding-x = 10;
+      padding-y = 10;
+    };
   };
 
   Neovim = {
@@ -42,36 +47,57 @@
       inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
   };
 
-  terminal = {
-    emulator = "alacritty"; # alacritty, foot, ghostty.
-    font = {
-      family = "Lilex Nerd Font";
-      size = 12.0;
-      bright_color_is_bold = false;
-      ligatures = false; # only supported by ghostty
+  programs.git = {
+    enable = true;
+    settings = {
+      init.defaultBranch = "main";
+      credential.helper = "store";
+      user = {
+        email = "112796674+beeb5k@users.noreply.github.com";
+        name = "beeb5k";
+      };
     };
-    window = {
-      padding-x = 10;
-      padding-y = 10;
+
+    signing = {
+      key = "1D8222FA8B7E93A6";
+      signByDefault = true;
     };
   };
 
-  hyprland = {
-    enable = false;
-    xwayland = true;
-    animations = false;
-    layout = "master"; # master or dwindle
-    decoration = {
-      shadows = false;
-      rounding = 15;
-      blur = {
-        enable = false;
-        passes = 3;
-        size = 11;
-        # opacity = 0.94;
-        opacity = 1.0;
-      };
+  home.pointerCursor = {
+    size = 16;
+    enable = true;
+    x11.enable = true;
+    gtk.enable = true;
+    hyprcursor.size = 16;
+    dotIcons.enable = true;
+    hyprcursor.enable = true;
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
     };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.adw-gtk3;
+      name = "adw-gtk3";
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+    gtk3.extraCss = ''
+      @import url("colors.css");
+    '';
+    gtk4.extraCss = ''
+      @import url("colors.css");
+    '';
   };
 
   bspwm.enable = true;
@@ -85,8 +111,6 @@
     "Xft.antialias" = 1;
     "Xft.rgba" = "rgb";
   };
-
-  rust.enable = false;
 
   programs.mangohud = {
     enable = true;
@@ -126,12 +150,7 @@
     };
   };
 
-  home.sessionVariables =
-    {
-    }
-    // lib.optionalAttrs config.Neovim.enable {
-      EDITOR = "nvim";
-    };
+  home.sessionVariables = {};
 
   services.picom = {
     enable = true;
@@ -165,53 +184,9 @@
     };
   };
 
-  # services.picom = {
-  #   enable = false;
-  #
-  #   backend = "glx";
-  #
-  #   vSync = true;
-  #
-  #   settings = {
-  #     use-damage = true;
-  #     xrender-sync-fence = true;
-  #     unredir-if-possible = true;
-  #     detect-transient = true;
-  #     detect-client-opacity = true;
-  #
-  #     glx-no-stencil = true;
-  #     glx-no-rebind-pixmap = true;
-  #     glx-use-copysubbuffermesa = true;
-  #     glx-copy-from-front = false;
-  #
-  #     vsync-use-glfinish = false;
-  #     dbe = false;
-  #     mark-wmwin-focused = true;
-  #     mark-ovredir-focused = true;
-  #
-  #     shadow = false;
-  #     fade = false;
-  #     blur-method = "none";
-  #     animations = false;
-  #
-  #     inactive-opacity = 1.0;
-  #     active-opacity = 1.0;
-  #     frame-opacity = 1.0;
-  #
-  #     detect-rounded-corners = true;
-  #     resize-damage = 1;
-  #   };
-  # };
-  #
   home.packages = with pkgs; [
-    vesktop
-    # (discord.override {
-    #   withEquicord = true;
-    # })
-    android-tools
+    vscode
     gimp3-with-plugins
-    clang
-    go
     opencode
     obsidian
   ];

@@ -16,5 +16,14 @@ in
 
     modules = [
       hostConfig
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${user} = import ../users/${user} {inherit user systemState;};
+
+        home-manager.extraSpecialArgs = {inherit inputs;};
+        # arguments to home.nix
+      }
     ];
   }

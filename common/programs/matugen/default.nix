@@ -7,7 +7,7 @@
 
   xdg.configFile = {
     "matugen/config.toml" = {
-      enable = config.hyprland.enable || config.bspwm.enable;
+      enable = config.bspwm.enable;
       text =
         # toml
         ''
@@ -62,13 +62,6 @@
           [templates.yazi]
           input_path = '~/.config/matugen/templates/yazi.toml'
           output_path = '~/.config/yazi/theme.toml'
-
-          ${lib.optionalString config.hyprland.enable ''
-            [templates.hyprland]
-            input_path = '~/.config/matugen/templates/hyprland.conf'
-            output_path = '~/.config/hypr/colors.conf'
-            post_hook = 'hyprctl reload'
-          ''}
 
           [templates.fuzzel]
           input_path = '~/.config/matugen/templates/fuzzel.ini'
