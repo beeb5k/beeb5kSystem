@@ -6,16 +6,15 @@
     };
   in {
     bspwm = import ./bspwm args;
+    river = import ./river args;
   };
 in {
   options.flake.homeModules = lib.mkOption {
     type = lib.types.lazyAttrsOf lib.types.unspecified;
   };
 
-  # <--- 3. Wrap your existing logic in 'config'
   config = {
     flake.nixosModules = mkMods false;
     flake.homeModules = mkMods true;
   };
 }
-

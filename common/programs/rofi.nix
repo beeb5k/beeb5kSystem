@@ -34,6 +34,94 @@
     theme = "~/.config/rofi/themes/config.rasi";
   };
 
+  # custom scripts
+  home.packages = [
+    pkgs.rofi-bluetooth
+    pkgs.rofi-network-manager
+    pkgs.rofi-power-menu
+    (pkgs.writeShellScriptBin "wall-picker" ''
+      WALL_DIR="$HOME/Pictures/wallpapers"
+
+      list_wallpapers() {
+          for wall in "$WALL_DIR"/*.{jpg,jpeg,png,webp}; do
+              if [ -f "$wall" ]; then
+                  name=$(basename "$wall")
+                  echo -en "$name\0icon\x1f$wall\n"
+              fi
+          done
+      }
+
+      SELECTED=$(list_wallpapers | ${pkgs.rofi}/bin/rofi -dmenu -i -p "󰸉 Wallpaper" \
+          -show-icons \
+          -theme-str 'element { orientation: vertical; padding: 15px; }' \
+          -theme-str 'element-icon { size: 10em; horizontal-align: 0.5; }' \
+          -theme-str 'element-text { horizontal-align: 0.5; }' \
+          -theme-str 'listview { columns: 3; lines: 2; }' \
+          -theme-str 'window { width: 50%; }')
+
+      if [ -n "$SELECTED" ]; then
+          FULL_PATH="$WALL_DIR/$SELECTED"
+
+          # set wallpaper based on Display Protocol
+          if [ -n "$WAYLAND_DISPLAY" ]; then
+              if command -v swaybg >/dev/null 2>&1; then
+                  # swaybg usually needs to be killed to update
+                  pkill swaybg
+                  swaybg -i "$FULL_PATH" -m fill &
+              elif command -v swww >/dev/null 2>&1; then
+                  swww img "$FULL_PATH" --transition-type grow
+              else
+                  echo "No Wayland wallpaper tool found (swaybg/swww)"
+              fi
+          else
+              # X11 Fallback
+              ${pkgs.feh}/bin/feh --bg-fill "$FULL_PATH"
+          fi
+
+          # Theme generation
+          sleep 0.2
+          matugen image "$FULL_PATH"
+          # Using wal if available
+          if command -v wal >/dev/null 2>&1; then
+              wal -s -t -i "$FULL_PATH"
+          fi
+      fi
+    '')
+
+    (pkgs.writeShellScriptBin "rofi-e-or-c" ''
+      options="Clipboard\nEmoji"
+
+      chosen=$(echo -en "$options" | rofi -dmenu -i -p "Quick Pick")
+          # -theme-str 'window { width: 250px; }' \
+          # -theme-str 'listview { lines: 2; }')
+
+      case "$chosen" in
+          *Clipboard)
+              clipcat-menu
+              ;;
+          *Emoji)
+              rofi -show emoji -modi emoji
+              ;;
+      esac
+    '')
+    (pkgs.writeShellScriptBin "rofi-b-or-n" ''
+      options="NetworkManager\nBluetooth"
+
+      chosen=$(echo -en "$options" | rofi -dmenu -i -p "Quick Pick")
+          # -theme-str 'window { width: 250px; }' \
+          # -theme-str 'listview { lines: 2; }')
+
+      case "$chosen" in
+          *Bluetooth)
+              rofi-bluetooth
+              ;;
+          *NetworkManager)
+              rofi-network-manager
+              ;;
+      esac
+    '')
+  ];
+
   # Dont scroll its just rofi theme
   xdg.configFile = {
     "rofi/themes/config.rasi" = {
@@ -58,6 +146,7 @@
               display-run:                "";
               display-filebrowser:        "";
               display-window:             "";
+            font: "Lilex Nerd Font 12";
           	drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
           	window-format:              "{w} · {c} · {t}";
           }

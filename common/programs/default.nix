@@ -11,5 +11,6 @@
     ./rofi.nix
     ./dunst.nix
     ./polybar.nix
+    ./waybar.nix
   ];
 }

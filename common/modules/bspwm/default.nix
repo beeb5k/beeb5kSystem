@@ -11,7 +11,7 @@
   cfg = config.bspwm;
 in {
   options.bspwm = {
-    enable = lib.mkEnableOption "bspwm polymorphic setup";
+    enable = lib.mkEnableOption "bspwm setup";
   };
 
   # CRITICAL FIX: Use standard "if/else" instead of "mkMerge".
@@ -137,9 +137,6 @@ in {
         pavucontrol
         pulseaudio
         brightnessctl
-        rofi-bluetooth
-        rofi-network-manager
-        rofi-power-menu
       ];
     }
     else {
@@ -163,4 +160,3 @@ in {
     }
   );
 }
-

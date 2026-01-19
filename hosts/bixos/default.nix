@@ -12,10 +12,12 @@
     ./hardware-configuration.nix
     (import ../system.nix {inherit user;})
     inputs.self.nixosModules.bspwm
+    inputs.self.nixosModules.river
   ];
 
   programs.dconf.enable = true;
   bspwm.enable = true;
+  river.enable = true;
 
   boot = {
     plymouth = {
@@ -60,7 +62,7 @@
     xwayland.enable = true;
   };
 
-  environment.sessionVariables = {  };
+  environment.sessionVariables = {};
 
   networking.hostName = hostname;
   networking.firewall.allowedTCPPorts = [];

@@ -11,6 +11,7 @@
   imports = [
     inputs.beeb5kvim.homeModules.default
     inputs.self.homeModules.bspwm
+    inputs.self.homeModules.river
     inputs.self.homeModules.programs
   ];
 
@@ -31,6 +32,13 @@
     };
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      # Note: Keys with hyphens usually need quotes in Nix
+      "button-layout" = "";
+    };
+  };
+
   Neovim = {
     enable = true;
     packageDefinitions.replace =
@@ -45,6 +53,11 @@
         };
       })
       inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
+  };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
   };
 
   programs.git = {
@@ -92,6 +105,13 @@
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
+    gtk3.bookmarks = [
+      "file://${config.home.homeDirectory}/Downloads"
+      "file://${config.home.homeDirectory}/Pictures"
+      "file://${config.home.homeDirectory}/Documents"
+      "file://${config.home.homeDirectory}/Videos"
+      "file://${config.home.homeDirectory}/beeb5kSystem Config"
+    ];
     gtk3.extraCss = ''
       @import url("colors.css");
     '';
@@ -101,6 +121,7 @@
   };
 
   bspwm.enable = true;
+  river.enable = true;
 
   xresources.properties = {
     "Xft.dpi" = 96; # Set to 96 for standard 100% scaling
