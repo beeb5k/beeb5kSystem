@@ -81,6 +81,9 @@
           "format-muted" = "VOL MUTED";
           "on-click" = "pavucontrol -t 3";
           "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          # Added to prevent boost (-l 1.0)
+          "on-scroll-up" = "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
+          "on-scroll-down" = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
         };
 
         "pulseaudio#mic" = {
@@ -89,7 +92,8 @@
           "format-source-muted" = "MUTED";
           "on-click" = "pavucontrol -t 4";
           "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-          "on-scroll-up" = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+";
+          # Modified to prevent boost (-l 1.0)
+          "on-scroll-up" = "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SOURCE@ 5%+";
           "on-scroll-down" = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-";
         };
 

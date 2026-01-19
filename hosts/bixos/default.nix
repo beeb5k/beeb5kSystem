@@ -16,7 +16,7 @@
   ];
 
   programs.dconf.enable = true;
-  bspwm.enable = true;
+  bspwm.enable = false;
   river.enable = true;
 
   boot = {

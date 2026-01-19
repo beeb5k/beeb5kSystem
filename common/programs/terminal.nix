@@ -50,7 +50,7 @@ in {
         enable = true;
         settings = {
           main = {
-            include = ["/home/beeb5k/.config/foot/dank-colors.ini"];
+            include = ["~/.cache/wal/foot-colors.ini"];
 
             pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y}";
             font = "${cfg.font.family}:size=${toString cfg.font.size}";

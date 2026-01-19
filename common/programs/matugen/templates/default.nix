@@ -1,21 +1,14 @@
-{
-  imports = [
-    ./btop.nix
-    ./hyprland.nix
-    ./discord.nix
-    ./firefox.nix
-    ./fuzzel.nix
-    ./gtk.nix
-    ./pywalfox.nix
-    ./yazi.nix
-    ./zathura.nix
-    ./zed.nix
-    ./zen.nix
-    ./bspwm.nix
-    ./polybar.nix
-    ./rofi.nix
-    ./dunst.nix
-    ./waybar.nix
-    ./alacritty.nix
-  ];
+{lib, ...}: let
+  files = builtins.readDir ./.;
+  filterValidFiles = name: type:
+    type
+    == "regular"
+    && name != "default.nix"
+    && lib.hasSuffix ".nix" name;
+
+  validFiles = lib.filterAttrs filterValidFiles files;
+
+  importPaths = map (name: ./. + "/${name}") (builtins.attrNames validFiles);
+in {
+  imports = importPaths;
 }

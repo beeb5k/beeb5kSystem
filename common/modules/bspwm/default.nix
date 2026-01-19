@@ -10,6 +10,8 @@
 }: let
   cfg = config.bspwm;
 in {
+  imports = [./picom.nix];
+
   options.bspwm = {
     enable = lib.mkEnableOption "bspwm setup";
   };
@@ -131,12 +133,7 @@ in {
         slop
         xdotool
         xclip
-        matugen
-        pywal16
-        imagemagick
-        pavucontrol
         pulseaudio
-        brightnessctl
       ];
     }
     else {
@@ -147,13 +144,10 @@ in {
         enable = true;
         autoRepeatDelay = 300;
         autoRepeatInterval = 20;
+        excludePackages = with pkgs; [xterm];
         xkb = {
           layout = "us";
           variant = "";
-        };
-        libinput = {
-          enable = true;
-          touchpad.naturalScrolling = true;
         };
         windowManager.bspwm.enable = true;
       };

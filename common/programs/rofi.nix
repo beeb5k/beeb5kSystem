@@ -28,7 +28,7 @@
   };
 
   programs.rofi = {
-    enable = config.bspwm.enable;
+    enable = config.bspwm.enable || config.river.enable;
     font = "Lilex Nerd Font";
     plugins = with pkgs; [rofi-calc rofi-emoji];
     theme = "~/.config/rofi/themes/config.rasi";
@@ -51,7 +51,7 @@
           done
       }
 
-      SELECTED=$(list_wallpapers | ${pkgs.rofi}/bin/rofi -dmenu -i -p "󰸉 Wallpaper" \
+      SELECTED=$(list_wallpapers | rofi -dmenu -i -p "󰸉 Wallpaper" \
           -show-icons \
           -theme-str 'element { orientation: vertical; padding: 15px; }' \
           -theme-str 'element-icon { size: 10em; horizontal-align: 0.5; }' \
@@ -74,8 +74,8 @@
                   echo "No Wayland wallpaper tool found (swaybg/swww)"
               fi
           else
-              # X11 Fallback
-              ${pkgs.feh}/bin/feh --bg-fill "$FULL_PATH"
+              # X11
+              feh --bg-fill "$FULL_PATH"
           fi
 
           # Theme generation
@@ -125,7 +125,7 @@
   # Dont scroll its just rofi theme
   xdg.configFile = {
     "rofi/themes/config.rasi" = {
-      enable = config.bspwm.enable;
+      enable = config.bspwm.enable || config.river.enable;
       text =
         # rasi
         ''

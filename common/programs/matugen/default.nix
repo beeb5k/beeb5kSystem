@@ -7,7 +7,7 @@
 
   xdg.configFile = {
     "matugen/config.toml" = {
-      enable = config.bspwm.enable;
+      enable = config.bspwm.enable || config.river.enable;
       text =
         # toml
         ''
@@ -34,6 +34,12 @@
             [templates.alacritty]
             input_path = '~/.config/matugen/templates/alacritty-colors.toml'
             output_path = '~/.config/wal/templates/alacritty-colors.toml'
+          ''}
+
+          ${lib.optionalString config.programs.foot.enable ''
+            [templates.foot]
+            input_path = '~/.config/matugen/templates/foot-colors.ini'
+            output_path = '~/.config/wal/templates/foot-colors.ini'
           ''}
 
           ${lib.optionalString config.programs.rofi.enable ''

@@ -61,6 +61,14 @@
     LC_TIME = "en_IN";
   };
 
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      save = true;
+      load = true;
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
@@ -72,7 +80,10 @@
   hardware.enableRedistributableFirmware = true;
 
   services.libinput.enable = true;
-  services.libinput.touchpad.disableWhileTyping = true;
+  services.libinput.touchpad = {
+    naturalScrolling = true;
+    disableWhileTyping = true;
+  };
 
   services.xserver.xkb = {
     layout = "us";

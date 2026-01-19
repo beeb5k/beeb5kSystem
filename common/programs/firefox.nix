@@ -4,11 +4,6 @@
   config,
   ...
 }: {
-  home.packages = with pkgs;
-    lib.mkIf config.hyprland.enable [
-      pywalfox-native
-    ];
-
   programs.firefox = {
     enable = false;
 

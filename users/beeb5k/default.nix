@@ -19,7 +19,7 @@
   home.homeDirectory = "/home/${user}";
 
   terminal = {
-    emulator = "alacritty"; # alacritty, foot, ghostty.
+    emulator = "foot"; # alacritty, foot, ghostty.
     font = {
       family = "Lilex Nerd Font";
       size = 12.0;
@@ -120,7 +120,7 @@
     '';
   };
 
-  bspwm.enable = true;
+  bspwm.enable = false;
   river.enable = true;
 
   xresources.properties = {
@@ -173,43 +173,16 @@
 
   home.sessionVariables = {};
 
-  services.picom = {
-    enable = true;
-
-    backend = "egl";
-    vSync = true;
-
-    settings = {
-      use-damage = true;
-      unredir-if-possible = true;
-      detect-transient = true;
-      detect-client-opacity = true;
-
-      vsync-use-glfinish = false;
-      dbe = false;
-
-      mark-wmwin-focused = true;
-      mark-ovredir-focused = true;
-
-      shadow = false;
-      fade = false;
-      blur-method = "none";
-      animations = false;
-
-      inactive-opacity = 1.0;
-      active-opacity = 1.0;
-      frame-opacity = 1.0;
-
-      detect-rounded-corners = true;
-      resize-damage = 1;
-    };
-  };
-
   home.packages = with pkgs; [
     vscode
     gimp3-with-plugins
     opencode
     obsidian
+    matugen
+    pywal16
+    imagemagick
+    pavucontrol
+    brightnessctl
   ];
 
   programs.home-manager.enable = true;

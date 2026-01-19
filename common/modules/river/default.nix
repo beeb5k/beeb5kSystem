@@ -8,7 +8,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.bspwm;
+  cfg = config.river;
   tagBindings = let
     tags = [1 2 4 8 16 32 64 128 256];
   in
@@ -42,6 +42,9 @@ in {
           pkill waybar; waybar &
           pkill swww-daemon; swww-daemon &
 
+          riverctl map normal Super Print spawn 'sh -c "grim -g \"$(slurp)\" - | wl-copy"'
+          riverctl map normal Print spawn 'sh -c "grim - | wl-copy"'
+
           export XDG_CURRENT_DESKTOP=river
           dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP
         '';
@@ -52,6 +55,8 @@ in {
           border-color-unfocused = "0x586e75";
           background-color = "0x002b36";
           set-repeat = "50 300";
+          focus-follows-cursor = "normal";
+          set-cursor-warp = "on-focus-change";
 
           # 2. Layout Generator
           default-layout = "rivertile";
@@ -61,6 +66,17 @@ in {
           rule-add = {
             "-app-id" = {
               "'*'" = "ssd";
+              "'alacritty'" = "tags 1";
+              "'foot'" = "tags 1";
+
+              "'firefox'" = "tags 2";
+              "'zen'" = "tags 2";
+              "'brave-browser'" = "tags 2";
+
+              "'vesktop'" = "tags 4";
+              "'discord'" = "tags 4";
+
+              "'steam'" = "tags 8";
             };
           };
           # 3. Key Mappings
@@ -68,7 +84,7 @@ in {
             normal =
               {
                 # --- Core ---
-                "Super Return" = "spawn alacritty";
+                "Super Return" = "spawn ${config.terminal.emulator}";
                 "Super+Shift Return" = "zoom";
                 "Super A" = "spawn 'rofi -show drun'";
                 "Super B" = "spawn zen";
@@ -77,6 +93,7 @@ in {
                 "Super+Shift l" = "spawn 'rofi -show power-menu -modi power-menu:rofi-power-menu'";
                 "Super Y" = "spawn wall-picker";
                 "Super E" = "spawn nautilus";
+                "Super F12" = "spawn 'rofi -show calc -modi calc -no-show-match -no-sort'";
 
                 "Super Q" = "close";
                 "Super+Shift E" = "exit";
@@ -96,13 +113,9 @@ in {
                 "Super+Shift L" = "send-layout-cmd rivertile 'main-count -1'";
 
                 # --- Audio (wpctl) ---
-                # Volume Up (Limit to 150%)
-                "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+'";
-                # Volume Down
+                "None XF86AudioRaiseVolume" = "spawn 'wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+'";
                 "None XF86AudioLowerVolume" = "spawn 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-'";
-                # Mute Output
                 "None XF86AudioMute" = "spawn 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle'";
-                # Mute Input (Mic)
                 "None XF86AudioMicMute" = "spawn 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle'";
 
                 # --- Brightness ---
@@ -147,7 +160,7 @@ in {
         };
       };
 
-      home.packages = with pkgs; [wl-clipboard swww];
+      home.packages = with pkgs; [wl-clipboard swww grim slurp];
     }
     else {
       xdg.portal = {
@@ -164,7 +177,10 @@ in {
           };
         };
       };
-      programs.river-classic.enable = true;
+      programs.river-classic = {
+        enable = true;
+        extraPackages = [];
+      };
     }
   );
 }

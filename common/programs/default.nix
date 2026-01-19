@@ -1,16 +1,13 @@
-{
-  imports = [
-    ./matugen
-    ./obs.nix
-    ./zsh.nix
-    ./fish.nix
-    ./btop.nix
-    ./terminal.nix
-    ./file-manager.nix
-    ./zen-browser.nix
-    ./rofi.nix
-    ./dunst.nix
-    ./polybar.nix
-    ./waybar.nix
-  ];
+{lib, ...}: let
+  nodes = builtins.readDir ./.;
+
+  shouldImport = name: type: let
+    path = ./. + "/${name}";
+  in
+    (type == "regular" && name != "default.nix" && lib.hasSuffix ".nix" name)
+    || (type == "directory" && builtins.pathExists (path + "/default.nix"));
+
+  validNodes = lib.filterAttrs shouldImport nodes;
+in {
+  imports = map (name: ./. + "/${name}") (builtins.attrNames validNodes);
 }
