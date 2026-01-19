@@ -1,22 +1,20 @@
 {
   imports = [
-    ./matugen-btop.nix
-    ./matugen-hyprland.nix
-    ./matugen-discord.nix
-    ./matugen-firefox.nix
-    ./matugen-fuzzel.nix
-    ./matugen-gtk.nix
-    ./matugen-neopywal.nix
-    ./matugen-pywalfox.nix
-    ./matugen-yazi.nix
-    ./matugen-zathura.nix
-    ./matugen-zed.nix
-    ./matugen-zen.nix
-    ./matugen-bspwm.nix
-    ./matugen-polybar.nix
-    ./matugen-rofi.nix
-    ./matugen-dunst.nix
-    ./matugen-alacritty.nix
-    ./matugen-i3lockcolors.nix
+    ./btop.nix
+    ./hyprland.nix
+    ./discord.nix
+    ./firefox.nix
+    ./fuzzel.nix
+    ./gtk.nix
+    ./pywalfox.nix
+    ./yazi.nix
+    ./zathura.nix
+    ./zed.nix
+    ./zen.nix
+    ./bspwm.nix
+    ./polybar.nix
+    ./rofi.nix
+    ./dunst.nix
+    ./alacritty.nix
   ];
 }
