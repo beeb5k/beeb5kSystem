@@ -83,6 +83,7 @@
     vulkan-validation-layers
     libva-utils
     vulkan-tools
+    clang
   ];
 
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
