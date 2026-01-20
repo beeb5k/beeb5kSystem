@@ -1,7 +1,7 @@
 {
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = ["https://nix-community.cachix.org"];
+    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
   };
 
   inputs = {
@@ -10,6 +10,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +21,10 @@
     };
   };
 
-  outputs = inputs@{ flake-parts, ... }: 
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" ];
-      imports = [ (inputs.nixpkgs.lib.modules.importApply ./common inputs)];
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
+      imports = [(inputs.nixpkgs.lib.modules.importApply ./common inputs)];
 
       flake = let
         systemState = "25.05";
@@ -32,8 +33,8 @@
           inherit (inputs) nixpkgs;
         };
         mkHome = import ./lib/mkHome.nix {
-        inherit inputs;
-        inherit (inputs) home-manager nixpkgs;
+          inherit inputs;
+          inherit (inputs) home-manager nixpkgs;
         };
       in {
         nixosConfigurations.bixos = mkSystem {
@@ -51,3 +52,4 @@
       };
     };
 }
+

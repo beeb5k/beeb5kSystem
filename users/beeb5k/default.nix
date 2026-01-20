@@ -39,22 +39,6 @@
     };
   };
 
-  Neovim = {
-    enable = true;
-    packageDefinitions.replace =
-      builtins.mapAttrs (n: _: {pkgs, ...}: {
-        categories = {
-          go = false;
-          clang = true;
-          misc = true;
-        };
-        extra = {
-          pluginChoice = "fancy"; # fancy , fast , normal
-        };
-      })
-      inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
-  };
-
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

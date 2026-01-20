@@ -1,4 +1,8 @@
-{user}: {pkgs, ...}: {
+{user}: {
+  pkgs,
+  inputs,
+  ...
+}: {
   nix.settings = {
     trusted-users = ["@wheel"];
     extra-trusted-substituters = ["https://nix-community.cachix.org"];
@@ -127,6 +131,7 @@
   environment.systemPackages = with pkgs; [
     vesktop
     android-tools
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
   ];
 
   users.defaultUserShell = pkgs.fish;
