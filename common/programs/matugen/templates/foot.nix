@@ -25,7 +25,7 @@
       bright6={color14.strip}
       bright7={color15.strip}
 
-      dim-blend-towards=<* if {{ is_dark_mode }} *>black<* else *>white<* endif *>
+      # dim-blend-towards=<* if {{ is_dark_mode }} *>black<* else *>white<* endif *>
     '';
   };
 }

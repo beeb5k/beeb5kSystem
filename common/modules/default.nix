@@ -5,8 +5,7 @@
       inherit inputs homeManager;
     };
   in {
-    bspwm = import ./bspwm args;
-    river = import ./river args;
+    mango = import ./mango args;
   };
 in {
   options.flake.homeModules = lib.mkOption {

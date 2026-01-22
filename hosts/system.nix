@@ -112,11 +112,13 @@
     ibm-plex
   ];
   programs.fish.enable = true;
+  programs.nano.enable = false;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
 
+  services.upower.enable = true;
   services.earlyoom.enable = false;
   services.fwupd.enable = false;
   services.gnome.gnome-keyring.enable = true;
@@ -129,9 +131,8 @@
   services.udisks2.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vesktop
     android-tools
-    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    tealdeer
   ];
 
   users.defaultUserShell = pkgs.fish;
