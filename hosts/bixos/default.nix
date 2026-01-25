@@ -12,14 +12,16 @@
     ./hardware-configuration.nix
     (import ../system.nix {inherit user;})
     inputs.self.nixosModules.mango
+    inputs.self.nixosModules.bspwm
+    inputs.self.nixosModules.specialisation
   ];
 
   programs.dconf.enable = true;
-
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
 
   mango.enable = true;
+  bspwm.enable = false;
 
   boot = {
     plymouth = {
@@ -41,6 +43,7 @@
     ];
   };
 
+  programs.gamemode.enable = true;
   programs.gamescope.enable = true;
   programs.steam = {
     enable = true;

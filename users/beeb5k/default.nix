@@ -12,6 +12,7 @@
     inputs.beeb5kvim.homeModules.default
     inputs.self.homeModules.programs
     inputs.self.homeModules.mango
+    inputs.self.homeModules.bspwm
     ../users.nix
   ];
 
@@ -19,6 +20,7 @@
   home.homeDirectory = "/home/${user}";
 
   mango.enable = true;
+  bspwm.enable = false;
 
   beebvim = {
     enable = true;
@@ -33,7 +35,11 @@
   };
 
   terminal = {
-    emulator = "foot"; # alacritty, foot, ghostty.
+    emulator = {
+      foot = true;
+      alacritty = false;
+      ghostty = false;
+    };
     font = {
       family = "Lilex Nerd Font";
       size = 12.0;
@@ -46,6 +52,7 @@
     };
   };
 
+  programs.mangohud.enable = true;
   home.sessionVariables = {};
 
   home.packages = with pkgs; [
@@ -54,6 +61,8 @@
     obsidian
     imagemagick
     discord
+    pavucontrol
+    brightnessctl
   ];
 
   programs.home-manager.enable = true;

@@ -73,8 +73,12 @@
     };
   };
 
+  security.pam.services.ly.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   nixpkgs.config.allowUnfree = true;
 
+  networking.networkmanager.wifi.powersave = false;
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
@@ -137,5 +141,6 @@
 
   users.defaultUserShell = pkgs.fish;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 }

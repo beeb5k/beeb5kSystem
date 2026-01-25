@@ -8,9 +8,10 @@ with lib; let
   cfg = config.terminal;
 in {
   options.terminal = {
-    emulator = mkOption {
-      type = types.enum ["foot" "ghostty" "alacritty" "none"];
-      description = "The terminal emulator to enable.";
+    emulator = {
+      foot = mkEnableOption "enable foot";
+      alacritty = mkEnableOption "enable alacritty";
+      ghostty = mkEnableOption "enable ghostty";
     };
 
     font = {
@@ -45,7 +46,7 @@ in {
   };
 
   config = mkMerge [
-    (mkIf (cfg.emulator == "foot") {
+    (mkIf cfg.emulator.foot {
       programs.foot = {
         enable = true;
         settings = {
@@ -72,7 +73,7 @@ in {
       };
     })
 
-    (mkIf (cfg.emulator == "ghostty") {
+    (mkIf cfg.emulator.ghostty {
       programs.ghostty = {
         enable = true;
         enableFishIntegration = true;
@@ -108,7 +109,7 @@ in {
       };
     })
 
-    (mkIf (cfg.emulator == "alacritty") {
+    (mkIf cfg.emulator.alacritty {
       programs.alacritty = {
         enable = true;
         settings = {

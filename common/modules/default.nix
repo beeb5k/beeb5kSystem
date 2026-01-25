@@ -6,6 +6,8 @@
     };
   in {
     mango = import ./mango args;
+    bspwm = import ./bspwm args;
+    specialisation = import ./specialisations args;
   };
 in {
   options.flake.homeModules = lib.mkOption {

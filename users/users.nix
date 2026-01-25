@@ -65,6 +65,7 @@
     };
   };
 
+  xdg.dataFile."keyrings/default".text = "login";
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

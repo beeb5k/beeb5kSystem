@@ -128,7 +128,7 @@ in {
           cursor_size=24
           drag_tile_to_tile=1
           xwayland_persistence=0
-          syncobj_enable=1
+          # syncobj_enable=1
           allow_tearing=2
 
           # keyboard
@@ -210,7 +210,6 @@ in {
           bind=SUPER,q,killclient,
 
           # switch window focus
-          bind=SUPER,Tab,focusstack,next
           bind=ALT,h,focusdir,left
           bind=ALT,l,focusdir,right
           bind=ALT,k,focusdir,up
@@ -306,7 +305,6 @@ in {
           # Mouse Button Bindings
           # NONE mode key only work in ov mode
           mousebind=SUPER,btn_left,moveresize,curmove
-          mousebind=NONE,btn_middle,togglemaximizescreen,0
           mousebind=SUPER,btn_right,moveresize,curresize
           mousebind=NONE,btn_left,toggleoverview,1
           mousebind=NONE,btn_right,killclient,0
@@ -319,7 +317,8 @@ in {
           layerrule=animation_type_open:zoom,layer_name:rofi
           layerrule=animation_type_close:zoom,layer_name:rofi
 
-          exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+          # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+          exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
           exec = pkill quickshell ; noctalia-shell
         '';
       };
@@ -327,8 +326,6 @@ in {
         wl-clipboard
         matugen
         pywal16
-        pavucontrol
-        brightnessctl
       ];
     }
     else {
@@ -340,10 +337,11 @@ in {
           pkgs.xdg-desktop-portal-wlr
         ];
         config = {
-          common = {
+          mango = {
             default = ["gtk"];
             "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
             "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+            "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
           };
         };
       };

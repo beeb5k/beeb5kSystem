@@ -12,7 +12,9 @@
 in
   nixpkgs.lib.nixosSystem {
     inherit system;
-    specialArgs = {inherit inputs;};
+    specialArgs = {
+      inherit inputs user hostname systemState;
+    };
 
     modules = [
       hostConfig

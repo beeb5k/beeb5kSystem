@@ -7,7 +7,7 @@
 
   xdg.configFile = {
     "matugen/config.toml" = {
-      enable = !config.programs.noctalia-shell.enable;
+      # enable = !config.programs.noctalia-shell.enable;
       text =
         # toml
         ''
@@ -30,16 +30,25 @@
             output_path = '~/.config/zathura/matugen'
           ''}
 
-          ${lib.optionalString config.programs.yazi.enable ''
-            [templates.yazi]
-            input_path = '~/.config/matugen/templates/yazi.toml'
-            output_path = '~/.config/yazi/theme.toml'
-          ''}
-
           ${lib.optionalString config.programs.btop.enable ''
             [templates.btop]
             input_path = '~/.config/matugen/templates/btop.theme'
             output_path = '~/.config/btop/themes/matugen.theme'
+          ''}
+
+            [templates.polybar]
+            input_path = "~/.config/matugen/templates/polybar-colors.ini"
+            output_path = "~/.config/polybar/colors.ini"
+
+            [templates.bspwm]
+            input_path = "~/.config/matugen/templates/bspwm-colors.sh"
+            output_path = "~/.config/bspwm/colors.sh"
+            post_hook = "bspc wm -r"
+
+            ${lib.optionalString config.programs.rofi.enable ''
+            [templates.rofi]
+            input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+            output_path = '~/.config/rofi/shared/colors.rasi'
           ''}
 
           ${lib.optionalString config.gtk.enable ''
