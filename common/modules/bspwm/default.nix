@@ -10,14 +10,13 @@
 }: let
   cfg = config.bspwm;
 in {
-  imports =
-    if homeManager
-    then [
-      ./picom.nix
-      ./polybar.nix
-    ]
-    else [
-    ];
+  # imports =
+  #   if homeManager
+  #   then [
+  #     # ./picom.nix
+  #   ]
+  #   else [
+  #   ];
 
   options.bspwm = {
     enable = lib.mkEnableOption "bspwm setup";
@@ -59,22 +58,20 @@ in {
 
         startupPrograms = [
           "sh ~/.fehbg"
-          "systemctl --user restart polybar"
           "xsetroot -cursor_name left_ptr"
-          "alacritty --daemon"
         ];
 
         extraConfig = ''
           [ -f ~/.config/bspwm/colors.sh ] && . ~/.config/bspwm/colors.sh
-          bspc config focused_border_color "$COLOR_FOCUSED"
-          bspc config normal_border_color "$COLOR_NORMAL"
+          # bspc config focused_border_color "$COLOR_FOCUSED"
+          # bspc config normal_border_color "$COLOR_NORMAL"
         '';
       };
 
       services.sxhkd = {
         enable = true;
         keybindings = {
-          "super + Return" = "alacritty msg create-window";
+          "super + Return" = "alacritty msg create-window || alacritty";
           "super + a" = "rofi -show drun -show-icons";
           "super + d" = "bspc desktop -l next";
           "super + b" = "zen";
@@ -100,10 +97,10 @@ in {
           "XF86AudioPrev" = "playerctl previous";
           "XF86AudioStop" = "playerctl stop";
 
-          "F12" = "rofi -show calc -modi calc -no-show-match -no-sort";
+          # "F12" = "rofi -show calc -modi calc -no-show-match -no-sort";
 
           # Screenshots
-          "Print" = "maim -s | xclip -selection clipboard -t image/png";
+          "Print" = "maim | xclip -selection clipboard -t image/png";
           "super + Print" = "maim -s | xclip -selection clipboard -t image/png";
           "super + shift + Print" = "maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png";
 
@@ -138,19 +135,9 @@ in {
         xclip
         pulseaudio
       ];
-
-      xresources.properties = {
-        "Xft.dpi" = 96; # Set to 96 for standard 100% scaling
-        "Xft.autohint" = 0;
-        "Xft.lcdfilter" = "lcddefault";
-        "Xft.hintstyle" = "hintfull";
-        "Xft.hinting" = 1;
-        "Xft.antialias" = 1;
-        "Xft.rgba" = "rgb";
-      };
     }
     else {
-      services.xserver = {
+      services.xserver = lib.mkForce {
         enable = true;
         autoRepeatDelay = 300;
         autoRepeatInterval = 20;

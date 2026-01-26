@@ -20,6 +20,9 @@
         ;;
     esac
   '';
+  smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
+    alacritty msg create-window || alacritty
+  '';
 in {
   imports =
     if homeManager
@@ -32,6 +35,11 @@ in {
     ];
   options.mango = {
     enable = lib.mkEnableOption "mango setup";
+    noctalia-shell = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "enable noctalia-shell";
+    };
   };
 
   config = lib.mkIf cfg.enable (
@@ -44,8 +52,8 @@ in {
           blur=0
           blur_layer=0
           blur_optimized=1
-          blur_params_num_passes = 2
-          blur_params_radius = 5
+          blur_params_num_passes = 4
+          blur_params_radius = 10
           blur_params_noise = 0.02
           blur_params_brightness = 0.9
           blur_params_contrast = 0.9
@@ -62,8 +70,8 @@ in {
 
           border_radius=0
           no_radius_when_single=0
-          focused_opacity=1.0
-          unfocused_opacity=1.0
+          focused_opacity=1
+          unfocused_opacity=1
 
 
           # Animation Configuration(support type:zoom,slide)
@@ -125,7 +133,7 @@ in {
           focus_cross_tag=0
           enable_floating_snap=0
           snap_distance=30
-          cursor_size=24
+          # cursor_size=24
           drag_tile_to_tile=1
           xwayland_persistence=0
           # syncobj_enable=1
@@ -162,10 +170,10 @@ in {
           windowrule=tags:4,appid:steam
 
           # Appearance
-          gappih=4
-          gappiv=4
-          gappoh=4
-          gappov=4
+          gappih=5
+          gappiv=5
+          gappoh=5
+          gappov=5
           scratchpad_width_ratio=0.8
           scratchpad_height_ratio=0.9
           borderpx=2
@@ -198,12 +206,25 @@ in {
           bind=SUPER,r,reload_config
 
           # menu and terminal
-          bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle
-          bind=SUPER,Return,spawn,foot
-          bind=SUPER,v,spawn,noctalia-shell ipc call launcher clipboard
-          bind=SUPER,y,spawn,noctalia-shell ipc call wallpaper toggle
-          bind=SUPER,period,spawn,noctalia-shell ipc call launcher emoji
-          bind=SUPER,comma,spawn,noctalia-shell ipc call settings toggle
+
+          bind=SUPER,Return,spawn,${smart-alacritty}
+          ${lib.optionalString (config.mango.noctalia-shell
+            && config.mango.enable) ''
+            bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle
+            bind=SUPER,v,spawn,noctalia-shell ipc call launcher clipboard
+            bind=SUPER,y,spawn,noctalia-shell ipc call wallpaper toggle
+            bind=SUPER,period,spawn,noctalia-shell ipc call launcher emoji
+            bind=SUPER,comma,spawn,noctalia-shell ipc call settings toggle
+          ''}
+
+          ${lib.optionalString (!config.mango.noctalia-shell) ''
+            # bind=SUPER,v,spawn,clipboard
+            # bind=SUPER,n,spawn,rofi-b-or-n
+            bind=SUPER,a,spawn,rofi -show drun
+            bind=SUPER,period,spawn,rofi -show emoji -modi emoji
+            bind=SUPER+SHIFT,l,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
+            bind=SUPER,y,spawn,wall-picker
+          ''}
 
           # exit
           bind=SUPER,m,quit
@@ -319,13 +340,19 @@ in {
 
           # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
-          exec = pkill quickshell ; noctalia-shell
+          ${lib.optionalString (config.mango.noctalia-shell
+            && config.mango.enable) ''
+            exec = pkill quickshell ; noctalia-shell
+          ''}
+
+          ${lib.optionalString (!config.mango.noctalia-shell) ''
+            exec-once = sh ~/.swaybg.sh
+          ''}
         '';
       };
       home.packages = with pkgs; [
         wl-clipboard
-        matugen
-        pywal16
+        swaybg
       ];
     }
     else {

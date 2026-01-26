@@ -51,7 +51,7 @@ in {
         enable = true;
         settings = {
           main = {
-            include = ["~/.cache/wal/foot-colors.ini"];
+            include = ["~/.cache/hellwal/foot-colors.ini"];
 
             pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y}";
             font = "${cfg.font.family}:size=${toString cfg.font.size}";
@@ -78,7 +78,7 @@ in {
         enable = true;
         enableFishIntegration = true;
         settings = {
-          config-file = ["~/.config/ghostty/themes/dankcolors"];
+          config-file = ["~/.cache/hellwal/ghostty-colors.conf"];
 
           font-family = cfg.font.family;
           font-size = cfg.font.size;
@@ -126,7 +126,7 @@ in {
             hide_when_typing = true;
           };
           general = {
-            import = ["~/.cache/wal/alacritty-colors.toml"];
+            import = ["~/.cache/hellwal/alacritty-colors.toml"];
           };
           window = {
             padding = {

@@ -24,6 +24,7 @@
     "gfx.x11-egl.force-enabled" = true;
     "layers.acceleration.force-enabled" = true;
     "media.ffmpeg.vaapi.enabled" = true;
+    "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
   };
 
   extensions = [

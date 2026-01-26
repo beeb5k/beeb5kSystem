@@ -28,7 +28,7 @@
   };
 
   programs.rofi = {
-    enable = config.bspwm.enable;
+    enable = true;
     font = "Lilex Nerd Font";
     plugins = with pkgs; [rofi-calc rofi-emoji];
     theme = "~/.config/rofi/themes/config.rasi";
@@ -40,8 +40,11 @@
     pkgs.rofi-network-manager
     pkgs.rofi-power-menu
     (pkgs.writeShellScriptBin "wall-picker" ''
+      # Define the directory containing wallpapers
       WALL_DIR="$HOME/Pictures/wallpapers"
 
+      # Function to generate a list of wallpapers formatted for Rofi
+      # Output format: filename\0icon\x1f/absolute/path
       list_wallpapers() {
           for wall in "$WALL_DIR"/*.{jpg,jpeg,png,webp}; do
               if [ -f "$wall" ]; then
@@ -51,7 +54,9 @@
           done
       }
 
-      SELECTED=$(list_wallpapers | rofi -dmenu -i -p "󰸉 Wallpaper" \
+      # --- 1. Selection Menu ---
+      # Launch Rofi in dmenu mode with a grid layout to display wallpaper previews
+      SELECTED=$(list_wallpapers | rofi -dmenu -i -p "Wallpaper" \
           -show-icons \
           -theme-str 'element { orientation: vertical; padding: 15px; }' \
           -theme-str 'element-icon { size: 10em; horizontal-align: 0.5; }' \
@@ -59,32 +64,53 @@
           -theme-str 'listview { columns: 3; lines: 2; }' \
           -theme-str 'window { width: 50%; }')
 
+      # Proceed only if a selection was made (user didn't press Escape)
       if [ -n "$SELECTED" ]; then
           FULL_PATH="$WALL_DIR/$SELECTED"
 
-          # set wallpaper based on Display Protocol
+          # --- 2. Apply Wallpaper (Display Protocol Detection) ---
+
+          # Check if running on Wayland
           if [ -n "$WAYLAND_DISPLAY" ]; then
+
+              # Backend A: swaybg (Static image)
               if command -v swaybg >/dev/null 2>&1; then
-                  # swaybg usually needs to be killed to update
+                  # Kill existing instances to prevent stacking or conflicts
                   pkill swaybg
-                  swaybg -i "$FULL_PATH" -m fill &
+
+                  # Create a persistence script for the next login
+                  echo "swaybg -i \"$FULL_PATH\" -m fill &" > "$HOME/.swaybg.sh"
+
+                  # Apply immediately
+                  sh "$HOME/.swaybg.sh"
+
+              # Backend B: swww (Animated/Transition support)
               elif command -v swww >/dev/null 2>&1; then
                   swww img "$FULL_PATH" --transition-type grow
+
+              # Fallback: No backend found
               else
-                  echo "No Wayland wallpaper tool found (swaybg/swww)"
+                  dunstify "Error: No Wayland wallpaper tool found (swaybg/swww)"
               fi
+
+              # Cross-Compatibility: Update X11 config (.fehbg) from Wayland session
+              # This ensures the wallpaper persists if you switch to an X11 window manager (like dwm/bspwm)
+              echo "feh --no-fehbg --bg-fill '$FULL_PATH'" > ~/.fehbg
+
+          # Check if running on X11
           else
-              # X11
+              # Apply immediately using feh
               feh --bg-fill "$FULL_PATH"
+
+              # Cross-Compatibility: Update Wayland config from X11 session
+              # Note: We only generate for swaybg here as swww manages its own daemon/caching
+              echo "swaybg -i \"$FULL_PATH\" -m fill &" > "$HOME/.swaybg.sh"
           fi
 
-          # Theme generation
-          sleep 0.2
-          matugen image "$FULL_PATH"
-          # Using wal if available
-          if command -v wal >/dev/null 2>&1; then
-              wal -s -t -i "$FULL_PATH"
-          fi
+          # --- 3. System Theming ---
+          # Generate Material Design colors (matugen) and terminal colors (hellwal)
+          # matches the system theme to the new wallpaper
+          matugen image "$FULL_PATH" && hellwal --skip-term-colors -q -i "$FULL_PATH"
       fi
     '')
 
@@ -125,7 +151,7 @@
   # Dont scroll its just rofi theme
   xdg.configFile = {
     "rofi/themes/config.rasi" = {
-      enable = config.bspwm.enable;
+      enable = true;
       text =
         # rasi
         ''

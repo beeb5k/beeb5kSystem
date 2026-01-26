@@ -1,8 +1,7 @@
 {config, ...}: {
   services.picom = {
-    # enable = config.bspwm.enable;
     enable = false;
-
+    # enable = config.bspwm.enable;
     backend = "egl";
     vSync = true;
 

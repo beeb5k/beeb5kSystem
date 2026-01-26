@@ -16,6 +16,8 @@
     inputs.self.nixosModules.specialisation
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   programs.dconf.enable = true;
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
@@ -62,8 +64,9 @@
   };
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL = 1;
+    # NIXOS_OZONE_WL = 1;
   };
+
   networking.hostName = hostname;
   networking.firewall.allowedTCPPorts = [];
   networking.firewall.allowedUDPPorts = [];
@@ -76,7 +79,7 @@
     clang
   ];
 
-  services.xserver.videoDrivers = ["amdgpu" "nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware = {
     graphics = {
       enable = true;

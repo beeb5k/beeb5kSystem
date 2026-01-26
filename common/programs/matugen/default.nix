@@ -15,13 +15,19 @@
           ${lib.optionalString config.programs.alacritty.enable ''
             [templates.alacritty]
             input_path = '~/.config/matugen/templates/alacritty-colors.toml'
-            output_path = '~/.config/wal/templates/alacritty-colors.toml'
+            output_path = '~/.config/hellwal/templates/alacritty-colors.toml'
           ''}
 
           ${lib.optionalString config.programs.foot.enable ''
             [templates.foot]
             input_path = '~/.config/matugen/templates/foot-colors.ini'
-            output_path = '~/.config/wal/templates/foot-colors.ini'
+            output_path = '~/.config/hellwal/templates/foot-colors.ini'
+          ''}
+
+          ${lib.optionalString config.programs.ghostty.enable ''
+            [templates.ghostty]
+            input_path = '~/.config/matugen/templates/ghostty.conf'
+            output_path = '~/.config/hellwal/templates/ghostty-colors.conf'
           ''}
 
           ${lib.optionalString config.programs.zathura.enable ''
@@ -40,10 +46,21 @@
             input_path = "~/.config/matugen/templates/polybar-colors.ini"
             output_path = "~/.config/polybar/colors.ini"
 
+            [templates.discord]
+            input_path = "~/.config/matugen/templates/discord.css"
+            output_path = "~/.config/vencord/midnight.css"
+
+          ${lib.optionalString config.bspwm.enable ''
             [templates.bspwm]
             input_path = "~/.config/matugen/templates/bspwm-colors.sh"
             output_path = "~/.config/bspwm/colors.sh"
             post_hook = "bspc wm -r"
+          ''}
+
+            [templates.dunst]
+            input_path = '~/.config/matugen/templates/dunstrc'
+            output_path = '~/.cache/matugen/dunstrc'
+            post_hook = "dunstctl reload"
 
             ${lib.optionalString config.programs.rofi.enable ''
             [templates.rofi]
@@ -67,7 +84,7 @@
 
             [templates.zen]
             input_path = '~/.config/matugen/templates/zen.css'
-            output_path = '~/.config/wal/templates/userChrome.css'
+            output_path = '~/.config/hellwal/templates/userChrome.css'
         '';
     };
   };

@@ -1,14 +1,17 @@
 {
   pkgs,
   inputs,
+  config,
   ...
-}: {
+}: let
+  cfg = config.mango;
+in {
   imports = [
     inputs.noctalia.homeModules.default
   ];
 
   programs.noctalia-shell = {
-    enable = true;
+    enable = cfg.noctalia-shell;
     user-templates = ''
       [config]
       [templates.foot]

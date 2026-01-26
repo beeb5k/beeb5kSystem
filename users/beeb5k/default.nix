@@ -19,7 +19,11 @@
   home.username = user;
   home.homeDirectory = "/home/${user}";
 
-  mango.enable = true;
+  mango = {
+    enable = true;
+    noctalia-shell = false;
+  };
+
   bspwm.enable = false;
 
   beebvim = {
@@ -36,8 +40,8 @@
 
   terminal = {
     emulator = {
-      foot = true;
-      alacritty = false;
+      foot = false;
+      alacritty = true;
       ghostty = false;
     };
     font = {
@@ -56,13 +60,19 @@
   home.sessionVariables = {};
 
   home.packages = with pkgs; [
-    gimp3-with-plugins
     opencode
-    obsidian
     imagemagick
-    discord
     pavucontrol
+    matugen
+    hellwal
     brightnessctl
+    totem
+    imv
+    (discord.override {
+      withMoonlight = true;
+      withOpenASAR = true;
+      withTTS = false;
+    })
   ];
 
   programs.home-manager.enable = true;

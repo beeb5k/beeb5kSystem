@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   programs.obs-studio = {
-    enable = false;
+    enable = true;
     package = (
       pkgs.obs-studio.override {
+        browserSupport = false;
+        scriptingSupport = false;
         cudaSupport = true;
       }
     );
@@ -10,7 +12,6 @@
       wlrobs
       obs-vaapi
       obs-vkcapture
-      obs-move-transition
       obs-pipewire-audio-capture
     ];
   };

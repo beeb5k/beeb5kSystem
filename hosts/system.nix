@@ -38,16 +38,51 @@
     };
   };
 
-  services.keyd = {
+  services.kanata = {
     enable = true;
     keyboards.default = {
-      ids = ["*"];
-      settings = {
-        main = {
-          capslock = "overload(control, esc)";
-          esc = "capslock";
-        };
-      };
+      # 1. Global Configuration
+      extraDefCfg = "process-unmapped-keys yes";
+
+      # 2. Layer Configuration
+      config = ''
+        ;; Define the physical keys on your keyboard that we want to modify
+        (defsrc
+          esc   caps  rctrl f1
+        )
+
+        ;; Define custom actions (Aliases)
+        (defalias
+          ;; The smart key:
+          ;; - Tap: Sends Esc
+          ;; - Hold: Sends Left Control
+          ;; - "press": If you press another key while holding this, it triggers
+          ;;            Left Control IMMEDIATELY (no lag). Perfect for Vim.
+          capesc (tap-hold-press 200 200 esc lctrl)
+
+          ;; Switches to toggle between layers
+          game   (layer-switch gaming)
+          base   (layer-switch base)
+        )
+
+        ;; 3. Base Layer (Typing Mode)
+        ;; - Physical Esc     -> Caps Lock (Standard swap)
+        ;; - Physical Caps    -> Esc (tap) / Ctrl (hold)
+        ;; - Physical RCtrl   -> Switch to "Gaming Mode"
+        ;; - Physical F1      -> Normal F1 behavior
+        (deflayer base
+          caps     @capesc  @game f1
+        )
+
+        ;; 4. Gaming Layer (Gaming Mode)
+        ;; - Physical Esc     -> Caps Lock (keeps light toggle working)
+        ;; - Physical Caps    -> Left Ctrl (Pure Ctrl! Safe for crouching)
+        ;; - Physical RCtrl   -> Switch back to "Typing Mode"
+        ;; - Physical F1      -> Escape (Your dedicated Pause button)
+        (deflayer gaming
+          caps     lctrl    @base esc
+        )
+      '';
     };
   };
 
@@ -140,7 +175,4 @@
   ];
 
   users.defaultUserShell = pkgs.fish;
-
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
 }
