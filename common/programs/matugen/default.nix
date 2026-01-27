@@ -42,20 +42,9 @@
             output_path = '~/.config/btop/themes/matugen.theme'
           ''}
 
-            [templates.polybar]
-            input_path = "~/.config/matugen/templates/polybar-colors.ini"
-            output_path = "~/.config/polybar/colors.ini"
-
             [templates.discord]
             input_path = "~/.config/matugen/templates/discord.css"
             output_path = "~/.config/vencord/midnight.css"
-
-          ${lib.optionalString config.bspwm.enable ''
-            [templates.bspwm]
-            input_path = "~/.config/matugen/templates/bspwm-colors.sh"
-            output_path = "~/.config/bspwm/colors.sh"
-            post_hook = "bspc wm -r"
-          ''}
 
             [templates.dunst]
             input_path = '~/.config/matugen/templates/dunstrc'

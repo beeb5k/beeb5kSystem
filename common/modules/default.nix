@@ -6,7 +6,7 @@
     };
   in {
     mango = import ./mango args;
-    bspwm = import ./bspwm args;
+    dwm = import ./dwm args;
     specialisation = import ./specialisations args;
   };
 in {

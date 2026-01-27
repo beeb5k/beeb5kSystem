@@ -28,12 +28,6 @@
     package = pkgs.vanilla-dmz;
   };
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
   xresources.properties = {
     "Xft.dpi" = 96;
     "Xft.autohint" = 0;
@@ -42,6 +36,12 @@
     "Xft.hinting" = 1;
     "Xft.antialias" = 1;
     "Xft.rgba" = "rgb";
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
   };
 
   gtk = {

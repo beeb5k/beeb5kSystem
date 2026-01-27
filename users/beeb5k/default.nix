@@ -12,7 +12,6 @@
     inputs.beeb5kvim.homeModules.default
     inputs.self.homeModules.programs
     inputs.self.homeModules.mango
-    inputs.self.homeModules.bspwm
     ../users.nix
   ];
 
@@ -23,8 +22,6 @@
     enable = true;
     noctalia-shell = false;
   };
-
-  bspwm.enable = false;
 
   beebvim = {
     enable = true;

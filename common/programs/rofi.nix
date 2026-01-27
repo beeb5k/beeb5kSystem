@@ -6,7 +6,7 @@
 }: {
   # remove this from here
   services.clipcat = {
-    enable = config.bspwm.enable;
+    enable = false;
     daemonSettings = {
       daemonize = true;
       max_history = 50;
@@ -94,7 +94,7 @@
               fi
 
               # Cross-Compatibility: Update X11 config (.fehbg) from Wayland session
-              # This ensures the wallpaper persists if you switch to an X11 window manager (like dwm/bspwm)
+              # This ensures the wallpaper persists if you switch to an X11 window manager
               echo "feh --no-fehbg --bg-fill '$FULL_PATH'" > ~/.fehbg
 
           # Check if running on X11

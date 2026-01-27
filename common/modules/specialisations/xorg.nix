@@ -5,11 +5,10 @@
   ...
 }: {
   specialisation = {
-    x11.configuration = {
+    xorg.configuration = {
       mango.enable = lib.mkForce false;
-      bspwm.enable = lib.mkForce true;
-      home-manager.users.${user} = {
-        bspwm.enable = lib.mkForce true;
+      dwm.enable = lib.mkForce true;
+      home-manager.users.beeb5k = {
         mango.enable = lib.mkForce false;
       };
     };

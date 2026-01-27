@@ -12,18 +12,19 @@
     ./hardware-configuration.nix
     (import ../system.nix {inherit user;})
     inputs.self.nixosModules.mango
-    inputs.self.nixosModules.bspwm
-    inputs.self.nixosModules.specialisation
+    inputs.self.nixosModules.dwm
+    # inputs.self.nixosModules.specialisation
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_lqx;
 
   programs.dconf.enable = true;
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
 
   mango.enable = true;
-  bspwm.enable = false;
+  dwm.enable = true;
 
   boot = {
     plymouth = {
@@ -43,6 +44,24 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config = {
+      common = {
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+      };
+      mango = {
+        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+      };
+    };
   };
 
   programs.gamemode.enable = true;
@@ -79,7 +98,7 @@
     clang
   ];
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia" "modesetting"];
   hardware = {
     graphics = {
       enable = true;
