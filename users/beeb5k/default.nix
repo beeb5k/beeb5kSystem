@@ -37,8 +37,9 @@
 
   terminal = {
     emulator = {
-      foot = false;
-      alacritty = true;
+      default = "foot";
+      foot = true;
+      alacritty = false;
       ghostty = false;
     };
     font = {
@@ -61,10 +62,10 @@
     imagemagick
     pavucontrol
     matugen
-    hellwal
     brightnessctl
     totem
     imv
+    bluetui
     (discord.override {
       withMoonlight = true;
       withOpenASAR = true;

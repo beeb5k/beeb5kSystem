@@ -21,7 +21,26 @@
     esac
   '';
   smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
-    alacritty msg create-window || alacritty
+    alacritty msg create-window || exec alacritty
+  '';
+  smart-foot = pkgs.writeShellScript "smart-foot" ''
+    # 1. PROBE: If server works, replace script with client immediately.
+    footclient true 2>/dev/null && exec footclient
+
+    # 2. START: Server is down. Start it silently.
+    nohup foot --server >/dev/null 2>&1 &
+
+    # 3. BUSY WAIT: Spam the probe until it works (Zero Latency)
+    # The moment 'footclient true' succeeds, the loop breaks.
+    while ! footclient true 2>/dev/null; do
+        sleep 0.02
+    done
+
+    # 4. EXEC: Server is ready. Replace script with real client.
+    exec footclient
+  '';
+  smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
+    ghostty +new-window || exec ghostty
   '';
 in {
   imports =
@@ -136,8 +155,8 @@ in {
           # cursor_size=24
           drag_tile_to_tile=1
           xwayland_persistence=0
-          # syncobj_enable=1
-          allow_tearing=2
+          syncobj_enable=1
+          allow_tearing=0
 
           # keyboard
           repeat_delay=300;
@@ -167,7 +186,6 @@ in {
           windowrule=tags:2,appid:firefox
           windowrule=tags:3,appid:vesktop
           windowrule=tags:3,appid:discord
-          windowrule=tags:4,appid:steam
 
           # Appearance
           gappih=5
@@ -207,7 +225,16 @@ in {
 
           # menu and terminal
 
-          bind=SUPER,Return,spawn,${smart-alacritty}
+          ${lib.optionalString (config.terminal.emulator.alacritty && config.terminal.emulator.default == "alacritty") ''
+            bind=SUPER,Return,spawn,${smart-alacritty}
+          ''}
+          ${lib.optionalString (config.terminal.emulator.ghostty && config.terminal.emulator.default == "ghostty") ''
+            bind=SUPER,Return,spawn,${smart-ghostty}
+          ''}
+          ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot") ''
+            bind=SUPER,Return,spawn,${smart-foot}
+          ''}
+
           ${lib.optionalString (config.mango.noctalia-shell
             && config.mango.enable) ''
             bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle

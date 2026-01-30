@@ -16,15 +16,13 @@
     # inputs.self.nixosModules.specialisation
   ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_lqx;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   programs.dconf.enable = true;
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
 
   mango.enable = true;
-  dwm.enable = true;
 
   boot = {
     plymouth = {
@@ -65,9 +63,13 @@
   };
 
   programs.gamemode.enable = true;
-  programs.gamescope.enable = true;
+  programs.gamescope = {
+    capSysNice = true;
+    enable = true;
+  };
   programs.steam = {
     enable = true;
+    gamescopeSession.enable = false;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
@@ -83,7 +85,14 @@
   };
 
   environment.sessionVariables = {
-    # NIXOS_OZONE_WL = 1;
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+    QT_QPA_PLATFORM = "wayland;xcb";
+    # SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+    GDK_BACKEND = "wayland,x11";
+    GDK_SCALE = 1;
   };
 
   networking.hostName = hostname;

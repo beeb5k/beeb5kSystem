@@ -5,6 +5,37 @@
 }: {
   imports = [./templates];
 
+  programs.wallust = {
+    enable = true;
+    settings = {
+      backend = "kmeans";
+      # color_space = "lch";
+      color_space = "labmixed";
+      palette = "dark16";
+      fallback_generator = "interpolate";
+      threshold = 11;
+      check_contrast = true;
+      templates = {
+        foot = {
+          template = "foot-colors.ini";
+          target = "~/.config/foot/colors.ini";
+        };
+        alacritty = {
+          template = "alacritty-colors.toml";
+          target = "~/.config/alacritty/colors.toml";
+        };
+        ghostty = {
+          template = "ghostty-colors.conf";
+          target = "~/.config/ghostty/colors.conf";
+        };
+        zen = {
+          template = "userChrome.css";
+          target = "~/.cache/wallust/userChrome.css";
+        };
+      };
+    };
+  };
+
   xdg.configFile = {
     "matugen/config.toml" = {
       # enable = !config.programs.noctalia-shell.enable;
@@ -15,19 +46,19 @@
           ${lib.optionalString config.programs.alacritty.enable ''
             [templates.alacritty]
             input_path = '~/.config/matugen/templates/alacritty-colors.toml'
-            output_path = '~/.config/hellwal/templates/alacritty-colors.toml'
+            output_path = '~/.config/wallust/templates/alacritty-colors.toml'
           ''}
 
           ${lib.optionalString config.programs.foot.enable ''
             [templates.foot]
             input_path = '~/.config/matugen/templates/foot-colors.ini'
-            output_path = '~/.config/hellwal/templates/foot-colors.ini'
+            output_path = '~/.config/wallust/templates/foot-colors.ini'
           ''}
 
           ${lib.optionalString config.programs.ghostty.enable ''
             [templates.ghostty]
             input_path = '~/.config/matugen/templates/ghostty.conf'
-            output_path = '~/.config/hellwal/templates/ghostty-colors.conf'
+            output_path = '~/.config/wallust/templates/ghostty-colors.conf'
           ''}
 
           ${lib.optionalString config.programs.zathura.enable ''
@@ -73,7 +104,7 @@
 
             [templates.zen]
             input_path = '~/.config/matugen/templates/zen.css'
-            output_path = '~/.config/hellwal/templates/userChrome.css'
+            output_path = '~/.config/wallust/templates/userChrome.css'
         '';
     };
   };

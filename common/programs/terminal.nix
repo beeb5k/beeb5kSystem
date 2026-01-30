@@ -9,6 +9,11 @@ with lib; let
 in {
   options.terminal = {
     emulator = {
+      default = mkOption {
+        type = types.enum ["foot" "ghostty" "alacritty"];
+        default = "foot";
+        description = "The terminal emulator to enable.";
+      };
       foot = mkEnableOption "enable foot";
       alacritty = mkEnableOption "enable alacritty";
       ghostty = mkEnableOption "enable ghostty";
@@ -51,7 +56,7 @@ in {
         enable = true;
         settings = {
           main = {
-            include = ["~/.cache/hellwal/foot-colors.ini"];
+            include = ["~/.config/foot/colors.ini"];
 
             pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y}";
             font = "${cfg.font.family}:size=${toString cfg.font.size}";
@@ -78,7 +83,7 @@ in {
         enable = true;
         enableFishIntegration = true;
         settings = {
-          config-file = ["~/.cache/hellwal/ghostty-colors.conf"];
+          config-file = ["~/.config/ghostty/colors.conf"];
 
           font-family = cfg.font.family;
           font-size = cfg.font.size;
@@ -126,7 +131,7 @@ in {
             hide_when_typing = true;
           };
           general = {
-            import = ["~/.cache/hellwal/alacritty-colors.toml"];
+            import = ["~/.config/alacritty/colors.toml"];
           };
           window = {
             padding = {

@@ -110,7 +110,7 @@
           # --- 3. System Theming ---
           # Generate Material Design colors (matugen) and terminal colors (hellwal)
           # matches the system theme to the new wallpaper
-          matugen image "$FULL_PATH" && hellwal --skip-term-colors -q -i "$FULL_PATH"
+          matugen image "$FULL_PATH" 2>/dev/null && wallust -q -s run "$FULL_PATH" 2>/dev/null
       fi
     '')
 
