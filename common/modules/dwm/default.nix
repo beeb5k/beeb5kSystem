@@ -42,7 +42,6 @@ in {
             if [ -f ~/.fehbg ]; then
               sh ~/.fehbg
             fi
-            ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
           '';
         };
         windowManager.dwm = {
@@ -67,6 +66,15 @@ in {
         };
       };
     }
-    else {}
+    else {
+      xsession = {
+        enable = true;
+        pointerCursor = {
+          size = 16;
+          name = "Vanilla-DMZ";
+          package = pkgs.vanilla-dmz;
+        };
+      };
+    }
   );
 }
