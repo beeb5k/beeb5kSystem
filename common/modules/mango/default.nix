@@ -92,40 +92,40 @@ in {
           focused_opacity=1
           unfocused_opacity=1
 
-
           # Animation Configuration(support type:zoom,slide)
           # tag_animation_direction: 1-horizontal,0-vertical
-          animations=0
+          animations=1
           layer_animations=0
           animation_type_open=slide
-          animation_type_close=slide
-          animation_fade_in=1
+          animation_type_close=zoom
+          animation_fade_in=0
           animation_fade_out=1
           tag_animation_direction=1
-          zoom_initial_ratio=0.3
+          zoom_initial_ratio=0.8
           zoom_end_ratio=0.8
           fadein_begin_opacity=0.5
-          fadeout_begin_opacity=0.8
-          animation_duration_move=500
-          animation_duration_open=400
+          fadeout_begin_opacity=0.5
+          animation_duration_move=300
+          animation_duration_open=350
           animation_duration_tag=350
-          animation_duration_close=800
+          animation_duration_close=150
           animation_duration_focus=0
-          animation_curve_open=0.46,1.0,0.29,1
+          animation_curve_open=0.05,0.7,0.1,1.0
           animation_curve_move=0.46,1.0,0.29,1
           animation_curve_tag=0.46,1.0,0.29,1
-          animation_curve_close=0.08,0.92,0,1
-          animation_curve_focus=0.46,1.0,0.29,1
+          animation_curve_close=0.0,0.0,1.0,1.0
+          animation_curve_focus=0.05,0.7,0.1,1.0
           animation_curve_opafadeout=0.5,0.5,0.5,0.5
           animation_curve_opafadein=0.46,1.0,0.29,1
 
-          # Scroller Layout Setting
-          scroller_structs=20
+          # Scroller configuration
+          scroller_structs=15
           scroller_default_proportion=0.8
           scroller_focus_center=0
           scroller_prefer_center=0
           edge_scroller_pointer_focus=1
           scroller_default_proportion_single=1.0
+          scroller_ignore_proportion_single=0
           scroller_proportion_preset=0.5,0.8,1.0
 
           # Master-Stack Layout Setting
