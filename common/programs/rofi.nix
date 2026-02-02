@@ -4,29 +4,6 @@
   lib,
   ...
 }: {
-  # remove this from here
-  services.clipcat = {
-    enable = false;
-    daemonSettings = {
-      daemonize = true;
-      max_history = 50;
-      desktop_notification = {
-        enable = false;
-      };
-    };
-    menuSettings = {
-      server_endpoint = "/run/user/1000/clipcat/grpc.sock";
-      finder = "rofi";
-
-      rofi = {
-        menu_length = 10;
-        line_length = 100;
-        menu_prompt = "Clipboard";
-        extra_arguments = [];
-      };
-    };
-  };
-
   programs.rofi = {
     enable = true;
     font = "Lilex Nerd Font";
@@ -36,8 +13,6 @@
 
   # custom scripts
   home.packages = [
-    pkgs.rofi-bluetooth
-    pkgs.rofi-network-manager
     pkgs.rofi-power-menu
     (pkgs.writeShellScriptBin "wall-picker" ''
       # Define the directory containing wallpapers
@@ -112,39 +87,6 @@
           # matches the system theme to the new wallpaper
           matugen image "$FULL_PATH" 2>/dev/null && wallust -q -s run "$FULL_PATH" 2>/dev/null
       fi
-    '')
-
-    (pkgs.writeShellScriptBin "rofi-e-or-c" ''
-      options="Clipboard\nEmoji"
-
-      chosen=$(echo -en "$options" | rofi -dmenu -i -p "Quick Pick")
-          # -theme-str 'window { width: 250px; }' \
-          # -theme-str 'listview { lines: 2; }')
-
-      case "$chosen" in
-          *Clipboard)
-              clipcat-menu
-              ;;
-          *Emoji)
-              rofi -show emoji -modi emoji
-              ;;
-      esac
-    '')
-    (pkgs.writeShellScriptBin "rofi-b-or-n" ''
-      options="NetworkManager\nBluetooth"
-
-      chosen=$(echo -en "$options" | rofi -dmenu -i -p "Quick Pick")
-          # -theme-str 'window { width: 250px; }' \
-          # -theme-str 'listview { lines: 2; }')
-
-      case "$chosen" in
-          *Bluetooth)
-              rofi-bluetooth
-              ;;
-          *NetworkManager)
-              rofi-network-manager
-              ;;
-      esac
     '')
   ];
 

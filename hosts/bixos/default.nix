@@ -109,7 +109,7 @@
     clang
   ];
 
-  services.xserver.videoDrivers = ["nvidia" "modesetting"];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware = {
     graphics = {
       enable = true;

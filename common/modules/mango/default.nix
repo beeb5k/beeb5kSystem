@@ -130,7 +130,7 @@ in {
 
           # Master-Stack Layout Setting
           new_is_master=0
-          default_mfact=0.55
+          default_mfact=0.60
           default_nmaster=1
           smartgaps=0
 
@@ -186,6 +186,11 @@ in {
           windowrule=tags:2,appid:firefox
           windowrule=tags:3,appid:vesktop
           windowrule=tags:3,appid:discord
+          windowrule=tags:4,appid:steam
+          indowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
+          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*Settings.*
+          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*Properties.*
+          windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
 
           # Appearance
           gappih=5
@@ -207,9 +212,9 @@ in {
           # layout support:
           # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
           tagrule=id:1,layout_name:tile
-          tagrule=id:2,layout_name:tile
+          tagrule=id:2,layout_name:scroller
           tagrule=id:3,layout_name:tile
-          tagrule=id:4,layout_name:tile
+          tagrule=id:4,layout_name:scroller
           tagrule=id:5,layout_name:tile
           tagrule=id:6,layout_name:tile
           tagrule=id:7,layout_name:tile
@@ -339,7 +344,7 @@ in {
           bind=CTRL+ALT,l,resizewin,+50,+0
 
           # Volume Control (using wpctl/Pipewire)
-          bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+          bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
           bind=NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           bind=NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 

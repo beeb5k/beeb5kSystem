@@ -67,13 +67,36 @@ in {
       };
     }
     else {
-      xsession = {
-        enable = true;
-        pointerCursor = {
-          size = 16;
-          name = "Vanilla-DMZ";
-          package = pkgs.vanilla-dmz;
+      services.clipcat = {
+        enable = config.dwm.enable;
+        daemonSettings = {
+          daemonize = true;
+          max_history = 50;
+          desktop_notification = {
+            enable = false;
+          };
         };
+        menuSettings = {
+          server_endpoint = "/run/user/1000/clipcat/grpc.sock";
+          finder = "rofi";
+
+          rofi = {
+            menu_length = 10;
+            line_length = 100;
+            menu_prompt = "Clipboard";
+            extra_arguments = [];
+          };
+        };
+      };
+
+      xresources.properties = {
+        "Xft.dpi" = 96;
+        "Xft.autohint" = 0;
+        "Xft.lcdfilter" = "lcddefault";
+        "Xft.hintstyle" = "hintfull";
+        "Xft.hinting" = 1;
+        "Xft.antialias" = 1;
+        "Xft.rgba" = "rgb";
       };
     }
   );

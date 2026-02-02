@@ -55,7 +55,11 @@
   };
 
   programs.mangohud.enable = true;
-  home.sessionVariables = {};
+
+  home.sessionVariables = {
+    EDITOR = "vim";
+    TERMINAL = config.terminal.emulator.default;
+  };
 
   home.packages = with pkgs; [
     opencode
