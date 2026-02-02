@@ -6,6 +6,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -44,11 +45,11 @@
     ];
   };
 
-  xdg.portal = {
+  xdg.portal = lib.mkForce {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-luminous
     ];
     config = {
       common = {
@@ -56,8 +57,9 @@
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
       mango = {
-        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["luminous"];
+        "org.freedesktop.impl.portal.Screenshot" = ["luminous"];
+        "org.freedesktop.impl.portal.RemoteDesktop" = ["luminous"];
       };
     };
   };
