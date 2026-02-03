@@ -130,7 +130,7 @@ in {
 
           # Master-Stack Layout Setting
           new_is_master=0
-          default_mfact=0.60
+          default_mfact=0.56
           default_nmaster=1
           smartgaps=0
 
@@ -180,16 +180,13 @@ in {
           # need relogin to make it apply
           mouse_natural_scrolling=0
 
-          windowrule=tags:1,appid:foot
-          windowrule=tags:1,appid:alacritty
-          windowrule=tags:2,appid:zen
-          windowrule=tags:2,appid:firefox
-          windowrule=tags:3,appid:vesktop
-          windowrule=tags:3,appid:discord
-          windowrule=tags:4,appid:steam
-          indowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
-          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*Settings.*
-          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*Properties.*
+          windowrule=tags:1,appid:^(foot|footclient|alacritty)$
+          windowrule=tags:2,appid:^(zen|firefox)$
+          windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element)$
+          windowrule=tags:4,appid:^steam$
+
+          windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
+          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
           windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
 
           # Appearance
@@ -211,11 +208,11 @@ in {
 
           # layout support:
           # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
-          tagrule=id:1,layout_name:tile
+          tagrule=id:1,layout_name:tgmix
           tagrule=id:2,layout_name:scroller
-          tagrule=id:3,layout_name:tile
+          tagrule=id:3,layout_name:scroller
           tagrule=id:4,layout_name:scroller
-          tagrule=id:5,layout_name:tile
+          tagrule=id:5,layout_name:grid
           tagrule=id:6,layout_name:tile
           tagrule=id:7,layout_name:tile
           tagrule=id:8,layout_name:tile
@@ -257,6 +254,7 @@ in {
             bind=SUPER+SHIFT,l,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
             bind=SUPER,y,spawn,wall-picker
           ''}
+          bind=SUPER,b,spawn,zen
 
           # exit
           bind=SUPER,m,quit

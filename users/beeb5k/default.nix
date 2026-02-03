@@ -70,11 +70,13 @@
     totem
     imv
     bluetui
-    (discord.override {
-      withMoonlight = true;
-      withOpenASAR = true;
-      withTTS = false;
-    })
+    iamb
+    thunderbird
+    # (discord.override {
+    #   withMoonlight = true;
+    #   withOpenASAR = true;
+    #   withTTS = false;
+    # })
   ];
 
   programs.home-manager.enable = true;
