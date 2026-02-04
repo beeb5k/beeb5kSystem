@@ -67,6 +67,12 @@
             output_path = '~/.config/zathura/matugen'
           ''}
 
+          ${lib.optionalString config.programs.swaylock.enable ''
+            [templates.swaylock]
+            input_path = '~/.config/matugen/templates/swaylock-colors'
+            output_path = '~/.config/swaylock/swaylock-colors'
+          ''}
+
           ${lib.optionalString config.programs.btop.enable ''
             [templates.btop]
             input_path = '~/.config/matugen/templates/btop.theme'

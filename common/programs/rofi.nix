@@ -16,7 +16,7 @@
     pkgs.rofi-power-menu
     (pkgs.writeShellScriptBin "wall-picker" ''
       # Define the directory containing wallpapers
-      WALL_DIR="$HOME/Pictures/wallpapers"
+      WALL_DIR="$HOME/Pictures/Wallpapers"
 
       # Function to generate a list of wallpapers formatted for Rofi
       # Output format: filename\0icon\x1f/absolute/path

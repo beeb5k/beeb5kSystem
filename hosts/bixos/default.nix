@@ -14,7 +14,6 @@
     (import ../system.nix {inherit user;})
     inputs.self.nixosModules.mango
     inputs.self.nixosModules.dwm
-    # inputs.self.nixosModules.specialisation
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -22,8 +21,8 @@
   programs.dconf.enable = true;
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
-
   mango.enable = true;
+  security.pam.services.swaylock = {};
 
   boot = {
     plymouth = {

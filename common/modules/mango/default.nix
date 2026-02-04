@@ -42,12 +42,75 @@
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
+  volume-control = pkgs.writeShellScript "volume-control" ''
+    TAG="audio-volume"
+
+    function get_vol {
+      wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'
+    }
+
+    case $1 in
+      up)   wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+      down) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+      mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+    esac
+
+    vol=$(get_vol)
+    is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep "MUTED")
+
+    if [ -n "$is_muted" ]; then
+      dunstify -a "Volume" -u low \
+        -h string:x-canonical-private-synchronous:$TAG \
+        "Volume: Muted"
+    else
+      dunstify -a "Volume" -u low \
+        -h string:x-canonical-private-synchronous:$TAG \
+        -h int:value:"$vol" \
+        "Volume: $vol%"
+    fi
+  '';
+  brightness-control = pkgs.writeShellScript "brightness-control" ''
+    TAG="screen-brightness"
+
+    case $1 in
+      up)   brightnessctl set +5% ;;
+      down) brightnessctl set 5%- ;;
+    esac
+
+    # Get current percentage
+    current=$(brightnessctl info | grep -oP '\(\K[0-9]+(?=%\))')
+
+    dunstify -a "Brightness" -u low \
+      -h string:x-canonical-private-synchronous:$TAG \
+      -h int:value:"$current" \
+      "Brightness: $current%"
+  '';
+  mic-control = pkgs.writeShellScript "mic-control" ''
+    TAG="audio-mic"
+
+    case $1 in
+      toggle) wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
+    esac
+
+    is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep "MUTED")
+
+    if [ -n "$is_muted" ]; then
+        dunstify -a "Microphone" -u low \
+          -h string:x-canonical-private-synchronous:$TAG \
+          "Microphone: Muted"
+    else
+        dunstify -a "Microphone" -u low \
+          -h string:x-canonical-private-synchronous:$TAG \
+          "Microphone: On"
+    fi
+  '';
 in {
   imports =
     if homeManager
     then [
       inputs.mango.hmModules.mango
       ./noctalia.nix
+      ./swaylockNdidle.nix
     ]
     else [
       inputs.mango.nixosModules.mango
@@ -64,6 +127,10 @@ in {
   config = lib.mkIf cfg.enable (
     if homeManager
     then {
+      # services.cliphist = {
+      #   enable = true;
+      #   allowImages = true;
+      # };
       wayland.windowManager.mango = {
         enable = true;
         settings = ''
@@ -155,7 +222,7 @@ in {
           # cursor_size=24
           drag_tile_to_tile=1
           xwayland_persistence=0
-          syncobj_enable=1
+          syncobj_enable=0
           allow_tearing=0
 
           # keyboard
@@ -247,11 +314,10 @@ in {
           ''}
 
           ${lib.optionalString (!config.mango.noctalia-shell) ''
-            # bind=SUPER,v,spawn,clipboard
-            # bind=SUPER,n,spawn,rofi-b-or-n
+            # bind=SUPER,v,spawn,clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy
             bind=SUPER,a,spawn,rofi -show drun
             bind=SUPER,period,spawn,rofi -show emoji -modi emoji
-            bind=SUPER+SHIFT,l,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
+            bind=ALT,F4,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
             bind=SUPER,y,spawn,wall-picker
           ''}
           bind=SUPER,b,spawn,zen
@@ -342,16 +408,16 @@ in {
           bind=CTRL+ALT,l,resizewin,+50,+0
 
           # Volume Control (using wpctl/Pipewire)
-          bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
-          bind=NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-          bind=NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+          bind=NONE,XF86AudioRaiseVolume,spawn,${volume-control} up
+          bind=NONE,XF86AudioLowerVolume,spawn,${volume-control} down
+          bind=NONE,XF86AudioMute,spawn,${volume-control} mute
 
           # Mic Control
-          bind=NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+          bind=NONE,XF86AudioMicMute,spawn,${mic-control} toggle
 
           # Brightness Control (using brightnessctl)
-          bind=NONE,XF86MonBrightnessUp,spawn,brightnessctl set +5%
-          bind=NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-
+          bind=NONE,XF86MonBrightnessUp,spawn,${brightness-control} up
+          bind=NONE,XF86MonBrightnessDown,spawn,${brightness-control} down
 
           # Mouse Button Bindings
           # NONE mode key only work in ov mode
@@ -370,6 +436,7 @@ in {
 
           # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
+          exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
           ${lib.optionalString (config.mango.noctalia-shell
             && config.mango.enable) ''
             exec = pkill quickshell ; noctalia-shell
@@ -378,11 +445,13 @@ in {
           ${lib.optionalString (!config.mango.noctalia-shell) ''
             exec-once = sh ~/.swaybg.sh
           ''}
+          exec-once = wl-clip-persist --clipboard regular
         '';
       };
       home.packages = with pkgs; [
         wl-clipboard
         swaybg
+        wl-clip-persist
       ];
     }
     else {
