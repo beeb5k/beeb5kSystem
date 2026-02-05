@@ -10,11 +10,11 @@
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1770305108,
-        "narHash": "sha256-7aS3+TdMfAXBRKRLj6N6CMzK5vlFpNsJU0S+mG6J6XU=",
+        "lastModified": 1770320022,
+        "narHash": "sha256-PYxayfMnWZV3Mn+Tk3Gl54ACjBIMrHGAkdNo5MOlzUM=",
         "ref": "refs/heads/main",
-        "rev": "8ffa715cd728a203b87023e540bf1bc18b7c50b8",
-        "revCount": 184,
+        "rev": "4ea2c1097dedd80982baf72eb7a6618f936d1f31",
+        "revCount": 185,
         "type": "git",
         "url": "ssh://git@github.com/beeb5k/beeb5kvim.git"
       },

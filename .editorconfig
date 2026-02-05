@@ -1,8 +1,0 @@
-# .editorconfig file
-# Use spaces instead of tabs with a size of 2
-
-root = true
-
-[*]
-indent_style = space
-indent_size = 4
