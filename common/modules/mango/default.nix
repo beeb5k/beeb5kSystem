@@ -42,68 +42,6 @@
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
-  volume-control = pkgs.writeShellScript "volume-control" ''
-    TAG="audio-volume"
-
-    function get_vol {
-      wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}'
-    }
-
-    case $1 in
-      up)   wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+ ;;
-      down) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
-      mute) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
-    esac
-
-    vol=$(get_vol)
-    is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep "MUTED")
-
-    if [ -n "$is_muted" ]; then
-      dunstify -a "Volume" -u low \
-        -h string:x-canonical-private-synchronous:$TAG \
-        "Volume: Muted"
-    else
-      dunstify -a "Volume" -u low \
-        -h string:x-canonical-private-synchronous:$TAG \
-        -h int:value:"$vol" \
-        "Volume: $vol%"
-    fi
-  '';
-  brightness-control = pkgs.writeShellScript "brightness-control" ''
-    TAG="screen-brightness"
-
-    case $1 in
-      up)   brightnessctl set +5% ;;
-      down) brightnessctl set 5%- ;;
-    esac
-
-    # Get current percentage
-    current=$(brightnessctl info | grep -oP '\(\K[0-9]+(?=%\))')
-
-    dunstify -a "Brightness" -u low \
-      -h string:x-canonical-private-synchronous:$TAG \
-      -h int:value:"$current" \
-      "Brightness: $current%"
-  '';
-  mic-control = pkgs.writeShellScript "mic-control" ''
-    TAG="audio-mic"
-
-    case $1 in
-      toggle) wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle ;;
-    esac
-
-    is_muted=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep "MUTED")
-
-    if [ -n "$is_muted" ]; then
-        dunstify -a "Microphone" -u low \
-          -h string:x-canonical-private-synchronous:$TAG \
-          "Microphone: Muted"
-    else
-        dunstify -a "Microphone" -u low \
-          -h string:x-canonical-private-synchronous:$TAG \
-          "Microphone: On"
-    fi
-  '';
 in {
   imports =
     if homeManager
@@ -408,16 +346,16 @@ in {
           bind=CTRL+ALT,l,resizewin,+50,+0
 
           # Volume Control (using wpctl/Pipewire)
-          bind=NONE,XF86AudioRaiseVolume,spawn,${volume-control} up
-          bind=NONE,XF86AudioLowerVolume,spawn,${volume-control} down
-          bind=NONE,XF86AudioMute,spawn,${volume-control} mute
+          bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
+          bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
+          bind=NONE,XF86AudioMute,spawn,volume-control mute
 
           # Mic Control
-          bind=NONE,XF86AudioMicMute,spawn,${mic-control} toggle
+          bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
 
           # Brightness Control (using brightnessctl)
-          bind=NONE,XF86MonBrightnessUp,spawn,${brightness-control} up
-          bind=NONE,XF86MonBrightnessDown,spawn,${brightness-control} down
+          bind=NONE,XF86MonBrightnessUp,spawn,brightness-control up
+          bind=NONE,XF86MonBrightnessDown,spawn,brightness-control down
 
           # Mouse Button Bindings
           # NONE mode key only work in ov mode

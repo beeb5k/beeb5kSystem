@@ -32,6 +32,10 @@
           template = "userChrome.css";
           target = "~/.cache/wallust/userChrome.css";
         };
+        st = {
+          template = "st";
+          target = "~/.config/x11/matugen_st.Xresources";
+        };
       };
     };
   };
@@ -78,6 +82,10 @@
             input_path = '~/.config/matugen/templates/btop.theme'
             output_path = '~/.config/btop/themes/matugen.theme'
           ''}
+
+            [templates.st]
+            input_path = "~/.config/matugen/templates/st"
+            output_path = "~/.config/wallust/templates/st"
 
             [templates.discord]
             input_path = "~/.config/matugen/templates/discord.css"

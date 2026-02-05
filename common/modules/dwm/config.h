@@ -21,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -36,13 +36,13 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55;
 static const int nmaster     = 1;
-static const int resizehints = 1;
+static const int resizehints = 0;
 static const int lockfullscreen = 1;
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[T]",      tile },    /* first entry is default */
+	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[]  = { "sh", "-c", "alacritty msg create-window || alacritty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *rofidrun[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char *rofipower[] = { "rofi", "-show", "power-menu", "-modi", "power-menu:rofi-power-menu", NULL };
 static const char *browsercmd[] = { "zen", NULL };
@@ -70,12 +70,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 
 
 /* Hardware Keys */
-static const char *upvol[]   = { "wpctl", "set-volume", "-l", "1.0", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
-static const char *downvol[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
-static const char *mutevol[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
-static const char *mutemic[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle", NULL };
-static const char *upbl[]    = { "brightnessctl", "set", "+5%", NULL };
-static const char *downbl[]  = { "brightnessctl", "set", "5%-", NULL };
+static const char *upvol[]   = { "volume-control", "up", NULL };
+static const char *downvol[] = { "volume-control", "down", NULL };
+static const char *mutevol[] = { "volume-control", "mute", NULL };
+static const char *mutemic[] = { "mic-control", "toggle", NULL };
+static const char *upbl[]    = { "brightness-control", "up", NULL };
+static const char *downbl[]  = { "brightness-control", "down", NULL };
 static const char *medplay[] = { "playerctl", "play-pause", NULL };
 static const char *mednext[] = { "playerctl", "next", NULL };
 static const char *medprev[] = { "playerctl", "previous", NULL };
@@ -90,7 +90,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = rofipower } },
 	{ MODKEY,                       XK_v,      spawn,          SHCMD("rofi-e-or-c") },
 	{ MODKEY,                       XK_n,      spawn,          SHCMD("rofi-b-or-n") },
-    { MODKEY,                            XK_F12,    spawn,          SHCMD("rofi -show calc -modi calc -no-show-match -no-sort") },
+    { MODKEY,                       XK_F12,    spawn,          SHCMD("rofi -show calc -modi calc -no-show-match -no-sort") },
 
 	/* Window Controls */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },

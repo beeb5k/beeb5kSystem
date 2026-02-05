@@ -30,6 +30,39 @@ in {
         slop
         xdotool
         xclip
+        (st.overrideAttrs (oldAttrs: rec {
+          patches = map pkgs.fetchpatch [
+            {
+              url = "https://st.suckless.org/patches/scrollback/st-scrollback-ringbuffer-0.9.2.diff";
+              sha256 = "sha256-/AoHajojVUAAqF4iKbN1lGM6h9PhZxCbMfAS2PRvbDE=";
+            }
+            {
+              url = "https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.9.2.diff";
+              sha256 = "sha256-CuNJ5FdKmAtEjwbgKeBKPJTdEfJvIdmeSAphbz0u3Uk=";
+            }
+            {
+              url = "https://st.suckless.org/patches/scrollback/st-scrollback-mouse-altscreen-20220127-2c5edf2.diff";
+              sha256 = "sha256-8oVLgbsYCfMhNEOGadb5DFajdDKPxwgf3P/4vOXfUFo=";
+            }
+            {
+              url = "https://st.suckless.org/patches/xresources/st-xresources-20230320-45a15676.diff";
+              sha256 = "sha256-WcL9IeyanXFiOFDGGRU0QNT8DU7wSo2o+3n+TaqASUY=";
+            }
+            {
+              url = "https://st.suckless.org/patches/vertcenter/st-vertcenter-20231003-eb3b894.diff";
+              sha256 = "sha256-RbFNdGNi5HLAp1s8QOX3qsfxpkLcp1p/vksyZORN/uc=";
+            }
+          ];
+          postPatch =
+            oldAttrs.postPatch or ""
+            + ''
+              sed -i 's/static int borderpx = .*/static int borderpx = 10;/g' config.def.h
+
+              sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 3}/g' config.def.h
+
+              sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 3}/g' config.def.h
+            '';
+        }))
       ];
 
       services.xserver = {
@@ -89,14 +122,18 @@ in {
         };
       };
 
+      xresources.extraConfig = ''
+        #include "${config.xdg.configHome}/x11/matugen_st.Xresources"
+      '';
       xresources.properties = {
         "Xft.dpi" = 96;
         "Xft.autohint" = 0;
+        "Xft.antialias" = true;
+        "Xft.hinting" = true;
         "Xft.lcdfilter" = "lcddefault";
         "Xft.hintstyle" = "hintfull";
-        "Xft.hinting" = 1;
-        "Xft.antialias" = 1;
         "Xft.rgba" = "rgb";
+        "st.font" = "Lilex Nerd Font:size=12:antialias=true:autohint=true";
       };
     }
   );

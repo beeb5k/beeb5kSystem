@@ -14,16 +14,11 @@ in {
 
     services.swayidle = {
       enable = true;
-      events = [
-        {
-          event = "before-sleep";
-          command = swaylock;
-        }
-        {
-          event = "lock";
-          command = swaylock;
-        }
-      ];
+      events = {
+        "before-sleep" = swaylock;
+        "lock" = "lock";
+      };
+
       timeouts = [
         {
           timeout = 300;

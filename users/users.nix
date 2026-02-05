@@ -17,15 +17,15 @@
   };
 
   home.pointerCursor = {
-    size = 16;
+    size = 24;
     enable = true;
     x11.enable = true;
     gtk.enable = true;
-    hyprcursor.size = 16;
+    hyprcursor.size = 24;
     dotIcons.enable = true;
     hyprcursor.enable = true;
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
+    name = "material_light_cursors";
+    package = pkgs.material-cursors;
   };
 
   dconf.settings = {

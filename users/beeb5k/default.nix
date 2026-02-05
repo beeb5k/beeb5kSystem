@@ -8,10 +8,12 @@
   config,
   ...
 }: {
-  imports = [
+  imports = with inputs.self.homeModules; [
     inputs.beeb5kvim.homeModules.default
-    inputs.self.homeModules.programs
-    inputs.self.homeModules.mango
+    programs
+    mango
+    dwm
+    scripts
     ../users.nix
   ];
 
@@ -22,6 +24,7 @@
     enable = true;
     noctalia-shell = false;
   };
+  dwm.enable = true;
 
   beebvim = {
     enable = true;

@@ -7,6 +7,7 @@
   in {
     mango = import ./mango args;
     dwm = import ./dwm args;
+    scripts = import ./scripts args;
   };
 in {
   options.flake.homeModules = lib.mkOption {
