@@ -73,7 +73,6 @@
     totem
     imv
     bluetui
-    iamb
     thunderbird
     # (discord.override {
     #   withMoonlight = true;

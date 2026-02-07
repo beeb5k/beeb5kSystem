@@ -10,7 +10,7 @@
       init.defaultBranch = "main";
       credential.helper = "store";
       user = {
-        email = "112796674+beeb5k@users.noreply.github.com";
+        email = "beebeeb5k@gmail.com";
         name = "beeb5k";
       };
     };

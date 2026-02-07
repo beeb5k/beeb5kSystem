@@ -259,6 +259,7 @@ in {
             bind=SUPER,y,spawn,wall-picker
           ''}
           bind=SUPER,b,spawn,zen
+          bind=SUPER,e,spawn,nautilus
 
           # exit
           bind=SUPER,m,quit

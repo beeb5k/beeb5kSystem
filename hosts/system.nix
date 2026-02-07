@@ -108,6 +108,8 @@
   security.pam.services.login.enableGnomeKeyring = true;
 
   nixpkgs.config.allowUnfree = true;
+  nix.registry.${user}.flake = inputs.self;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   networking.networkmanager.wifi.powersave = false;
   networking.networkmanager.enable = true;
