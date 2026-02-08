@@ -239,7 +239,8 @@ in {
             bind=SUPER,Return,spawn,${smart-ghostty}
           ''}
           ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot") ''
-            bind=SUPER,Return,spawn,${smart-foot}
+            bind=SUPER,Return,spawn,footclient
+            exec-once = foot --server
           ''}
 
           ${lib.optionalString (config.mango.noctalia-shell
