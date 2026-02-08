@@ -8,7 +8,6 @@ static const unsigned int gappx     = 5;
 static const int showbar            = 1;
 static const int topbar             = 1;
 static const char *fonts[]          = { "IBM Plex Mono:size=11" };
-static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -63,8 +62,10 @@ static const char *rofipower[] = { "rofi", "-show", "power-menu", "-modi", "powe
 static const char *browsercmd[] = { "zen", NULL };
 static const char *nautiluscmd[] = { "nautilus", NULL };
 static const char *wallpicker[] = { "wall-picker", NULL };
+static const char *emoji_menu[] = { "rofi", "-show", "emoji", "-modi", "emoji", NULL};
 
-/* REQUIRED BY DWM SOURCE CODE (Even if unused) */
+/* dont wanna patch dmenu code will just keep this */
+static const char dmenufont[] = "monospace:size=10";
 static char dmenumon[2] = "0"; 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
@@ -88,12 +89,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_e,      spawn,          {.v = nautiluscmd } },
 	{ MODKEY,                       XK_y,      spawn,          {.v = wallpicker } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = rofipower } },
-	{ MODKEY,                       XK_v,      spawn,          SHCMD("rofi-e-or-c") },
-	{ MODKEY,                       XK_n,      spawn,          SHCMD("rofi-b-or-n") },
+	{ MODKEY,                       XK_period, spawn,          {.v = emoji_menu } },
+	{ MODKEY,                       XK_v,      spawn,          SHCMD("clipcat-menu") },
     { MODKEY,                       XK_F12,    spawn,          SHCMD("rofi -show calc -modi calc -no-show-match -no-sort") },
+    { Mod1Mask,                     XK_F4,    spawn,           SHCMD("rofi -show power-menu -modi power-menu:rofi-power-menu") },
 
 	/* Window Controls */
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ Mod1Mask,                     XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
@@ -131,10 +133,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	// TAGKEYS(                        XK_6,                      5)
+	// TAGKEYS(                        XK_7,                      6)
+	// TAGKEYS(                        XK_8,                      7)
+	// TAGKEYS(                        XK_9,                      8)
 };
 
 /* button definitions */

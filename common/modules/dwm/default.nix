@@ -75,6 +75,7 @@ in {
             if [ -f ~/.fehbg ]; then
               sh ~/.fehbg
             fi
+            ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
           '';
         };
         windowManager.dwm = {
