@@ -22,7 +22,7 @@
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
   mango.enable = true;
-  dwm.enable = true;
+  dwm.enable = false;
   security.pam.services.swaylock = {};
 
   boot = {
@@ -64,10 +64,10 @@
     };
   };
 
-  programs.gamemode.enable = true;
+  programs.gamemode.enable = config.programs.steam.enable;
   programs.gamescope = {
+    enable = config.programs.steam.enable;
     capSysNice = true;
-    enable = true;
   };
   programs.steam = {
     enable = true;
@@ -139,6 +139,17 @@
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       # package = config.boot.kernelPackages.nvidiaPackages.stable;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
+    };
+  };
+
+  specialisation = {
+    xorg.configuration = {
+      mango.enable = lib.mkForce false;
+      dwm.enable = lib.mkForce true;
+      home-manager.users.${user} = {
+        mango.enable = lib.mkForce false;
+        dwm.enable = lib.mkForce true;
+      };
     };
   };
 
