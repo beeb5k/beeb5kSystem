@@ -10,7 +10,7 @@
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
-    beeb5kvim.url = "https://codeberg.org/beeb5k/beeb5kvim";
+    beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kvim";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
