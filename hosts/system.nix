@@ -1,6 +1,7 @@
 {user}: {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   nix.settings = {
@@ -96,15 +97,27 @@
     LC_TIME = "en_IN";
   };
 
-  services.displayManager.ly = {
+  services.greetd = {
     enable = true;
     settings = {
-      save = true;
-      load = true;
+      default_session = {
+        user = "greeter";
+        command = "${pkgs.tuigreet}/bin/tuigreet -t -r";
+      };
     };
   };
 
-  security.pam.services.ly.enableGnomeKeyring = true;
+  # systemd.services.greetd.serviceConfig = {
+  #   Type = "idle";
+  #   StandardInput = "tty";
+  #   StandardOutput = "null";
+  #   StandardError = "journal";
+  #   TTYReset = true;
+  #   TTYVHangup = true;
+  #   TTYVTDisallocate = true;
+  # };
+  #
+  security.pam.services.greetd.enableGnomeKeyring = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
   nixpkgs.config.allowUnfree = true;

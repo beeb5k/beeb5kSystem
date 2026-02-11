@@ -88,7 +88,7 @@
           matugen image "$FULL_PATH" 2>/dev/null && wallust -q -s run "$FULL_PATH" 2>/dev/null
 
           if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$DISPLAY" ]; then
-            ${pkgs.xorg.xrdb}/bin/xrdb -merge "$HOME/.Xresources"
+            xrdb -merge "$HOME/.Xresources"
           fi
       fi
     '')

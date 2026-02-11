@@ -25,26 +25,6 @@
   dwm.enable = false;
   security.pam.services.swaylock = {};
 
-  boot = {
-    plymouth = {
-      enable = true;
-      theme = "bgrt";
-      themePackages = with pkgs; [
-        nixos-bgrt-plymouth
-      ];
-    };
-
-    consoleLogLevel = 3;
-    initrd.verbose = false;
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
-    ];
-  };
-
   xdg.portal = lib.mkForce {
     enable = true;
     extraPortals = [
@@ -70,7 +50,7 @@
     capSysNice = true;
   };
   programs.steam = {
-    enable = true;
+    enable = false;
     gamescopeSession.enable = false;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
@@ -146,6 +126,13 @@
     xorg.configuration = {
       mango.enable = lib.mkForce false;
       dwm.enable = lib.mkForce true;
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = lib.mkForce "0";
+        ELECTRON_OZONE_PLATFORM_HINT = lib.mkForce "x11";
+        QT_QPA_PLATFORM = lib.mkForce "xcb";
+        GDK_BACKEND = lib.mkForce "x11";
+        XDG_SESSION_TYPE = lib.mkForce "x11";
+      };
       home-manager.users.${user} = {
         mango.enable = lib.mkForce false;
         dwm.enable = lib.mkForce true;

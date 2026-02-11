@@ -51,12 +51,27 @@
       "file://${config.home.homeDirectory}/Videos"
       "file://${config.home.homeDirectory}/beeb5kSystem Config"
     ];
-    gtk3.extraCss = ''
-      @import url("colors.css");
-    '';
-    gtk4.extraCss = ''
-      @import url("colors.css");
-    '';
+    gtk3 = {
+      extraConfig = {
+        gtk-cursor-blink = false;
+        gtk-recent-files-limit = 20;
+        gtk-decoration-layout = ":";
+      };
+      extraCss = ''
+        @import url("colors.css");
+      '';
+    };
+
+    gtk4 = {
+      extraConfig = {
+        gtk-cursor-blink = false;
+        gtk-recent-files-limit = 20;
+        gtk-decoration-layout = ":";
+      };
+      extraCss = ''
+        @import url("colors.css");
+      '';
+    };
   };
 
   dconf.settings = {

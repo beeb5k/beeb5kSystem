@@ -57,9 +57,7 @@ in {
             oldAttrs.postPatch or ""
             + ''
               sed -i 's/static int borderpx = .*/static int borderpx = 10;/g' config.def.h
-
               sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 3}/g' config.def.h
-
               sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 3}/g' config.def.h
             '';
         }))
@@ -71,36 +69,63 @@ in {
         autoRepeatInterval = 20;
         excludePackages = with pkgs; [xterm];
         displayManager = {
-          sessionCommands = ''
-            if [ -f ~/.fehbg ]; then
-              sh ~/.fehbg
-            fi
-            ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-          '';
+          startx.enable = true;
         };
         windowManager.dwm = {
           enable = true;
-          package = pkgs.dwm.override {
-            conf = ./config.h;
-            patches = map pkgs.fetchpatch [
-              {
-                url = "https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-6.4.diff";
-                sha256 = "sha256-+OXRqnlVeCP2Ihco+J7s5BQPpwFyRRf8lnVsN7rm+Cc=";
-              }
-              {
-                url = "https://dwm.suckless.org/patches/attachaside/dwm-attachaside-6.6.diff";
-                sha256 = "sha256-xxRnyk0/go9HJHrrGuGlWmDXKh/MmNRLClpk1/dY9gg=";
-              }
-              {
-                url = "https://dwm.suckless.org/patches/actualfullscreen/dwm-actualfullscreen-20211013-cb3f58a.diff";
-                sha256 = "sha256-vsTuudJCy7Zo1wdwpI/nY7Zu1txXx90QoDfJLmfDUH8=";
-              }
-            ];
-          };
+          package =
+            (pkgs.dwm.override {
+              conf = ./config.h;
+              patches = map pkgs.fetchpatch [
+                {
+                  url = "https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-6.4.diff";
+                  sha256 = "sha256-+OXRqnlVeCP2Ihco+J7s5BQPpwFyRRf8lnVsN7rm+Cc=";
+                }
+                {
+                  url = "https://dwm.suckless.org/patches/attachaside/dwm-attachaside-6.6.diff";
+                  sha256 = "sha256-xxRnyk0/go9HJHrrGuGlWmDXKh/MmNRLClpk1/dY9gg=";
+                }
+                {
+                  url = "https://dwm.suckless.org/patches/actualfullscreen/dwm-actualfullscreen-20211013-cb3f58a.diff";
+                  sha256 = "sha256-vsTuudJCy7Zo1wdwpI/nY7Zu1txXx90QoDfJLmfDUH8=";
+                }
+                {
+                  url = "https://dwm.suckless.org/patches/xcursor/dwm-xcursor-20250909-74edc27.diff";
+                  hash = "sha256-vUPP6oLrGgzUKokxzvYyz7Kcx0IrE4LRLsNvwX/VG1M=";
+                }
+                {
+                  url = "https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff";
+                  sha256 = "sha256-mrHh4o9KBZDp2ReSeKodWkCz5ahCLuE6Al3NR2r2OJg=";
+                }
+              ];
+            }).overrideAttrs (oldAttrs: {
+              buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.xorg.libXcursor];
+            });
         };
       };
     }
     else {
+      home.file.".dwm/autostart.sh" = {
+        executable = true;
+        text = ''
+          #!${pkgs.bash}/bin/bash
+
+          eval $(gnome-keyring-daemon --start --components=secrets,ssh)
+          dbus-update-activation-environment --systemd --all &
+
+          # xsetroot -cursor_name left_ptr &
+
+          if [ -f ~/.fehbg ]; then
+            sh ~/.fehbg &
+          fi
+
+          [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
+          xrandr --output eDP --set TearFree on
+
+          ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+        '';
+      };
+
       services.clipcat = {
         enable = config.dwm.enable;
         daemonSettings = {
