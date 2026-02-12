@@ -40,11 +40,13 @@ in {
     window = {
       padding-x = mkOption {
         type = types.int;
+        default = 0;
         description = "Window padding x axis (pixels).";
       };
 
       padding-y = mkOption {
         type = types.int;
+        default = 0;
         description = "Window padding y axis (pixels).";
       };
     };
@@ -58,7 +60,7 @@ in {
           main = {
             include = ["~/.config/foot/colors.ini"];
 
-            pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y}";
+            pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y} center";
             font = "${cfg.font.family}:size=${toString cfg.font.size}";
 
             dpi-aware = "no";

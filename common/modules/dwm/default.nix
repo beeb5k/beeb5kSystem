@@ -56,7 +56,7 @@ in {
           postPatch =
             oldAttrs.postPatch or ""
             + ''
-              sed -i 's/static int borderpx = .*/static int borderpx = 10;/g' config.def.h
+              sed -i 's/static int borderpx = .*/static int borderpx = 5;/g' config.def.h
               sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 3}/g' config.def.h
               sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 3}/g' config.def.h
             '';

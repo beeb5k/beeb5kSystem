@@ -27,6 +27,7 @@ static const Rule rules[] = {
 	{ "Alacritty", NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "St",         NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "zen",       NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "obsidian",       NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "vesktop",   NULL,       NULL,       1 << 2,       0,           -1 },
     { "thunderbird",NULL,       NULL,       1 << 2,       0,           -1 },
     { "discord",  NULL,       NULL,       1 << 2,       0,           -1 },

@@ -186,7 +186,7 @@ in {
           mouse_natural_scrolling=0
 
           windowrule=tags:1,appid:^(foot|footclient|alacritty)$
-          windowrule=tags:2,appid:^(zen|firefox)$
+          windowrule=tags:2,appid:^(zen|firefox|obsidian)$
           windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element)$
           windowrule=tags:4,appid:^steam$
 

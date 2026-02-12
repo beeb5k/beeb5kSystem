@@ -89,7 +89,7 @@
 
             [templates.discord]
             input_path = "~/.config/matugen/templates/discord.css"
-            output_path = "~/.config/vencord/midnight.css"
+            output_path = "~/.config/vesktop/themes/midnight.css"
 
             [templates.dunst]
             input_path = '~/.config/matugen/templates/dunstrc'
