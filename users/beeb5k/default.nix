@@ -66,26 +66,9 @@
 
   programs.vesktop = {
     enable = true;
-    settings = {
-      appBadge = false;
-      arRPC = false;
-      checkUpdates = false;
-      customTitleBar = false;
-      disableMinSize = true;
-      minimizeToTray = false;
-      tray = false;
-      splashTheming = true;
-      staticTitle = true;
-      hardwareAcceleration = true;
-      hardwareVideoAcceleration = true;
-      discordBranch = "stable";
-      disableSmoothScroll = true;
-      enableMenu = false;
-    };
     vencord = {
-      # themes = "midnight.css";
       settings = {
-        enabledThemes = ["midnight.css"];
+        # enabledThemes = ["midnight.css"];
         autoUpdate = false;
         autoUpdateNotification = false;
         notifyAboutUpdates = false;
@@ -99,7 +82,7 @@
           petpet.enabled = true;
           QuickReply.enabled = true;
           SilentTyping.enabled = true;
-          StreamerModeOnStream.enabled = true;
+          StreamerModeOnStream.enabled = false;
           NoReplyMention.enabled = true;
           OnePingPerDM.enabled = false;
         };
