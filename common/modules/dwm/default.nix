@@ -52,11 +52,14 @@ in {
               url = "https://st.suckless.org/patches/vertcenter/st-vertcenter-20231003-eb3b894.diff";
               sha256 = "sha256-RbFNdGNi5HLAp1s8QOX3qsfxpkLcp1p/vksyZORN/uc=";
             }
+            {
+              url = "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff";
+              hash = "sha256-yx9VSwmPACx3EN3CAdQkxeoJKJxQ6ziC9tpBcoWuWHc=";
+            }
           ];
           postPatch =
             oldAttrs.postPatch or ""
             + ''
-              sed -i 's/static int borderpx = .*/static int borderpx = 5;/g' config.def.h
               sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 3}/g' config.def.h
               sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 3}/g' config.def.h
             '';
@@ -123,13 +126,15 @@ in {
           xrandr --output eDP --set TearFree on
 
           ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
+
+          clipcatd
         '';
       };
 
       services.clipcat = {
         enable = config.dwm.enable;
         daemonSettings = {
-          daemonize = true;
+          daemonize = false;
           max_history = 50;
           desktop_notification = {
             enable = false;
@@ -160,6 +165,7 @@ in {
         "Xft.hintstyle" = "hintfull";
         "Xft.rgba" = "rgb";
         "st.font" = "Lilex Nerd Font:size=12:antialias=true:autohint=true";
+        "st.borderpx" = 5;
       };
     }
   );

@@ -22,7 +22,7 @@
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
   mango.enable = true;
-  dwm.enable = false;
+  dwm.enable = true;
   security.pam.services.swaylock = {};
 
   xdg.portal = lib.mkForce {
@@ -66,16 +66,7 @@
     ];
   };
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
-    QT_QPA_PLATFORM = "wayland;xcb";
-    # SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
-    GDK_BACKEND = "wayland,x11";
-    GDK_SCALE = 1;
-  };
+  environment.sessionVariables = {};
 
   networking.hostName = hostname;
   networking.firewall.allowedTCPPorts = [];
@@ -122,23 +113,23 @@
     };
   };
 
-  specialisation = {
-    xorg.configuration = {
-      mango.enable = lib.mkForce false;
-      dwm.enable = lib.mkForce true;
-      environment.sessionVariables = {
-        NIXOS_OZONE_WL = lib.mkForce "0";
-        ELECTRON_OZONE_PLATFORM_HINT = lib.mkForce "x11";
-        QT_QPA_PLATFORM = lib.mkForce "xcb";
-        GDK_BACKEND = lib.mkForce "x11";
-        XDG_SESSION_TYPE = lib.mkForce "x11";
-      };
-      home-manager.users.${user} = {
-        mango.enable = lib.mkForce false;
-        dwm.enable = lib.mkForce true;
-      };
-    };
-  };
-
+  # specialisation = {
+  #   xorg.configuration = {
+  #     mango.enable = lib.mkForce false;
+  #     dwm.enable = lib.mkForce true;
+  #     environment.sessionVariables = {
+  #       NIXOS_OZONE_WL = lib.mkForce "0";
+  #       ELECTRON_OZONE_PLATFORM_HINT = lib.mkForce "x11";
+  #       QT_QPA_PLATFORM = lib.mkForce "xcb";
+  #       GDK_BACKEND = lib.mkForce "x11";
+  #       XDG_SESSION_TYPE = lib.mkForce "x11";
+  #     };
+  #     home-manager.users.${user} = {
+  #       mango.enable = lib.mkForce false;
+  #       dwm.enable = lib.mkForce true;
+  #     };
+  #   };
+  # };
+  #
   system.stateVersion = systemState; # check flake.nix
 }

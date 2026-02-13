@@ -64,6 +64,7 @@ in {
             font = "${cfg.font.family}:size=${toString cfg.font.size}";
 
             dpi-aware = "no";
+            gamma-correct-blending = "yes";
             bold-text-in-bright =
               if cfg.font.bright_color_is_bold
               then "yes"
@@ -136,6 +137,7 @@ in {
             import = ["~/.config/alacritty/colors.toml"];
           };
           window = {
+            dynamic_padding = true;
             padding = {
               y = cfg.window.padding-y;
               x = cfg.window.padding-x;

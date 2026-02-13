@@ -102,7 +102,7 @@
     settings = {
       default_session = {
         user = "greeter";
-        command = "${pkgs.tuigreet}/bin/tuigreet -t -r";
+        command = "${pkgs.tuigreet}/bin/tuigreet -t -r --remember-session";
       };
     };
   };

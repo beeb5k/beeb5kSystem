@@ -10,11 +10,11 @@
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1770566851,
-        "narHash": "sha256-cOOq5FANsb06QkGnDW+2ewez005wNHDt+XsOLEVpAWc=",
+        "lastModified": 1770972916,
+        "narHash": "sha256-JH1f7rKNSnbCw3aYk3R3xs6Vrlf3qjSta5wJE3VWx9E=",
         "ref": "refs/heads/main",
-        "rev": "6ae21ce266238914b147a8d3a92b1eb838c17796",
-        "revCount": 188,
+        "rev": "4905e063122422ac032390573cce1f0443edd50e",
+        "revCount": 190,
         "type": "git",
         "url": "https://codeberg.org/beeb5k/beeb5kvim"
       },
@@ -290,11 +290,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770818644,
-        "narHash": "sha256-DYS4jIRpRoKOzJjnR/QqEd/MlT4OZZpt8CrBLv+cjsE=",
+        "lastModified": 1770961512,
+        "narHash": "sha256-NZ1V/y2HeR9ThZe+wzBwVxERD0psDYmQnhF+iF0+Pv8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0acbd1180697de56724821184ad2c3e6e7202cd7",
+        "rev": "a6c93262f349afeeebb390fb441910abffef329c",
         "type": "github"
       },
       "original": {
@@ -328,11 +328,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1770813884,
-        "narHash": "sha256-vd+qGss0q8eIDenzKhWqHOGyG/431jSlCFYgMsSSg5s=",
+        "lastModified": 1770952031,
+        "narHash": "sha256-v8dAVwInMg6EWR7EPi0l42S5OMc3Njf+PxwTAYUzGxs=",
         "owner": "DreamMaoMao",
         "repo": "mango",
-        "rev": "8484093e324a5e305e35dbf4c369d9065a0ad26c",
+        "rev": "f25161552455d076f0f15cadf522a8b57b829e2f",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1770562336,
-        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
+        "lastModified": 1770841267,
+        "narHash": "sha256-9xejG0KoqsoKEGp2kVbXRlEYtFFcDTHjidiuX8hGO44=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
+        "rev": "ec7c70d12ce2fc37cb92aff673dcdca89d187bae",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770823845,
-        "narHash": "sha256-/93tK99jPldeKt/vYZG37Mg5aQYt4F5veOdkz3h1Sqo=",
+        "lastModified": 1770957573,
+        "narHash": "sha256-aHNxTDDmbRmsh3PY+PyqBFklFimZ4LcwvkQazzOxsaw=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "aafc57c4e92926f7aaa0bf9ce93575c24af542ae",
+        "rev": "8c4a30406b86dd4acd59640169d176a0f83176d3",
         "type": "github"
       },
       "original": {

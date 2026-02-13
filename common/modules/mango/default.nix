@@ -187,7 +187,7 @@ in {
 
           windowrule=tags:1,appid:^(foot|footclient|alacritty)$
           windowrule=tags:2,appid:^(zen|firefox|obsidian)$
-          windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element)$
+          windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element|equibop)$
           windowrule=tags:4,appid:^steam$
 
           windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
@@ -372,6 +372,15 @@ in {
           # layer rule
           layerrule=animation_type_open:zoom,layer_name:rofi
           layerrule=animation_type_close:zoom,layer_name:rofi
+
+          env=NIXOS_OZONE_WL,1
+          env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+          env=ELECTRON_OZONE_PLATFORM_HINT,auto
+          env=QT_QPA_PLATFORM,wayland;xcb
+          env=XDG_SESSION_TYPE,wayland
+          env=GDK_BACKEND,wayland,x11
+          env=GDK_SCALE,1
+
 
           # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'

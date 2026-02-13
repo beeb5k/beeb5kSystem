@@ -24,7 +24,7 @@
     enable = true;
     noctalia-shell = false;
   };
-  dwm.enable = false;
+  dwm.enable = true;
 
   beebvim = {
     enable = true;
