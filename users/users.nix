@@ -6,13 +6,12 @@
 }: {
   programs.git = {
     enable = true;
-    settings = {
+    package = pkgs.git.override {withLibsecret = true;};
+    userName = "beeb5k";
+    userEmail = "beebeeb5k@gmail.com";
+    extraConfig = {
       init.defaultBranch = "main";
-      credential.helper = "store";
-      user = {
-        email = "beebeeb5k@gmail.com";
-        name = "beeb5k";
-      };
+      credential.helper = "libsecret";
     };
   };
 
