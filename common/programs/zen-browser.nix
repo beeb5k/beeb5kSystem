@@ -29,6 +29,7 @@
 
   extensions = [
     (extension "ublock-origin" "uBlock0@raymondhill.net")
+    (extension "darkreader" "addon@darkreader.org")
   ];
 in {
   home.packages = [

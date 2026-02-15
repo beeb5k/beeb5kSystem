@@ -100,6 +100,10 @@ in {
                   url = "https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff";
                   sha256 = "sha256-mrHh4o9KBZDp2ReSeKodWkCz5ahCLuE6Al3NR2r2OJg=";
                 }
+                {
+                  url = "https://raw.githubusercontent.com/bakkeby/patches/master/dwm/dwm-focusdir-6.2.diff";
+                  sha256 = "sha256-KMZBgccoWnkTFr8ubJWa4tCKLK5X1CcJH1GE4EB9cYk=";
+                }
               ];
             }).overrideAttrs (oldAttrs: {
               buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.xorg.libXcursor];
@@ -127,6 +131,7 @@ in {
 
           ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 
+          dunst &
           clipcatd
         '';
       };

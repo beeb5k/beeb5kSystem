@@ -22,6 +22,12 @@
 
   mango = {
     enable = true;
+    animations = true;
+    window = {
+      blur.enable = true;
+      border_radius = 12;
+      shadows = true;
+    };
     noctalia-shell = false;
   };
   dwm.enable = true;
@@ -52,8 +58,8 @@
       ligatures = false; # only supported by ghostty
     };
     window = {
-      padding-x = 5;
-      padding-y = 5;
+      padding-x = 7;
+      padding-y = 7;
     };
   };
 
@@ -75,7 +81,7 @@
         useQuickCss = false;
         disableMinSize = true;
         plugins = {
-          FakeNitro.enabled = true;
+          FakeNitro.enabled = false;
           AnonymiseFileNames.enabled = true;
           PlainFolderIcon.enabled = true;
           NoTypingAnimations.enabled = true;
@@ -99,7 +105,9 @@
     totem
     imv
     bluetui
-    thunderbird
+    dunst
+    gnome-calculator
+    papers
     (pkgs.obsidian.override {
       electron = pkgs.electron_40;
     })

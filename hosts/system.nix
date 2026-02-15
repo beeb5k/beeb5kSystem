@@ -14,7 +14,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 2";
-    flake = "/home/${user}/beeb5kSystem/";
+    flake = "/home/${user}/.config/beeb5kSystem/";
   };
 
   boot.loader = {

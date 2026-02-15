@@ -17,7 +17,7 @@
   };
 
   home.pointerCursor = {
-    size = 24;
+    size = 16;
     enable = true;
     x11.enable = true;
     gtk.enable = true;
@@ -49,7 +49,7 @@
       "file://${config.home.homeDirectory}/Pictures"
       "file://${config.home.homeDirectory}/Documents"
       "file://${config.home.homeDirectory}/Videos"
-      "file://${config.home.homeDirectory}/beeb5kSystem Config"
+      "file://${config.home.homeDirectory}/Music"
     ];
     gtk3 = {
       extraConfig = {

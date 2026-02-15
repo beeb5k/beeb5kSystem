@@ -48,11 +48,11 @@
           inherit (inputs) home-manager nixpkgs;
         };
       in {
-        nixosConfigurations.bixos = mkSystem {
+        nixosConfigurations.lixos = mkSystem {
           inherit systemState;
           system = "x86_64-linux";
-          hostname = "bixos";
-          user = "beeb5k";
+          hostname = "lixos";
+          user = "bee";
         };
 
         # homeConfigurations."beeb5k" = mkHome {

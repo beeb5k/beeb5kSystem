@@ -1,8 +1,15 @@
 {
   config,
   lib,
+  pkgs,
   ...
-}: {
+}: let
+  link_zen = pkgs.writeShellScript "link_zen" ''
+    export PROFILE_DIR=$(find ~/.zen -maxdepth 1 -type d -name "*.Default Profile" | head -n 1)
+    mkdir -p "$PROFILE_DIR/chrome"
+    ln -sf ~/.cache/wallust/userChrome.css "$PROFILE_DIR/chrome/userChrome.css"
+  '';
+in {
   imports = [./templates];
 
   programs.wallust = {
@@ -77,23 +84,35 @@
             output_path = '~/.config/swaylock/swaylock-colors'
           ''}
 
+          ${lib.optionalString config.mango.enable ''
+            [templates.mango]
+            input_path = '~/.config/matugen/templates/mango.conf'
+            output_path = '~/.config/mango/mango-colors.conf'
+          ''}
+
           ${lib.optionalString config.programs.btop.enable ''
             [templates.btop]
             input_path = '~/.config/matugen/templates/btop.theme'
             output_path = '~/.config/btop/themes/matugen.theme'
           ''}
 
+
+          ${lib.optionalString config.dwm.enable ''
             [templates.st]
             input_path = "~/.config/matugen/templates/st"
             output_path = "~/.config/wallust/templates/st"
+          ''}
 
+
+          ${lib.optionalString config.programs.vesktop.enable ''
             [templates.discord]
             input_path = "~/.config/matugen/templates/discord.css"
             output_path = "~/.config/vesktop/themes/midnight.css"
+          ''}
 
             [templates.dunst]
             input_path = '~/.config/matugen/templates/dunstrc'
-            output_path = '~/.cache/matugen/dunstrc'
+            output_path = '~/.config/dunst/dunstrc'
             post_hook = "dunstctl reload"
 
             ${lib.optionalString config.programs.rofi.enable ''
@@ -119,6 +138,7 @@
             [templates.zen]
             input_path = '~/.config/matugen/templates/zen.css'
             output_path = '~/.config/wallust/templates/userChrome.css'
+            post_hook = "${link_zen}"
         '';
     };
   };

@@ -23,22 +23,6 @@
   smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
     alacritty msg create-window || exec alacritty
   '';
-  smart-foot = pkgs.writeShellScript "smart-foot" ''
-    # 1. PROBE: If server works, replace script with client immediately.
-    footclient true 2>/dev/null && exec footclient
-
-    # 2. START: Server is down. Start it silently.
-    nohup foot --server >/dev/null 2>&1 &
-
-    # 3. BUSY WAIT: Spam the probe until it works (Zero Latency)
-    # The moment 'footclient true' succeeds, the loop breaks.
-    while ! footclient true 2>/dev/null; do
-        sleep 0.02
-    done
-
-    # 4. EXEC: Server is ready. Replace script with real client.
-    exec footclient
-  '';
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
@@ -55,6 +39,31 @@ in {
     ];
   options.mango = {
     enable = lib.mkEnableOption "mango setup";
+    animations = lib.mkEnableOption "Uiiiiiiiiiii";
+    window = {
+      blur = {
+        enable = lib.mkEnableOption "Enable window blur";
+        passes = lib.mkOption {
+          type = lib.types.int;
+          default = 3;
+        };
+        radius = lib.mkOption {
+          type = lib.types.int;
+          default = 11;
+        };
+      };
+      shadows = lib.mkEnableOption "Enable window drop shadows";
+      border_radius = lib.mkOption {
+        type = lib.types.int;
+        default = 0;
+        description = "Border radius";
+      };
+      opacity = lib.mkOption {
+        type = lib.types.number;
+        default = 1.0;
+        description = "Window opacity";
+      };
+    };
     noctalia-shell = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -65,41 +74,60 @@ in {
   config = lib.mkIf cfg.enable (
     if homeManager
     then {
-      # services.cliphist = {
-      #   enable = true;
-      #   allowImages = true;
-      # };
       wayland.windowManager.mango = {
         enable = true;
         settings = ''
+          source=~/.config/mango/mango-colors.conf
+
           # Window effect
-          blur=0
+          blur=${
+            if cfg.window.blur.enable
+            then "1"
+            else "0"
+          }
           blur_layer=0
           blur_optimized=1
-          blur_params_num_passes = 4
-          blur_params_radius = 10
+          blur_params_num_passes = ${toString cfg.window.blur.passes}
+          blur_params_radius = ${toString cfg.window.blur.radius}
           blur_params_noise = 0.02
           blur_params_brightness = 0.9
           blur_params_contrast = 0.9
           blur_params_saturation = 1.2
 
-          shadows = 0
+          shadows=${
+            if cfg.window.shadows
+            then "1"
+            else "0"
+          }
           layer_shadows = 0
           shadow_only_floating = 1
           shadows_size = 10
           shadows_blur = 15
           shadows_position_x = 0
           shadows_position_y = 0
-          shadowscolor= 0x000000ff
 
-          border_radius=0
+          border_radius=${toString cfg.window.border_radius}
           no_radius_when_single=0
-          focused_opacity=1
-          unfocused_opacity=1
+
+          ${
+            if (cfg.window.blur.enable && cfg.window.opacity == 1.0)
+            then ''
+              focused_opacity=0.91
+              unfocused_opacity=0.91
+            ''
+            else ''
+              focused_opacity=${toString cfg.window.opacity}
+              unfocused_opacity=${toString cfg.window.opacity}
+            ''
+          }
 
           # Animation Configuration(support type:zoom,slide)
           # tag_animation_direction: 1-horizontal,0-vertical
-          animations=1
+          animations=${
+            if cfg.animations
+            then "1"
+            else "0"
+          }
           layer_animations=0
           animation_type_open=slide
           animation_type_close=zoom
@@ -193,6 +221,7 @@ in {
           windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
           windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
           windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
+          windowrule=isfloating:1,appid:^(org.gnome.Calculator)$
 
           # Appearance
           gappih=5
@@ -202,14 +231,6 @@ in {
           scratchpad_width_ratio=0.8
           scratchpad_height_ratio=0.9
           borderpx=2
-          rootcolor=0x201b14ff
-          bordercolor=0x444444ff
-          focuscolor=0xc9b890ff
-          maximizescreencolor=0x89aa61ff
-          urgentcolor=0xad401fff
-          scratchpadcolor=0x516c93ff
-          globalcolor=0xb153a7ff
-          overlaycolor=0x14a57cff
 
           # layout support:
           # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
@@ -239,8 +260,7 @@ in {
             bind=SUPER,Return,spawn,${smart-ghostty}
           ''}
           ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot") ''
-            bind=SUPER,Return,spawn,footclient
-            exec-once = foot --server
+            bind=SUPER,Return,spawn,foot
           ''}
 
           ${lib.optionalString (config.mango.noctalia-shell
@@ -259,6 +279,7 @@ in {
             bind=ALT,F4,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
             bind=SUPER,y,spawn,wall-picker
           ''}
+          bind=SUPER,F12,spawn,gnome-calculator
           bind=SUPER,b,spawn,zen
           bind=SUPER,e,spawn,nautilus
 
@@ -267,10 +288,10 @@ in {
           bind=SUPER,q,killclient,
 
           # switch window focus
-          bind=ALT,h,focusdir,left
-          bind=ALT,l,focusdir,right
-          bind=ALT,k,focusdir,up
-          bind=ALT,j,focusdir,down
+          bind=SUPER,h,focusdir,left
+          bind=SUPER,l,focusdir,right
+          bind=SUPER,k,focusdir,up
+          bind=SUPER,j,focusdir,down
 
           bind=NONE,Print,spawn,${snip} full
           bind=SUPER,Print,spawn,${snip} selection
@@ -336,16 +357,16 @@ in {
           bind=ALT+SHIFT,R,togglegaps
 
           # movewin
-          bind=CTRL+SHIFT,Up,movewin,+0,-50
-          bind=CTRL+SHIFT,Down,movewin,+0,+50
-          bind=CTRL+SHIFT,Left,movewin,-50,+0
-          bind=CTRL+SHIFT,Right,movewin,+50,+0
+          bind=SUPER,Up,movewin,+0,-50
+          bind=SUPER,Down,movewin,+0,+50
+          bind=SUPER,Left,movewin,-50,+0
+          bind=SUPER,Right,movewin,+50,+0
 
           # resizewin
-          bind=CTRL+ALT,k,resizewin,+0,-50
-          bind=CTRL+ALT,j,resizewin,+0,+50
-          bind=CTRL+ALT,h,resizewin,-50,+0
-          bind=CTRL+ALT,l,resizewin,+50,+0
+          bind=ALT,k,resizewin,+0,-50
+          bind=ALT,j,resizewin,+0,+50
+          bind=ALT,h,resizewin,-50,+0
+          bind=ALT,l,resizewin,+50,+0
 
           # Volume Control (using wpctl/Pipewire)
           bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
@@ -381,7 +402,6 @@ in {
           env=GDK_BACKEND,wayland,x11
           env=GDK_SCALE,1
 
-
           # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
           exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
@@ -392,13 +412,14 @@ in {
 
           ${lib.optionalString (!config.mango.noctalia-shell) ''
             exec-once = sh ~/.swaybg.sh
+            exec-once = dunst &
           ''}
           exec-once = wl-clip-persist --clipboard regular
         '';
       };
       home.packages = with pkgs; [
-        wl-clipboard
         swaybg
+        wl-clipboard
         wl-clip-persist
       ];
     }

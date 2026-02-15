@@ -29,7 +29,7 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-luminous
+      pkgs.xdg-desktop-portal-wlr
     ];
     config = {
       common = {
@@ -37,9 +37,8 @@
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
       mango = {
-        "org.freedesktop.impl.portal.ScreenCast" = ["luminous"];
-        "org.freedesktop.impl.portal.Screenshot" = ["luminous"];
-        "org.freedesktop.impl.portal.RemoteDesktop" = ["luminous"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
       };
     };
   };
@@ -74,10 +73,23 @@
   networking.firewall.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vulkan-validation-layers
     libva-utils
     vulkan-tools
-    clang
+    pciutils
+    (pkgs.nvtopPackages.full.override {
+      nvidia = true; # Enable Nvidia (dGPU)
+      amd = true; # Enable AMD (iGPU)
+
+      # Disable everything else to save space & build time
+      intel = false;
+      msm = false; # Qualcomm
+      apple = false; # Apple Silicon
+      panfrost = false; # ARM Mali
+      panthor = false; # Newer ARM Mali
+      ascend = false; # Huawei Ascend
+      v3d = false; # Raspberry Pi
+      tpu = false; # Google TPU
+    })
   ];
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -86,7 +98,6 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        libva-vdpau-driver
         libvdpau-va-gl
         nvidia-vaapi-driver
       ];
