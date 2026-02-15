@@ -411,7 +411,7 @@ in {
           ''}
 
           ${lib.optionalString (!config.mango.noctalia-shell) ''
-            exec-once = sh ~/.swaybg.sh
+            exec-once = sh ~/.swaybg
             exec-once = dunst &
           ''}
           exec-once = wl-clip-persist --clipboard regular

@@ -10,11 +10,11 @@
         "plugins-rustaceanvim": "plugins-rustaceanvim"
       },
       "locked": {
-        "lastModified": 1770972916,
-        "narHash": "sha256-JH1f7rKNSnbCw3aYk3R3xs6Vrlf3qjSta5wJE3VWx9E=",
+        "lastModified": 1771145262,
+        "narHash": "sha256-Pzc/kyWYg1c0SM1r1d5xb0eaxU7vRF2xgWmMP9TlwYA=",
         "ref": "refs/heads/main",
-        "rev": "4905e063122422ac032390573cce1f0443edd50e",
-        "revCount": 190,
+        "rev": "9003e0fae8ce4b00e36c986afef06e27516d16f1",
+        "revCount": 191,
         "type": "git",
         "url": "https://codeberg.org/beeb5k/beeb5kvim"
       },
@@ -290,11 +290,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770961512,
-        "narHash": "sha256-NZ1V/y2HeR9ThZe+wzBwVxERD0psDYmQnhF+iF0+Pv8=",
+        "lastModified": 1771132481,
+        "narHash": "sha256-Tc+YqZ/Q1K35vJK4ji4RbLB/qKGcEq6yh7p4CKoZF60=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a6c93262f349afeeebb390fb441910abffef329c",
+        "rev": "1e53254671f36cb7d0e2dcca08730f066d5e69b4",
         "type": "github"
       },
       "original": {
@@ -328,11 +328,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1770952031,
-        "narHash": "sha256-v8dAVwInMg6EWR7EPi0l42S5OMc3Njf+PxwTAYUzGxs=",
+        "lastModified": 1771144982,
+        "narHash": "sha256-KQORxIhm4IgeJ6NOAUAmkxDG2ik5PEuVbxwOdpGO+uY=",
         "owner": "DreamMaoMao",
         "repo": "mango",
-        "rev": "f25161552455d076f0f15cadf522a8b57b829e2f",
+        "rev": "62ab00a7a3656fcdc39008d048b13369ffe1ad11",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1770841267,
-        "narHash": "sha256-9xejG0KoqsoKEGp2kVbXRlEYtFFcDTHjidiuX8hGO44=",
+        "lastModified": 1771008912,
+        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ec7c70d12ce2fc37cb92aff673dcdca89d187bae",
+        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
         "type": "github"
       },
       "original": {
@@ -584,11 +584,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770957573,
-        "narHash": "sha256-aHNxTDDmbRmsh3PY+PyqBFklFimZ4LcwvkQazzOxsaw=",
+        "lastModified": 1771121714,
+        "narHash": "sha256-wsExKYHTFoMJvDAxLa/1LMusQxoz+WP1rgesNGkNJck=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "8c4a30406b86dd4acd59640169d176a0f83176d3",
+        "rev": "7c6596917c6243375e29c587ba7a4463674a853c",
         "type": "github"
       },
       "original": {
@@ -739,11 +739,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770438797,
-        "narHash": "sha256-pwnQTmZswF6bu2/Ie7ajOo8w6rXQwVI954S9WX1UG3w=",
+        "lastModified": 1771130449,
+        "narHash": "sha256-4aKnr603xOLsTsPB4vQqPLpeze4n+9tURz0IK48ZJ4E=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
-        "rev": "d396599774bdbafeb86c122dc2c422c7084ea390",
+        "rev": "105bcb6a016ecc4327f24fc0e9e9aba1da53b33b",
         "type": "github"
       },
       "original": {

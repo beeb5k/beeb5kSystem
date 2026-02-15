@@ -56,12 +56,16 @@ in {
               url = "https://st.suckless.org/patches/anysize/st-anysize-20220718-baa9357.diff";
               hash = "sha256-yx9VSwmPACx3EN3CAdQkxeoJKJxQ6ziC9tpBcoWuWHc=";
             }
+            {
+              url = "https://st.suckless.org/patches/csi_22_23/st-csi_22_23-0.8.5.diff";
+              hash = "sha256-+izEkGVkLCbhZNBD2WN4uX5j+YMmou7JaMVmPG0mrYk=";
+            }
           ];
           postPatch =
             oldAttrs.postPatch or ""
             + ''
-              sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 3}/g' config.def.h
-              sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 3}/g' config.def.h
+              sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 5}/g' config.def.h
+              sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 5}/g' config.def.h
             '';
         }))
       ];
@@ -106,7 +110,7 @@ in {
                 }
               ];
             }).overrideAttrs (oldAttrs: {
-              buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.xorg.libXcursor];
+              buildInputs = (oldAttrs.buildInputs or []) ++ [pkgs.libxcursor];
             });
         };
       };

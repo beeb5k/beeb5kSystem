@@ -7,9 +7,11 @@
   programs.git = {
     enable = true;
     package = pkgs.git.override {withLibsecret = true;};
-    userName = "beeb5k";
-    userEmail = "beebeeb5k@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "beeb5k";
+        email = "beebeeb5k@gmail.com";
+      };
       init.defaultBranch = "main";
       credential.helper = "libsecret";
     };

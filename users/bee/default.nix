@@ -108,9 +108,9 @@
     dunst
     gnome-calculator
     papers
-    (pkgs.obsidian.override {
-      electron = pkgs.electron_40;
-    })
+    # (pkgs.obsidian.override {
+    #   electron = pkgs.electron_40;
+    # })
   ];
 
   programs.home-manager.enable = true;

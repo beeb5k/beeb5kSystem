@@ -11,16 +11,19 @@
     nautilus
   ];
 
-  programs.yazi = { enable = true; yaziPlugins = {
+  programs.yazi = {
     enable = true;
-    plugins = {
-      full-border.enable = true;
-      recycle-bin.enable = true;
-      jump-to-char = {
-        enable = true;
-        keys.toggle.on = ["F"];
+    shellWrapperName = "y";
+    yaziPlugins = {
+      enable = true;
+      plugins = {
+        full-border.enable = true;
+        recycle-bin.enable = true;
+        jump-to-char = {
+          enable = true;
+          keys.toggle.on = ["F"];
+        };
       };
     };
-  };
   };
 }
