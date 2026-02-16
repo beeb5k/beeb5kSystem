@@ -22,7 +22,7 @@
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
   mango.enable = true;
-  dwm.enable = true;
+  dwm.enable = false;
   security.pam.services.swaylock = {};
 
   xdg.portal = lib.mkForce {

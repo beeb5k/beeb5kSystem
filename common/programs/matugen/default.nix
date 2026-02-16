@@ -5,7 +5,7 @@
   ...
 }: let
   link_zen = pkgs.writeShellScript "link_zen" ''
-    export PROFILE_DIR=$(find ~/.zen -maxdepth 1 -type d -name "*.Default Profile" | head -n 1)
+    export PROFILE_DIR=$(find ~/.config/zen/ -maxdepth 1 -type d -name "*.Default Profile" | head -n 1)
     mkdir -p "$PROFILE_DIR/chrome"
     ln -sf ~/.cache/wallust/userChrome.css "$PROFILE_DIR/chrome/userChrome.css"
   '';
