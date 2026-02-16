@@ -9,6 +9,8 @@
     value = {
       install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
       installation_mode = "normal_installed";
+      private_browsing = true;
+      default_area = "menupanel"; # menupanel = unpin, navbar = pin
     };
   };
 
@@ -25,6 +27,7 @@
     "layers.acceleration.force-enabled" = true;
     "media.ffmpeg.vaapi.enabled" = true;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+    "zen.welcome-screen.seen" = true;
   };
 
   extensions = [
@@ -72,7 +75,12 @@ in {
           ExtensionSettings = builtins.listToAttrs extensions;
 
           SearchEngines = {
-            Default = "ddg";
+            Default = "DuckDuckGo";
+            PreventInstalls = true;
+            Remove = [
+              "Google"
+              "Bing"
+            ];
             Add = [
               {
                 Name = "nixpkgs packages";
