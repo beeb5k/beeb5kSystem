@@ -4,13 +4,19 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.terminal;
-in {
+in
+{
   options.terminal = {
     emulator = {
       default = mkOption {
-        type = types.enum ["foot" "ghostty" "alacritty"];
+        type = types.enum [
+          "foot"
+          "ghostty"
+          "alacritty"
+        ];
         default = "foot";
         description = "The terminal emulator to enable.";
       };
@@ -58,17 +64,14 @@ in {
         enable = true;
         settings = {
           main = {
-            include = ["~/.config/foot/colors.ini"];
+            include = [ "~/.config/foot/colors.ini" ];
 
             pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y} center";
             font = "${cfg.font.family}:size=${toString cfg.font.size}";
 
             dpi-aware = "no";
             gamma-correct-blending = "yes";
-            bold-text-in-bright =
-              if cfg.font.bright_color_is_bold
-              then "yes"
-              else "no";
+            bold-text-in-bright = if cfg.font.bright_color_is_bold then "yes" else "no";
           };
           cursor = {
             beam-thickness = 1;
@@ -76,7 +79,7 @@ in {
           mouse = {
             hide-when-typing = "yes";
           };
-          key-bindings = {};
+          key-bindings = { };
         };
       };
     })
@@ -86,23 +89,32 @@ in {
         enable = true;
         enableFishIntegration = true;
         settings = {
-          config-file = ["~/.config/ghostty/colors.conf"];
+          config-file = [ "~/.config/ghostty/colors.conf" ];
 
           font-family = cfg.font.family;
           font-size = cfg.font.size;
           window-padding-x = cfg.window.padding-x;
           window-padding-y = cfg.window.padding-y;
-          font-feature =
-            ["cv10" "cv06" "ss02" "ss03"]
-            ++ (
-              if cfg.font.ligatures
-              then [
+          font-feature = [
+            "cv10"
+            "cv06"
+            "ss02"
+            "ss03"
+          ]
+          ++ (
+            if cfg.font.ligatures then
+              [
                 "calt"
                 "liga"
                 "dlig"
               ]
-              else ["-calt" "-liga" "-dlig"]
-            );
+            else
+              [
+                "-calt"
+                "-liga"
+                "-dlig"
+              ]
+          );
           bold-is-bright = cfg.font.bright_color_is_bold;
           gtk-titlebar = false;
           gtk-single-instance = true;
@@ -134,7 +146,7 @@ in {
             hide_when_typing = true;
           };
           general = {
-            import = ["~/.config/alacritty/colors.toml"];
+            import = [ "~/.config/alacritty/colors.toml" ];
           };
           window = {
             dynamic_padding = true;

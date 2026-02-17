@@ -1,15 +1,20 @@
-{inputs, ...}: let
+{ inputs, ... }:
+let
   lib = inputs.nixpkgs.lib;
-  mkMods = homeManager: let
-    args = {
-      inherit inputs homeManager;
+  mkMods =
+    homeManager:
+    let
+      args = {
+        inherit inputs homeManager;
+      };
+    in
+    {
+      mango = import ./mango args;
+      dwm = import ./dwm args;
+      scripts = import ./scripts args;
     };
-  in {
-    mango = import ./mango args;
-    dwm = import ./dwm args;
-    scripts = import ./scripts args;
-  };
-in {
+in
+{
   options.flake.homeModules = lib.mkOption {
     type = lib.types.lazyAttrsOf lib.types.unspecified;
   };

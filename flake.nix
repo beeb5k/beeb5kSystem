@@ -32,34 +32,37 @@
     };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
-      imports = [(inputs.nixpkgs.lib.modules.importApply ./common inputs)];
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [ (inputs.nixpkgs.lib.modules.importApply ./common inputs) ];
 
-      flake = let
-        systemState = "25.11";
-        mkSystem = import ./lib/mkSystem.nix {
-          inherit inputs;
-          inherit (inputs) nixpkgs;
-        };
-        mkHome = import ./lib/mkHome.nix {
-          inherit inputs;
-          inherit (inputs) home-manager nixpkgs;
-        };
-      in {
-        nixosConfigurations.lixos = mkSystem {
-          inherit systemState;
-          system = "x86_64-linux";
-          hostname = "lixos";
-          user = "bee";
-        };
+      flake =
+        let
+          systemState = "25.11";
+          mkSystem = import ./lib/mkSystem.nix {
+            inherit inputs;
+            inherit (inputs) nixpkgs;
+          };
+          mkHome = import ./lib/mkHome.nix {
+            inherit inputs;
+            inherit (inputs) home-manager nixpkgs;
+          };
+        in
+        {
+          nixosConfigurations.lixos = mkSystem {
+            inherit systemState;
+            system = "x86_64-linux";
+            hostname = "lixos";
+            user = "bee";
+          };
 
-        # homeConfigurations."beeb5k" = mkHome {
-        #   inherit systemState;
-        #   system = "x86_64-linux";
-        #   username = "beeb5k";
-        # };
-      };
+          # homeConfigurations."beeb5k" = mkHome {
+          #   inherit systemState;
+          #   system = "x86_64-linux";
+          #   username = "beeb5k";
+          # };
+        };
     };
 }

@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   link_zen = pkgs.writeShellScript "link_zen" ''
     export PROFILE_DIR=$(find ~/.config/zen/ -maxdepth 1 -type d -name "*.Default Profile" | head -n 1)
     mkdir -p "$PROFILE_DIR/chrome"
@@ -16,8 +17,9 @@
 
     systemctl --user restart xdg-desktop-portal-gtk
   '';
-in {
-  imports = [./templates];
+in
+{
+  imports = [ ./templates ];
 
   programs.wallust = {
     enable = true;
@@ -123,10 +125,10 @@ in {
             post_hook = "dunstctl reload"
 
             ${lib.optionalString config.programs.rofi.enable ''
-            [templates.rofi]
-            input_path = '~/.config/matugen/templates/rofi-colors.rasi'
-            output_path = '~/.config/rofi/shared/colors.rasi'
-          ''}
+              [templates.rofi]
+              input_path = '~/.config/matugen/templates/rofi-colors.rasi'
+              output_path = '~/.config/rofi/shared/colors.rasi'
+            ''}
 
           ${lib.optionalString config.gtk.enable ''
             [templates.gtk3]

@@ -6,17 +6,19 @@
     naersk.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    naersk,
-    ...
-  }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      naersk,
+      ...
+    }:
     flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-        naerskLib = pkgs.callPackage naersk {};
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        naerskLib = pkgs.callPackage naersk { };
         cargoToml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
         myPackage = naerskLib.buildPackage {
           pname = cargoToml.package.name;
@@ -24,7 +26,8 @@
           edition = cargoToml.package.edition;
           src = ./.;
         };
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             cargo

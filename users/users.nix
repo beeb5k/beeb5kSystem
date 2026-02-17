@@ -3,10 +3,11 @@
   inputs,
   config,
   ...
-}: {
+}:
+{
   programs.git = {
     enable = true;
-    package = pkgs.git.override {withLibsecret = true;};
+    package = pkgs.git.override { withLibsecret = true; };
     settings = {
       user = {
         name = "beeb5k";

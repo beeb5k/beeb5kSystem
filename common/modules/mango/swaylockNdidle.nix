@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mango;
   swaylock = "${pkgs.swaylock}/bin/swaylock -f -C ~/.config/swaylock/swaylock-colors";
-in {
+in
+{
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       wlopm # For screen on/off

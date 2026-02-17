@@ -2,12 +2,14 @@
   homeManager,
   inputs,
   ...
-}: {
+}:
+{
   config,
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.mango;
   snip = pkgs.writeShellScript "snip" ''
     case $1 in
@@ -26,17 +28,19 @@
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
-in {
+in
+{
   imports =
-    if homeManager
-    then [
-      inputs.mango.hmModules.mango
-      ./noctalia.nix
-      ./swaylockNdidle.nix
-    ]
-    else [
-      inputs.mango.nixosModules.mango
-    ];
+    if homeManager then
+      [
+        inputs.mango.hmModules.mango
+        ./noctalia.nix
+        ./swaylockNdidle.nix
+      ]
+    else
+      [
+        inputs.mango.nixosModules.mango
+      ];
   options.mango = {
     enable = lib.mkEnableOption "mango setup";
     animations = lib.mkEnableOption "Uiiiiiiiiiii";
@@ -72,359 +76,355 @@ in {
   };
 
   config = lib.mkIf cfg.enable (
-    if homeManager
-    then {
-      wayland.windowManager.mango = {
-        enable = true;
-        settings = ''
-          source=~/.config/mango/mango-colors.conf
+    if homeManager then
+      {
+        wayland.windowManager.mango = {
+          enable = true;
+          settings = ''
+            source=~/.config/mango/mango-colors.conf
 
-          # Window effect
-          blur=${
-            if cfg.window.blur.enable
-            then "1"
-            else "0"
-          }
-          blur_layer=0
-          blur_optimized=1
-          blur_params_num_passes = ${toString cfg.window.blur.passes}
-          blur_params_radius = ${toString cfg.window.blur.radius}
-          blur_params_noise = 0.02
-          blur_params_brightness = 0.9
-          blur_params_contrast = 0.9
-          blur_params_saturation = 1.2
+            # Window effect
+            blur=${if cfg.window.blur.enable then "1" else "0"}
+            blur_layer=0
+            blur_optimized=1
+            blur_params_num_passes = ${toString cfg.window.blur.passes}
+            blur_params_radius = ${toString cfg.window.blur.radius}
+            blur_params_noise = 0.02
+            blur_params_brightness = 0.9
+            blur_params_contrast = 0.9
+            blur_params_saturation = 1.2
 
-          shadows=${
-            if cfg.window.shadows
-            then "1"
-            else "0"
-          }
-          layer_shadows = 0
-          shadow_only_floating = 1
-          shadows_size = 10
-          shadows_blur = 15
-          shadows_position_x = 0
-          shadows_position_y = 0
+            shadows=${if cfg.window.shadows then "1" else "0"}
+            layer_shadows = 0
+            shadow_only_floating = 1
+            shadows_size = 10
+            shadows_blur = 15
+            shadows_position_x = 0
+            shadows_position_y = 0
 
-          border_radius=${toString cfg.window.border_radius}
-          no_radius_when_single=0
+            border_radius=${toString cfg.window.border_radius}
+            no_radius_when_single=0
 
-          ${
-            if (cfg.window.blur.enable && cfg.window.opacity == 1.0)
-            then ''
-              focused_opacity=0.91
-              unfocused_opacity=0.91
-            ''
-            else ''
-              focused_opacity=${toString cfg.window.opacity}
-              unfocused_opacity=${toString cfg.window.opacity}
-            ''
-          }
+            ${
+              if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then
+                ''
+                  focused_opacity=0.91
+                  unfocused_opacity=0.91
+                ''
+              else
+                ''
+                  focused_opacity=${toString cfg.window.opacity}
+                  unfocused_opacity=${toString cfg.window.opacity}
+                ''
+            }
 
-          # Animation Configuration(support type:zoom,slide)
-          # tag_animation_direction: 1-horizontal,0-vertical
-          animations=${
-            if cfg.animations
-            then "1"
-            else "0"
-          }
-          layer_animations=0
-          animation_type_open=slide
-          animation_type_close=zoom
-          animation_fade_in=0
-          animation_fade_out=1
-          tag_animation_direction=1
-          zoom_initial_ratio=0.8
-          zoom_end_ratio=0.8
-          fadein_begin_opacity=0.5
-          fadeout_begin_opacity=0.5
-          animation_duration_move=300
-          animation_duration_open=350
-          animation_duration_tag=350
-          animation_duration_close=150
-          animation_duration_focus=0
-          animation_curve_open=0.05,0.7,0.1,1.0
-          animation_curve_move=0.46,1.0,0.29,1
-          animation_curve_tag=0.46,1.0,0.29,1
-          animation_curve_close=0.0,0.0,1.0,1.0
-          animation_curve_focus=0.05,0.7,0.1,1.0
-          animation_curve_opafadeout=0.5,0.5,0.5,0.5
-          animation_curve_opafadein=0.46,1.0,0.29,1
+            # Animation Configuration(support type:zoom,slide)
+            # tag_animation_direction: 1-horizontal,0-vertical
+            animations=${if cfg.animations then "1" else "0"}
+            layer_animations=0
+            animation_type_open=slide
+            animation_type_close=zoom
+            animation_fade_in=0
+            animation_fade_out=1
+            tag_animation_direction=1
+            zoom_initial_ratio=0.8
+            zoom_end_ratio=0.8
+            fadein_begin_opacity=0.5
+            fadeout_begin_opacity=0.5
+            animation_duration_move=300
+            animation_duration_open=350
+            animation_duration_tag=350
+            animation_duration_close=150
+            animation_duration_focus=0
+            animation_curve_open=0.05,0.7,0.1,1.0
+            animation_curve_move=0.46,1.0,0.29,1
+            animation_curve_tag=0.46,1.0,0.29,1
+            animation_curve_close=0.0,0.0,1.0,1.0
+            animation_curve_focus=0.05,0.7,0.1,1.0
+            animation_curve_opafadeout=0.5,0.5,0.5,0.5
+            animation_curve_opafadein=0.46,1.0,0.29,1
 
-          # Scroller configuration
-          scroller_structs=15
-          scroller_default_proportion=0.8
-          scroller_focus_center=0
-          scroller_prefer_center=0
-          edge_scroller_pointer_focus=1
-          scroller_default_proportion_single=1.0
-          scroller_ignore_proportion_single=0
-          scroller_proportion_preset=0.5,0.8,1.0
+            # Scroller configuration
+            scroller_structs=15
+            scroller_default_proportion=0.8
+            scroller_focus_center=0
+            scroller_prefer_center=0
+            edge_scroller_pointer_focus=1
+            scroller_default_proportion_single=1.0
+            scroller_ignore_proportion_single=0
+            scroller_proportion_preset=0.5,0.8,1.0
 
-          # Master-Stack Layout Setting
-          new_is_master=0
-          default_mfact=0.56
-          default_nmaster=1
-          smartgaps=0
+            # Master-Stack Layout Setting
+            new_is_master=0
+            default_mfact=0.56
+            default_nmaster=1
+            smartgaps=0
 
-          # Overview Setting
-          hotarea_size=10
-          enable_hotarea=0
-          ov_tab_mode=0
-          overviewgappi=5
-          overviewgappo=30
+            # Overview Setting
+            hotarea_size=10
+            enable_hotarea=0
+            ov_tab_mode=0
+            overviewgappi=5
+            overviewgappo=30
 
-          # Misc
-          no_border_when_single=0
-          axis_bind_apply_timeout=100
-          focus_on_activate=1
-          idleinhibit_ignore_visible=0
-          sloppyfocus=1
-          warpcursor=1
-          focus_cross_monitor=0
-          focus_cross_tag=0
-          enable_floating_snap=0
-          snap_distance=30
-          # cursor_size=24
-          drag_tile_to_tile=1
-          xwayland_persistence=0
-          syncobj_enable=0
-          allow_tearing=0
+            # Misc
+            no_border_when_single=0
+            axis_bind_apply_timeout=100
+            focus_on_activate=1
+            idleinhibit_ignore_visible=0
+            sloppyfocus=1
+            warpcursor=1
+            focus_cross_monitor=0
+            focus_cross_tag=0
+            enable_floating_snap=0
+            snap_distance=30
+            # cursor_size=24
+            drag_tile_to_tile=1
+            xwayland_persistence=0
+            syncobj_enable=0
+            allow_tearing=0
 
-          # keyboard
-          repeat_delay=300;
-          repeat_rate=50;
-          numlockon=0
-          xkb_rules_layout=us
+            # keyboard
+            repeat_delay=300;
+            repeat_rate=50;
+            numlockon=0
+            xkb_rules_layout=us
 
-          # Trackpad
-          # need relogin to make it apply
-          disable_trackpad=0
-          tap_to_click=1
-          tap_and_drag=1
-          drag_lock=1
-          trackpad_natural_scrolling=1
-          disable_while_typing=1
-          left_handed=0
-          middle_button_emulation=0
-          swipe_min_threshold=1
+            # Trackpad
+            # need relogin to make it apply
+            disable_trackpad=0
+            tap_to_click=1
+            tap_and_drag=1
+            drag_lock=1
+            trackpad_natural_scrolling=1
+            disable_while_typing=1
+            left_handed=0
+            middle_button_emulation=0
+            swipe_min_threshold=1
 
-          # mouse
-          # need relogin to make it apply
-          mouse_natural_scrolling=0
+            # mouse
+            # need relogin to make it apply
+            mouse_natural_scrolling=0
 
-          windowrule=tags:1,appid:^(foot|footclient|alacritty)$
-          windowrule=tags:2,appid:^(zen|firefox|obsidian)$
-          windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element|equibop)$
-          windowrule=tags:4,appid:^steam$
+            windowrule=tags:1,appid:^(foot|footclient|alacritty)$
+            windowrule=tags:2,appid:^(zen|firefox|obsidian)$
+            windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element|equibop)$
+            windowrule=tags:4,appid:^steam$
 
-          windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
-          windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
-          windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
-          windowrule=isfloating:1,appid:^(org.gnome.Calculator)$
+            windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
+            windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
+            windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
+            windowrule=isfloating:1,appid:^(org.gnome.Calculator)$
 
-          # Appearance
-          gappih=5
-          gappiv=5
-          gappoh=5
-          gappov=5
-          scratchpad_width_ratio=0.8
-          scratchpad_height_ratio=0.9
-          borderpx=2
+            # Appearance
+            gappih=5
+            gappiv=5
+            gappoh=5
+            gappov=5
+            scratchpad_width_ratio=0.8
+            scratchpad_height_ratio=0.9
+            borderpx=2
 
-          # layout support:
-          # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
-          tagrule=id:1,layout_name:tgmix
-          tagrule=id:2,layout_name:scroller
-          tagrule=id:3,layout_name:scroller
-          tagrule=id:4,layout_name:scroller
-          tagrule=id:5,layout_name:grid
-          tagrule=id:6,layout_name:tile
-          tagrule=id:7,layout_name:tile
-          tagrule=id:8,layout_name:tile
-          tagrule=id:9,layout_name:tile
+            # layout support:
+            # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
+            tagrule=id:1,layout_name:tgmix
+            tagrule=id:2,layout_name:scroller
+            tagrule=id:3,layout_name:scroller
+            tagrule=id:4,layout_name:scroller
+            tagrule=id:5,layout_name:grid
+            tagrule=id:6,layout_name:tile
+            tagrule=id:7,layout_name:tile
+            tagrule=id:8,layout_name:tile
+            tagrule=id:9,layout_name:tile
 
-          # Key Bindings
-          # key name refer to `xev` or `wev` command output,
-          # mod keys name: super,ctrl,alt,shift,none
+            # Key Bindings
+            # key name refer to `xev` or `wev` command output,
+            # mod keys name: super,ctrl,alt,shift,none
 
-          # reload config
-          bind=SUPER,r,reload_config
+            # reload config
+            bind=SUPER,r,reload_config
 
-          # menu and terminal
+            # menu and terminal
 
-          ${lib.optionalString (config.terminal.emulator.alacritty && config.terminal.emulator.default == "alacritty") ''
-            bind=SUPER,Return,spawn,${smart-alacritty}
-          ''}
-          ${lib.optionalString (config.terminal.emulator.ghostty && config.terminal.emulator.default == "ghostty") ''
-            bind=SUPER,Return,spawn,${smart-ghostty}
-          ''}
-          ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot") ''
-            bind=SUPER,Return,spawn,foot
-          ''}
+            ${lib.optionalString
+              (config.terminal.emulator.alacritty && config.terminal.emulator.default == "alacritty")
+              ''
+                bind=SUPER,Return,spawn,${smart-alacritty}
+              ''
+            }
+            ${lib.optionalString
+              (config.terminal.emulator.ghostty && config.terminal.emulator.default == "ghostty")
+              ''
+                bind=SUPER,Return,spawn,${smart-ghostty}
+              ''
+            }
+            ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot")
+              ''
+                bind=SUPER,Return,spawn,foot
+              ''
+            }
 
-          ${lib.optionalString (config.mango.noctalia-shell
-            && config.mango.enable) ''
-            bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle
-            bind=SUPER,v,spawn,noctalia-shell ipc call launcher clipboard
-            bind=SUPER,y,spawn,noctalia-shell ipc call wallpaper toggle
-            bind=SUPER,period,spawn,noctalia-shell ipc call launcher emoji
-            bind=SUPER,comma,spawn,noctalia-shell ipc call settings toggle
-          ''}
+            ${lib.optionalString (config.mango.noctalia-shell && config.mango.enable) ''
+              bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle
+              bind=SUPER,v,spawn,noctalia-shell ipc call launcher clipboard
+              bind=SUPER,y,spawn,noctalia-shell ipc call wallpaper toggle
+              bind=SUPER,period,spawn,noctalia-shell ipc call launcher emoji
+              bind=SUPER,comma,spawn,noctalia-shell ipc call settings toggle
+            ''}
 
-          ${lib.optionalString (!config.mango.noctalia-shell) ''
-            # bind=SUPER,v,spawn,clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy
-            bind=SUPER,a,spawn,rofi -show drun
-            bind=SUPER,period,spawn,rofi -show emoji -modi emoji
-            bind=ALT,F4,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
-            bind=SUPER,y,spawn,wall-picker
-          ''}
-          bind=SUPER,F12,spawn,gnome-calculator
-          bind=SUPER,b,spawn,zen
-          bind=SUPER,e,spawn,nautilus
+            ${lib.optionalString (!config.mango.noctalia-shell) ''
+              # bind=SUPER,v,spawn,clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy
+              bind=SUPER,a,spawn,rofi -show drun
+              bind=SUPER,period,spawn,rofi -show emoji -modi emoji
+              bind=ALT,F4,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
+              bind=SUPER,y,spawn,wall-picker
+            ''}
+            bind=SUPER,F12,spawn,gnome-calculator
+            bind=SUPER,b,spawn,zen
+            bind=SUPER,e,spawn,nautilus
 
-          # exit
-          bind=SUPER,m,quit
-          bind=SUPER,q,killclient,
+            # exit
+            bind=SUPER,m,quit
+            bind=SUPER,q,killclient,
 
-          # switch window focus
-          bind=SUPER,h,focusdir,left
-          bind=SUPER,l,focusdir,right
-          bind=SUPER,k,focusdir,up
-          bind=SUPER,j,focusdir,down
+            # switch window focus
+            bind=SUPER,h,focusdir,left
+            bind=SUPER,l,focusdir,right
+            bind=SUPER,k,focusdir,up
+            bind=SUPER,j,focusdir,down
 
-          bind=NONE,Print,spawn,${snip} full
-          bind=SUPER,Print,spawn,${snip} selection
+            bind=NONE,Print,spawn,${snip} full
+            bind=SUPER,Print,spawn,${snip} selection
 
-          # swap window
-          bind=SUPER+SHIFT,k,exchange_client,up
-          bind=SUPER+SHIFT,j,exchange_client,down
-          bind=SUPER+SHIFT,h,exchange_client,left
-          bind=SUPER+SHIFT,l,exchange_client,right
+            # swap window
+            bind=SUPER+SHIFT,k,exchange_client,up
+            bind=SUPER+SHIFT,j,exchange_client,down
+            bind=SUPER+SHIFT,h,exchange_client,left
+            bind=SUPER+SHIFT,l,exchange_client,right
 
-          # switch window status
-          bind=SUPER,g,toggleglobal,
-          bind=ALT,Tab,toggleoverview,
-          bind=SUPER,space,togglefloating,
-          bind=ALT,a,togglemaximizescreen,
-          bind=ALT,f,togglefullscreen,
-          bind=ALT+SHIFT,f,togglefakefullscreen,
-          bind=SUPER,i,minimized,
-          bind=SUPER,o,toggleoverlay,
-          bind=SUPER+SHIFT,I,restore_minimized
-          bind=ALT,z,toggle_scratchpad
+            # switch window status
+            bind=SUPER,g,toggleglobal,
+            bind=ALT,Tab,toggleoverview,
+            bind=SUPER,space,togglefloating,
+            bind=ALT,a,togglemaximizescreen,
+            bind=ALT,f,togglefullscreen,
+            bind=ALT+SHIFT,f,togglefakefullscreen,
+            bind=SUPER,i,minimized,
+            bind=SUPER,o,toggleoverlay,
+            bind=SUPER+SHIFT,I,restore_minimized
+            bind=ALT,z,toggle_scratchpad
 
-          # scroller layout
-          bind=ALT,e,set_proportion,1.0
-          bind=ALT,x,switch_proportion_preset,
+            # scroller layout
+            bind=ALT,e,set_proportion,1.0
+            bind=ALT,x,switch_proportion_preset,
 
-          # switch layout
-          bind=SUPER,n,switch_layout
+            # switch layout
+            bind=SUPER,n,switch_layout
 
-          # tag switch
-          bind=SUPER,1,view,1,0
-          bind=SUPER,2,view,2,0
-          bind=SUPER,3,view,3,0
-          bind=SUPER,4,view,4,0
-          bind=SUPER,5,view,5,0
-          bind=SUPER,6,view,6,0
-          bind=SUPER,7,view,7,0
-          bind=SUPER,8,view,8,0
-          bind=SUPER,9,view,9,0
+            # tag switch
+            bind=SUPER,1,view,1,0
+            bind=SUPER,2,view,2,0
+            bind=SUPER,3,view,3,0
+            bind=SUPER,4,view,4,0
+            bind=SUPER,5,view,5,0
+            bind=SUPER,6,view,6,0
+            bind=SUPER,7,view,7,0
+            bind=SUPER,8,view,8,0
+            bind=SUPER,9,view,9,0
 
-          # tag: move client to the tag and focus it
-          # tagsilent: move client to the tag and not focus it
-          # bind=Alt,1,tagsilent,1
-          bind=SUPER+SHIFT,1,tag,1,0
-          bind=SUPER+SHIFT,2,tag,2,0
-          bind=SUPER+SHIFT,3,tag,3,0
-          bind=SUPER+SHIFT,4,tag,4,0
-          bind=SUPER+SHIFT,5,tag,5,0
-          bind=SUPER+SHIFT,6,tag,6,0
-          bind=SUPER+SHIFT,7,tag,7,0
-          bind=SUPER+SHIFT,8,tag,8,0
-          bind=SUPER+SHIFT,9,tag,9,0
+            # tag: move client to the tag and focus it
+            # tagsilent: move client to the tag and not focus it
+            # bind=Alt,1,tagsilent,1
+            bind=SUPER+SHIFT,1,tag,1,0
+            bind=SUPER+SHIFT,2,tag,2,0
+            bind=SUPER+SHIFT,3,tag,3,0
+            bind=SUPER+SHIFT,4,tag,4,0
+            bind=SUPER+SHIFT,5,tag,5,0
+            bind=SUPER+SHIFT,6,tag,6,0
+            bind=SUPER+SHIFT,7,tag,7,0
+            bind=SUPER+SHIFT,8,tag,8,0
+            bind=SUPER+SHIFT,9,tag,9,0
 
-          # monitor switch
-          bind=alt+shift,Left,focusmon,left
-          bind=alt+shift,Right,focusmon,right
-          bind=SUPER+Alt,Left,tagmon,left
-          bind=SUPER+Alt,Right,tagmon,right
+            # monitor switch
+            bind=alt+shift,Left,focusmon,left
+            bind=alt+shift,Right,focusmon,right
+            bind=SUPER+Alt,Left,tagmon,left
+            bind=SUPER+Alt,Right,tagmon,right
 
-          # gaps
-          bind=ALT+SHIFT,X,incgaps,1
-          bind=ALT+SHIFT,Z,incgaps,-1
-          bind=ALT+SHIFT,R,togglegaps
+            # gaps
+            bind=ALT+SHIFT,X,incgaps,1
+            bind=ALT+SHIFT,Z,incgaps,-1
+            bind=ALT+SHIFT,R,togglegaps
 
-          # movewin
-          bind=SUPER,Up,movewin,+0,-50
-          bind=SUPER,Down,movewin,+0,+50
-          bind=SUPER,Left,movewin,-50,+0
-          bind=SUPER,Right,movewin,+50,+0
+            # movewin
+            bind=SUPER,Up,movewin,+0,-50
+            bind=SUPER,Down,movewin,+0,+50
+            bind=SUPER,Left,movewin,-50,+0
+            bind=SUPER,Right,movewin,+50,+0
 
-          # resizewin
-          bind=ALT,k,resizewin,+0,-50
-          bind=ALT,j,resizewin,+0,+50
-          bind=ALT,h,resizewin,-50,+0
-          bind=ALT,l,resizewin,+50,+0
+            # resizewin
+            bind=ALT,k,resizewin,+0,-50
+            bind=ALT,j,resizewin,+0,+50
+            bind=ALT,h,resizewin,-50,+0
+            bind=ALT,l,resizewin,+50,+0
 
-          # Volume Control (using wpctl/Pipewire)
-          bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
-          bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
-          bind=NONE,XF86AudioMute,spawn,volume-control mute
+            # Volume Control (using wpctl/Pipewire)
+            bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
+            bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
+            bind=NONE,XF86AudioMute,spawn,volume-control mute
 
-          # Mic Control
-          bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
+            # Mic Control
+            bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
 
-          # Brightness Control (using brightnessctl)
-          bind=NONE,XF86MonBrightnessUp,spawn,brightness-control up
-          bind=NONE,XF86MonBrightnessDown,spawn,brightness-control down
+            # Brightness Control (using brightnessctl)
+            bind=NONE,XF86MonBrightnessUp,spawn,brightness-control up
+            bind=NONE,XF86MonBrightnessDown,spawn,brightness-control down
 
-          # Mouse Button Bindings
-          # NONE mode key only work in ov mode
-          mousebind=SUPER,btn_left,moveresize,curmove
-          mousebind=NONE,btn_middle,togglemaximizescreen,0
-          mousebind=SUPER,btn_right,moveresize,curresize
+            # Mouse Button Bindings
+            # NONE mode key only work in ov mode
+            mousebind=SUPER,btn_left,moveresize,curmove
+            mousebind=NONE,btn_middle,togglemaximizescreen,0
+            mousebind=SUPER,btn_right,moveresize,curresize
 
-          # Axis Bindings
-          axisbind=SUPER,UP,viewtoleft_have_client
-          axisbind=SUPER,DOWN,viewtoright_have_client
+            # Axis Bindings
+            axisbind=SUPER,UP,viewtoleft_have_client
+            axisbind=SUPER,DOWN,viewtoright_have_client
 
-          # layer rule
-          layerrule=animation_type_open:zoom,layer_name:rofi
-          layerrule=animation_type_close:zoom,layer_name:rofi
+            # layer rule
+            layerrule=animation_type_open:zoom,layer_name:rofi
+            layerrule=animation_type_close:zoom,layer_name:rofi
 
-          env=NIXOS_OZONE_WL,1
-          env=QT_AUTO_SCREEN_SCALE_FACTOR,1
-          env=ELECTRON_OZONE_PLATFORM_HINT,auto
-          env=QT_QPA_PLATFORM,wayland;xcb
-          env=XDG_SESSION_TYPE,wayland
-          env=GDK_BACKEND,wayland,x11
-          env=GDK_SCALE,1
+            env=NIXOS_OZONE_WL,1
+            env=QT_AUTO_SCREEN_SCALE_FACTOR,1
+            env=ELECTRON_OZONE_PLATFORM_HINT,auto
+            env=QT_QPA_PLATFORM,wayland;xcb
+            env=XDG_SESSION_TYPE,wayland
+            env=GDK_BACKEND,wayland,x11
+            env=GDK_SCALE,1
 
-          # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
-          exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-          ${lib.optionalString (config.mango.noctalia-shell
-            && config.mango.enable) ''
-            exec = pkill quickshell ; noctalia-shell
-          ''}
+            # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+            exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
+            exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
+            ${lib.optionalString (config.mango.noctalia-shell && config.mango.enable) ''
+              exec = pkill quickshell ; noctalia-shell
+            ''}
 
-          ${lib.optionalString (!config.mango.noctalia-shell) ''
-            exec-once = sh ~/.swaybg
-            exec-once = dunst &
-          ''}
-          exec-once = wl-clip-persist --clipboard regular
-        '';
-      };
-      home.packages = with pkgs; [
-        swaybg
-        wl-clipboard
-        wl-clip-persist
-      ];
-    }
-    else {
-      programs.mango.enable = true;
-    }
+            ${lib.optionalString (!config.mango.noctalia-shell) ''
+              exec-once = sh ~/.swaybg
+              exec-once = dunst &
+            ''}
+            exec-once = wl-clip-persist --clipboard regular
+          '';
+        };
+        home.packages = with pkgs; [
+          swaybg
+          wl-clipboard
+          wl-clip-persist
+        ];
+      }
+    else
+      {
+        programs.mango.enable = true;
+      }
   );
 }

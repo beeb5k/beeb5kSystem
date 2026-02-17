@@ -3,9 +3,11 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   cfg = config.mango;
-in {
+in
+{
   imports = [
     inputs.noctalia.homeModules.default
   ];

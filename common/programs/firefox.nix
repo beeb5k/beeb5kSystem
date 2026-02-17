@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   programs.firefox = {
     enable = false;
 
@@ -48,25 +49,24 @@
         ImproveSuggest = false;
         Locked = true;
       };
-      ExtensionSettings =
-        {
-          "uBlock0@raymondhill.net" = {
-            default_area = "menupanel";
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            private_browsing = true;
-          };
-          # "addon@darkreader.org" = {
-          #   installation_mode = "force_installed";
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
-          # };
-        }
-        // lib.optionalAttrs config.hyprland.enable {
-          "pywalfox@frewacom.org" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
-          };
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          private_browsing = true;
         };
+        # "addon@darkreader.org" = {
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+        # };
+      }
+      // lib.optionalAttrs config.hyprland.enable {
+        "pywalfox@frewacom.org" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+        };
+      };
     };
 
     profiles.default = {
@@ -124,27 +124,27 @@
         engines = {
           duck-duck-go = {
             name = "DuckDuckGo";
-            urls = [{template = "https://duckduckgo.com/?q={searchTerms}";}];
+            urls = [ { template = "https://duckduckgo.com/?q={searchTerms}"; } ];
             iconMapObj."16" = "https://duckduckgo.com/favicon.ico";
-            definedAliases = [":ddg"];
+            definedAliases = [ ":ddg" ];
           };
           startpage = {
             name = "Startpage";
-            urls = [{template = "https://www.startpage.com/do/search?query={searchTerms}";}];
+            urls = [ { template = "https://www.startpage.com/do/search?query={searchTerms}"; } ];
             iconMapObj."16" = "https://www.startpage.com/favicon.ico";
-            definedAliases = [":sp"];
+            definedAliases = [ ":sp" ];
           };
           nixos-packages = {
             name = "NixOS Packages";
-            urls = [{template = "https://search.nixos.org/packages?query={searchTerms}";}];
+            urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
             iconMapObj."16" = "https://nixos.org/favicon.ico";
-            definedAliases = [":n"];
+            definedAliases = [ ":n" ];
           };
           nixos-wiki = {
             name = "NixOS Wiki";
-            urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+            urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
             iconMapObj."16" = "https://wiki.nixos.org/favicon.ico";
-            definedAliases = [":nw"];
+            definedAliases = [ ":nw" ];
           };
           amazon.metaData.hidden = true;
           ebay.metaData.hidden = true;

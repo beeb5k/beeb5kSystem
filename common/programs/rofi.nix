@@ -3,11 +3,12 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   programs.rofi = {
     enable = true;
     font = "Lilex Nerd Font";
-    plugins = with pkgs; [rofi-emoji];
+    plugins = with pkgs; [ rofi-emoji ];
     theme = "~/.config/rofi/themes/config.rasi";
   };
 

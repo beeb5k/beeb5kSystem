@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.picom = {
     # enable = config.dwm.enable;
     enable = false;

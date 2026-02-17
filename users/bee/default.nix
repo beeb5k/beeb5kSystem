@@ -36,12 +36,14 @@
   beebvim = {
     enable = true;
     packageDefinitions.replace =
-      builtins.mapAttrs (n: _: {pkgs, ...}: {
-        categories = {
-          clang = false;
-          markdown = false;
-        };
-      })
+      builtins.mapAttrs (
+        n: _: {pkgs, ...}: {
+          categories = {
+            clang = false;
+            markdown = false;
+          };
+        }
+      )
       inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
   };
 

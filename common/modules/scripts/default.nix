@@ -2,7 +2,9 @@
   homeManager,
   inputs,
   ...
-}: {pkgs, ...}: let
+}:
+{ pkgs, ... }:
+let
   # CHANGED: writeShellScript -> writeShellScriptBin
   volume-control = pkgs.writeShellScriptBin "volume-control" ''
     TAG="audio-volume"
@@ -70,7 +72,8 @@
           "Microphone: On"
     fi
   '';
-in {
+in
+{
   home.packages = [
     volume-control
     brightness-control

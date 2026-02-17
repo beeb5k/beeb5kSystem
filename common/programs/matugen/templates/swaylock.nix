@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   xdg.configFile."matugen/templates/swaylock-colors" = {
     text = ''
       # --- Swaylock Config (Moved from Nix settings) ---

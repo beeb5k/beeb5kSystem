@@ -2,11 +2,13 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   playSound = pkgs.writeShellScriptBin "play-notification-sound" ''
     ${pkgs.libcanberra-gtk3}/bin/canberra-gtk-play -i message
   '';
-in {
+in
+{
   xdg.configFile."matugen/templates/dunstrc" = {
     text = ''
       [global]

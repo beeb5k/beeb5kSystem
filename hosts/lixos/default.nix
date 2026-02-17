@@ -2,16 +2,18 @@
   systemState,
   user,
   hostname,
-}: {
+}:
+{
   pkgs,
   config,
   inputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./hardware-configuration.nix
-    (import ../system.nix {inherit user;})
+    (import ../system.nix { inherit user; })
     inputs.self.nixosModules.mango
     inputs.self.nixosModules.dwm
   ];
@@ -23,7 +25,7 @@
   documentation.man.mandoc.enable = true;
   mango.enable = true;
   dwm.enable = false;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   xdg.portal = lib.mkForce {
     enable = true;
@@ -33,12 +35,12 @@
     ];
     config = {
       common = {
-        default = ["gtk"];
-        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
       };
       mango = {
-        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
       };
     };
   };
@@ -65,34 +67,20 @@
     ];
   };
 
-  environment.sessionVariables = {};
+  environment.sessionVariables = { };
 
   networking.hostName = hostname;
-  networking.firewall.allowedTCPPorts = [];
-  networking.firewall.allowedUDPPorts = [];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   networking.firewall.enable = true;
 
   environment.systemPackages = with pkgs; [
     libva-utils
     vulkan-tools
     pciutils
-    (pkgs.nvtopPackages.full.override {
-      nvidia = true; # Enable Nvidia (dGPU)
-      amd = true; # Enable AMD (iGPU)
-
-      # Disable everything else to save space & build time
-      intel = false;
-      msm = false; # Qualcomm
-      apple = false; # Apple Silicon
-      panfrost = false; # ARM Mali
-      panthor = false; # Newer ARM Mali
-      ascend = false; # Huawei Ascend
-      v3d = false; # Raspberry Pi
-      tpu = false; # Google TPU
-    })
   ];
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     graphics = {
       enable = true;

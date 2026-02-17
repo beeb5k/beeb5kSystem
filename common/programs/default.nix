@@ -1,3 +1,4 @@
-{importer, ...}: {
+{ importer, ... }:
+{
   imports = importer ./.;
 }
