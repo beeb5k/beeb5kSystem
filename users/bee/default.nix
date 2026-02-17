@@ -1,13 +1,15 @@
 {
   systemState,
   user,
-}: {
+}:
+{
   pkgs,
   lib,
   inputs,
   config,
   ...
-}: {
+}:
+{
   imports = with inputs.self.homeModules; [
     inputs.beeb5kvim.homeModules.default
     programs
@@ -35,16 +37,16 @@
 
   beebvim = {
     enable = true;
-    packageDefinitions.replace =
-      builtins.mapAttrs (
-        n: _: {pkgs, ...}: {
-          categories = {
-            clang = false;
-            markdown = false;
-          };
-        }
-      )
-      inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
+    packageDefinitions.replace = builtins.mapAttrs (
+      n: _:
+      { pkgs, ... }:
+      {
+        categories = {
+          clang = false;
+          markdown = false;
+        };
+      }
+    ) inputs.beeb5kvim.packages.${pkgs.stdenv.hostPlatform.system}.default.packageDefinitions;
   };
 
   terminal = {
@@ -111,9 +113,9 @@
     dunst
     gnome-calculator
     papers
-    # (pkgs.obsidian.override {
-    #   electron = pkgs.electron_40;
-    # })
+    (pkgs.obsidian.override {
+      electron = pkgs.electron_40;
+    })
   ];
 
   programs.home-manager.enable = true;

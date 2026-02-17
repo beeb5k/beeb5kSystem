@@ -97,12 +97,20 @@ in
             [templates.mango]
             input_path = '~/.config/matugen/templates/mango.conf'
             output_path = '~/.config/mango/mango-colors.conf'
+            post_hook = 'mmsg -d reload_config'
           ''}
 
           ${lib.optionalString config.programs.btop.enable ''
             [templates.btop]
             input_path = '~/.config/matugen/templates/btop.theme'
             output_path = '~/.config/btop/themes/matugen.theme'
+          ''}
+
+
+          ${lib.optionalString config.programs.yazi.enable ''
+            [templates.yazi]
+            input_path = '~/.config/matugen/templates/yazi.toml'
+            output_path = '~/.config/yazi/theme.toml'
           ''}
 
 
@@ -119,10 +127,10 @@ in
             output_path = "~/.config/vesktop/themes/midnight.css"
           ''}
 
-            [templates.dunst]
-            input_path = '~/.config/matugen/templates/dunstrc'
-            output_path = '~/.config/dunst/dunstrc'
-            post_hook = "dunstctl reload"
+          [templates.dunst]
+          input_path = '~/.config/matugen/templates/dunstrc'
+          output_path = '~/.config/dunst/dunstrc'
+          post_hook = "dunstctl reload"
 
             ${lib.optionalString config.programs.rofi.enable ''
               [templates.rofi]
@@ -141,14 +149,14 @@ in
             post_hook = "${update_gtkcolors}"
           ''}
 
-            [templates.zed]
-            input_path = '~/.config/matugen/templates/zed.json'
-            output_path = '~/.config/zed/themes/matugen.json'
+          [templates.zed]
+          input_path = '~/.config/matugen/templates/zed.json'
+          output_path = '~/.config/zed/themes/matugen.json'
 
-            [templates.zen]
-            input_path = '~/.config/matugen/templates/zen.css'
-            output_path = '~/.config/wallust/templates/userChrome.css'
-            post_hook = "${link_zen}"
+          [templates.zen]
+          input_path = '~/.config/matugen/templates/zen.css'
+          output_path = '~/.config/wallust/templates/userChrome.css'
+          post_hook = "${link_zen}"
         '';
     };
   };
