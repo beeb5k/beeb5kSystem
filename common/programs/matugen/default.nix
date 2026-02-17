@@ -9,6 +9,13 @@
     mkdir -p "$PROFILE_DIR/chrome"
     ln -sf ~/.cache/wallust/userChrome.css "$PROFILE_DIR/chrome/userChrome.css"
   '';
+  update_gtkcolors = pkgs.writeShellScript "update_gtkcolors" ''
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+    sleep 0.1
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+
+    systemctl --user restart xdg-desktop-portal-gtk
+  '';
 in {
   imports = [./templates];
 
@@ -129,6 +136,7 @@ in {
             [templates.gtk4]
             input_path = '~/.config/matugen/templates/colors.css'
             output_path = '~/.config/gtk-4.0/colors.css'
+            post_hook = "${update_gtkcolors}"
           ''}
 
             [templates.zed]
