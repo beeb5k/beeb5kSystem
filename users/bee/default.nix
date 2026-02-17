@@ -27,6 +27,7 @@
       blur.enable = true;
       border_radius = 12;
       shadows = true;
+      opacity = 0.87;
     };
     noctalia-shell = false;
   };
@@ -84,7 +85,7 @@
           FakeNitro.enabled = false;
           AnonymiseFileNames.enabled = true;
           PlainFolderIcon.enabled = true;
-          NoTypingAnimations.enabled = true;
+          NoTypingAnimation.enabled = true;
           petpet.enabled = true;
           QuickReply.enabled = true;
           SilentTyping.enabled = true;
