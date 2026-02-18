@@ -78,6 +78,7 @@
     libva-utils
     vulkan-tools
     pciutils
+    direnv
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
