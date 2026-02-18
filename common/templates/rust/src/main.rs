@@ -1,3 +1,6 @@
+use rust_project::hello_world;
+
 fn main() {
-    todo!();
+    hello_world("print");
 }
+

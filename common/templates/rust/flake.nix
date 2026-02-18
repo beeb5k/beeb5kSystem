@@ -34,7 +34,7 @@
             RUST_SRC_PATH = rustPlatform.rustLibSrc;
           };
 
-        packages.default = naersk-lib.buildPackage ./.;
+        packages.default = naersk-lib.buildPackage self;
       }
     );
 }
