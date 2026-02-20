@@ -1,38 +1,49 @@
 {
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs =
     {
       self,
       nixpkgs,
-      flake-utils,
+      ...
     }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        packages.default = pkgs.buildGoModule {
-          pname = "hello_go";
-          version = "0.0.1";
-          src = self;
+    let
+      inherit (nixpkgs) lib;
+      forAllSystems = lib.genAttrs lib.systems.flakeExposed;
+    in
+    {
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.buildGoModule {
+            pname = "hello_go";
+            version = "0.0.1";
+            src = self;
 
-          # The "Trust but Verify" hash.
-          vendorHash = null;
-        };
+            # The "Trust but Verify" hash.
+            vendorHash = null;
+          };
+        }
+      );
 
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            go
-            gopls
-            gotools
-            go-tools
-          ];
-        };
-      }
-    );
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              go
+              gopls
+              gotools
+              go-tools
+            ];
+          };
+        }
+      );
+    };
 }
