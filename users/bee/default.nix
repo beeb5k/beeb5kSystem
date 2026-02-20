@@ -41,6 +41,9 @@
       n: _:
       { pkgs, ... }:
       {
+        settings = {
+          # neovim-unwrapped = pkgs.neovim-unwrapped;
+        };
         categories = {
           clang = false;
           markdown = false;

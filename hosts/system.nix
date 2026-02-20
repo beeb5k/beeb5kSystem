@@ -163,7 +163,7 @@
     enableSSHSupport = true;
   };
 
-  services.upower.enable = false;
+  services.upower.enable = true;
   services.earlyoom.enable = false;
   services.fwupd.enable = false;
   services.gnome.gnome-keyring.enable = true;

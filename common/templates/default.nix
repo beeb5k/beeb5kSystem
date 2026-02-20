@@ -5,4 +5,7 @@ inputs: {
   go = {
     path = ./go;
   };
+  python = {
+    path = ./python;
+  };
 }
