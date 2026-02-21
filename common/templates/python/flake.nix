@@ -71,7 +71,7 @@
           virtualenv = pythonSet.mkVirtualEnv "${packageName}-dev-env" workspace.deps.all;
         in
         {
-          default = pkgs.mkShell {
+          default = pkgs.mkShellNoCC {
             packages = [
               virtualenv
               pkgs.uv

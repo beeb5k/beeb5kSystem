@@ -45,9 +45,13 @@ pub fn build(b: *std.Build) void {
         }),
     });
 
+    // This exposes our Zig exported functions to the Linux 
+    // dynamic symbol table so dlsym() can actually find them.
+    exe_unit_tests.rdynamic = true;
+
     exe_unit_tests.addCSourceFile(.{
         .file = b.path("src/main.c"),
-        .flags = &.{ "-Wall", "-Wextra", "-Dmain=nomain" },
+        .flags = &.{ "-Wall", "-Wextra", "-pedantic", "-Dmain=nomain" },
     });
 
     // Allow tests to link against C and find your headers
