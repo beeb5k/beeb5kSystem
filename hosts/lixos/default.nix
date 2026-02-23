@@ -24,7 +24,7 @@
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
   mango.enable = true;
-  dwm.enable = false;
+  dwm.enable = true;
   security.pam.services.swaylock = { };
 
   xdg.portal = lib.mkForce {

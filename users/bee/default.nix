@@ -33,7 +33,7 @@
     };
     noctalia-shell = false;
   };
-  dwm.enable = false;
+  dwm.enable = true;
 
   beebvim = {
     enable = true;
@@ -61,7 +61,7 @@
     };
     font = {
       family = "Lilex Nerd Font";
-      size = 12.0;
+      size = 12.5;
       bright_color_is_bold = false;
       ligatures = false; # only supported by ghostty
     };

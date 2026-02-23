@@ -64,6 +64,14 @@ in
                 url = "https://st.suckless.org/patches/csi_22_23/st-csi_22_23-0.8.5.diff";
                 hash = "sha256-+izEkGVkLCbhZNBD2WN4uX5j+YMmou7JaMVmPG0mrYk=";
               }
+              {
+                url = "https://st.suckless.org/patches/sync/st-appsync-20200618-b27a383.diff";
+                sha256 = "sha256-lys7/nup7a+GcmW+CutX0kjmbbOis2stkuhw02beuPs=";
+              }
+              {
+                url = "https://st.suckless.org/patches/fix_keyboard_input/st-fix-keyboard-input-20180605-dc3b5ba.diff";
+                sha256 = "sha256-h5ZrCj4IrkMQanLSMmgXaRd7qZYqvbzqUnuFt/axsMI=";
+              }
             ];
             postPatch = oldAttrs.postPatch or "" + ''
               sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 5}/g' config.def.h
@@ -112,7 +120,13 @@ in
                   }
                 ];
               }).overrideAttrs
-                (oldAttrs: {
+                (oldAttrs: rec {
+                  version = "6.8";
+                  src = pkgs.fetchzip {
+                    url = "https://dl.suckless.org/dwm/dwm-${version}.tar.gz";
+                    hash = "sha256-mkMFmqV9NVGTdDGqW8f+T7r0YQNU1KDsn6uRcacoNco=";
+                  };
+
                   buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ pkgs.libxcursor ];
                 });
           };
