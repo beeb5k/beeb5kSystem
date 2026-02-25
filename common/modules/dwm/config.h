@@ -1,10 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 
-/* ============================================================================== */
-/* APPEARANCE                                   */
-/* ============================================================================== */
-
 static const unsigned int borderpx  = 2;   /* border pixel of windows */
 static const int refreshrate = 120;
 static const unsigned int snap      = 32;  /* snap pixel */
@@ -50,10 +46,6 @@ static const Rule rules[] = {
     { "gnome-calculator", NULL,       NULL,       0,            1,           -1 },
 };
 
-/* ============================================================================== */
-/* LAYOUTS                                     */
-/* ============================================================================== */
-
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
@@ -66,9 +58,6 @@ static const Layout layouts[] = {
     { "[M]",      monocle },
 };
 
-/* ============================================================================== */
-/* COMMANDS                                     */
-/* ============================================================================== */
 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -95,9 +84,6 @@ static const char *medplay[]     = { "playerctl", "play-pause", NULL };
 static const char *mednext[]     = { "playerctl", "next", NULL };
 static const char *medprev[]     = { "playerctl", "previous", NULL };
 
-/* ============================================================================== */
-/* KEY BINDINGS                                   */
-/* ============================================================================== */
 
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
@@ -135,9 +121,9 @@ static Key keys[] = {
     { Mod1Mask,                     XK_b,                     togglebar,      {0} },
 
     /* --- Layouts --- */
-    { MODKEY,                       XK_t,                     setlayout,      {.v = &layouts[0]} },
-    { MODKEY,                       XK_d,                     setlayout,      {.v = &layouts[2]} },
-    { MODKEY,                       XK_f,                     togglefullscr,  {0} },
+    { Mod1Mask,                       XK_t,                     setlayout,      {.v = &layouts[0]} },
+    { Mod1Mask,                       XK_a,                     setlayout,      {.v = &layouts[2]} },
+    { Mod1Mask,                       XK_f,                     togglefullscr,  {0} },
     { MODKEY,                       XK_space,                 togglefloating, {0} },
 
     /* --- Session --- */
@@ -165,10 +151,6 @@ static Key keys[] = {
     TAGKEYS(                        XK_4,                                     3)
     TAGKEYS(                        XK_5,                                     4)
 };
-
-/* ============================================================================== */
-/* MOUSE BUTTONS                                   */
-/* ============================================================================== */
 
 static Button buttons[] = {
     /* click                event mask      button          function        argument */

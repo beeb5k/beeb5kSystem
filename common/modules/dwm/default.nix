@@ -36,9 +36,13 @@ in
           xclip
           (st.overrideAttrs (oldAttrs: rec {
             patches = map pkgs.fetchpatch [
+              # {
+              #   url = "https://st.suckless.org/patches/scrollback/st-scrollback-ringbuffer-0.9.2.diff";
+              #   sha256 = "sha256-/AoHajojVUAAqF4iKbN1lGM6h9PhZxCbMfAS2PRvbDE=";
+              # }
               {
-                url = "https://st.suckless.org/patches/scrollback/st-scrollback-ringbuffer-0.9.2.diff";
-                sha256 = "sha256-/AoHajojVUAAqF4iKbN1lGM6h9PhZxCbMfAS2PRvbDE=";
+                url = "https://st.suckless.org/patches/scrollback/st-scrollback-0.9.2.diff";
+                sha256 = "sha256-ZypvRONAHS//wnZjivmqpWIqZlKTqAQ0Q8DhQpZVaqU=";
               }
               {
                 url = "https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.9.2.diff";
@@ -72,10 +76,18 @@ in
                 url = "https://st.suckless.org/patches/fix_keyboard_input/st-fix-keyboard-input-20180605-dc3b5ba.diff";
                 sha256 = "sha256-h5ZrCj4IrkMQanLSMmgXaRd7qZYqvbzqUnuFt/axsMI=";
               }
+              {
+                url = "https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.5.diff";
+                sha256 = "sha256-WN/R6dPuw1eviHOvVVBw2VBSMDtfi1LCkXyX36EJKi4=";
+              }
             ];
             postPatch = oldAttrs.postPatch or "" + ''
               sed -i 's/Button4, *kscrollup, *{.i = 1}/Button4, kscrollup, {.i = 5}/g' config.def.h
               sed -i 's/Button5, *kscrolldown, *{.i = 1}/Button5, kscrolldown, {.i = 5}/g' config.def.h
+
+              sed -i 's/const int boxdraw = 0;/const int boxdraw = 1;/g' config.def.h
+              sed -i 's/const int boxdraw_bold = 0;/const int boxdraw_bold = 1;/g' config.def.h
+              # sed -i 's/const int boxdraw_braille = 0;/const int boxdraw_braille = 1;/g' config.def.h
             '';
           }))
         ];
@@ -191,7 +203,8 @@ in
           "Xft.lcdfilter" = "lcddefault";
           "Xft.hintstyle" = "hintfull";
           "Xft.rgba" = "rgb";
-          "st.font" = "Lilex Nerd Font:size=12:antialias=true:autohint=true";
+          "st.font" =
+            "${config.terminal.font.family}:size=${toString config.terminal.font.size}:antialias=true:autohint=true";
           "st.borderpx" = 5;
         };
       }

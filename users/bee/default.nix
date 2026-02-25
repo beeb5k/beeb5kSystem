@@ -15,6 +15,7 @@
     programs
     mango
     dwm
+    hypr
     scripts
     ../users.nix
   ];
@@ -22,12 +23,21 @@
   home.username = user;
   home.homeDirectory = "/home/${user}";
 
+  hyprland = {
+    enable = false;
+    xwayland = true;
+    animations = false;
+    layout = "dwindle"; # master, scrolling  or dwindle
+  };
+
   mango = {
     enable = true;
     animations = true;
     window = {
       blur.enable = true;
-      border_radius = 12;
+      blur.passes = 1;
+      blur.radius = 10;
+      border_radius = 0;
       shadows = true;
       opacity = 0.87;
     };
@@ -42,7 +52,7 @@
       { pkgs, ... }:
       {
         settings = {
-          # neovim-unwrapped = pkgs.neovim-unwrapped;
+          neovim-unwrapped = pkgs.neovim-unwrapped;
         };
         categories = {
           clang = false;
@@ -60,8 +70,8 @@
       ghostty = false;
     };
     font = {
-      family = "Lilex Nerd Font";
-      size = 12.5;
+      family = "Ioskeley Mono";
+      size = 13.0;
       bright_color_is_bold = false;
       ligatures = false; # only supported by ghostty
     };

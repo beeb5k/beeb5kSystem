@@ -93,6 +93,7 @@ in
 
           font-family = cfg.font.family;
           font-size = cfg.font.size;
+          alpha-blending = "liner";
           window-padding-x = cfg.window.padding-x;
           window-padding-y = cfg.window.padding-y;
           font-feature = [

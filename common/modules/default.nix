@@ -10,6 +10,7 @@ let
     in
     {
       mango = import ./mango args;
+      hypr = import ./hypr args;
       dwm = import ./dwm args;
       scripts = import ./scripts args;
     };

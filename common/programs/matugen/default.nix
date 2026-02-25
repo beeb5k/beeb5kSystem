@@ -100,6 +100,13 @@ in
             post_hook = 'mmsg -d reload_config'
           ''}
 
+          ${lib.optionalString config.hyprland.enable ''
+            [templates.hyprland]
+            input_path = '~/.config/matugen/templates/hyprland.conf'
+            output_path = '~/.config/hypr/colors.conf'
+            post_hook = 'hyprctl reload'
+          ''}
+
           ${lib.optionalString config.programs.btop.enable ''
             [templates.btop]
             input_path = '~/.config/matugen/templates/btop.theme'

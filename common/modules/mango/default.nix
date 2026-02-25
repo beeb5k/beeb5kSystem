@@ -49,11 +49,11 @@ in
         enable = lib.mkEnableOption "Enable window blur";
         passes = lib.mkOption {
           type = lib.types.int;
-          default = 3;
+          default = 1;
         };
         radius = lib.mkOption {
           type = lib.types.int;
-          default = 11;
+          default = 10;
         };
       };
       shadows = lib.mkEnableOption "Enable window drop shadows";
@@ -214,7 +214,7 @@ in
             windowrule=scroller_proportion:0.3,appid:^steam$,title:^Friends List$
             windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
             windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
-            windowrule=isfloating:1,appid:^(org.gnome.Calculator)$
+            windowrule=isfloating:1,appid:^(org.gnome.Calculator|org.pulseaudio.pavucontrol)$
 
             # Appearance
             gappih=5
@@ -418,13 +418,16 @@ in
         };
         home.packages = with pkgs; [
           swaybg
-          wl-clipboard
+          wl-clipboard-rs
           wl-clip-persist
         ];
       }
     else
       {
-        programs.mango.enable = true;
+        programs.mango = {
+          enable = true;
+          addLoginEntry = true;
+        };
       }
   );
 }

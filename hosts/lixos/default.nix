@@ -16,6 +16,7 @@
     (import ../system.nix { inherit user; })
     inputs.self.nixosModules.mango
     inputs.self.nixosModules.dwm
+    inputs.self.nixosModules.hypr
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
@@ -24,6 +25,7 @@
   documentation.man.man-db.enable = false;
   documentation.man.mandoc.enable = true;
   mango.enable = true;
+  hyprland.enable = false;
   dwm.enable = true;
   security.pam.services.swaylock = { };
 
@@ -32,6 +34,7 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
     ];
     config = {
       common = {
@@ -41,6 +44,12 @@
       mango = {
         "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      };
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
       };
     };
   };
