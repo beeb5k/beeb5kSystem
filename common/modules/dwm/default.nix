@@ -161,12 +161,15 @@ in
             fi
 
             [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
-            xrandr --output eDP --set TearFree on
+            # xrandr --output eDP --set TearFree on
 
             ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
 
             dunst &
             clipcatd
+            ${lib.optionalString (config.services.picom.enable) ''
+              systemctl --user restart picom.service
+            ''}
           '';
         };
 

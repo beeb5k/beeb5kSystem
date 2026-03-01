@@ -413,6 +413,9 @@ in
               exec-once = sh ~/.swaybg
               exec-once = dunst &
             ''}
+            ${lib.optionalString (config.services.picom.enable) ''
+              exec-once = systemctl --user stop picom.service
+            ''}
             exec-once = wl-clip-persist --clipboard regular
           '';
         };
@@ -424,10 +427,7 @@ in
       }
     else
       {
-        programs.mango = {
-          enable = true;
-          addLoginEntry = true;
-        };
+        programs.mango.enable = true;
       }
   );
 }

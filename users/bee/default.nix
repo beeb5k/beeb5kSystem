@@ -92,7 +92,7 @@
     enable = true;
     vencord = {
       settings = {
-        # enabledThemes = ["midnight.css"];
+        enabledThemes = [ "midnight.css" ];
         autoUpdate = false;
         autoUpdateNotification = false;
         notifyAboutUpdates = false;

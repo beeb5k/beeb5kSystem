@@ -1,35 +1,52 @@
 { config, ... }:
 {
   services.picom = {
-    # enable = config.dwm.enable;
-    enable = false;
-
-    backend = "egl";
+    enable = config.dwm.enable;
+    backend = "glx";
     vSync = true;
 
+    activeOpacity = 0.87;
+    inactiveOpacity = 0.87;
+
+    opacityRules = [
+      "100:fullscreen"
+    ];
     settings = {
+      blur = {
+        method = "dual_kawase";
+        strength = 4;
+        size = 10;
+      };
+      blur-background = true;
+      blur-background-exclude = [
+        "window_type = 'dock'"
+        "window_type = 'desktop'"
+        "class_g = 'slop'"
+        "_GTK_FRAME_EXTENTS@"
+        "fullscreen"
+      ];
+
+      # xrender-sync-fence = true;
       use-damage = true;
+
       unredir-if-possible = true;
+
       detect-transient = true;
       detect-client-opacity = true;
-
-      vsync-use-glfinish = false;
-      dbe = false;
-
       mark-wmwin-focused = true;
       mark-ovredir-focused = true;
+      detect-rounded-corners = true;
 
       shadow = false;
-      fade = false;
-      blur-method = "none";
+      fading = false;
       animations = false;
+    };
+  };
 
-      inactive-opacity = 1.0;
-      active-opacity = 1.0;
-      frame-opacity = 1.0;
-
-      detect-rounded-corners = true;
-      resize-damage = 1;
+  # systemd.user.services.picom.Install.wantedBy = lib.mkForce [ ];
+  systemd.user.services.picom = {
+    Unit = {
+      ConditionEnvironment = "XDG_SESSION_TYPE=x11";
     };
   };
 }
