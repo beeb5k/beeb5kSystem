@@ -25,6 +25,24 @@
         "url": "https://codeberg.org/beeb5k/beeb5kvim"
       }
     },
+    "dwm": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1772531329,
+        "narHash": "sha256-SCou0XAQWYQZu7swb8sPPS1FDljixAuGjfe9n7OXFqE=",
+        "ref": "refs/heads/main",
+        "rev": "ea69981dee30dfac59d5e77ee4b27abb64aee9e6",
+        "revCount": 2,
+        "type": "git",
+        "url": "https://codeberg.org/beeb5k/dwm"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/beeb5k/dwm"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -565,6 +583,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1772433332,
+        "narHash": "sha256-izhTDFKsg6KeVBxJS9EblGeQ8y+O8eCa6RcW874vxEc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cf59864ef8aa2e178cccedbe2c178185b0365705",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1772198003,
         "narHash": "sha256-I45esRSssFtJ8p/gLHUZ1OUaaTaVLluNkABkk6arQwE=",
         "owner": "nixos",
@@ -711,11 +745,12 @@
     "root": {
       "inputs": {
         "beeb5kvim": "beeb5kvim",
+        "dwm": "dwm",
         "flake-parts": "flake-parts_4",
         "home-manager": "home-manager",
         "mango": "mango",
         "nix-yazi-plugins": "nix-yazi-plugins",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "noctalia": "noctalia",
         "zen-browser": "zen-browser"
       }

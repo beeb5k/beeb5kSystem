@@ -10,6 +10,7 @@
 
     opacityRules = [
       "100:fullscreen"
+      "100:_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'"
     ];
     settings = {
       blur = {
@@ -22,8 +23,10 @@
         "window_type = 'dock'"
         "window_type = 'desktop'"
         "class_g = 'slop'"
+        "class_g = 'dwm'"
         "_GTK_FRAME_EXTENTS@"
         "fullscreen"
+        "_NET_WM_STATE@:32a *= '_NET_WM_STATE_FULLSCREEN'"
       ];
 
       # xrender-sync-fence = true;

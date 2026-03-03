@@ -100,6 +100,13 @@
   # ST
   xdg.configFile."matugen/templates/st" = {
     text = ''
+      dwm.normbordercolor : {{colors.outline.default.hex}}
+      dwm.normbgcolor : {{colors.surface.default.hex}}
+      dwm.normfgcolor : {{colors.on_surface.default.hex}}
+      dwm.selbordercolor : {{colors.primary.default.hex}}
+      dwm.selbgcolor : {{colors.surface_container.default.hex}}
+      dwm.selfgcolor : {{colors.primary.default.hex}}
+
       st.background: {{colors.surface.default.hex}}
       st.foreground: {{colors.on_surface.default.hex}}
       st.cursorColor: {{colors.primary.default.hex}}

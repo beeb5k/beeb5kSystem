@@ -24,7 +24,7 @@ in
   programs.wallust = {
     enable = true;
     settings = {
-      backend = "kmeans";
+      backend = "wal";
       # color_space = "lch";
       color_space = "labmixed";
       palette = "dark16";
@@ -112,7 +112,6 @@ in
             input_path = '~/.config/matugen/templates/btop.theme'
             output_path = '~/.config/btop/themes/matugen.theme'
           ''}
-
 
           ${lib.optionalString config.programs.yazi.enable ''
             [templates.yazi]

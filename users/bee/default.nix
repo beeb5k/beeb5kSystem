@@ -103,6 +103,7 @@
           AnonymiseFileNames.enabled = true;
           PlainFolderIcon.enabled = true;
           NoTypingAnimation.enabled = true;
+          NoF1.enabled = true;
           petpet.enabled = true;
           QuickReply.enabled = true;
           SilentTyping.enabled = true;

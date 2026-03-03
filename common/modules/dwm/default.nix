@@ -102,45 +102,7 @@ in
           };
           windowManager.dwm = {
             enable = true;
-            package =
-              (pkgs.dwm.override {
-                conf = ./config.h;
-                patches = map pkgs.fetchpatch [
-                  {
-                    url = "https://dwm.suckless.org/patches/fullgaps/dwm-fullgaps-6.4.diff";
-                    sha256 = "sha256-+OXRqnlVeCP2Ihco+J7s5BQPpwFyRRf8lnVsN7rm+Cc=";
-                  }
-                  {
-                    url = "https://dwm.suckless.org/patches/attachaside/dwm-attachaside-6.6.diff";
-                    sha256 = "sha256-xxRnyk0/go9HJHrrGuGlWmDXKh/MmNRLClpk1/dY9gg=";
-                  }
-                  {
-                    url = "https://dwm.suckless.org/patches/actualfullscreen/dwm-actualfullscreen-20211013-cb3f58a.diff";
-                    sha256 = "sha256-vsTuudJCy7Zo1wdwpI/nY7Zu1txXx90QoDfJLmfDUH8=";
-                  }
-                  {
-                    url = "https://dwm.suckless.org/patches/xcursor/dwm-xcursor-20250909-74edc27.diff";
-                    hash = "sha256-vUPP6oLrGgzUKokxzvYyz7Kcx0IrE4LRLsNvwX/VG1M=";
-                  }
-                  {
-                    url = "https://dwm.suckless.org/patches/autostart/dwm-autostart-20210120-cb3f58a.diff";
-                    sha256 = "sha256-mrHh4o9KBZDp2ReSeKodWkCz5ahCLuE6Al3NR2r2OJg=";
-                  }
-                  {
-                    url = "https://raw.githubusercontent.com/bakkeby/patches/master/dwm/dwm-focusdir-6.2.diff";
-                    sha256 = "sha256-KMZBgccoWnkTFr8ubJWa4tCKLK5X1CcJH1GE4EB9cYk=";
-                  }
-                ];
-              }).overrideAttrs
-                (oldAttrs: rec {
-                  version = "6.8";
-                  src = pkgs.fetchzip {
-                    url = "https://dl.suckless.org/dwm/dwm-${version}.tar.gz";
-                    hash = "sha256-mkMFmqV9NVGTdDGqW8f+T7r0YQNU1KDsn6uRcacoNco=";
-                  };
-
-                  buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ pkgs.libxcursor ];
-                });
+            package = inputs.dwm.packages.${pkgs.stdenv.hostPlatform.system}.default;
           };
         };
       }
