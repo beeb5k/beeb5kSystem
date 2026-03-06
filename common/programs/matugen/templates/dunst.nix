@@ -12,9 +12,8 @@ in
   xdg.configFile."matugen/templates/dunstrc" = {
     text = ''
       [global]
-      # --- Appearance ---
       font = "Lilex Nerd Font 11"
-      corner_radius=7
+      corner_radius=0
       frame_width = 2
       markup = yes
       plain_text = no

@@ -53,7 +53,7 @@ in
               "tag-labels": ["一", "二", "三", "四", "五", "六", "七", "八", "九"]
             },
             "dwl/window": {
-                "format": "[{layout}] {title}",
+                "format": "[{layout}]{title}",
                 "on-click":"${screenshot}"
             },
             "cpu": {
@@ -122,7 +122,7 @@ in
             "pulseaudio": {
                 "format": "{icon} {volume}%",
                 "tooltip": false,
-                "format-muted": " Muted",
+                "format-muted": " Muted",
                 "format-bluetooth": " {volume}%",
                 "format-bluetooth-muted": " Muted",
                 "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
@@ -137,7 +137,8 @@ in
                     "portable": "",
                     "car": "",
                     "default": ["", "", ""]
-                }
+                },
+                "ignored-sinks": ["Easy Effects Sink"]
             },
             "pulseaudio#microphone": {
                 "format": "{format_source}",
@@ -168,7 +169,7 @@ in
             },
 
             "mpris": {
-                "format": "{status_icon} {title} - {artist}",
+                "format": "{player_icon} {title} - {artist}",
                 "format-paused": "{status_icon} {title} - {artist}",
                 "format-stopped": "",
                 "max-length": 45,
@@ -355,9 +356,14 @@ in
           padding-right: 6px;
         }
 
-        #tags button {
+        #taskbar button {
           color: @text_dim;
+          margin-top: 2px;
+          margin-bottom: 2px;
           margin-right: 4px;
+          padding: 0px 3px;
+          border-radius: 0px;
+          background: transparent;
         }
 
         #tags button:not(.occupied):not(.focused):not(.overview):not(.urgent) {
@@ -411,7 +417,6 @@ in
 
         #mpris {
           margin-left: 4px;
-          min-width: 180px;
         }
 
         #cava {
