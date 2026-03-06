@@ -10,7 +10,7 @@
         urgentcolor = 0x{{colors.error.default.hex_stripped}}ff
         scratchpadcolor = 0x{{colors.tertiary.default.hex_stripped}}ff
         globalcolor = 0x{{colors.on_tertiary.default.hex_stripped}}ff
-        overlaycolor = 0x{{colors.surface_tint.default.hex_stripped}}ff
+        overlaycolor = 0x{{colors.on_primary.default.hex_stripped}}ff
       '';
     };
   };

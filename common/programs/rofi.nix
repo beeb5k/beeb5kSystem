@@ -53,7 +53,7 @@
               echo "swaybg -i \"$FULL_PATH\" -m fill &" > "$HOME/.swaybg"
           fi
 
-          matugen image "$FULL_PATH" 2>/dev/null && wallust -q -s run "$FULL_PATH" 2>/dev/null
+          matugen image "$FULL_PATH" --source-color-index 0 2>/dev/null && wallust -q -s run "$FULL_PATH" 2>/dev/null
 
           if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$DISPLAY" ]; then
               xrdb -merge "$HOME/.Xresources"

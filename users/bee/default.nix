@@ -64,9 +64,9 @@
 
   terminal = {
     emulator = {
-      default = "foot";
-      foot = true;
-      alacritty = false;
+      default = "alacritty";
+      foot = false;
+      alacritty = true;
       ghostty = false;
     };
     font = {
@@ -80,8 +80,6 @@
       padding-y = 7;
     };
   };
-
-  programs.mangohud.enable = true;
 
   home.sessionVariables = {
     EDITOR = "vim";
@@ -127,10 +125,15 @@
     dunst
     gnome-calculator
     papers
+    waybar
+    cava
+    playerctl
     (pkgs.obsidian.override {
       electron = pkgs.electron_40;
     })
   ];
+
+  services.mpris-proxy.enable = true;
 
   programs.home-manager.enable = true;
   home.stateVersion = systemState; # check flake.nix

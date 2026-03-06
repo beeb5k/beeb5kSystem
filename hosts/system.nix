@@ -316,7 +316,8 @@ in
   fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     ioskeley-mono
-    nerd-fonts.space-mono
+    maple-mono.NF
+    nerd-fonts.jetbrains-mono
   ];
   fonts.fontconfig.defaultFonts.monospace = [
     "Ioskeley Mono"

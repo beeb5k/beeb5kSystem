@@ -133,6 +133,15 @@ in
             output_path = "~/.config/vesktop/themes/midnight.css"
           ''}
 
+          [templates.waybar]
+          input_path = "~/.config/matugen/templates/waybar.css"
+          output_path = "~/.config/waybar/colors.css"
+          # post_hook = "pkill -SIGUSR2 waybar"
+
+          [templates.wlogout]
+          input_path = "~/.config/matugen/templates/wlogout.css"
+          output_path = "~/.config/wlogout/colors.css"
+
           [templates.dunst]
           input_path = '~/.config/matugen/templates/dunstrc'
           output_path = '~/.config/dunst/dunstrc'

@@ -88,6 +88,7 @@
     vulkan-tools
     pciutils
     direnv
+    mangohud
   ];
 
   services.xserver.videoDrivers = [ "nvidia" ];

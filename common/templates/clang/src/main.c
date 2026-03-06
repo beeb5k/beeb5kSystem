@@ -40,16 +40,12 @@ void hello_world(const char* action) {
     // function pointer, cast THAT to a void**, and dereference it to write the address.
     *(void **)(&dynamic_eval) = dlsym(RTLD_DEFAULT, action);
 
-    // If the linker actually found a matching function in the OS phonebook, 
-    // we execute it and hand over our formatted string.
     if (dynamic_eval) {
         dynamic_eval("%s", result);
     }
 }
 
 int main(void) {
-    // We pass "printf" as a literal string. 
-    // dlsym will intercept this, find the real printf in libc, and run it.
     hello_world("printf"); 
     return 0;
 }

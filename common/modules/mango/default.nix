@@ -36,6 +36,8 @@ in
         inputs.mango.hmModules.mango
         ./noctalia.nix
         ./swaylockNdidle.nix
+        ./waybar.nix
+        ./wlogout
       ]
     else
       [
@@ -215,6 +217,7 @@ in
             windowrule=scroller_proportion:0.5,appid:^steam$,title:.*(Settings|Properties).*
             windowrule=isfloating:1,appid:^steam$,title:^Steam - News$
             windowrule=isfloating:1,appid:^(org.gnome.Calculator|org.pulseaudio.pavucontrol)$
+            windowrule=isoverlay:1,appid:^com.gabm.satty$
 
             # Appearance
             gappih=5
@@ -276,7 +279,7 @@ in
               # bind=SUPER,v,spawn,clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy
               bind=SUPER,a,spawn,rofi -show drun
               bind=SUPER,period,spawn,rofi -show emoji -modi emoji
-              bind=ALT,F4,spawn,rofi -show power-menu -modi power-menu:rofi-power-menu
+              bind=ALT,F4,spawn,wlogout -C ~/.config/wlogout/style.css -l  ~/.config/wlogout/layout -b 6 --protocol layer-shell
               bind=SUPER,y,spawn,wall-picker
             ''}
             bind=SUPER,F12,spawn,gnome-calculator
@@ -373,6 +376,11 @@ in
             bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
             bind=NONE,XF86AudioMute,spawn,volume-control mute
 
+            bind=NONE,XF86AudioPlay,spawn,playerctl play-pause
+            bind=NONE,XF86AudioNext,spawn,playerctl next
+            bind=NONE,XF86AudioPrev,spawn,playerctl previous
+            bind=NONE,XF86AudioStop,spawn,playerctl stop
+
             # Mic Control
             bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
 
@@ -411,6 +419,7 @@ in
 
             ${lib.optionalString (!config.mango.noctalia-shell) ''
               exec-once = sh ~/.swaybg
+              exec-once = waybar &
               exec-once = dunst &
             ''}
             ${lib.optionalString (config.services.picom.enable) ''
