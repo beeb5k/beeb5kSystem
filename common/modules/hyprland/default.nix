@@ -1,0 +1,380 @@
+{
+  homeManager,
+  inputs,
+  moduleNameSpace,
+  ...
+}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.${moduleNameSpace}.hyprland;
+
+  snip = pkgs.writeShellScript "snip" ''
+    case $1 in
+      full)
+        ${pkgs.grim}/bin/grim - | wl-copy
+        ;;
+      selection)
+        GEOM=$(${pkgs.slurp}/bin/slurp) || exit
+        ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
+        ;;
+      window)
+        GEOM=$(hyprctl activewindow -j | ${pkgs.jq}/bin/jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+        ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
+        ;;
+    esac
+  '';
+
+  smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
+    alacritty msg create-window || exec alacritty
+  '';
+
+  smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
+    ghostty +new-window || exec ghostty
+  '';
+
+  terminal =
+    if config.beeMods.terminal.default == "alacritty" then
+      smart-alacritty
+    else if config.beeMods.terminal.default == "ghostty" then
+      smart-ghostty
+    else
+      config.beeMods.terminal.default;
+
+  settings-persist = pkgs.writeShellScript "settings-persist" ''
+    SETTINGS_FILE="$HOME/.config/beeSettings"
+
+    if [[ -f "$SETTINGS_FILE" ]]; then
+      IS_NIGHTMODE=$(${pkgs.ripgrep}/bin/rg "nightlight" "$SETTINGS_FILE" | cut -d"=" -f2)
+
+      if [[ "$IS_NIGHTMODE" == "on" ]]; then
+        ${pkgs.wlsunset}/bin/wlsunset -T 4500 &
+      fi
+    fi
+  '';
+in
+{
+  options.${moduleNameSpace}.hyprland = {
+    enable = lib.mkEnableOption "hyprland setup";
+    animations = lib.mkEnableOption "Uiiiiiiiiiii";
+    window = {
+      blur = {
+        enable = lib.mkEnableOption "Enable window blur";
+        passes = lib.mkOption {
+          type = lib.types.int;
+          default = 1;
+        };
+        radius = lib.mkOption {
+          type = lib.types.int;
+          default = 10;
+        };
+      };
+      shadows = lib.mkEnableOption "Enable window drop shadows";
+      border_radius = lib.mkOption {
+        type = lib.types.int;
+        default = 0;
+        description = "Border radius";
+      };
+      opacity = lib.mkOption {
+        type = lib.types.number;
+        default = 1.0;
+        description = "Window opacity";
+      };
+    };
+  };
+
+  config = lib.mkIf cfg.enable (
+    if homeManager then
+      {
+        wayland.windowManager.hyprland = {
+          enable = true;
+          systemd.enable = true;
+          systemd.variables = [ "--all" ];
+          xwayland.enable = true;
+          systemd.enableXdgAutostart = false;
+
+          settings = {
+            monitor = [ ",1920x1080@120,auto,1.0" ];
+
+            # Conditionally load matugen colors if enabled
+            # source = [ ] ++ lib.optional (config.beeMods.matugen.enable) "~/.config/hypr/hyprland-colors.conf";
+
+            "$mainMod" = "SUPER";
+
+            # env = [
+            #   "NIXOS_OZONE_WL,1"
+            #   "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+            #   "ELECTRON_OZONE_PLATFORM_HINT,auto"
+            #   "QT_QPA_PLATFORM,wayland;xcb"
+            #   "XDG_SESSION_TYPE,wayland"
+            #   "GDK_BACKEND,wayland,x11"
+            #   "GDK_SCALE,1"
+            # ];
+            #
+            exec-once = [
+              "wl-clip-persist --clipboard regular --reconnect-tries 0"
+              "wl-paste --type text --watch cliphist store"
+              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+              "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
+              "${settings-persist}"
+              "dbus-update-activation-environment --all"
+              "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+            ]
+            ++ lib.optionals (config.beeMods.x11.dwm.enable || config.beeMods.x11.bspwm.enable) [
+              "systemctl --user stop xidlehook.service"
+              "systemctl --user stop xautolock-session.service"
+              "systemctl --user stop xss-lock.service"
+              "systemctl --user stop clipcat.service"
+            ]
+            ++ lib.optionals (config.beeMods.x11.picom.enable) [
+              "systemctl --user stop picom.service"
+            ];
+
+            xwayland = {
+              force_zero_scaling = true;
+            };
+
+            input = {
+              follow_mouse = 1;
+              kb_layout = "us";
+              repeat_delay = 300;
+              repeat_rate = 50;
+              sensitivity = 0;
+              numlock_by_default = false;
+              left_handed = false;
+
+              touchpad = {
+                natural_scroll = true;
+                tap-to-click = true;
+                drag_lock = true;
+                disable_while_typing = true;
+                middle_button_emulation = false;
+              };
+            };
+
+            general = {
+              layout = "master";
+              gaps_in = 5;
+              gaps_out = 5;
+              border_size = 2;
+
+              resize_on_border = true;
+              no_focus_fallback = true;
+              allow_tearing = false;
+
+              # "col.active_border" = "$_tertiary_fixed_dim";
+              # "col.inactive_border" = "$_outline";
+            };
+
+            master = {
+              allow_small_split = true;
+              new_on_top = false;
+              mfact = 0.56;
+            };
+
+            scrolling = {
+              column_width = 0.55;
+              follow_focus = true;
+            };
+
+            decoration = {
+              rounding = cfg.window.border_radius;
+
+              blur = {
+                enabled = cfg.window.blur.enable;
+                size = cfg.window.blur.radius;
+                passes = cfg.window.blur.passes;
+                brightness = 0.9;
+                contrast = 0.9;
+                noise = 0.02;
+                vibrancy = 1.2;
+                popups = true;
+                popups_ignorealpha = 0.6;
+              };
+
+              shadow = {
+                enabled = cfg.window.shadows;
+                ignore_window = true;
+                range = 10;
+                render_power = 3;
+                offset = "0 0";
+                color = "rgba(00000044)";
+              };
+
+              # Apply opacity logic utilizing cfg options
+              active_opacity =
+                if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then 0.82 else cfg.window.opacity;
+              inactive_opacity =
+                if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then 0.82 else cfg.window.opacity;
+              fullscreen_opacity = 1.0;
+
+              dim_inactive = false;
+            };
+
+            animations = {
+              enabled = true;
+
+              bezier = [
+                "openCurve, 0.05, 0.7, 0.1, 1.0"
+                "closeCurve, 0.0, 0.0, 1.0, 1.0"
+                "moveCurve, 0.46, 1.0, 0.29, 1.0"
+              ];
+
+              animation = [
+                "windowsIn, 1, 2.8, openCurve, slide"
+                "windowsOut, 1, 6.5, closeCurve, popin 80%"
+                "windowsMove, 1, 2.2, moveCurve"
+                "fadeIn, 0, 3.0, fadeCurve"
+                "fadeOut, 1, 2.5, moveCurve"
+                "workspaces, 1, 2.5, moveCurve, slide"
+              ];
+            };
+
+            misc = {
+              vfr = true;
+              vrr = 0;
+              mouse_move_enables_dpms = true;
+              key_press_enables_dpms = true;
+              disable_splash_rendering = true;
+              animate_manual_resizes = true;
+              animate_mouse_windowdragging = false;
+              enable_swallow = false;
+              swallow_regex = "(foot|kitty|alacritty|Alacritty|com.mitchellh.ghostty|)";
+              disable_hyprland_logo = true;
+              force_default_wallpaper = 0;
+              focus_on_activate = true;
+            };
+
+            binds = {
+              scroll_event_delay = 0;
+              focus_preferred_method = 1;
+            };
+
+            windowrule = [
+              "workspace 1, match:class ^(foot|footclient|alacritty|com.mitchellh.ghostty)$"
+              "workspace 2, match:class ^(zen|firefox|obsidian)$"
+              "workspace 3, match:class ^(vesktop|discord|thunderbird|Element|equibop)$"
+              "workspace 4, match:class ^(steam)$"
+              "float on, match:class ^(org.gnome.Calculator|org.pulseaudio.pavucontrol)$"
+              "stay_focused on, match:class ^(pinentry-)(.*)$"
+            ];
+
+            layerrule = [
+              "no_anim on, match:namespace ^rofi$"
+            ];
+
+            workspace = [ "2, layout:scrolling" ];
+
+            bind = [
+              "$mainMod, r, exec, hyprctl reload"
+              "$mainMod, Return, exec, ${terminal}"
+              "$mainMod, a, exec, rofi -show drun"
+              "$mainMod, period, exec, rofi -show emoji -modi emoji"
+              "ALT, F4, exec, rofi -show power-menu -modi power-menu:rofi-power-menu"
+              "$mainMod, y, exec, beesettings wall"
+              "$mainMod, comma, exec, beesettings settings"
+
+              "$mainMod, F12, exec, gnome-calculator"
+              "$mainMod, b, exec, zen"
+              "$mainMod, e, exec, nautilus"
+
+              "$mainMod, m, exit,"
+              "$mainMod, q, killactive,"
+
+              "$mainMod, h, movefocus, l"
+              "$mainMod, l, movefocus, r"
+              "$mainMod, k, movefocus, u"
+              "$mainMod, j, movefocus, d"
+
+              ", Print, exec, ${snip} full"
+              "$mainMod, Print, exec, ${snip} selection"
+              "$mainMod SHIFT, Print, exec, ${snip} window"
+
+              "$mainMod SHIFT, k, swapwindow, u"
+              "$mainMod SHIFT, j, swapwindow, d"
+              "$mainMod SHIFT, h, swapwindow, l"
+              "$mainMod SHIFT, l, swapwindow, r"
+
+              "$mainMod, g, pin,"
+              "ALT, Tab, workspace, previous"
+              "$mainMod, space, togglefloating,"
+              "ALT, a, fullscreen, 1"
+              "ALT, f, fullscreen, 0"
+              "$mainMod, i, togglespecialworkspace, minimized"
+              "$mainMod, i, movetoworkspacesilent, special:minimized"
+              "$mainMod SHIFT, i, togglespecialworkspace, minimized"
+              "$mainMod SHIFT, i, movetoworkspace, +0"
+              "ALT, z, togglespecialworkspace, scratchpad"
+
+              "$mainMod, n, exec, beesettings layout"
+
+              "$mainMod, 1, workspace, 1"
+              "$mainMod, 2, workspace, 2"
+              "$mainMod, 3, workspace, 3"
+              "$mainMod, 4, workspace, 4"
+              "$mainMod, 5, workspace, 5"
+              "$mainMod, 6, workspace, 6"
+              "$mainMod, 7, workspace, 7"
+              "$mainMod, 8, workspace, 8"
+              "$mainMod, 9, workspace, 9"
+
+              "$mainMod SHIFT, 1, movetoworkspace, 1"
+              "$mainMod SHIFT, 2, movetoworkspace, 2"
+              "$mainMod SHIFT, 3, movetoworkspace, 3"
+              "$mainMod SHIFT, 4, movetoworkspace, 4"
+              "$mainMod SHIFT, 5, movetoworkspace, 5"
+              "$mainMod SHIFT, 6, movetoworkspace, 6"
+              "$mainMod SHIFT, 7, movetoworkspace, 7"
+              "$mainMod SHIFT, 8, movetoworkspace, 8"
+              "$mainMod SHIFT, 9, movetoworkspace, 9"
+
+              "ALT SHIFT, Left, focusmonitor, l"
+              "ALT SHIFT, Right, focusmonitor, r"
+              "$mainMod ALT, Left, movecurrentworkspacetomonitor, l"
+              "$mainMod ALT, Right, movecurrentworkspacetomonitor, r"
+            ];
+
+            binde = [
+              "$mainMod, Up, moveactive, 0 -50"
+              "$mainMod, Down, moveactive, 0 50"
+              "$mainMod, Left, moveactive, -50 0"
+              "$mainMod, Right, moveactive, 50 0"
+
+              "ALT, k, resizeactive, 0 -50"
+              "ALT, j, resizeactive, 0 50"
+              "ALT, h, resizeactive, -50 0"
+              "ALT, l, resizeactive, 50 0"
+            ];
+
+            bindel = [
+              ", XF86AudioRaiseVolume, exec, volume-control up"
+              ", XF86AudioLowerVolume, exec, volume-control down"
+              ", XF86AudioMute, exec, volume-control mute"
+              ", XF86AudioMicMute, exec, mic-control toggle"
+
+              ", XF86AudioPlay, exec, playerctl play-pause"
+              ", XF86AudioNext, exec, playerctl next"
+              ", XF86AudioPrev, exec, playerctl previous"
+              ", XF86AudioStop, exec, playerctl stop"
+
+              ", XF86MonBrightnessUp, exec, brightness-control up"
+              ", XF86MonBrightnessDown, exec, brightness-control down"
+            ];
+
+            bindm = [
+              "$mainMod, mouse:272, movewindow"
+              "$mainMod, mouse:273, resizewindow"
+            ];
+          };
+        };
+      }
+    else
+      {
+        programs.hyprland.enable = true;
+      }
+  );
+}

@@ -1,6 +1,10 @@
 {
   homeManager,
   inputs,
+<<<<<<< HEAD
+=======
+  moduleNameSpace,
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
   ...
 }:
 {
@@ -10,7 +14,11 @@
   ...
 }:
 let
+<<<<<<< HEAD
   cfg = config.mango;
+=======
+  cfg = config.${moduleNameSpace}.mango;
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
   snip = pkgs.writeShellScript "snip" ''
     case $1 in
       full)
@@ -20,6 +28,18 @@ let
         GEOM=$(${pkgs.slurp}/bin/slurp) || exit
         ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
         ;;
+<<<<<<< HEAD
+=======
+      window)
+        ${pkgs.grim}/bin/grim -g "$(mmsg -x | awk '
+          / x / {x=$3}
+          / y / {y=$3}
+          / width / {w=$3}
+          / height / {h=$3}
+          END {print x "," y " " w "x" h}
+          ')" - | wl-copy
+        ;;
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
     esac
   '';
   smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
@@ -28,6 +48,7 @@ let
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
+<<<<<<< HEAD
 in
 {
   imports =
@@ -46,6 +67,24 @@ in
   options.mango = {
     enable = lib.mkEnableOption "mango setup";
     animations = lib.mkEnableOption "Uiiiiiiiiiii";
+=======
+  terminal =
+    if config.beeMods.terminal.default == "alacritty" then
+      smart-alacritty
+    else if config.beeMods.terminal.default == "ghostty" then
+      smart-ghostty
+    else
+      config.beeMods.terminal.default;
+in
+{
+  imports =
+    if homeManager then [ inputs.mango.hmModules.mango ] else [ inputs.mango.nixosModules.mango ];
+
+  options.${moduleNameSpace}.mango = {
+    enable = lib.mkEnableOption "mango setup";
+    animations = lib.mkEnableOption "Uiiiiiiiiiii";
+    waybar = lib.mkEnableOption "Enable waybar";
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
     window = {
       blur = {
         enable = lib.mkEnableOption "Enable window blur";
@@ -70,11 +109,14 @@ in
         description = "Window opacity";
       };
     };
+<<<<<<< HEAD
     noctalia-shell = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = "enable noctalia-shell";
     };
+=======
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
   };
 
   config = lib.mkIf cfg.enable (
@@ -82,8 +124,17 @@ in
       {
         wayland.windowManager.mango = {
           enable = true;
+<<<<<<< HEAD
           settings = ''
             source=~/.config/mango/mango-colors.conf
+=======
+          systemd.enable = true;
+          systemd.variables = [ "--all" ];
+          extraConfig = ''
+            ${lib.optionalString (config.beeMods.matugen.enable) ''
+              source=~/.config/mango/mango-colors.conf
+            ''}
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # Window effect
             blur=${if cfg.window.blur.enable then "1" else "0"}
@@ -110,8 +161,13 @@ in
             ${
               if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then
                 ''
+<<<<<<< HEAD
                   focused_opacity=0.91
                   unfocused_opacity=0.91
+=======
+                  focused_opacity=0.82
+                  unfocused_opacity=0.82
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
                 ''
               else
                 ''
@@ -133,10 +189,17 @@ in
             zoom_end_ratio=0.8
             fadein_begin_opacity=0.5
             fadeout_begin_opacity=0.5
+<<<<<<< HEAD
             animation_duration_move=300
             animation_duration_open=350
             animation_duration_tag=350
             animation_duration_close=150
+=======
+            animation_duration_move=250
+            animation_duration_open=250
+            animation_duration_tag=250
+            animation_duration_close=100
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             animation_duration_focus=0
             animation_curve_open=0.05,0.7,0.1,1.0
             animation_curve_move=0.46,1.0,0.29,1
@@ -148,7 +211,11 @@ in
 
             # Scroller configuration
             scroller_structs=15
+<<<<<<< HEAD
             scroller_default_proportion=0.8
+=======
+            scroller_default_proportion=0.6
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             scroller_focus_center=0
             scroller_prefer_center=0
             edge_scroller_pointer_focus=1
@@ -208,7 +275,11 @@ in
             # need relogin to make it apply
             mouse_natural_scrolling=0
 
+<<<<<<< HEAD
             windowrule=tags:1,appid:^(foot|footclient|alacritty)$
+=======
+            windowrule=tags:1,appid:^(foot|footclient|alacritty|dev.zed.Zed)$
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             windowrule=tags:2,appid:^(zen|firefox|obsidian)$
             windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element|equibop)$
             windowrule=tags:4,appid:^steam$
@@ -247,6 +318,7 @@ in
             # reload config
             bind=SUPER,r,reload_config
 
+<<<<<<< HEAD
             # menu and terminal
 
             ${lib.optionalString
@@ -282,6 +354,16 @@ in
               bind=ALT,F4,spawn,wlogout -C ~/.config/wlogout/style.css -l  ~/.config/wlogout/layout -b 6 --protocol layer-shell
               bind=SUPER,y,spawn,wall-picker
             ''}
+=======
+            bind=SUPER,Return,spawn,${terminal}
+
+            bind=SUPER,v,spawn,dms ipc call clipboard toggle
+            bind=SUPER,a,spawn,dms ipc call spotlight toggle
+            bind=ALT,F4,spawn,dms ipc call powermenu toggle
+            bind=SUPER,y,spawn,dms ipc call dankdash wallpaper
+            bind=SUPER,comma,spawn,dms ipc call settings focusOrToggle
+
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             bind=SUPER,F12,spawn,gnome-calculator
             bind=SUPER,b,spawn,zen
             bind=SUPER,e,spawn,nautilus
@@ -298,6 +380,10 @@ in
 
             bind=NONE,Print,spawn,${snip} full
             bind=SUPER,Print,spawn,${snip} selection
+<<<<<<< HEAD
+=======
+            bind=SUPER+SHIFT,Print,spawn,${snip} window
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # swap window
             bind=SUPER+SHIFT,k,exchange_client,up
@@ -310,6 +396,10 @@ in
             bind=ALT,Tab,toggleoverview,
             bind=SUPER,space,togglefloating,
             bind=ALT,a,togglemaximizescreen,
+<<<<<<< HEAD
+=======
+            bind=SUPER,f,toggle_all_floating,
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             bind=ALT,f,togglefullscreen,
             bind=ALT+SHIFT,f,togglefakefullscreen,
             bind=SUPER,i,minimized,
@@ -322,7 +412,12 @@ in
             bind=ALT,x,switch_proportion_preset,
 
             # switch layout
+<<<<<<< HEAD
             bind=SUPER,n,switch_layout
+=======
+            # bind=SUPER,n,switch_layout
+            bind=SUPER,n,spawn,dms ipc call notifications toggle
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # tag switch
             bind=SUPER,1,view,1,0
@@ -372,15 +467,22 @@ in
             bind=ALT,l,resizewin,+50,+0
 
             # Volume Control (using wpctl/Pipewire)
+<<<<<<< HEAD
             bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
             bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
             bind=NONE,XF86AudioMute,spawn,volume-control mute
+=======
+            bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+            bind=NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+            bind=NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             bind=NONE,XF86AudioPlay,spawn,playerctl play-pause
             bind=NONE,XF86AudioNext,spawn,playerctl next
             bind=NONE,XF86AudioPrev,spawn,playerctl previous
             bind=NONE,XF86AudioStop,spawn,playerctl stop
 
+<<<<<<< HEAD
             # Mic Control
             bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
 
@@ -390,10 +492,18 @@ in
 
             # Mouse Button Bindings
             # NONE mode key only work in ov mode
+=======
+            bind=NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+            bind=NONE,XF86MonBrightnessUp,spawn,brightnessctl set +5%
+            bind=NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-
+
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             mousebind=SUPER,btn_left,moveresize,curmove
             mousebind=NONE,btn_middle,togglemaximizescreen,0
             mousebind=SUPER,btn_right,moveresize,curresize
 
+<<<<<<< HEAD
             # Axis Bindings
             axisbind=SUPER,UP,viewtoleft_have_client
             axisbind=SUPER,DOWN,viewtoright_have_client
@@ -401,10 +511,17 @@ in
             # layer rule
             layerrule=animation_type_open:zoom,layer_name:rofi
             layerrule=animation_type_close:zoom,layer_name:rofi
+=======
+            axisbind=SUPER,UP,viewtoleft_have_client
+            axisbind=SUPER,DOWN,viewtoright_have_client
+
+            layerrule=noanim:1,layer_name:^dms
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             env=NIXOS_OZONE_WL,1
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
+<<<<<<< HEAD
             env=QT_QPA_PLATFORM,wayland;xcb
             env=XDG_SESSION_TYPE,wayland
             env=GDK_BACKEND,wayland,x11
@@ -432,6 +549,33 @@ in
           swaybg
           wl-clipboard-rs
           wl-clip-persist
+=======
+            env=QT_QPA_PLATFORM,wayland
+            env=XDG_SESSION_TYPE,wayland
+            env=GDK_BACKEND,wayland,x11
+            env=GDK_SCALE,1
+          '';
+          autostart_sh = ''
+            wl-paste --type text --watch cliphist store &
+            gnome-keyring-daemon --start --components=secrets,ssh,pkcs11 &
+
+            ${lib.optionalString (config.beeMods.dwm.enable) ''
+              systemctl --user stop xidlehook.service
+              systemctl --user stop xautolock-session.service
+              systemctl --user stop xss-lock.service
+              systemctl --user stop clipcat.service
+            ''}
+
+            ${lib.optionalString (config.beeMods.dwm.picom.enable) ''
+              systemctl --user stop picom.service
+            ''}
+          '';
+        };
+        home.packages = with pkgs; [
+          wl-clipboard
+          cliphist
+          brightnessctl
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         ];
       }
     else

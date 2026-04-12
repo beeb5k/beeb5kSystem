@@ -5,6 +5,7 @@ let
     homeManager:
     let
       args = {
+<<<<<<< HEAD
         inherit inputs homeManager;
       };
     in
@@ -13,6 +14,25 @@ let
       hypr = import ./hypr args;
       dwm = import ./dwm args;
       scripts = import ./scripts args;
+=======
+        moduleNameSpace = "beeMods";
+        inherit inputs homeManager;
+      };
+      modules = {
+        mango = import ./mango args;
+        hypr = import ./hyprland args;
+        dwm = import ./dwm args;
+        terminal = import ./terminal args;
+        beevim = import ./beevim args;
+        matugen = import ./matugen args;
+      };
+    in
+    modules
+    // {
+      beeMods = {
+        imports = lib.attrValues modules;
+      };
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
     };
 in
 {

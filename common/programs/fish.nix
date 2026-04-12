@@ -1,5 +1,8 @@
 {
+<<<<<<< HEAD
   config,
+=======
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
   pkgs,
   ...
 }:

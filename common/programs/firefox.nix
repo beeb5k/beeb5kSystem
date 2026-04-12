@@ -7,6 +7,10 @@
 {
   programs.firefox = {
     enable = false;
+<<<<<<< HEAD
+=======
+    package = pkgs.librewolf;
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
     policies = {
       DisableTelemetry = true;
@@ -56,6 +60,7 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           private_browsing = true;
         };
+<<<<<<< HEAD
         # "addon@darkreader.org" = {
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
@@ -65,12 +70,20 @@
         "pywalfox@frewacom.org" = {
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/pywalfox/latest.xpi";
+=======
+        "addon@darkreader.org" = {
+          default_area = "menupanel";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+          private_browsing = true;
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         };
       };
     };
 
     profiles.default = {
       settings = {
+<<<<<<< HEAD
         # Always start fresh, no tab restore
         "browser.aboutConfig.showWarning" = false;
         "browser.sessionstore.resume_from_crash" = false;
@@ -80,6 +93,11 @@
 
         # "userChrome.theme-material" = true;
 
+=======
+        "browser.sessionstore.max_tabs_undo" = 0;
+        "browser.sessionstore.max_windows_undo" = 0;
+
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         # "browser.startup.page" = 1; # Blank page
         # "browser.newtabpage.enabled" = false;
 
@@ -97,7 +115,10 @@
         # Performance
         "gfx.webrender.all" = true; # Enable WebRender
         "layers.acceleration.enabled" = true;
+<<<<<<< HEAD
         # "dom.ipc.processCount" = 8; # Adjust based on CPU cores
+=======
+>>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         "browser.cache.disk.enable" = false; # Disable disk cache
         "browser.cache.memory.enable" = true; # Use memory cache
         "browser.cache.memory.capacity" = 1048576; # 1gb memory cache
