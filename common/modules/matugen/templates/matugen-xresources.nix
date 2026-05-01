@@ -4,7 +4,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.beeMods.mango.enable {
+  config = lib.mkIf config.beeMods.windowManagers.dwm.enable {
     xdg.configFile."matugen/templates/colors-xresources" = {
       text = ''
         dwm.normbordercolor : {{colors.outline.default.hex}}

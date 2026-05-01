@@ -39,7 +39,7 @@ with lib;
       };
       size = mkOption {
         type = types.float;
-        default = 13.0;
+        default = 11.0;
       };
 
       bright_color_is_bold = mkEnableOption "bright colors in bold font";
@@ -50,13 +50,13 @@ with lib;
     window = {
       padding-x = mkOption {
         type = types.int;
-        default = 10;
+        default = 3;
         description = "Window padding x axis (pixels).";
       };
 
       padding-y = mkOption {
         type = types.int;
-        default = 10;
+        default = 3;
         description = "Window padding y axis (pixels).";
       };
     };

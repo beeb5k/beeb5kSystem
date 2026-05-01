@@ -48,7 +48,7 @@ in
                 output_path = '~/.config/zathura/matugen'
               ''}
 
-              ${lib.optionalString config.beeMods.mango.enable ''
+              ${lib.optionalString config.beeMods.windowManagers.mango.enable ''
                 [templates.mango]
                 input_path = '~/.config/matugen/templates/mango.conf'
                 output_path = '~/.config/mango/mango-colors.conf'
@@ -67,7 +67,7 @@ in
                 output_path = '~/.config/yazi/theme.toml'
               ''}
 
-              ${lib.optionalString (config.beeMods.dwm.enable) ''
+              ${lib.optionalString (config.beeMods.windowManagers.dwm.enable) ''
                 [templates.Xresources]
                 input_path = "~/.config/matugen/templates/colors-xresources"
                 output_path = "~/.config/x11/matugen.Xresources"
@@ -84,12 +84,6 @@ in
                 input_path = '~/.config/matugen/templates/dunstrc'
                 output_path = '~/.config/dunst/dunstrc.d/colors.conf'
                 post_hook = "dunstctl reload"
-              ''}
-
-              ${lib.optionalString config.beeMods.beeVim.enable ''
-                [templates.neovim]
-                input_path = "~/.config/matugen/templates/neovim.json"
-                output_path = "~/.config/matugen/neovim_matugen.json"
               ''}
 
               ${lib.optionalString

@@ -1,6 +1,7 @@
 {
   "nodes": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "beeb5kvim": {
       "inputs": {
         "neovim-nightly-overlay": "neovim-nightly-overlay",
@@ -67,27 +68,68 @@
         "url": "https://codeberg.org/brustybee/beeVim"
       }
     },
+=======
+>>>>>>> cd08309 (Homecoming)
     "dms": {
       "inputs": {
+        "flake-compat": "flake-compat",
         "nixpkgs": [
           "nixpkgs"
         ],
         "quickshell": "quickshell"
       },
       "locked": {
-        "lastModified": 1775588644,
-        "narHash": "sha256-iYBdSBvcW7bJtc84G6k5TFJEbPHQrif9KzZyE9Lbq8M=",
+        "lastModified": 1777582766,
+        "narHash": "sha256-Vpsmq3KcUGYsKF3yjbIUfPahvgiWDZyn1wIPztctFSE=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "9798d78300d402178896f6ee1c370baed490158a",
+        "rev": "c81645bacbdc790051a3ea1202eafe911eb36dae",
         "type": "github"
       },
       "original": {
         "owner": "AvengeMedia",
-        "ref": "stable",
         "repo": "DankMaterialShell",
         "type": "github"
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+      }
+    },
+    "doomemacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777326848,
+        "narHash": "sha256-7ErKUgw6Ch7hP1oBjMSos8xXRD+rxxjaOldRn+TcClo=",
+        "owner": "doomemacs",
+        "repo": "doomemacs",
+        "rev": "6be3337b49867bd86f90fe5ca4beeb6b38afaddb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "doomemacs",
+        "repo": "doomemacs",
+        "type": "github"
+      }
+    },
+    "emacs-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nix-doom-emacs-unstraightened"
+        ],
+        "nixpkgs-stable": [
+          "nix-doom-emacs-unstraightened"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777628916,
+        "narHash": "sha256-HeafeyKK6IxdSmdS/lFRkkOkgNZYQ2WsWx9tBVv785c=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "00b089698f39f7c41eabe8a8d9869ebbc1759a7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -108,6 +150,7 @@
     },
     "flake-parts": {
       "inputs": {
+<<<<<<< HEAD
         "nixpkgs-lib": [
 <<<<<<< HEAD
           "beeb5kvim",
@@ -117,6 +160,9 @@
           "neovim-nightly-overlay",
           "nixpkgs"
         ]
+=======
+        "nixpkgs-lib": "nixpkgs-lib"
+>>>>>>> cd08309 (Homecoming)
       },
       "locked": {
 <<<<<<< HEAD
@@ -142,6 +188,7 @@
     },
     "flake-parts_2": {
       "inputs": {
+<<<<<<< HEAD
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
@@ -232,6 +279,11 @@
         "nixpkgs-lib": "nixpkgs-lib_3"
       },
       "locked": {
+=======
+        "nixpkgs-lib": "nixpkgs-lib_2"
+      },
+      "locked": {
+>>>>>>> cd08309 (Homecoming)
         "lastModified": 1749398372,
         "narHash": "sha256-tYBdgS56eXYaWVW3fsnPQ/nFlgWi/Z2Ymhyu21zVM98=",
         "owner": "hercules-ci",
@@ -245,6 +297,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
 <<<<<<< HEAD
     "flake-utils": {
       "inputs": {
@@ -424,6 +477,8 @@
     },
 =======
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+>>>>>>> cd08309 (Homecoming)
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -431,6 +486,7 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "lastModified": 1772633327,
         "narHash": "sha256-jl+DJB2DUx7EbWLRng+6HNWW/1/VQOnf0NsQB4PlA7I=",
@@ -444,6 +500,13 @@
         "repo": "home-manager",
         "rev": "e35c39fca04fee829cecdf839a50eb9b54d8a701",
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+        "lastModified": 1777594677,
+        "narHash": "sha256-h90sHwoRJLRvaTpZroTvU2JRHDFj0czUafM8eqLe1RI=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "899c08a15beae5da51a5cecd6b2b994777a948da",
+>>>>>>> cd08309 (Homecoming)
         "type": "github"
       },
       "original": {
@@ -452,31 +515,16 @@
         "type": "github"
       }
     },
-    "luvit-meta": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705776742,
-        "narHash": "sha256-zAAptV/oLuLAAsa2zSB/6fxlElk4+jNZd/cPr9oxFig=",
-        "owner": "Bilal2453",
-        "repo": "luvit-meta",
-        "rev": "ce76f6f6cdc9201523a5875a4471dcfe0186eb60",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Bilal2453",
-        "repo": "luvit-meta",
-        "type": "github"
-      }
-    },
     "mango": {
       "inputs": {
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_2",
         "nixpkgs": [
           "nixpkgs"
         ],
         "scenefx": "scenefx"
       },
       "locked": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "lastModified": 1772722981,
         "narHash": "sha256-YMVcFd6hWtVh1SOxWfSlF26uIP0A4T9uK+FP9J1zIa4=",
@@ -490,9 +538,13 @@
 =======
         "lastModified": 1775461179,
         "narHash": "sha256-4vvuk6tl8M2wuW3VJU9Uwc3HCrL95cSJImEODNNQEy8=",
+=======
+        "lastModified": 1776999768,
+        "narHash": "sha256-RP7eVqbnQ/uNCXh0HH8SXRIerMlkyHco+wpI9oxon0U=",
+>>>>>>> cd08309 (Homecoming)
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "e83a9dff820ce2215ecbbbea7d617d24d0825174",
+        "rev": "b9c6a2c1964cb59536c5d3e02d2ff981a7eb36d2",
         "type": "github"
       },
       "original": {
@@ -524,14 +576,20 @@
         "url": "https://codeberg.org/brustybee/mydwm"
       }
     },
+<<<<<<< HEAD
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
     "neovim-nightly-overlay": {
+=======
+    "nix-doom-emacs-unstraightened": {
+>>>>>>> cd08309 (Homecoming)
       "inputs": {
-        "flake-parts": "flake-parts",
-        "neovim-src": "neovim-src",
-        "nixpkgs": "nixpkgs"
+        "doomemacs": "doomemacs",
+        "emacs-overlay": "emacs-overlay",
+        "nixpkgs": [],
+        "systems": "systems"
       },
       "locked": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "lastModified": 1772323514,
         "narHash": "sha256-aWy20stlI6cl+UM1Ds8j4NSEfWTCp/VWW+SqQy+DOM8=",
@@ -678,11 +736,24 @@
       "original": {
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
+=======
+        "lastModified": 1777629537,
+        "narHash": "sha256-fBpoc/+nYcE2TCyNPzfy5OPZCyvp5GARc6r4R0EYXUs=",
+        "owner": "marienz",
+        "repo": "nix-doom-emacs-unstraightened",
+        "rev": "ff8ef70369fcfb398577cd866b415f649fc68022",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marienz",
+        "repo": "nix-doom-emacs-unstraightened",
+>>>>>>> cd08309 (Homecoming)
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "lastModified": 1772173633,
         "narHash": "sha256-MOH58F4AIbCkh6qlQcwMycyk5SWvsqnS/TCfnqDlpj4=",
@@ -696,11 +767,18 @@
         "repo": "nixpkgs",
         "rev": "b0188973b4b2a5b6bdba8b65381d6cd09a533da0",
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+        "lastModified": 1777268161,
+        "narHash": "sha256-bxrdOn8SCOv8tN4JbTF/TXq7kjo9ag4M+C8yzzIRYbE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1c3fe55ad329cbcb28471bb30f05c9827f724c76",
+>>>>>>> cd08309 (Homecoming)
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -731,6 +809,7 @@
     "nixpkgs-lib_2": {
       "locked": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "lastModified": 1772328832,
         "narHash": "sha256-e+/T/pmEkLP6BHhYjx6GmwP5ivonQQn0bJdH9YrRB+Q=",
         "owner": "nix-community",
@@ -753,6 +832,8 @@
     },
     "nixpkgs-lib_3": {
       "locked": {
+=======
+>>>>>>> cd08309 (Homecoming)
         "lastModified": 1748740939,
         "narHash": "sha256-rQaysilft1aVMwF14xIdGS3sj1yHlI6oKQNBRTF40cc=",
         "owner": "nix-community",
@@ -766,6 +847,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "nixpkgs_2": {
       "locked": {
 <<<<<<< HEAD
@@ -1079,6 +1161,8 @@
         "nixpkgs": "nixpkgs_6",
         "noctalia": "noctalia",
 =======
+=======
+>>>>>>> cd08309 (Homecoming)
     "quickshell": {
       "inputs": {
         "nixpkgs": [
@@ -1087,29 +1171,29 @@
         ]
       },
       "locked": {
-        "lastModified": 1766725085,
-        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
+        "lastModified": 1776854048,
+        "narHash": "sha256-lLbV66V3RMNp1l8/UelmR4YzoJ5ONtgvEtiUMJATH/o=",
         "ref": "refs/heads/master",
-        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
-        "revCount": 715,
+        "rev": "783c953987dc56ff0601abe6845ed96f1d00495a",
+        "revCount": 806,
         "type": "git",
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       },
       "original": {
-        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "rev": "783c953987dc56ff0601abe6845ed96f1d00495a",
         "type": "git",
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       }
     },
     "root": {
       "inputs": {
-        "beeVim": "beeVim",
         "dms": "dms",
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "mango": "mango",
         "mydwm": "mydwm",
-        "nixpkgs": "nixpkgs_4",
+        "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
+        "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         "zen-browser": "zen-browser"
@@ -1157,11 +1241,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775682595,
-        "narHash": "sha256-0E9PohY/VuESLq0LR4doaH7hTag513sDDW5n5qmHd1Q=",
+        "lastModified": 1777338324,
+        "narHash": "sha256-bc+ZZCmOTNq86/svGnw0tVpH7vJaLYvGLLKFYP08Q8E=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "d2e8438d5886e92bc5e7c40c035ab6cae0c41f76",
+        "rev": "8eaee5c45428b28b8c47a83e4c09dccec5f279b5",
         "type": "github"
       },
       "original": {
@@ -1171,6 +1255,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "vimcats": {
       "inputs": {
         "flake-parts": [
@@ -1215,11 +1300,20 @@
         "repo": "vimcats",
         "rev": "f0edff54f47d6c7dddef3ec9a61496b23f43640e",
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+>>>>>>> cd08309 (Homecoming)
         "type": "github"
       },
       "original": {
-        "owner": "mrcjkb",
-        "repo": "vimcats",
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     },
@@ -1230,6 +1324,7 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
 <<<<<<< HEAD
         "lastModified": 1772685307,
         "narHash": "sha256-5xthZHeqwBeXNhnRIlxnCuaZLky0SZ6vQsxtd+eqhTU=",
@@ -1243,6 +1338,13 @@
         "repo": "zen-browser-flake",
         "rev": "2c138beb648d1cbbfae76695a8230ee04e4db25a",
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+        "lastModified": 1777612697,
+        "narHash": "sha256-h+tXBNMDrsKbD1UnYw0IeSIT4RalHtIJ1GLOviib7/8=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "f9f70d14f9a57c7962c5cfe589461c1391044448",
+>>>>>>> cd08309 (Homecoming)
         "type": "github"
       },
       "original": {

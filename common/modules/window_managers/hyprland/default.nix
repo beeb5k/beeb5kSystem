@@ -11,7 +11,7 @@
   ...
 }:
 let
-  cfg = config.${moduleNameSpace}.hyprland;
+  cfg = config.${moduleNameSpace}.windowManagers;
 
   snip = pkgs.writeShellScript "snip" ''
     case $1 in
@@ -44,50 +44,9 @@ let
       smart-ghostty
     else
       config.beeMods.terminal.default;
-
-  settings-persist = pkgs.writeShellScript "settings-persist" ''
-    SETTINGS_FILE="$HOME/.config/beeSettings"
-
-    if [[ -f "$SETTINGS_FILE" ]]; then
-      IS_NIGHTMODE=$(${pkgs.ripgrep}/bin/rg "nightlight" "$SETTINGS_FILE" | cut -d"=" -f2)
-
-      if [[ "$IS_NIGHTMODE" == "on" ]]; then
-        ${pkgs.wlsunset}/bin/wlsunset -T 4500 &
-      fi
-    fi
-  '';
 in
 {
-  options.${moduleNameSpace}.hyprland = {
-    enable = lib.mkEnableOption "hyprland setup";
-    animations = lib.mkEnableOption "Uiiiiiiiiiii";
-    window = {
-      blur = {
-        enable = lib.mkEnableOption "Enable window blur";
-        passes = lib.mkOption {
-          type = lib.types.int;
-          default = 1;
-        };
-        radius = lib.mkOption {
-          type = lib.types.int;
-          default = 10;
-        };
-      };
-      shadows = lib.mkEnableOption "Enable window drop shadows";
-      border_radius = lib.mkOption {
-        type = lib.types.int;
-        default = 0;
-        description = "Border radius";
-      };
-      opacity = lib.mkOption {
-        type = lib.types.number;
-        default = 1.0;
-        description = "Window opacity";
-      };
-    };
-  };
-
-  config = lib.mkIf cfg.enable (
+  config = lib.mkIf cfg.hyprland.enable (
     if homeManager then
       {
         wayland.windowManager.hyprland = {
@@ -100,8 +59,7 @@ in
           settings = {
             monitor = [ ",1920x1080@120,auto,1.0" ];
 
-            # Conditionally load matugen colors if enabled
-            # source = [ ] ++ lib.optional (config.beeMods.matugen.enable) "~/.config/hypr/hyprland-colors.conf";
+            source = [ ] ++ lib.optional (config.beeMods.matugen.enable) "~/.config/hypr/dms/colors.conf";
 
             "$mainMod" = "SUPER";
 
@@ -114,24 +72,17 @@ in
             #   "GDK_BACKEND,wayland,x11"
             #   "GDK_SCALE,1"
             # ];
-            #
+
             exec-once = [
-              "wl-clip-persist --clipboard regular --reconnect-tries 0"
-              "wl-paste --type text --watch cliphist store"
-              "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-              "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
-              "${settings-persist}"
               "dbus-update-activation-environment --all"
               "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+              "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
             ]
-            ++ lib.optionals (config.beeMods.x11.dwm.enable || config.beeMods.x11.bspwm.enable) [
+            ++ lib.optionals config.beeMods.windowManagers.dwm.enable [
               "systemctl --user stop xidlehook.service"
               "systemctl --user stop xautolock-session.service"
               "systemctl --user stop xss-lock.service"
               "systemctl --user stop clipcat.service"
-            ]
-            ++ lib.optionals (config.beeMods.x11.picom.enable) [
-              "systemctl --user stop picom.service"
             ];
 
             xwayland = {
@@ -158,8 +109,8 @@ in
 
             general = {
               layout = "master";
-              gaps_in = 5;
-              gaps_out = 5;
+              gaps_in = 4;
+              gaps_out = 4;
               border_size = 2;
 
               resize_on_border = true;
@@ -182,12 +133,12 @@ in
             };
 
             decoration = {
-              rounding = cfg.window.border_radius;
+              rounding = cfg.eyeCandy.window.borderRadius;
 
               blur = {
-                enabled = cfg.window.blur.enable;
-                size = cfg.window.blur.radius;
-                passes = cfg.window.blur.passes;
+                enabled = cfg.eyeCandy.window.blur.enable;
+                size = cfg.eyeCandy.window.blur.radius;
+                passes = cfg.eyeCandy.window.blur.passes;
                 brightness = 0.9;
                 contrast = 0.9;
                 noise = 0.02;
@@ -197,7 +148,7 @@ in
               };
 
               shadow = {
-                enabled = cfg.window.shadows;
+                enabled = cfg.eyeCandy.window.shadows.enable;
                 ignore_window = true;
                 range = 10;
                 render_power = 3;
@@ -205,18 +156,24 @@ in
                 color = "rgba(00000044)";
               };
 
-              # Apply opacity logic utilizing cfg options
+              # Apply opacity logic utilizing cfg.eyeCandy.options
               active_opacity =
-                if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then 0.82 else cfg.window.opacity;
+                if (cfg.eyeCandy.window.blur.enable && cfg.eyeCandy.window.opacity == 1.0) then
+                  0.82
+                else
+                  cfg.eyeCandy.window.opacity;
               inactive_opacity =
-                if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then 0.82 else cfg.window.opacity;
+                if (cfg.eyeCandy.window.blur.enable && cfg.eyeCandy.window.opacity == 1.0) then
+                  0.82
+                else
+                  cfg.eyeCandy.window.opacity;
               fullscreen_opacity = 1.0;
 
               dim_inactive = false;
             };
 
             animations = {
-              enabled = true;
+              enabled = cfg.eyeCandy.animations.enable;
 
               bezier = [
                 "openCurve, 0.05, 0.7, 0.1, 1.0"
@@ -265,6 +222,8 @@ in
 
             layerrule = [
               "no_anim on, match:namespace ^rofi$"
+              "no_anim on, match:namespace ^(dms)$"
+              "no_anim on, match:namespace .*dms.*"
             ];
 
             workspace = [ "2, layout:scrolling" ];
@@ -272,11 +231,12 @@ in
             bind = [
               "$mainMod, r, exec, hyprctl reload"
               "$mainMod, Return, exec, ${terminal}"
-              "$mainMod, a, exec, rofi -show drun"
-              "$mainMod, period, exec, rofi -show emoji -modi emoji"
-              "ALT, F4, exec, rofi -show power-menu -modi power-menu:rofi-power-menu"
-              "$mainMod, y, exec, beesettings wall"
-              "$mainMod, comma, exec, beesettings settings"
+              "$mainMod, a, exec,dms ipc call spotlight toggle"
+              "$mainMod, v,exec,dms ipc call clipboard toggle"
+              "ALT, F4, exec, dms ipc call powermenu toggle"
+              "$mainMod, y, exec, dms ipc call dankdash wallpaper"
+
+              "$mainMod, comma, exec,dms ipc call settings focusOrToggle"
 
               "$mainMod, F12, exec, gnome-calculator"
               "$mainMod, b, exec, zen"
@@ -351,18 +311,18 @@ in
             ];
 
             bindel = [
-              ", XF86AudioRaiseVolume, exec, volume-control up"
-              ", XF86AudioLowerVolume, exec, volume-control down"
-              ", XF86AudioMute, exec, volume-control mute"
-              ", XF86AudioMicMute, exec, mic-control toggle"
+              ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+              ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+              ", XF86AudioMute, exec,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+              ", XF86AudioMicMute, exec,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
               ", XF86AudioPlay, exec, playerctl play-pause"
               ", XF86AudioNext, exec, playerctl next"
               ", XF86AudioPrev, exec, playerctl previous"
               ", XF86AudioStop, exec, playerctl stop"
 
-              ", XF86MonBrightnessUp, exec, brightness-control up"
-              ", XF86MonBrightnessDown, exec, brightness-control down"
+              ", XF86MonBrightnessUp, exec,brightnessctl set +5%"
+              ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
             ];
 
             bindm = [
@@ -374,7 +334,10 @@ in
       }
     else
       {
-        programs.hyprland.enable = true;
+        programs.hyprland = {
+          enable = true;
+          withUWSM = false;
+        };
       }
   );
 }

@@ -26,7 +26,7 @@ in
     package = pkgs.git.override { withLibsecret = true; };
     settings = {
       user = {
-        name = "brustybee";
+        name = "bee";
         email = "beebeeb5k@gmail.com";
         signingkey = "42177A22EA630575";
       };
@@ -70,7 +70,7 @@ in
       name = "adw-gtk3";
     };
     iconTheme = {
-      name = "Adwita";
+      name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
     };
     gtk3 = {
@@ -134,18 +134,14 @@ in
 
   home.packages = with pkgs; [
     nautilus
-    opencode
     imv
     gnome-calculator
-    papers
-    cava
-    # clapper
-    wlsunset
-    thunderbird
     gpu-screen-recorder-gtk
-    kdePackages.qqc2-desktop-style
-    (pkgs.obsidian.override {
-      electron = pkgs.electron_40;
-    })
+    accountsservice
+    equibop
+    fastfetch
+    clang-tools
+    clang
+    neovim
   ];
 }

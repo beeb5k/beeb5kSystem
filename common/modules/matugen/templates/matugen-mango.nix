@@ -4,7 +4,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.beeMods.mango.enable {
+  config = lib.mkIf config.beeMods.windowManagers.mango.enable {
     xdg.configFile = {
       "matugen/templates/mango.conf" = {
         text = ''

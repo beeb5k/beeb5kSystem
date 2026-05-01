@@ -17,36 +17,16 @@
     beeMods
   ];
 
-  services.logind = {
-    settings.Login = {
-      HandleLidSwitch = "suspend";
-      HandleLidSwitchExternalPower = "suspend";
-      LidSwitchIgnoreInhibited = "no";
-    };
-  };
-
-  # REMOVE LATER
-  virtualisation.vmVariant = {
-    users.users.${user}.password = "1";
-    users.users.root.password = "1";
-
-    virtualisation.memorySize = 4096;
-    virtualisation.cores = 4;
-    services.displayManager.ly.enable = lib.mkForce false;
-
-    services.getty.helpLine = ">> WELCOME <<";
-    services.getty.autologinUser = user;
-  };
-  # REMOVE LATER
-
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   programs.dconf.enable = true;
 
   beeMods = {
-    mango.enable = true;
-    hyprland.enable = false;
-    dwm.enable = true;
+    windowManagers = {
+      mango.enable = false;
+      hyprland.enable = true;
+      dwm.enable = true;
+    };
   };
 
   xdg.portal = lib.mkForce {

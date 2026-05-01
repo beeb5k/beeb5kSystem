@@ -19,12 +19,10 @@ let
         inherit inputs homeManager;
       };
       modules = {
-        mango = import ./mango args;
-        hypr = import ./hyprland args;
-        dwm = import ./dwm args;
+        windowManagers = import ./window_managers args;
         terminal = import ./terminal args;
-        beevim = import ./beevim args;
         matugen = import ./matugen args;
+        emacs = import ./emacs args;
       };
     in
     modules

@@ -11,6 +11,7 @@
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
 <<<<<<< HEAD
+<<<<<<< HEAD
     beeb5kvim.url = "git+https://codeberg.org/beeb5k/beeb5kvim";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -21,10 +22,11 @@
       url = "github:lordkekz/nix-yazi-plugins";
 =======
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+=======
+>>>>>>> cd08309 (Homecoming)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    beeVim.url = "git+https://codeberg.org/brustybee/beeVim";
-    # beeVim.url = "git+file:/home/bee/beeVim";
-    beeVim.inputs.nixpkgs.follows = "nixpkgs";
+    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
+    nix-doom-emacs-unstraightened.inputs.nixpkgs.follows = "";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,14 +53,17 @@
       url = "github:DreamMaoMao/mango";
 =======
     mydwm = {
-      # url = "git+https://codeberg.org/brustybee/mydwm";
-      url = "git+file:/home/bee/mydwm";
+      url = "git+https://codeberg.org/brustybee/mydwm";
+      # url = "git+file:/home/bee/mydwm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     dms = {
+<<<<<<< HEAD
       url = "github:AvengeMedia/DankMaterialShell/stable";
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+      url = "github:AvengeMedia/DankMaterialShell";
+>>>>>>> cd08309 (Homecoming)
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

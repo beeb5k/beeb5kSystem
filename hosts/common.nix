@@ -27,36 +27,6 @@
     flake = "/home/${user}/.config/beeSystems";
   };
 
-  # programs.ssh.extraConfig = ''
-  #   Host eu.nixbuild.net
-  #   PubkeyAcceptedKeyTypes ssh-ed25519
-  #   ServerAliveInterval 60
-  #   IPQoS throughput
-  #   IdentityFile /home/bee/my-nixbuild-key
-  # '';
-  #
-  # programs.ssh.knownHosts = {
-  #   nixbuild = {
-  #     hostNames = [ "eu.nixbuild.net" ];
-  #     publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
-  #   };
-  # };
-  #
-  # nix = {
-  #   distributedBuilds = true;
-  #   buildMachines = [
-  #     {
-  #       hostName = "eu.nixbuild.net";
-  #       system = "x86_64-linux";
-  #       maxJobs = 100;
-  #       supportedFeatures = [
-  #         "benchmark"
-  #         "big-parallel"
-  #       ];
-  #     }
-  #   ];
-  # };
-
   boot.loader = {
     efi.canTouchEfiVariables = true;
     timeout = 50;
@@ -65,13 +35,9 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
+      splashImage = null;
+      theme = null;
       configurationLimit = 4;
-      theme = pkgs.fetchFromGitHub {
-        owner = "shvchk";
-        repo = "fallout-grub-theme";
-        rev = "80734103d0b48d724f0928e8082b6755bd3b2078";
-        sha256 = "sha256-7kvLfD6Nz4cEMrmCA9yq4enyqVyqiTkVZV5y4RyUatU=";
-      };
     };
   };
 
@@ -81,39 +47,21 @@
       extraDefCfg = "process-unmapped-keys yes";
 
       config = ''
-        ;; Define the physical keys on your keyboard that we want to modify
         (defsrc
           esc   caps  rctrl f1
         )
 
-        ;; Define custom actions (Aliases)
         (defalias
-          ;; The smart key:
-          ;; - Tap: Sends Esc
-          ;; - Hold: Sends Left Control
-          ;; - "press": If you press another key while holding this, it triggers
-          ;;            Left Control IMMEDIATELY (no lag). Perfect for Vim.
           capesc (tap-hold-press 200 200 esc lctrl)
 
-          ;; Switches to toggle between layers
           game   (layer-switch gaming)
           base   (layer-switch base)
         )
 
-        ;; 3. Base Layer (Typing Mode)
-        ;; - Physical Esc     -> Caps Lock (Standard swap)
-        ;; - Physical Caps    -> Esc (tap) / Ctrl (hold)
-        ;; - Physical RCtrl   -> Switch to "Gaming Mode"
-        ;; - Physical F1      -> Normal F1 behavior
         (deflayer base
           caps     @capesc  @game f1
         )
 
-        ;; 4. Gaming Layer (Gaming Mode)
-        ;; - Physical Esc     -> Caps Lock (keeps light toggle working)
-        ;; - Physical Caps    -> Left Ctrl (Pure Ctrl! Safe for crouching)
-        ;; - Physical RCtrl   -> Switch back to "Typing Mode"
-        ;; - Physical F1      -> Escape (Your dedicated Pause button)
         (deflayer gaming
           caps     lctrl    @base esc
         )
@@ -176,7 +124,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
-    jack.enable = true;
+    jack.enable = false;
   };
 
   security.rtkit.enable = true;
@@ -197,16 +145,18 @@
 
   fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
-    # ioskeley-mono
     ioskeley-input
+    nerd-fonts.symbols-only
+    # ioskeley-mono
     # maple-mono.NF
-    nerd-fonts.jetbrains-mono
+    # nerd-fonts.jetbrains-mono
   ];
+
   fonts.fontconfig.defaultFonts.monospace = [
-    "JetBrainsMono Nerd Font"
-    "Ioskeley Mono"
+    "IosevkaInput"
     "Symbols Nerd Font"
   ];
+
   programs.fish.enable = true;
   programs.nano.enable = false;
   programs.gnupg.agent = {
@@ -217,7 +167,7 @@
 
   sops = {
     defaultSopsFile = ../secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.keyFile = "/home/bee/.config/sops/age/keys.txt";
     secrets.gpg_private_key = {
       owner = user;
       mode = "0400";
@@ -256,7 +206,7 @@
   services.gnome.gnome-keyring.enable = true;
   services.power-profiles-daemon.enable = true;
   services.printing.enable = false;
-  services.openssh.enable = true;
+  services.openssh.enable = false;
   services.dbus.enable = true;
 
   services.gvfs.enable = true;
@@ -267,8 +217,6 @@
     playerctl
     pciutils
     imagemagick
-    pavucontrol
-    bluetui
     sops
     fd
     ripgrep

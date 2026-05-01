@@ -14,11 +14,15 @@
   ...
 }:
 let
+<<<<<<< HEAD:common/modules/mango/default.nix
 <<<<<<< HEAD
   cfg = config.mango;
 =======
   cfg = config.${moduleNameSpace}.mango;
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
+=======
+  cfg = config.${moduleNameSpace}.windowManagers;
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
   snip = pkgs.writeShellScript "snip" ''
     case $1 in
       full)
@@ -80,6 +84,7 @@ in
   imports =
     if homeManager then [ inputs.mango.hmModules.mango ] else [ inputs.mango.nixosModules.mango ];
 
+<<<<<<< HEAD:common/modules/mango/default.nix
   options.${moduleNameSpace}.mango = {
     enable = lib.mkEnableOption "mango setup";
     animations = lib.mkEnableOption "Uiiiiiiiiiii";
@@ -120,6 +125,9 @@ in
   };
 
   config = lib.mkIf cfg.enable (
+=======
+  config = lib.mkIf cfg.mango.enable (
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
     if homeManager then
       {
         wayland.windowManager.mango = {
@@ -137,17 +145,17 @@ in
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # Window effect
-            blur=${if cfg.window.blur.enable then "1" else "0"}
+            blur=${if cfg.eyeCandy.window.blur.enable then "1" else "0"}
             blur_layer=0
             blur_optimized=1
-            blur_params_num_passes = ${toString cfg.window.blur.passes}
-            blur_params_radius = ${toString cfg.window.blur.radius}
+            blur_params_num_passes = ${toString cfg.eyeCandy.window.blur.passes}
+            blur_params_radius = ${toString cfg.eyeCandy.window.blur.radius}
             blur_params_noise = 0.02
             blur_params_brightness = 0.9
             blur_params_contrast = 0.9
             blur_params_saturation = 1.2
 
-            shadows=${if cfg.window.shadows then "1" else "0"}
+            shadows=${if cfg.eyeCandy.window.shadows.enable then "1" else "0"}
             layer_shadows = 0
             shadow_only_floating = 1
             shadows_size = 10
@@ -155,11 +163,11 @@ in
             shadows_position_x = 0
             shadows_position_y = 0
 
-            border_radius=${toString cfg.window.border_radius}
+            border_radius=${toString cfg.eyeCandy.window.borderRadius}
             no_radius_when_single=0
 
             ${
-              if (cfg.window.blur.enable && cfg.window.opacity == 1.0) then
+              if (cfg.eyeCandy.window.blur.enable && cfg.eyeCandy.window.opacity == 1.0) then
                 ''
 <<<<<<< HEAD
                   focused_opacity=0.91
@@ -171,14 +179,14 @@ in
                 ''
               else
                 ''
-                  focused_opacity=${toString cfg.window.opacity}
-                  unfocused_opacity=${toString cfg.window.opacity}
+                  focused_opacity=${toString cfg.eyeCandy.window.opacity}
+                  unfocused_opacity=${toString cfg.eyeCandy.window.opacity}
                 ''
             }
 
             # Animation Configuration(support type:zoom,slide)
             # tag_animation_direction: 1-horizontal,0-vertical
-            animations=${if cfg.animations then "1" else "0"}
+            animations=${if cfg.eyeCandy.animations.enable then "1" else "0"}
             layer_animations=0
             animation_type_open=slide
             animation_type_close=zoom
@@ -559,24 +567,23 @@ in
             wl-paste --type text --watch cliphist store &
             gnome-keyring-daemon --start --components=secrets,ssh,pkcs11 &
 
-            ${lib.optionalString (config.beeMods.dwm.enable) ''
+            ${lib.optionalString (config.beeMods.windowManagers.dwm.enable) ''
               systemctl --user stop xidlehook.service
               systemctl --user stop xautolock-session.service
               systemctl --user stop xss-lock.service
               systemctl --user stop clipcat.service
             ''}
-
-            ${lib.optionalString (config.beeMods.dwm.picom.enable) ''
-              systemctl --user stop picom.service
-            ''}
           '';
         };
+<<<<<<< HEAD:common/modules/mango/default.nix
         home.packages = with pkgs; [
           wl-clipboard
           cliphist
           brightnessctl
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
         ];
+=======
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
       }
     else
       {

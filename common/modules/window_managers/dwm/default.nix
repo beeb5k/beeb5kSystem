@@ -14,6 +14,7 @@
   ...
 }:
 let
+<<<<<<< HEAD:common/modules/dwm/default.nix
 <<<<<<< HEAD
   cfg = config.dwm;
 in
@@ -30,6 +31,9 @@ in
     enable = lib.mkEnableOption "dwm setup";
 =======
   cfg = config.${moduleNameSpace}.dwm;
+=======
+  cfg = config.${moduleNameSpace}.windowManagers;
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/dwm/default.nix
   snipx11 = pkgs.writeShellScript "snipx11" ''
     case $1 in
       full)
@@ -115,10 +119,11 @@ in
 in
 {
   imports = [
-    (import ./picom.nix homeManager)
+    #   (import ./picom.nix homeManager)
     (import ./scripts.nix homeManager)
   ];
 
+<<<<<<< HEAD:common/modules/dwm/default.nix
   options.${moduleNameSpace}.dwm = {
     enable = lib.mkEnableOption "dwm setup";
     picom = {
@@ -153,6 +158,9 @@ in
   };
 
   config = lib.mkIf cfg.enable (
+=======
+  config = lib.mkIf cfg.dwm.enable (
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/dwm/default.nix
     if !homeManager then
       {
 <<<<<<< HEAD
@@ -298,13 +306,6 @@ in
             clipcatd &
             slstatus &
             sync_dms
-            ${lib.optionalString (!cfg.picom.enable) ''
-              xrandr --output eDP --set TearFree on
-            ''}
-            ${lib.optionalString (cfg.picom.enable) ''
-              systemctl --user restart picom.service
-            ''}
-
             systemctl --user restart xidlehook.service xautolock-session.service xss-lock.service clipcat.service
           '';
         };
@@ -377,8 +378,12 @@ in
             "${config.beeMods.terminal.font.family}:size=${toString config.beeMods.terminal.font.size}:antialias=true:autohint=true";
           "dmenu.font" =
             "${config.beeMods.terminal.font.family}:size=${toString config.beeMods.terminal.font.size}";
+<<<<<<< HEAD:common/modules/dwm/default.nix
 >>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
           "st.borderpx" = 5;
+=======
+          "st.borderpx" = 2;
+>>>>>>> cd08309 (Homecoming):common/modules/window_managers/dwm/default.nix
         };
       }
   );

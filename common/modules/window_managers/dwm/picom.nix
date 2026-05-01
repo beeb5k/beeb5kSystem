@@ -57,7 +57,7 @@
 homeManager:
 { config, lib, ... }:
 let
-  cfg = config.beeMods.dwm.picom;
+  cfg = config.beeMods.windowManagers;
 in
 {
   config = lib.mkIf cfg.enable (
