@@ -1,10 +1,7 @@
 {
   homeManager,
   inputs,
-<<<<<<< HEAD
-=======
   moduleNameSpace,
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
   ...
 }:
 {
@@ -14,15 +11,7 @@
   ...
 }:
 let
-<<<<<<< HEAD:common/modules/mango/default.nix
-<<<<<<< HEAD
-  cfg = config.mango;
-=======
-  cfg = config.${moduleNameSpace}.mango;
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
-=======
   cfg = config.${moduleNameSpace}.windowManagers;
->>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
   snip = pkgs.writeShellScript "snip" ''
     case $1 in
       full)
@@ -32,8 +21,6 @@ let
         GEOM=$(${pkgs.slurp}/bin/slurp) || exit
         ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
         ;;
-<<<<<<< HEAD
-=======
       window)
         ${pkgs.grim}/bin/grim -g "$(mmsg -x | awk '
           / x / {x=$3}
@@ -43,7 +30,6 @@ let
           END {print x "," y " " w "x" h}
           ')" - | wl-copy
         ;;
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
     esac
   '';
   smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
@@ -52,26 +38,6 @@ let
   smart-ghostty = pkgs.writeShellScript "smart-ghostty" ''
     ghostty +new-window || exec ghostty
   '';
-<<<<<<< HEAD
-in
-{
-  imports =
-    if homeManager then
-      [
-        inputs.mango.hmModules.mango
-        ./noctalia.nix
-        ./swaylockNdidle.nix
-        ./waybar.nix
-        ./wlogout
-      ]
-    else
-      [
-        inputs.mango.nixosModules.mango
-      ];
-  options.mango = {
-    enable = lib.mkEnableOption "mango setup";
-    animations = lib.mkEnableOption "Uiiiiiiiiiii";
-=======
   terminal =
     if config.beeMods.terminal.default == "alacritty" then
       smart-alacritty
@@ -84,65 +50,17 @@ in
   imports =
     if homeManager then [ inputs.mango.hmModules.mango ] else [ inputs.mango.nixosModules.mango ];
 
-<<<<<<< HEAD:common/modules/mango/default.nix
-  options.${moduleNameSpace}.mango = {
-    enable = lib.mkEnableOption "mango setup";
-    animations = lib.mkEnableOption "Uiiiiiiiiiii";
-    waybar = lib.mkEnableOption "Enable waybar";
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
-    window = {
-      blur = {
-        enable = lib.mkEnableOption "Enable window blur";
-        passes = lib.mkOption {
-          type = lib.types.int;
-          default = 1;
-        };
-        radius = lib.mkOption {
-          type = lib.types.int;
-          default = 10;
-        };
-      };
-      shadows = lib.mkEnableOption "Enable window drop shadows";
-      border_radius = lib.mkOption {
-        type = lib.types.int;
-        default = 0;
-        description = "Border radius";
-      };
-      opacity = lib.mkOption {
-        type = lib.types.number;
-        default = 1.0;
-        description = "Window opacity";
-      };
-    };
-<<<<<<< HEAD
-    noctalia-shell = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "enable noctalia-shell";
-    };
-=======
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
-  };
-
-  config = lib.mkIf cfg.enable (
-=======
   config = lib.mkIf cfg.mango.enable (
->>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
     if homeManager then
       {
         wayland.windowManager.mango = {
           enable = true;
-<<<<<<< HEAD
-          settings = ''
-            source=~/.config/mango/mango-colors.conf
-=======
           systemd.enable = true;
           systemd.variables = [ "--all" ];
           extraConfig = ''
             ${lib.optionalString (config.beeMods.matugen.enable) ''
               source=~/.config/mango/mango-colors.conf
             ''}
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # Window effect
             blur=${if cfg.eyeCandy.window.blur.enable then "1" else "0"}
@@ -169,13 +87,8 @@ in
             ${
               if (cfg.eyeCandy.window.blur.enable && cfg.eyeCandy.window.opacity == 1.0) then
                 ''
-<<<<<<< HEAD
-                  focused_opacity=0.91
-                  unfocused_opacity=0.91
-=======
                   focused_opacity=0.82
                   unfocused_opacity=0.82
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
                 ''
               else
                 ''
@@ -197,17 +110,10 @@ in
             zoom_end_ratio=0.8
             fadein_begin_opacity=0.5
             fadeout_begin_opacity=0.5
-<<<<<<< HEAD
-            animation_duration_move=300
-            animation_duration_open=350
-            animation_duration_tag=350
-            animation_duration_close=150
-=======
             animation_duration_move=250
             animation_duration_open=250
             animation_duration_tag=250
             animation_duration_close=100
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             animation_duration_focus=0
             animation_curve_open=0.05,0.7,0.1,1.0
             animation_curve_move=0.46,1.0,0.29,1
@@ -219,11 +125,7 @@ in
 
             # Scroller configuration
             scroller_structs=15
-<<<<<<< HEAD
-            scroller_default_proportion=0.8
-=======
             scroller_default_proportion=0.6
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             scroller_focus_center=0
             scroller_prefer_center=0
             edge_scroller_pointer_focus=1
@@ -283,11 +185,7 @@ in
             # need relogin to make it apply
             mouse_natural_scrolling=0
 
-<<<<<<< HEAD
-            windowrule=tags:1,appid:^(foot|footclient|alacritty)$
-=======
             windowrule=tags:1,appid:^(foot|footclient|alacritty|dev.zed.Zed)$
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             windowrule=tags:2,appid:^(zen|firefox|obsidian)$
             windowrule=tags:3,appid:^(vesktop|discord|thunderbird|Element|equibop)$
             windowrule=tags:4,appid:^steam$
@@ -326,43 +224,6 @@ in
             # reload config
             bind=SUPER,r,reload_config
 
-<<<<<<< HEAD
-            # menu and terminal
-
-            ${lib.optionalString
-              (config.terminal.emulator.alacritty && config.terminal.emulator.default == "alacritty")
-              ''
-                bind=SUPER,Return,spawn,${smart-alacritty}
-              ''
-            }
-            ${lib.optionalString
-              (config.terminal.emulator.ghostty && config.terminal.emulator.default == "ghostty")
-              ''
-                bind=SUPER,Return,spawn,${smart-ghostty}
-              ''
-            }
-            ${lib.optionalString (config.terminal.emulator.foot && config.terminal.emulator.default == "foot")
-              ''
-                bind=SUPER,Return,spawn,foot
-              ''
-            }
-
-            ${lib.optionalString (config.mango.noctalia-shell && config.mango.enable) ''
-              bind=SUPER,a,spawn,noctalia-shell ipc call launcher toggle
-              bind=SUPER,v,spawn,noctalia-shell ipc call launcher clipboard
-              bind=SUPER,y,spawn,noctalia-shell ipc call wallpaper toggle
-              bind=SUPER,period,spawn,noctalia-shell ipc call launcher emoji
-              bind=SUPER,comma,spawn,noctalia-shell ipc call settings toggle
-            ''}
-
-            ${lib.optionalString (!config.mango.noctalia-shell) ''
-              # bind=SUPER,v,spawn,clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy
-              bind=SUPER,a,spawn,rofi -show drun
-              bind=SUPER,period,spawn,rofi -show emoji -modi emoji
-              bind=ALT,F4,spawn,wlogout -C ~/.config/wlogout/style.css -l  ~/.config/wlogout/layout -b 6 --protocol layer-shell
-              bind=SUPER,y,spawn,wall-picker
-            ''}
-=======
             bind=SUPER,Return,spawn,${terminal}
 
             bind=SUPER,v,spawn,dms ipc call clipboard toggle
@@ -371,7 +232,6 @@ in
             bind=SUPER,y,spawn,dms ipc call dankdash wallpaper
             bind=SUPER,comma,spawn,dms ipc call settings focusOrToggle
 
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             bind=SUPER,F12,spawn,gnome-calculator
             bind=SUPER,b,spawn,zen
             bind=SUPER,e,spawn,nautilus
@@ -388,10 +248,7 @@ in
 
             bind=NONE,Print,spawn,${snip} full
             bind=SUPER,Print,spawn,${snip} selection
-<<<<<<< HEAD
-=======
             bind=SUPER+SHIFT,Print,spawn,${snip} window
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # swap window
             bind=SUPER+SHIFT,k,exchange_client,up
@@ -404,10 +261,7 @@ in
             bind=ALT,Tab,toggleoverview,
             bind=SUPER,space,togglefloating,
             bind=ALT,a,togglemaximizescreen,
-<<<<<<< HEAD
-=======
             bind=SUPER,f,toggle_all_floating,
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             bind=ALT,f,togglefullscreen,
             bind=ALT+SHIFT,f,togglefakefullscreen,
             bind=SUPER,i,minimized,
@@ -420,12 +274,8 @@ in
             bind=ALT,x,switch_proportion_preset,
 
             # switch layout
-<<<<<<< HEAD
-            bind=SUPER,n,switch_layout
-=======
             # bind=SUPER,n,switch_layout
             bind=SUPER,n,spawn,dms ipc call notifications toggle
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             # tag switch
             bind=SUPER,1,view,1,0
@@ -475,89 +325,32 @@ in
             bind=ALT,l,resizewin,+50,+0
 
             # Volume Control (using wpctl/Pipewire)
-<<<<<<< HEAD
-            bind=NONE,XF86AudioRaiseVolume,spawn,volume-control up
-            bind=NONE,XF86AudioLowerVolume,spawn,volume-control down
-            bind=NONE,XF86AudioMute,spawn,volume-control mute
-=======
             bind=NONE,XF86AudioRaiseVolume,spawn,wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
             bind=NONE,XF86AudioLowerVolume,spawn,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
             bind=NONE,XF86AudioMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             bind=NONE,XF86AudioPlay,spawn,playerctl play-pause
             bind=NONE,XF86AudioNext,spawn,playerctl next
             bind=NONE,XF86AudioPrev,spawn,playerctl previous
             bind=NONE,XF86AudioStop,spawn,playerctl stop
 
-<<<<<<< HEAD
-            # Mic Control
-            bind=NONE,XF86AudioMicMute,spawn,mic-control toggle
-
-            # Brightness Control (using brightnessctl)
-            bind=NONE,XF86MonBrightnessUp,spawn,brightness-control up
-            bind=NONE,XF86MonBrightnessDown,spawn,brightness-control down
-
-            # Mouse Button Bindings
-            # NONE mode key only work in ov mode
-=======
             bind=NONE,XF86AudioMicMute,spawn,wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
             bind=NONE,XF86MonBrightnessUp,spawn,brightnessctl set +5%
             bind=NONE,XF86MonBrightnessDown,spawn,brightnessctl set 5%-
 
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
             mousebind=SUPER,btn_left,moveresize,curmove
             mousebind=NONE,btn_middle,togglemaximizescreen,0
             mousebind=SUPER,btn_right,moveresize,curresize
 
-<<<<<<< HEAD
-            # Axis Bindings
-            axisbind=SUPER,UP,viewtoleft_have_client
-            axisbind=SUPER,DOWN,viewtoright_have_client
-
-            # layer rule
-            layerrule=animation_type_open:zoom,layer_name:rofi
-            layerrule=animation_type_close:zoom,layer_name:rofi
-=======
             axisbind=SUPER,UP,viewtoleft_have_client
             axisbind=SUPER,DOWN,viewtoright_have_client
 
             layerrule=noanim:1,layer_name:^dms
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 
             env=NIXOS_OZONE_WL,1
             env=QT_AUTO_SCREEN_SCALE_FACTOR,1
             env=ELECTRON_OZONE_PLATFORM_HINT,auto
-<<<<<<< HEAD
-            env=QT_QPA_PLATFORM,wayland;xcb
-            env=XDG_SESSION_TYPE,wayland
-            env=GDK_BACKEND,wayland,x11
-            env=GDK_SCALE,1
-
-            # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-            exec-once = /bin/sh -c 'eval $(gnome-keyring-daemon --start --components=secrets,ssh); dbus-update-activation-environment --systemd --all'
-            exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
-            ${lib.optionalString (config.mango.noctalia-shell && config.mango.enable) ''
-              exec = pkill quickshell ; noctalia-shell
-            ''}
-
-            ${lib.optionalString (!config.mango.noctalia-shell) ''
-              exec-once = sh ~/.swaybg
-              exec-once = waybar &
-              exec-once = dunst &
-            ''}
-            ${lib.optionalString (config.services.picom.enable) ''
-              exec-once = systemctl --user stop picom.service
-            ''}
-            exec-once = wl-clip-persist --clipboard regular
-          '';
-        };
-        home.packages = with pkgs; [
-          swaybg
-          wl-clipboard-rs
-          wl-clip-persist
-=======
             env=QT_QPA_PLATFORM,wayland
             env=XDG_SESSION_TYPE,wayland
             env=GDK_BACKEND,wayland,x11
@@ -575,15 +368,6 @@ in
             ''}
           '';
         };
-<<<<<<< HEAD:common/modules/mango/default.nix
-        home.packages = with pkgs; [
-          wl-clipboard
-          cliphist
-          brightnessctl
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
-        ];
-=======
->>>>>>> cd08309 (Homecoming):common/modules/window_managers/mango/default.nix
       }
     else
       {

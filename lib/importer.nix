@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# ./lib/importer.nix
-=======
->>>>>>> 1bb4948 (This is like that one dream you don't know how to describe)
 lib: dir:
 let
   nodes = builtins.readDir dir;

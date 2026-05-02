@@ -1,4 +1,0 @@
-{ importer, ... }:
-{
-  imports = importer ./.;
-}
