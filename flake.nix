@@ -2,9 +2,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
+      "https://noctalia.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
@@ -57,6 +59,7 @@
       # url = "git+file:/home/bee/mydwm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+<<<<<<< HEAD
     dms = {
 <<<<<<< HEAD
       url = "github:AvengeMedia/DankMaterialShell/stable";
@@ -64,6 +67,10 @@
 =======
       url = "github:AvengeMedia/DankMaterialShell";
 >>>>>>> cd08309 (Homecoming)
+=======
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+>>>>>>> 33155f4 (stuff)
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -25,7 +25,7 @@
     windowManagers = {
       mango.enable = false;
       hyprland.enable = true;
-      dwm.enable = true;
+      dwm.enable = false;
     };
   };
 

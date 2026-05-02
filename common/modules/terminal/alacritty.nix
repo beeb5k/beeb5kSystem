@@ -23,7 +23,7 @@ in
           hide_when_typing = true;
         };
         general = {
-          import = lib.optionals config.beeMods.matugen.enable [ "~/.config/alacritty/colors.toml" ];
+          import = lib.optionals config.beeMods.matugen.enable [ "~/.config/alacritty/themes/noctalia.toml" ];
         };
         window = {
           dynamic_padding = true;

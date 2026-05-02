@@ -11,7 +11,7 @@ in
       enable = true;
       enableFishIntegration = true;
       settings = {
-        theme = lib.optionalString config.beeMods.matugen.enable "matugen";
+        theme = lib.optionalString config.beeMods.matugen.enable "noctalia";
 
         font-family = cfg.font.family;
         font-size = cfg.font.size;

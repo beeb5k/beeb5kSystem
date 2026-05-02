@@ -141,28 +141,29 @@
     ../common.nix
     beeMods
     programs
-    inputs.dms.homeModules.dank-material-shell
+    inputs.noctalia.homeModules.default
   ];
 
-  programs.dank-material-shell = {
+  programs.noctalia-shell = {
     enable = true;
-
-    systemd = {
-      enable = true;
-      restartIfChanged = true;
+    user-templates = {
+      config = { };
+      templates = {
+        nvim = {
+          input_path = "~/.config/matugen/templates/neovim.lua";
+          output_path = "~/.config/nvim/colors/matugen.lua";
+        };
+        equibop = {
+          input_path = "~/.config/matugen/templates/discord.css";
+          output_path = "~/.config/equibop/themes/matugen-sys24.css";
+        };
+      };
     };
-
-    enableSystemMonitoring = true;
-    enableVPN = true;
-    enableDynamicTheming = true;
-    enableAudioWavelength = true;
-    enableCalendarEvents = false;
-    enableClipboardPaste = true;
   };
 
   beeMods = {
     windowManagers = {
-      dwm.enable = true;
+      dwm.enable = false;
       hyprland.enable = true;
       mango.enable = false;
       eyeCandy = {
@@ -178,7 +179,8 @@
     matugen.enable = true;
     emacs.enable = false;
     terminal = {
-      foot = true;
+      alacritty = true;
+      default = "alacritty";
       font.family = "IosevkaInput";
       font.size = 11.0;
     };

@@ -12,23 +12,6 @@
 }:
 let
   cfg = config.${moduleNameSpace}.windowManagers;
-
-  snip = pkgs.writeShellScript "snip" ''
-    case $1 in
-      full)
-        ${pkgs.grim}/bin/grim - | wl-copy
-        ;;
-      selection)
-        GEOM=$(${pkgs.slurp}/bin/slurp) || exit
-        ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
-        ;;
-      window)
-        GEOM=$(hyprctl activewindow -j | ${pkgs.jq}/bin/jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
-        ${pkgs.grim}/bin/grim -g "$GEOM" - | wl-copy
-        ;;
-    esac
-  '';
-
   smart-alacritty = pkgs.writeShellScript "smart-alacritty" ''
     alacritty msg create-window || exec alacritty
   '';
@@ -55,28 +38,39 @@ in
           systemd.variables = [ "--all" ];
           xwayland.enable = true;
           systemd.enableXdgAutostart = false;
+          extraConfig = ''
+            layerrule {
+            name = noctalia
+            match:namespace = noctalia-background-.*$
+            ignore_alpha = 0.5
+            blur = true
+            blur_popups = true
+            }
+          '';
 
           settings = {
             monitor = [ ",1920x1080@120,auto,1.0" ];
 
-            source = [ ] ++ lib.optional (config.beeMods.matugen.enable) "~/.config/hypr/dms/colors.conf";
+            source =
+              [ ] ++ lib.optional (config.beeMods.matugen.enable) "~/.config/hypr/noctalia/noctalia-colors.conf";
 
             "$mainMod" = "SUPER";
 
-            # env = [
-            #   "NIXOS_OZONE_WL,1"
-            #   "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-            #   "ELECTRON_OZONE_PLATFORM_HINT,auto"
-            #   "QT_QPA_PLATFORM,wayland;xcb"
-            #   "XDG_SESSION_TYPE,wayland"
-            #   "GDK_BACKEND,wayland,x11"
-            #   "GDK_SCALE,1"
-            # ];
+            env = [
+              "NIXOS_OZONE_WL,1"
+              "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+              "ELECTRON_OZONE_PLATFORM_HINT,auto"
+              "QT_QPA_PLATFORM,wayland;xcb"
+              "XDG_SESSION_TYPE,wayland"
+              "GDK_BACKEND,wayland,x11"
+              "GDK_SCALE,1"
+            ];
 
             exec-once = [
-              "dbus-update-activation-environment --all"
-              "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-              "gnome-keyring-daemon --start --components=secrets,ssh,pkcs11"
+              # "dbus-update-activation-environment --all"
+              "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+              "gnome-keyring-daemon --start --components=secrets"
+              "noctalia-shell"
             ]
             ++ lib.optionals config.beeMods.windowManagers.dwm.enable [
               "systemctl --user stop xidlehook.service"
@@ -115,10 +109,7 @@ in
 
               resize_on_border = true;
               no_focus_fallback = true;
-              allow_tearing = false;
-
-              # "col.active_border" = "$_tertiary_fixed_dim";
-              # "col.inactive_border" = "$_outline";
+              allow_tearing = true;
             };
 
             master = {
@@ -224,6 +215,7 @@ in
               "no_anim on, match:namespace ^rofi$"
               "no_anim on, match:namespace ^(dms)$"
               "no_anim on, match:namespace .*dms.*"
+              "no_anim on, match:namespace .*noctalia.*"
             ];
 
             workspace = [ "2, layout:scrolling" ];
@@ -231,13 +223,15 @@ in
             bind = [
               "$mainMod, r, exec, hyprctl reload"
               "$mainMod, Return, exec, ${terminal}"
-              "$mainMod, a, exec,dms ipc call spotlight toggle"
-              "$mainMod, v,exec,dms ipc call clipboard toggle"
-              "ALT, F4, exec, dms ipc call powermenu toggle"
-              "$mainMod, y, exec, dms ipc call dankdash wallpaper"
+              "$mainMod, a, exec,noctalia-shell ipc call launcher toggle"
+              "$mainMod, y, exec,noctalia-shell ipc call wallpaper toggle"
+              "$mainMod, v, exec,noctalia-shell ipc call launcher clipboard"
+              "$mainMod, n, exec,noctalia-shell ipc call notifications toggleHistory"
 
-              "$mainMod, comma, exec,dms ipc call settings focusOrToggle"
+              "$mainMod, comma, exec,noctalia-shell ipc call settings toggle"
+              "$mainMod, Period, exec,noctalia-shell ipc call launcher emoji"
 
+              "ALT, F4, exec,noctalia-shell ipc call sessionMenu toggle"
               "$mainMod, F12, exec, gnome-calculator"
               "$mainMod, b, exec, zen"
               "$mainMod, e, exec, nautilus"
@@ -250,9 +244,8 @@ in
               "$mainMod, k, movefocus, u"
               "$mainMod, j, movefocus, d"
 
-              ", Print, exec, ${snip} full"
-              "$mainMod, Print, exec, ${snip} selection"
-              "$mainMod SHIFT, Print, exec, ${snip} window"
+              ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy screen"
+              "$mainMod, Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 
               "$mainMod SHIFT, k, swapwindow, u"
               "$mainMod SHIFT, j, swapwindow, d"

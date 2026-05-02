@@ -11,7 +11,7 @@ in
       enable = true;
       settings = {
         main = {
-          include = lib.optionals config.beeMods.matugen.enable [ "~/.config/foot/dank-colors.ini" ];
+          include = lib.optionals config.beeMods.matugen.enable [ "~/.config/foot/themes/noctalia" ];
 
           pad = "${toString cfg.window.padding-x}x${toString cfg.window.padding-y} center";
           font = "${cfg.font.family}:size=${toString cfg.font.size}";

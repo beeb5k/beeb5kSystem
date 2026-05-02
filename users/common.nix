@@ -86,7 +86,7 @@ in
         gtk-decoration-layout = ":";
       };
       extraCss = ''
-        @import url("dank-colors.css");
+        @import url("noctalia.css");
       '';
     };
 
@@ -97,7 +97,7 @@ in
         gtk-decoration-layout = ":";
       };
       extraCss = ''
-        @import url("dank-colors.css");
+        @import url("noctalia.css");
       '';
     };
   };
@@ -136,12 +136,11 @@ in
     nautilus
     imv
     gnome-calculator
-    gpu-screen-recorder-gtk
     accountsservice
     equibop
     fastfetch
-    clang-tools
     clang
     neovim
+    gpu-screen-recorder
   ];
 }
